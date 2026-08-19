@@ -115,6 +115,10 @@ export default function Footer() {
                 LED Strip Lights
               </Link>
 
+              <Link href="/explosion-proof-lights" className="block hover:text-white transition duration-300 touch-glow">
+                Explosion Proof Lights
+              </Link>
+
             </div>
 
           </FadeUp>

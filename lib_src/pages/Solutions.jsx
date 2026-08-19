@@ -16,6 +16,7 @@ const entertainmentImg = "/images/entertainment/1.webp";
 const officeImg = "/images/indoor/4.webp";
 const audioImg = "/images/sound/1.webp";
 const facadeImg = "/images/facade/1.webp";
+const explosionProofImg = "/images/explosion-proof/hero.webp";
 
 const solutionsData = [
   {
@@ -25,6 +26,14 @@ const solutionsData = [
     image: hospitalityImg,
     link: "/hotel-lighting",
     aspectRatio: "aspect-[3/4]"
+  },
+  {
+    id: "explosion-proof",
+    title: "Explosion Proof & Industrial",
+    description: "ATEX and IECEx certified flameproof lighting engineered for hazardous oil, gas, chemical, and roadway transit environments.",
+    image: explosionProofImg,
+    link: "/explosion-proof-lights",
+    aspectRatio: "aspect-[16/9]"
   },
   {
     id: "residential",

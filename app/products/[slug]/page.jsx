@@ -7,7 +7,7 @@ const FALLBACK_IMAGE = `${SITE_URL}/meta.png`;
 
 const categoriesList = [
   "Indoor", "Outdoor", "Hospitality", "Facade", "Entertainment",
-  "LED Screen", "Stretch Ceiling", "Automation", "Retail", "Audio",
+  "LED Screen", "Stretch Ceiling", "Automation", "Retail", "Audio", "Explosion Proof",
 ];
 
 export function generateStaticParams() {

@@ -16,6 +16,7 @@ const navItems = [
     dropdown: [
       { name: "Indoor Lighting", to: "/products/indoor" },
       { name: "Outdoor Lighting", to: "/products/outdoor" },
+      { name: "Explosion Proof Lights", to: "/explosion-proof-lights" },
       { name: "Hospitality Lighting", to: "/products/hospitality" },
       { name: "Facade Lighting", to: "/facade-lighting" },
       { name: "Smart Lighting", to: "/products/automation" },
@@ -31,6 +32,7 @@ const navItems = [
     to: "/solutions",
     dropdown: [
       { name: "Hospitality", to: "/hotel-lighting" },
+      { name: "Explosion Proof Solutions", to: "/explosion-proof-lights" },
       { name: "Retail", to: "/retail-lighting" },
       { name: "Entertainment", to: "/entertainment-lighting" },
       { name: "Facade Lighting", to: "/facade-lighting" },

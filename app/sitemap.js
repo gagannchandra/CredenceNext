@@ -17,7 +17,7 @@ const staticRoutes = [
   "/restaurant-lighting", "/entertainment-lighting", "/audio-solutions", "/facade-lighting",
   "/lighting-suppliers-abu-dhabi", "/lighting-companies-sharjah", "/lighting-solutions-ajman",
   "/lighting-solutions-rak", "/lighting-companies-uae", "/lighting-companies-saudi-arabia",
-  "/lighting-companies-bahrain",
+  "/lighting-companies-bahrain", "/explosion-proof-lights", "/explosion-proof-lights-dubai",
 ];
 
 export default function sitemap() {

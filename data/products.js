@@ -1034,6 +1034,62 @@ const products = [
     "subtitle": "AUDIO • PREMIUM",
     "image": "/images/sound/audio_pa.webp",
     "large": false
+  },
+  {
+    "id": 130,
+    "category": "Explosion Proof",
+    "title": "ATEX Zone 1/21 High Bay Luminaire",
+    "subtitle": "FLAMEPROOF • ATEX / IECEx",
+    "image": "/images/explosion-proof/1.webp",
+    "large": true
+  },
+  {
+    "id": 131,
+    "category": "Explosion Proof",
+    "title": "Hazardous Area Linear LED Batten",
+    "subtitle": "HEAVY-DUTY • ZONE 1 & 2",
+    "image": "/images/explosion-proof/2.webp",
+    "large": false
+  },
+  {
+    "id": 132,
+    "category": "Explosion Proof",
+    "title": "Explosion-Proof LED Floodlight 240W",
+    "subtitle": "MARINE-GRADE • IP67 / IK10",
+    "image": "/images/explosion-proof/3.webp",
+    "large": false
+  },
+  {
+    "id": 133,
+    "category": "Explosion Proof",
+    "title": "Hazardous Highway & Corridor Luminaire",
+    "subtitle": "ROADWAY • OPTICAL CUTOFF",
+    "image": "/images/explosion-proof/4.webp",
+    "large": true
+  },
+  {
+    "id": 134,
+    "category": "Explosion Proof",
+    "title": "Flameproof Well Glass LED Fixture",
+    "subtitle": "COMPACT • STEEL WIRE CAGE",
+    "image": "/images/explosion-proof/5.webp",
+    "large": false
+  },
+  {
+    "id": 135,
+    "category": "Explosion Proof",
+    "title": "Hazardous Location Emergency Exit Luminaire",
+    "subtitle": "EMERGENCY • 180-MIN BATTERY",
+    "image": "/images/explosion-proof/6.webp",
+    "large": false
+  },
+  {
+    "id": 136,
+    "category": "Explosion Proof",
+    "title": "Refinery Perimeter Explosion-Proof Area Light",
+    "subtitle": "PETROCHEMICAL • C5-M COATING",
+    "image": "/images/explosion-proof/hero.webp",
+    "large": false
   }
 ];
 

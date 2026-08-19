@@ -19,6 +19,7 @@ const categoriesList = [
   "Automation",
   "Retail",
   "Audio",
+  "Explosion Proof",
 ];
 
 const categoryDescriptions = {
@@ -32,6 +33,7 @@ const categoryDescriptions = {
   Automation: "Home Automation Systems bring comfort, control, and efficiency through a wide range of smart solutions. Powered by advanced technology, our systems seamlessly integrate lighting, climate, security, and AV control.",
   Retail: "Retail Lighting enhances product visibility and customer experience through a wide range of modern lighting solutions. Powered by advanced lighting technology, our systems deliver precise illumination, visual comfort, and energy efficiency.",
   Audio: "We deliver innovative audio solutions for residential, commercial, hospitality, and retail spaces. From background music and public address systems to conference and entertainment audio, our team provides complete design, supply, installation, and support.",
+  "Explosion Proof": "Certified ATEX and IECEx flameproof lighting engineered for hazardous industrial environments, oil & gas facilities, chemical plants, refineries, and hazardous highway corridors. Built with copper-free cast aluminum enclosures and high-impact tempered glass, our explosion-proof luminaires deliver maximum illumination with certified spark-free containment and superior thermal performance up to 55°C ambient.",
 };
 
 export default function ProductDetails() {
