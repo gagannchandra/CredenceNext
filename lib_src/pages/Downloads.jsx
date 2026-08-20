@@ -1,25 +1,19 @@
 "use client";
 
+import Link from "next/link";
 import Footer from "@/components/layout/Footer";
 import PageTransition from "@/components/ui/motion/PageTransition";
 import SEO from "@/components/seo/SEO";
 
 const resources = [
   {
-    title: "Product Catalogue",
-    type: "PDF Document",
-    description:
-      "Explore our premium architectural and commercial lighting solutions.",
-    href: "/pdfs/catalogue.pdf",
-    download: true,
-  },
-  {
     title: "Company Profile",
     type: "PDF Document",
     description:
       "Learn about Credence Lighting, our global presence, and project expertise.",
-    href: "/pdfs/credence%20profile.pdf",
+    href: "/pdfs/credence-profile.pdf",
     download: true,
+    actionLabel: "Download PDF ↗",
   },
   {
     title: "Project Album",
@@ -28,6 +22,16 @@ const resources = [
       "A visual album showcasing our completed lighting and architectural projects.",
     href: "/pdfs/album.pdf",
     download: true,
+    actionLabel: "Download PDF ↗",
+  },
+  {
+    title: "Product Catalogue",
+    type: "On-Demand Consultation",
+    description:
+      "Request our complete technical catalogue and fixture specifications tailored to your project requirements.",
+    href: "/contact",
+    download: false,
+    actionLabel: "Request Catalogue ↗",
   },
 ];
 
@@ -39,11 +43,18 @@ export default function Downloads() {
           title="Lighting Catalogues & Downloads | Credence Lighting" 
           description="Download our latest product catalogues, technical specifications, and brochures for premium lighting solutions in the UAE." 
           schema={[{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Downloads & Catalogs", "item": "https://www.credencelighting.com/downloads" }
+          ]
+        }, {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
             "name": "Downloads & Resources · Credence Lighting",
             "description": "Download Credence Lighting's product catalogues, company profile, and project albums.",
-            "url": "https://credencelighting.com/downloads"
+            "url": "https://www.credencelighting.com/downloads"
           }]}
         />
         <section className="relative pt-40 px-6 md:px-16 pb-24 overflow-hidden">
@@ -64,27 +75,43 @@ export default function Downloads() {
             for your next commercial lighting project.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-20">
-            {resources.map((item) => (
-              <a
-                key={item.title}
-                href={item.href}
-                {...(item.download ? { download: true } : { target: "_blank", rel: "noreferrer" })}
-                className="group border border-white/10 bg-white/5 backdrop-blur-md md:backdrop-blur-xl p-8 hover:border-brand-gold transition duration-500 rounded-[1.5rem]"
-              >
-                <p className="uppercase tracking-[0.3em] text-xs text-brand-gold mb-6">
-                  {item.type}
-                </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-20">
+            {resources.map((item) => {
+              const cardContent = (
+                <>
+                  <p className="uppercase tracking-[0.3em] text-xs text-brand-gold mb-6">
+                    {item.type}
+                  </p>
 
-                <h2 className="text-3xl font-serif mb-4">{item.title}</h2>
+                  <h2 className="text-2xl md:text-3xl font-serif mb-4">{item.title}</h2>
 
-                <p className="text-white/50 leading-7">{item.description}</p>
+                  <p className="text-white/50 leading-7 text-sm">{item.description}</p>
 
-                <div className="mt-10 text-sm uppercase tracking-[0.3em] text-white/70 group-hover:text-brand-gold transition duration-300">
-                  Download PDF ↗
-                </div>
-              </a>
-            ))}
+                  <div className="mt-10 text-sm uppercase tracking-[0.3em] text-white/70 group-hover:text-brand-gold transition duration-300">
+                    {item.actionLabel}
+                  </div>
+                </>
+              );
+
+              return item.download ? (
+                <a
+                  key={item.title}
+                  href={item.href}
+                  download={true}
+                  className="group border border-white/10 bg-white/5 backdrop-blur-md md:backdrop-blur-xl p-8 hover:border-brand-gold transition duration-500 rounded-[1.5rem] flex flex-col justify-between"
+                >
+                  {cardContent}
+                </a>
+              ) : (
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  className="group border border-white/10 bg-white/5 backdrop-blur-md md:backdrop-blur-xl p-8 hover:border-brand-gold transition duration-500 rounded-[1.5rem] flex flex-col justify-between"
+                >
+                  {cardContent}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

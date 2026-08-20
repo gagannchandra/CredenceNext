@@ -1,25 +1,25 @@
 import ExplosionProofLights from "@/lib_src/pages/ExplosionProofLights";
 
 export const metadata = {
-  title: 'Explosion Proof Lights Dubai · ATEX & IECEx Certified Lighting UAE',
-  description: 'Premium ATEX & IECEx certified explosion-proof LED lights in Dubai & UAE. Flameproof high bays, linear battens, floodlights, and hazardous highway luminaires. Engineered for oil, gas, and petrochemical environments.',
+  title: 'Explosion Proof Industrial Lighting',
+  description: 'ATEX & IECEx certified explosion-proof LED lighting in Dubai and UAE. Zone 1, 2, 21, and 22 hazardous area luminaires for industrial and energy facilities.',
   alternates: {
-    canonical: "https://credencelighting.com/explosion-proof-lights",
+    canonical: "https://www.credencelighting.com/explosion-proof-lights",
   },
   openGraph: {
-    title: 'Explosion Proof Lights Dubai · ATEX & IECEx Certified Lighting UAE',
-    description: 'Premium ATEX & IECEx certified explosion-proof LED lights in Dubai & UAE. Flameproof high bays, linear battens, floodlights, and hazardous highway luminaires.',
-    url: "https://credencelighting.com/explosion-proof-lights",
+    title: 'Explosion Proof Industrial Lighting · Credence Lighting',
+    description: 'ATEX & IECEx certified explosion-proof LED lighting in Dubai and UAE. Zone 1, 2, 21, and 22 hazardous area luminaires for industrial and energy facilities.',
+    url: "https://www.credencelighting.com/explosion-proof-lights",
     siteName: "Credence Lighting",
-    images: ["https://credencelighting.com/images/explosion-proof/hero.webp"],
+    images: ["https://www.credencelighting.com/images/explosion-proof/hero.webp"],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: 'Explosion Proof Lights Dubai · ATEX & IECEx Certified Lighting UAE',
-    description: 'Premium ATEX & IECEx certified explosion-proof LED lights in Dubai & UAE. Flameproof high bays, linear battens, floodlights, and hazardous highway luminaires.',
-    images: ["https://credencelighting.com/images/explosion-proof/hero.webp"],
+    title: 'Explosion Proof Industrial Lighting · Credence Lighting',
+    description: 'ATEX & IECEx certified explosion-proof LED lighting in Dubai and UAE. Zone 1, 2, 21, and 22 hazardous area luminaires for industrial and energy facilities.',
+    images: ["https://www.credencelighting.com/images/explosion-proof/hero.webp"],
   },
 };
 

@@ -1,4 +1,6 @@
-import { useLayoutEffect } from "react";
+"use client";
+
+import { useEffect } from "react";
 import {
   clearReturnState,
   consumePendingReturnScroll,
@@ -8,7 +10,7 @@ import {
 import { restoreScrollPosition } from "../utils/scrollUtils";
 
 export default function ReturnScrollHandler() {
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!hasPendingReturnScroll()) return;
 
     const state = getReturnState();

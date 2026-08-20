@@ -27,23 +27,12 @@ const faqs = [
 ];
 
 export default function PendantLightsDubai() {
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
-    }))
-  };
-
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://credencelighting.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://credencelighting.com/products" },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.credencelighting.com/products" },
       { "@type": "ListItem", "position": 3, "name": "Pendant Lights Dubai" }
     ]
   };
@@ -53,7 +42,7 @@ export default function PendantLightsDubai() {
       <SEO
         title="Pendant Lights Dubai · Credence Lighting"
         description="Premium pendant lights and hanging fixtures for Dubai homes, hotels, and commercial spaces. Statement pendants, custom designs, and kitchen island lighting."
-        schema={[faqSchema, breadcrumbSchema]}
+        schema={[breadcrumbSchema]}
       />
       <main className="relative bg-transparent overflow-hidden">
         {/* HERO */}

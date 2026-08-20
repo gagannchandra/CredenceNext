@@ -1,13 +1,55 @@
 # Credence Lighting AI Knowledge Base
 
+> Credence Lighting is a premier architectural, commercial, and hospitality lighting design and supply company based in Dubai, UAE, delivering high-performance bespoke lighting systems across the GCC region.
+
 Credence Lighting is a premium lighting design and supply company based in Dubai, UAE, serving the GCC region.
 
-## Core Documentation
-- [Full Knowledge Base](/knowledge.md)
-- [About Us](/about)
-- [Products](/products)
-- [Projects](/projects)
-- [Contact](/contact)
+## Core Documentation & Pages
+- [Full Technical Knowledge Base (Full Digest)](/llms-full.txt): Single-file exhaustive markdown knowledge base containing complete technical, product, and case study documentation.
+- [Comprehensive Knowledge Base](/knowledge.md): Structured business identity, standards, and QA pairs.
+- [About Us](/about): Company heritage, lighting consultants, and capabilities in Dubai.
+- [Lighting Solutions & Services](/solutions): Complete architectural, commercial, hospitality, and residential lighting services.
+- [Architectural Products](/products): Indoor, outdoor, facade, explosion-proof, and decorative lighting luminaires.
+- [Portfolio & Case Studies](/projects): Completed commercial, hospitality, and entertainment lighting projects across GCC.
+- [Contact Us](/contact): Direct consultation with lighting specialists in Dubai.
+- [Lighting Company in Dubai](/lighting-company-dubai): End-to-end design, fixture supply, and commissioning in UAE.
+- [Lighting Showroom in Dubai](/lighting-showroom-dubai): Experience live luminaire displays at Dubai Investment Park (DIP 1).
+- [Frequently Asked Questions](/faq): Technical, municipal, and project lighting FAQs answered.
+- [Catalogues & Specifications](/downloads): Download technical datasheets and photometric IES files.
+
+## Flagship Project Case Studies
+- [My Town (Saudi Arabia)](/projects/my-town): Warm ambient illumination across Faisaliah, Lavanda Park, Dareen, and Jeddah Village Malls (350 Lux, DALI-2/Casambi).
+- [Ground Control (Bahrain)](/projects/ground-control): Dynamic entertainment and video pixel mapping at Galleria Mall Bahrain (RGBW DMX512).
+- [Funtura (Riyadh)](/projects/funtura): Interactive retail lighting with sensory control systems at Al Atyaf Mall (450 Lux uniform).
+- [Xtreme Zone (Dammam)](/projects/xtreme-zone): Large-format linear lighting installation at Al Shifa (500 Lux direct/indirect).
+- [Xtreme Z (Riyadh)](/projects/xtreme-z): Premium architectural lighting installation and ambient atmosphere creation (400 Lux ambient).
+- [Smarvy Spot (Al-Ahsa)](/projects/smarvy-spot): Dynamic retail display and high-CRI accent lighting at Alamer Mall (800 Lux accent, CRI 97).
+- [Dubai Marina Penthouse (UAE)](/projects/dubai-marina-penthouse): Circadian cove illumination for ultra-luxury residence (150-300 Lux tunable, CRI 98+).
+- [Riyadh Commercial Tower (KSA)](/projects/riyadh-business-tower): Low-glare corporate lighting and facade media installation (500 Lux, UGR<16, DALI-2).
+- [Bahrain Bay Hotel & Spa (Bahrain)](/projects/bahrain-bay-resort): Five-star luxury hospitality warm dimming installation (1800K-3000K, Casambi).
+- [Abu Dhabi Cultural Pavilion (UAE)](/projects/abu-dhabi-cultural-pavilion): Estidama Pearl 3 rated precision facade grazing floodlighting (IP67 Ingress).
+- [KAFD Luxury Flagship Store (Riyadh)](/projects/kafd-flagship-retail): Museum-grade high-fidelity jewelry lighting (1200 Lux focal, CRI 98).
+- [Al Qasba Waterfront Promenade (Sharjah)](/projects/al-qasba-promenade): Dark-Sky certified marine-grade outdoor and underwater fountain illumination (IP68).
+
+## Solutions & Industries
+- [Hospitality & Hotel Lighting](/hotel-lighting): Luxury resort, boutique hotel, and guestroom lighting design.
+- [Commercial Office Lighting](/office-lighting): Human-centric lighting (HCL), low glare (UGR<19), and DALI smart controls.
+- [Retail & Showroom Lighting](/retail-lighting): High-CRI accent track lighting and visual merchandising illumination.
+- [Restaurant & Dining Lighting](/restaurant-lighting): Warm dimming and atmospheric dining scene controls.
+- [Architectural Facade Lighting](/facade-lighting): Media facades, exterior floodlighting, and DMX pixel mapping.
+- [Luxury Residential Lighting](/residential-lighting): Villa cove lighting, ambient layering, and smart home automation.
+- [Entertainment & Theme Park Lighting](/entertainment-lighting): Programmable lighting and LED display solutions.
+- [Commercial Architectural Audio](/audio-solutions): Integrated acoustics and audio systems for luxury venues.
+- [Explosion Proof Lighting](/explosion-proof-lights): ATEX and IECEx certified hazardous area lighting.
+
+## Regional Hubs & GCC Service Areas
+- [Lighting Solutions in UAE](/lighting-companies-uae): All-emirates lighting delivery and project engineering.
+- [Lighting Suppliers in Abu Dhabi](/lighting-suppliers-abu-dhabi): Estidama-compliant architectural lighting in Abu Dhabi.
+- [Lighting Companies in Sharjah](/lighting-companies-sharjah): Industrial, commercial, and heritage lighting in Sharjah.
+- [Lighting Solutions in Ajman](/lighting-solutions-ajman): Cost-effective commercial and residential lighting in Ajman.
+- [Lighting Solutions in Ras Al Khaimah](/lighting-solutions-rak): Coastal resort and hospitality lighting in RAK.
+- [Lighting Companies in Saudi Arabia](/lighting-companies-saudi-arabia): SASO-compliant lighting supply for Riyadh, Jeddah, and KSA.
+- [Lighting Companies in Bahrain](/lighting-companies-bahrain): Architectural and commercial lighting in Manama, Bahrain.
 
 ## Latest Articles
 - [The Evolution of Architectural Lighting in Modern Spaces](/blog/evolution-of-architectural-lighting): Explore how architectural lighting has shifted from pure utility to a fundamental design element in luxury commercial and residential environments.

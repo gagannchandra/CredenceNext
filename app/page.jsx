@@ -1,29 +1,31 @@
 import Home from "@/lib_src/pages/Home";
 
-const title = "Credence Lighting | Premium Lighting Solutions Dubai";
+const titleText = "Credence Lighting · Architectural & Commercial Lighting Dubai";
 const description =
-  "Premium architectural, commercial, hospitality, and decorative lighting solutions across Dubai and the UAE. 10+ years of expertise and 1,000+ successful projects.";
+  "Premier architectural, commercial, and hospitality lighting design, supply, and installation across Dubai and the UAE. 10+ years of expertise and 1,000+ completed projects.";
 
 export const metadata = {
-  title,
+  title: {
+    absolute: titleText,
+  },
   description,
   alternates: {
-    canonical: "https://credencelighting.com/",
+    canonical: "https://www.credencelighting.com/",
   },
   openGraph: {
-    title,
+    title: titleText,
     description,
-    url: "https://credencelighting.com/",
+    url: "https://www.credencelighting.com/",
     siteName: "Credence Lighting",
-    images: ["https://credencelighting.com/meta.png"],
+    images: ["https://www.credencelighting.com/meta.png"],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title,
+    title: titleText,
     description,
-    images: ["https://credencelighting.com/meta.png"],
+    images: ["https://www.credencelighting.com/meta.png"],
   },
 };
 

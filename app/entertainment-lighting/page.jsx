@@ -1,25 +1,25 @@
 import EntertainmentLighting from "@/lib_src/pages/EntertainmentLighting";
 
 export const metadata = {
-  title: 'Entertainment & Theme Park Lighting | Credence Lighting',
-  description: 'Dynamic, programmable lighting solutions for entertainment venues, cinemas, theme parks, and arenas in the UAE and Saudi Arabia.',
+  title: 'Entertainment & Theme Park Lighting',
+  description: 'Dynamic, programmable lighting and LED display solutions for theme parks, cinemas, arenas, and entertainment attractions in the UAE and KSA.',
   alternates: {
-    canonical: "https://credencelighting.com/entertainment-lighting",
+    canonical: "https://www.credencelighting.com/entertainment-lighting",
   },
   openGraph: {
-    title: 'Entertainment & Theme Park Lighting | Credence Lighting',
-    description: 'Dynamic, programmable lighting solutions for entertainment venues, cinemas, theme parks, and arenas in the UAE and Saudi Arabia.',
-    url: "https://credencelighting.com/entertainment-lighting",
+    title: 'Entertainment & Theme Park Lighting · Credence Lighting',
+    description: 'Dynamic, programmable lighting and LED display solutions for theme parks, cinemas, arenas, and entertainment attractions in the UAE and KSA.',
+    url: "https://www.credencelighting.com/entertainment-lighting",
     siteName: "Credence Lighting",
-    images: ["https://credencelighting.com/meta.png"],
+    images: ["https://www.credencelighting.com/meta.png"],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: 'Entertainment & Theme Park Lighting | Credence Lighting',
-    description: 'Dynamic, programmable lighting solutions for entertainment venues, cinemas, theme parks, and arenas in the UAE and Saudi Arabia.',
-    images: ["https://credencelighting.com/meta.png"],
+    title: 'Entertainment & Theme Park Lighting · Credence Lighting',
+    description: 'Dynamic, programmable lighting and LED display solutions for theme parks, cinemas, arenas, and entertainment attractions in the UAE and KSA.',
+    images: ["https://www.credencelighting.com/meta.png"],
   },
 };
 

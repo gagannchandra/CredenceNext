@@ -28,14 +28,14 @@ export const pageTransitionVariants = {
 
 // --- Standard Reveals ---
 export const fadeUpVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 16 },
   visible: (custom = 0) => ({
     opacity: 1,
     y: 0,
     transition: {
-      duration: duration.standard,
+      duration: 0.6,
       ease: ease.standard,
-      delay: custom * 0.1, // Default stagger multiplier
+      delay: Math.min(custom * 0.05, 0.4), // Cap stagger delay for seamless in-view reveal
     }
   }),
 };

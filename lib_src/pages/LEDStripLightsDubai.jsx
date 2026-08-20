@@ -27,23 +27,12 @@ const faqs = [
 ];
 
 export default function LEDStripLightsDubai() {
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
-    }))
-  };
-
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://credencelighting.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://credencelighting.com/products" },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.credencelighting.com/products" },
       { "@type": "ListItem", "position": 3, "name": "LED Strip Lights Dubai" }
     ]
   };
@@ -53,7 +42,7 @@ export default function LEDStripLightsDubai() {
       <SEO
         title="LED Strip Lights Dubai · Credence Lighting"
         description="Premium LED strip lights in Dubai — flexible strips, neon flex, RGBW, IP-rated outdoor strips, and high-density architectural profiles. Cut-to-length service available."
-        schema={[faqSchema, breadcrumbSchema]}
+        schema={[breadcrumbSchema]}
       />
       <main className="relative bg-transparent overflow-hidden">
         {/* HERO */}

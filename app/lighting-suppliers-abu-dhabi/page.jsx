@@ -1,25 +1,25 @@
 import LocationAbuDhabi from "@/lib_src/pages/LocationAbuDhabi";
 
 export const metadata = {
-  title: 'Lighting Suppliers in Abu Dhabi | Credence Lighting',
-  description: 'Credence Lighting is a premier lighting supplier and design firm serving Abu Dhabi and Al Ain. We provide bespoke architectural, commercial, and hospitality lighting solutions.',
+  title: 'Lighting Suppliers in Abu Dhabi',
+  description: 'Estidama-compliant architectural and commercial lighting suppliers in Abu Dhabi. Downlights, linear LEDs, exterior floodlights, and smart control systems.',
   alternates: {
-    canonical: "https://credencelighting.com/lighting-suppliers-abu-dhabi",
+    canonical: "https://www.credencelighting.com/lighting-suppliers-abu-dhabi",
   },
   openGraph: {
-    title: 'Lighting Suppliers in Abu Dhabi | Credence Lighting',
-    description: 'Credence Lighting is a premier lighting supplier and design firm serving Abu Dhabi and Al Ain. We provide bespoke architectural, commercial, and hospitality lighting solutions.',
-    url: "https://credencelighting.com/lighting-suppliers-abu-dhabi",
+    title: 'Lighting Suppliers in Abu Dhabi · Credence Lighting',
+    description: 'Estidama-compliant architectural and commercial lighting suppliers in Abu Dhabi. Downlights, linear LEDs, exterior floodlights, and smart control systems.',
+    url: "https://www.credencelighting.com/lighting-suppliers-abu-dhabi",
     siteName: "Credence Lighting",
-    images: ["https://credencelighting.com/meta.png"],
+    images: ["https://www.credencelighting.com/meta.png"],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: 'Lighting Suppliers in Abu Dhabi | Credence Lighting',
-    description: 'Credence Lighting is a premier lighting supplier and design firm serving Abu Dhabi and Al Ain. We provide bespoke architectural, commercial, and hospitality lighting solutions.',
-    images: ["https://credencelighting.com/meta.png"],
+    title: 'Lighting Suppliers in Abu Dhabi · Credence Lighting',
+    description: 'Estidama-compliant architectural and commercial lighting suppliers in Abu Dhabi. Downlights, linear LEDs, exterior floodlights, and smart control systems.',
+    images: ["https://www.credencelighting.com/meta.png"],
   },
 };
 

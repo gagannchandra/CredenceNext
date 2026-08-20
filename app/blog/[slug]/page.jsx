@@ -1,7 +1,7 @@
 import { blogPosts } from "@/data/blog";
 import BlogDetail from "@/lib_src/pages/BlogDetail";
 
-const SITE_URL = "https://credencelighting.com";
+const SITE_URL = "https://www.credencelighting.com";
 const FALLBACK_IMAGE = `${SITE_URL}/meta.png`;
 
 // Pre-render metadata (and static params) for every known blog slug at
@@ -16,20 +16,23 @@ export async function generateMetadata({ params }) {
   const post = blogPosts.find((p) => p.slug === slug);
 
   if (!post) {
-    return { title: "Blog | Credence Lighting" };
+    return { title: "Article Not Found" };
   }
 
-  const title = post.seoMetadata?.title || `${post.title} · Credence Lighting`;
+  const baseTitle = (post.seoMetadata?.title || post.title)
+    .replace(/\s*[|·]\s*Credence.*$/i, "")
+    .trim();
+  const fullTitle = `${baseTitle} · Credence Lighting`;
   const description = post.seoMetadata?.description || post.excerpt;
-  const image = post.image ? `${SITE_URL}${post.image}` : FALLBACK_IMAGE;
+  const image = post.image || post.heroImage ? `${SITE_URL}${post.image || post.heroImage}` : FALLBACK_IMAGE;
   const url = `${SITE_URL}/blog/${post.slug}`;
 
   return {
-    title,
+    title: baseTitle,
     description,
     alternates: { canonical: url },
     openGraph: {
-      title,
+      title: fullTitle,
       description,
       url,
       siteName: "Credence Lighting",
@@ -39,7 +42,7 @@ export async function generateMetadata({ params }) {
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: fullTitle,
       description,
       images: [image],
     },

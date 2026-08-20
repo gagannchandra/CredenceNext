@@ -4,8 +4,6 @@ import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { Suspense } from "react";
 import { AnimatePresence } from "framer-motion";
-import { HelmetProvider } from "react-helmet-async";
-
 import Loader from "./ui/Loader";
 import ScrollToTop from "./ScrollToTop";
 import WhatsappFloat from "./ui/WhatsappFloat";
@@ -26,7 +24,7 @@ export default function ClientApp({ children }) {
   const pathname = usePathname();
 
   return (
-    <HelmetProvider>
+    <>
       <SmoothScroll />
       <AmbientBackground />
       <Navbar />
@@ -43,6 +41,6 @@ export default function ClientApp({ children }) {
       </ErrorBoundary>
 
       <WhatsappFloat />
-    </HelmetProvider>
+    </>
   );
 }

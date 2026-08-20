@@ -16,15 +16,15 @@ export default function Contact() {
         schema={[{
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
-          "@id": "https://credencelighting.com/#organization",
+          "@id": "https://www.credencelighting.com/#organization",
           "geo": {
             "@type": "GeoCoordinates",
             "latitude": "24.9788",
             "longitude": "55.1764"
           },
           "name": "Credence Lighting LLC",
-          "image": "https://credencelighting.com/logo.svg",
-          "url": "https://credencelighting.com",
+          "image": "https://www.credencelighting.com/logo.svg",
+          "url": "https://www.credencelighting.com",
           "telephone": "+971564965660",
           "email": "info@credencelighting.com",
           "address": {
@@ -41,7 +41,21 @@ export default function Contact() {
             "closes": "18:00"
           },
           "priceRange": "$$$$",
-          "areaServed": ["Dubai", "Abu Dhabi", "Sharjah", "UAE", "Saudi Arabia", "Bahrain"]
+          "areaServed": ["Dubai", "Abu Dhabi", "Sharjah", "UAE", "Saudi Arabia", "Bahrain"],
+          "sameAs": [
+            "https://www.instagram.com/credencelighting/",
+            "https://www.linkedin.com/company/credence-lighting-llc/",
+            "https://maps.app.goo.gl/ec2HMCDNXYtYviV7A",
+            "https://www.facebook.com/credencelighting",
+            "https://www.youtube.com/@credencelighting"
+          ]
+        }, {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Contact Us", "item": "https://www.credencelighting.com/contact" }
+          ]
         }]}
       />
       <div className="bg-transparent pt-10">

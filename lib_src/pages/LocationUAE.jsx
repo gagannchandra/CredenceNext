@@ -22,30 +22,30 @@ const schema = {
   "@graph": [
     {
       "@type": "LocalBusiness",
-          "@id": "https://credencelighting.com/#organization",
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "24.9788",
-            "longitude": "55.1764"
-          },
-      "name": "Credence Lighting",
-      "url": "https://credencelighting.com/lighting-companies-uae",
+      "@id": "https://www.credencelighting.com/#localbusiness-uae",
+      "parentOrganization": {
+        "@type": "Organization",
+        "@id": "https://www.credencelighting.com/#organization"
+      },
+      "name": "Credence Lighting — United Arab Emirates",
+      "url": "https://www.credencelighting.com/lighting-companies-uae",
       "areaServed": {
-        "@type": "Country",
+        "@type": "Place",
         "name": "United Arab Emirates"
       },
-      "description": "Premier LED light supplier and architectural lighting company serving the entire UAE."
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "25.2048",
+        "longitude": "55.2708"
+      },
+      "description": "Premium architectural and commercial lighting design, supply, and installation serving United Arab Emirates."
     },
     {
-      "@type": "FAQPage",
-      "mainEntity": faqs.map(faq => ({
-        "@type": "Question",
-        "name": faq.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": faq.answer
-        }
-      }))
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+        { "@type": "ListItem", "position": 2, "name": "United Arab Emirates Lighting", "item": "https://www.credencelighting.com/lighting-companies-uae" }
+      ]
     }
   ]
 };
@@ -83,7 +83,7 @@ const relatedProjects = [
     link: "/projects"
   },
   {
-    title: "Corporate Headquaters",
+    title: "Corporate Headquarters",
     description: "Multi-floor smart lighting rollout for a major UAE banking institution.",
     image: indoorImg,
     link: "/projects"

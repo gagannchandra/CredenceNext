@@ -6,7 +6,13 @@ export const projectSlugs = [
   "funtura",
   "xtreme-zone",
   "xtreme-z",
-  "smarvy-spot"
+  "smarvy-spot",
+  "dubai-marina-penthouse",
+  "riyadh-business-tower",
+  "bahrain-bay-resort",
+  "abu-dhabi-cultural-pavilion",
+  "kafd-flagship-retail",
+  "al-qasba-promenade"
 ];
 export const blogSlugs = [
   "evolution-of-architectural-lighting",

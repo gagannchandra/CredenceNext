@@ -1,3 +1,5 @@
+"use client";
+
 import FaqAccordionItem from "./FaqAccordionItem";
 
 export default function FaqAccordionGroup({ category, faqs }) {

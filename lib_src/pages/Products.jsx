@@ -38,11 +38,18 @@ export default function Products() {
         description="Explore our premium collection of indoor, outdoor, hospitality, and facade lighting fixtures." 
         schema={[{
           "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.credencelighting.com/products" }
+          ]
+        }, {
+          "@context": "https://schema.org",
           "@type": "ItemList",
           "itemListElement": Array.from(new Set(products.map(p => p.category))).map((category, index) => ({
             "@type": "ListItem",
             "position": index + 1,
-            "url": `https://credencelighting.com/products/${slugify(category)}`,
+            "url": `https://www.credencelighting.com/products/${slugify(category)}`,
             "name": category
           }))
         }]}
@@ -79,13 +86,11 @@ export default function Products() {
                     </div>
                     <div className="flex items-center gap-4">
                       <Link href={`/products/${slugify(category)}`}
-                        onClick={() => scrollToTop()}
                         className="shrink-0 hidden md:inline-flex border border-white/20 backdrop-blur-sm text-white px-8 py-3 tracking-[0.2em] uppercase text-xs transition-all duration-500 rounded-button items-center justify-center hover:bg-white hover:text-black"
                       >
                         View Collection
                       </Link>
                       <Link href="/contact"
-                        onClick={() => scrollToTop()}
                         className="shrink-0 hidden md:inline-flex border border-brand-gold/40 backdrop-blur-sm text-brand-gold px-8 py-3 tracking-[0.2em] uppercase text-xs transition-all duration-500 rounded-button items-center justify-center gap-3 group hover:bg-brand-gold hover:text-black"
                       >
                         Enquire Now
@@ -112,13 +117,11 @@ export default function Products() {
                 
                 <div className="mt-8 flex flex-col sm:flex-row justify-center md:hidden w-full gap-4">
                   <Link href={`/products/${slugify(category)}`}
-                    onClick={() => scrollToTop()}
                     className="w-full inline-flex border border-white/20 backdrop-blur-sm text-white px-6 py-3 tracking-[0.2em] uppercase text-xs sm:text-sm transition-all duration-500 rounded-button items-center justify-center hover:bg-white hover:text-black"
                   >
                     View Collection
                   </Link>
                   <Link href="/contact"
-                    onClick={() => scrollToTop()}
                     className="w-full inline-flex border border-brand-gold/40 backdrop-blur-sm text-brand-gold px-6 py-3 tracking-[0.2em] uppercase text-xs sm:text-sm transition-all duration-500 rounded-button items-center justify-center gap-3 group hover:bg-brand-gold hover:text-black"
                   >
                     Enquire Now

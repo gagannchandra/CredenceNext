@@ -50,32 +50,18 @@ const faqs = [
 ];
 
 export default function LightingShowroomDubai() {
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  };
-
   const localBusinessSchema = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-          "@id": "https://credencelighting.com/#organization",
+    "@type": "Organization",
+          "@id": "https://www.credencelighting.com/#organization",
           "geo": {
             "@type": "GeoCoordinates",
             "latitude": "24.9788",
             "longitude": "55.1764"
           },
     "name": "Credence Lighting LLC — Dubai Showroom",
-    "image": "https://credencelighting.com/logo.svg",
-    "url": "https://credencelighting.com/lighting-showroom-dubai",
+    "image": "https://www.credencelighting.com/logo.svg",
+    "url": "https://www.credencelighting.com/lighting-showroom-dubai",
     "telephone": "+971564965660",
     "email": "info@credencelighting.com",
     "address": {
@@ -98,7 +84,7 @@ export default function LightingShowroomDubai() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://credencelighting.com/" },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
       { "@type": "ListItem", "position": 2, "name": "Lighting Showroom Dubai" }
     ]
   };
@@ -108,7 +94,7 @@ export default function LightingShowroomDubai() {
       <SEO
         title="Lighting Showroom Dubai · Credence Lighting"
         description="Visit Credence Lighting's showroom in Dubai Investment Park. See premium LED fixtures, control systems, and architectural lighting in working displays. Book a visit today."
-        schema={[faqSchema, localBusinessSchema, breadcrumbSchema]}
+        schema={[localBusinessSchema, breadcrumbSchema]}
       />
       <main className="relative bg-transparent overflow-hidden">
         {/* HERO */}

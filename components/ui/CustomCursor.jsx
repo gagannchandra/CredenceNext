@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
@@ -21,8 +23,8 @@ export default function CustomCursor() {
     };
 
     const handleMouseOver = (e) => {
-      const isClickable = e.target?.closest?.('a, button, [role="button"], .cursor-pointer, input, textarea, select');
-      setIsHovered(!!isClickable);
+      const isClickable = !!e.target?.closest?.('a, button, [role="button"], .cursor-pointer, input, textarea, select');
+      setIsHovered((prev) => (prev === isClickable ? prev : isClickable));
     };
 
     window.addEventListener("mousemove", moveCursor);
@@ -55,10 +57,16 @@ export default function CustomCursor() {
           translateX: "-50%",
           translateY: "-50%",
         }}
+        initial={{
+          width: 22,
+          height: 22,
+          backgroundColor: "rgba(200, 169, 107, 0)",
+          borderColor: "rgba(255, 255, 255, 0.25)",
+        }}
         animate={{
           width: isHovered ? 42 : 22,
           height: isHovered ? 42 : 22,
-          backgroundColor: isHovered ? "rgba(200, 169, 107, 0.08)" : "transparent",
+          backgroundColor: isHovered ? "rgba(200, 169, 107, 0.08)" : "rgba(200, 169, 107, 0)",
           borderColor: isHovered ? "rgba(200, 169, 107, 0.5)" : "rgba(255, 255, 255, 0.25)",
         }}
         transition={{ duration: 0.3, ease: "easeOut" }}

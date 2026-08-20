@@ -13,6 +13,7 @@ const industries = [
   { name: "Residential Villas", link: "/residential-lighting" },
   { name: "Building Facades", link: "/facade-lighting" },
   { name: "Audio Solutions", link: "/audio-solutions" },
+  { name: "Explosion Proof", link: "/explosion-proof-lights" },
 ];
 
 export default function IndustriesWeServe() {

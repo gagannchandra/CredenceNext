@@ -13,41 +13,54 @@ export default function About() {
       <SEO 
         title="About Credence Lighting | Premium Lighting Experts Dubai" 
         description="10+ years of experience delivering premium lighting solutions. Aesthetics meets functionality." 
-        schema={[{
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "@id": "https://credencelighting.com/#organization",
-          "name": "Credence Lighting LLC",
-          "url": "https://credencelighting.com",
-          "logo": "https://credencelighting.com/logo.svg",
-          "description": "Credence Lighting is a premium lighting company in Dubai providing architectural, commercial, and hospitality lighting design, supply, and installation across the UAE and GCC.",
-          "foundingDate": "2014",
-          "numberOfEmployees": {
-            "@type": "QuantitativeValue",
-            "minValue": 10
-          },
-          "telephone": "+971564965660",
-          "email": "info@credencelighting.com",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Unit E77, Arabtec Eastern Model, Dubai Investment Park 1",
-            "addressLocality": "Dubai",
-            "addressRegion": "Dubai",
-            "addressCountry": "AE"
-          },
-          "contactPoint": {
-            "@type": "ContactPoint",
+        schema={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "@id": "https://www.credencelighting.com/#organization",
+            "name": "Credence Lighting LLC",
+            "url": "https://www.credencelighting.com",
+            "logo": "https://www.credencelighting.com/logo.svg",
+            "description": "Credence Lighting is a premium lighting company in Dubai providing architectural, commercial, and hospitality lighting design, supply, and installation across the UAE and GCC.",
+            "foundingDate": "2014",
+            "numberOfEmployees": {
+              "@type": "QuantitativeValue",
+              "minValue": 10
+            },
             "telephone": "+971564965660",
-            "contactType": "customer service",
             "email": "info@credencelighting.com",
-            "areaServed": ["AE", "SA", "BH"],
-            "availableLanguage": ["English", "Arabic"]
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Unit E77, Arabtec Eastern Model, Dubai Investment Park 1",
+              "addressLocality": "Dubai",
+              "addressRegion": "Dubai",
+              "addressCountry": "AE"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+971564965660",
+              "contactType": "customer service",
+              "email": "info@credencelighting.com",
+              "areaServed": ["AE", "SA", "BH"],
+              "availableLanguage": ["English", "Arabic"]
+            },
+            "sameAs": [
+              "https://www.instagram.com/credencelighting/",
+              "https://www.linkedin.com/company/credence-lighting-llc/",
+              "https://maps.app.goo.gl/ec2HMCDNXYtYviV7A",
+              "https://www.facebook.com/credencelighting",
+              "https://www.youtube.com/@credencelighting"
+            ]
           },
-          "sameAs": [
-            "https://www.instagram.com/credencelighting/",
-            "https://www.linkedin.com/company/credence-lighting-llc/"
-          ]
-        }]}
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+              { "@type": "ListItem", "position": 2, "name": "About Us", "item": "https://www.credencelighting.com/about" }
+            ]
+          }
+        ]}
       />
       <main className="relative bg-transparent pt-10 pb-20 overflow-hidden">
         {/* SHARED BACKGROUND GLOW */}

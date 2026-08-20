@@ -20,46 +20,39 @@ const schema = {
   "@graph": [
     {
       "@type": "Service",
-      "serviceType": "Residential Lighting Design",
+      "serviceType": "Luxury Residential Lighting Solutions",
       "provider": {
-        "@type": "LocalBusiness",
-          "@id": "https://credencelighting.com/#organization",
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "24.9788",
-            "longitude": "55.1764"
-          },
-        "name": "Credence Lighting",
-        "url": "https://credencelighting.com"
+        "@type": "Organization",
+        "@id": "https://www.credencelighting.com/#organization",
+        "name": "Credence Lighting LLC",
+        "url": "https://www.credencelighting.com"
       },
-      "description": "Bespoke luxury residential and villa lighting solutions."
+      "areaServed": ["UAE", "Saudi Arabia", "Bahrain", "GCC"],
+      "description": "Bespoke residential lighting design, supply, and installation across Dubai and the GCC."
     },
     {
-      "@type": "FAQPage",
-      "mainEntity": faqs.map(faq => ({
-        "@type": "Question",
-        "name": faq.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": faq.answer
-        }
-      }))
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://www.credencelighting.com/solutions" },
+        { "@type": "ListItem", "position": 3, "name": "Residential Lighting" }
+      ]
     }
   ]
 };
 
 const hero = {
   badge: "Residential Lighting",
-  title: "Luxury Residential Lighting Design | Credence",
+  title: "Illuminating Bespoke",
   titleItalic: "Living Spaces",
   description: "Bespoke lighting design and premium fixture supply for exclusive villas and high-end residential projects."
 };
 
 const benefits = [
-  { icon: Home, title: "Luxury Residential Lighting Design | Credence", description: "Trimless, invisible fixtures that blend seamlessly into the ceiling architecture." },
-  { icon: Sun, title: "Luxury Residential Lighting Design | Credence", description: "Dynamic tunable white systems that adjust to mimic natural daylight for improved well-being." },
-  { icon: ShieldCheck, title: "Luxury Residential Lighting Design | Credence", description: "Durable, IP-rated exterior lighting that enhances curb appeal and perimeter security." },
-  { icon: Lightbulb, title: "Luxury Residential Lighting Design | Credence", description: "Intuitive wireless dimming and scene-setting integrated with your home automation." }
+  { icon: Home, title: "Architectural Integration", description: "Trimless, invisible fixtures that blend seamlessly into the ceiling architecture." },
+  { icon: Sun, title: "Circadian Wellness", description: "Dynamic tunable white systems that adjust to mimic natural daylight for improved well-being." },
+  { icon: ShieldCheck, title: "Landscape & Outdoor", description: "Durable, IP-rated exterior lighting that enhances curb appeal and perimeter security." },
+  { icon: Lightbulb, title: "Smart Home Automation", description: "Intuitive wireless dimming and scene-setting integrated with your home automation." }
 ];
 
 const contentBlocks = [

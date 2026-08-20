@@ -1,25 +1,25 @@
 import OutdoorLightingDubai from "@/lib_src/pages/OutdoorLightingDubai";
 
 export const metadata = {
-  title: 'Outdoor Lighting Dubai · Credence Lighting',
-  description: 'Premium outdoor lighting in Dubai — garden lights, wall lights, facade fixtures, and landscape lighting. IP-rated for Gulf climate. Visit our showroom.',
+  title: 'Outdoor & Landscape Lighting Dubai',
+  description: 'IP65/IP67 architectural outdoor and landscape lighting in Dubai. In-ground uplights, bollards, step lights, facade luminaires, and underwater pool lights.',
   alternates: {
-    canonical: "https://credencelighting.com/outdoor-lighting-dubai",
+    canonical: "https://www.credencelighting.com/outdoor-lighting-dubai",
   },
   openGraph: {
-    title: 'Outdoor Lighting Dubai · Credence Lighting',
-    description: 'Premium outdoor lighting in Dubai — garden lights, wall lights, facade fixtures, and landscape lighting. IP-rated for Gulf climate. Visit our showroom.',
-    url: "https://credencelighting.com/outdoor-lighting-dubai",
+    title: 'Outdoor & Landscape Lighting Dubai · Credence Lighting',
+    description: 'IP65/IP67 architectural outdoor and landscape lighting in Dubai. In-ground uplights, bollards, step lights, facade luminaires, and underwater pool lights.',
+    url: "https://www.credencelighting.com/outdoor-lighting-dubai",
     siteName: "Credence Lighting",
-    images: ["https://credencelighting.com/meta.png"],
+    images: ["https://www.credencelighting.com/meta.png"],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: 'Outdoor Lighting Dubai · Credence Lighting',
-    description: 'Premium outdoor lighting in Dubai — garden lights, wall lights, facade fixtures, and landscape lighting. IP-rated for Gulf climate. Visit our showroom.',
-    images: ["https://credencelighting.com/meta.png"],
+    title: 'Outdoor & Landscape Lighting Dubai · Credence Lighting',
+    description: 'IP65/IP67 architectural outdoor and landscape lighting in Dubai. In-ground uplights, bollards, step lights, facade luminaires, and underwater pool lights.',
+    images: ["https://www.credencelighting.com/meta.png"],
   },
 };
 

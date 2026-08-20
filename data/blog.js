@@ -44,7 +44,7 @@ export const blogPosts = [
       { type: "callout", content: "Are you looking to weave light directly into the DNA of your next project? Our team specializes in bespoke architectural solutions that turn structural visions into glowing realities." }
     ],
     seoMetadata: {
-      title: "Evolution of Architectural Lighting | Credence Lighting",
+      title: "Evolution of Architectural Lighting",
       description: "Discover how modern architectural lighting integrates seamlessly into building design to create stunning, immersive environments."
     }
   },
@@ -71,7 +71,7 @@ export const blogPosts = [
       { type: "callout", content: "Investing in your team's environment pays dividends. Contact us to learn how an HCL retrofit can transform your office culture and productivity." }
     ],
     seoMetadata: {
-      title: "Human Centric Lighting in the Workplace | Credence Lighting",
+      title: "Human Centric Lighting in the Workplace",
       description: "Learn how Human Centric Lighting (HCL) improves employee wellness and productivity in modern office spaces."
     }
   },
@@ -99,7 +99,7 @@ export const blogPosts = [
       { type: "callout", content: "Looking for premium ceiling lights and pendant fixtures for your Dubai home? Browse our ceiling lights and pendant lights collections, or visit our showroom to see them in working displays." }
     ],
     seoMetadata: {
-      title: "Layering Light in Luxury Homes Dubai · Credence Lighting",
+      title: "Layering Light in Luxury Homes Dubai",
       description: "Master ambient, task, and accent lighting to create depth and sophistication in luxury Dubai residences. Ceiling lights, pendants, and accent techniques."
     }
   },
@@ -125,7 +125,7 @@ export const blogPosts = [
       { type: "paragraph", content: "By intentionally keeping the general ambient light levels a bit lower, and using high-intensity, tightly beamed accent lighting on premium displays, you create a theatrical effect. This contrast naturally draws the human eye, guiding the customer exactly where you want them to go and encouraging them to linger just a little bit longer." }
     ],
     seoMetadata: {
-      title: "Retail Lighting Strategies to Boost Sales | Credence",
+      title: "Retail Lighting Strategies to Boost Sales",
       description: "Discover how lighting contrast and high CRI LEDs can improve customer experience and drive retail sales."
     }
   },
@@ -152,7 +152,7 @@ export const blogPosts = [
       { type: "callout", content: "Browse our full outdoor lighting range — including wall lights, garden fixtures, facade lighting, and IP-rated products — on our outdoor lighting Dubai page." }
     ],
     seoMetadata: {
-      title: "Outdoor & Landscape Lighting Guide Dubai · Credence",
+      title: "Outdoor & Landscape Lighting Guide Dubai",
       description: "How to select and position outdoor and garden lighting in Dubai. IP ratings, fixture types, and techniques for villas, facades, and commercial exteriors."
     }
   },
@@ -179,7 +179,7 @@ export const blogPosts = [
       { type: "paragraph", content: "This is the gold standard for high-end residential and complex commercial spaces. Instead of using voltage to dim, **DALI** sends digital data packets across a 2-wire bus.\n\n**The Pros:** Ultimate flexibility. Every single fixture has its own digital address. You can have 50 lights on the same power circuit, but tell light #4 to go to 20% and light #12 to go to 80%. It also reports back data, telling the system if a light has failed.\n**The Cons:** It's more expensive to implement and requires specialized commissioning." }
     ],
     seoMetadata: {
-      title: "Understanding LED Dimming Protocols | Credence Lighting",
+      title: "Understanding LED Dimming Protocols",
       description: "A comprehensive comparison of Phase-cut, 0-10V, and DALI dimming systems for LED lighting."
     }
   },
@@ -204,7 +204,7 @@ export const blogPosts = [
       { type: "paragraph", content: "You can't achieve top-tier energy ratings without a smart control backbone. LEED projects heavily rely on a combination of two technologies:\n\n**1. Occupancy and Vacancy Sensors:** Ensuring lights are never left burning in empty conference rooms or corridors.\n**2. Daylight Harvesting:** Photocells placed near windows measure the amount of natural sunlight entering the room. As the sun gets brighter, the artificial lights closest to the windows automatically dim down, saving massive amounts of energy while maintaining a perfectly even light level across the space." }
     ],
     seoMetadata: {
-      title: "Sustainable Lighting for Green Buildings | Credence Lighting",
+      title: "Sustainable Lighting for Green Buildings",
       description: "How to design lighting systems that meet LEED certification requirements through efficiency and smart controls."
     }
   },
@@ -229,7 +229,7 @@ export const blogPosts = [
       { type: "callout", content: "Credence Lighting has delivered hospitality lighting projects across Dubai and the GCC. Learn more about our capabilities on our lighting company Dubai page, or contact us to discuss your hotel or restaurant project." }
     ],
     seoMetadata: {
-      title: "Hospitality Lighting Design Dubai · Credence Lighting",
+      title: "Hospitality Lighting Design Dubai",
       description: "How premium lighting design transforms guest experiences in Dubai hotels, restaurants, and hospitality venues. Scene setting, CRI, and ambience."
     }
   },
@@ -254,7 +254,7 @@ export const blogPosts = [
       { type: "paragraph", content: "The beauty of this technology is that the Casambi chips are small enough to be built directly into the LED drivers inside the fixtures. You provide standard mains power to the lights, and the entire control system lives invisibly in the air. \n\nThis makes it the absolute perfect solution for retrofitting heritage buildings where you aren't allowed to drill into the walls, or dynamic modern offices where desks and partitions are constantly being rearranged." }
     ],
     seoMetadata: {
-      title: "Wireless Lighting Controls and Casambi | Credence Lighting",
+      title: "Wireless Lighting Controls and Casambi",
       description: "Discover the advantages of using Bluetooth mesh wireless lighting control systems for modern projects."
     }
   },
@@ -280,7 +280,7 @@ export const blogPosts = [
       { type: "callout", content: "Looking for LED strip lights and linear profiles for your project in Dubai? Browse our LED strip lights Dubai collection for flexible strips, neon flex, and high-density architectural profiles." }
     ],
     seoMetadata: {
-      title: "Linear LED Lighting Trends Dubai · Credence Lighting",
+      title: "Linear LED Lighting Trends Dubai",
       description: "How seamless LED strip and linear lighting is reshaping modern architecture in Dubai. Profiles, diffusion, and architectural integration techniques."
     }
   },
@@ -313,7 +313,7 @@ export const blogPosts = [
       { type: "callout", content: "Looking for a lighting company in Dubai with proven experience across hospitality, commercial, and residential projects? Learn more about how Credence Lighting delivers end-to-end lighting solutions." }
     ],
     seoMetadata: {
-      title: "How to Choose a Lighting Company in Dubai · Credence",
+      title: "How to Choose a Lighting Company in Dubai",
       description: "A practical guide to selecting the right lighting company in Dubai. What to evaluate in capabilities, experience, product range, and project delivery."
     }
   },
@@ -342,7 +342,7 @@ export const blogPosts = [
       { type: "callout", content: "Credence Lighting supplies premium LED fixtures from trusted international brands alongside custom-manufactured solutions. Our Dubai-based warehouse ensures fast delivery across the UAE and GCC." }
     ],
     seoMetadata: {
-      title: "LED Light Suppliers in Dubai Guide · Credence Lighting",
+      title: "LED Light Suppliers in Dubai Guide",
       description: "How to evaluate LED lighting suppliers in Dubai. Covers certifications, thermal management, CRI ratings, supply chain, and after-sales support."
     }
   },
@@ -372,7 +372,7 @@ export const blogPosts = [
       { type: "callout", content: "Visit the Credence Lighting showroom at Dubai Investment Park 1 to see premium fixtures in working displays. Book an appointment for a personalized consultation with our lighting specialists." }
     ],
     seoMetadata: {
-      title: "Visiting a Lighting Showroom in Dubai · Credence",
+      title: "Visiting a Lighting Showroom in Dubai",
       description: "How to prepare for a lighting showroom visit in Dubai. What to bring, what to evaluate, and how to compare fixtures effectively."
     }
   },
@@ -402,7 +402,7 @@ export const blogPosts = [
       { type: "callout", content: "Credence Lighting provides luxury lighting design and supply for villas, penthouses, and hospitality projects across Dubai and the GCC. Contact us to discuss your project." }
     ],
     seoMetadata: {
-      title: "Luxury Lighting Solutions Dubai · Credence Lighting",
+      title: "Luxury Lighting Solutions Dubai",
       description: "How premium lighting design transforms luxury residential and hospitality interiors in Dubai. Techniques, fixture selection, and design principles."
     }
   },
@@ -440,7 +440,7 @@ export const blogPosts = [
       { type: "callout", content: "Browse our full range of ceiling lights, including recessed, surface, linear, and decorative options, on our ceiling lights Dubai page." }
     ],
     seoMetadata: {
-      title: "Types of Ceiling Lights Guide · Credence Lighting",
+      title: "Types of Ceiling Lights Guide",
       description: "A complete guide to ceiling light types — recessed, surface-mounted, linear, cove, pendant, and track lighting. How to choose the right type for each space."
     }
   },
@@ -473,7 +473,7 @@ export const blogPosts = [
       { type: "callout", content: "Need help choosing LED ceiling lights for your project? Visit our ceiling lights Dubai page or contact our team for a personalized recommendation." }
     ],
     seoMetadata: {
-      title: "How to Choose LED Ceiling Lights · Credence Lighting",
+      title: "How to Choose LED Ceiling Lights",
       description: "A practical guide to selecting LED ceiling lights. Covers ceiling height, lux levels, color temperature, dimming compatibility, CRI, and build quality."
     }
   },
@@ -505,7 +505,7 @@ export const blogPosts = [
       { type: "callout", content: "Browse our outdoor wall light range and IP-rated fixture collection on our outdoor lighting Dubai page." }
     ],
     seoMetadata: {
-      title: "Outdoor Wall Lights Buying Guide · Credence Lighting",
+      title: "Outdoor Wall Lights Buying Guide",
       description: "How to choose outdoor wall lights for Dubai. Covers IP ratings, corrosion-resistant materials, beam patterns, wattage, and spacing for Gulf climate installations."
     }
   },
@@ -539,7 +539,7 @@ export const blogPosts = [
       { type: "callout", content: "Need help planning your villa garden lighting? Browse our outdoor lighting Dubai collection or visit our showroom to see fixtures in person." }
     ],
     seoMetadata: {
-      title: "Garden Lighting Ideas for Dubai Villas · Credence",
+      title: "Garden Lighting Ideas for Dubai Villas",
       description: "Practical garden lighting ideas for Dubai villas. Covers palm uplighting, pathway bollards, pool lighting, outdoor dining, and IP-rated fixture selection."
     }
   },
@@ -576,7 +576,7 @@ export const blogPosts = [
       { type: "callout", content: "Need LED strip lights cut to length and ready for installation? Visit our LED strip lights Dubai page or contact us for project-specific recommendations." }
     ],
     seoMetadata: {
-      title: "LED Strip Light Installation Guide · Credence Lighting",
+      title: "LED Strip Light Installation Guide",
       description: "Step-by-step LED strip light installation guide. Covers strip selection, aluminum profiles, power supply sizing, wiring, dimming, and common installation mistakes."
     }
   },
@@ -612,7 +612,7 @@ export const blogPosts = [
       { type: "callout", content: "Explore our pendant light and decorative fixture range on our pendant lights Dubai page, or visit our showroom to see options in person." }
     ],
     seoMetadata: {
-      title: "Pendant vs Chandelier Guide · Credence Lighting",
+      title: "Pendant vs Chandelier Guide",
       description: "Pendant lights vs chandeliers — when to use each, sizing rules, height guidelines, and how to combine both in open-plan spaces."
     }
   },
@@ -646,7 +646,7 @@ export const blogPosts = [
       { type: "callout", content: "Stay ahead of the curve with Credence Lighting. Browse our latest products or visit our Dubai showroom to see these trends in action." }
     ],
     seoMetadata: {
-      title: "Modern Lighting Trends Dubai 2026 · Credence Lighting",
+      title: "Modern Lighting Trends Dubai 2026",
       description: "The lighting design trends shaping Dubai interiors in 2026. Covers architectural integration, tunable white, statement fixtures, smart controls, and sustainability."
     }
   },
@@ -680,7 +680,7 @@ export const blogPosts = [
       { type: "callout", content: "Credence Lighting supplies and integrates DALI, KNX, and Casambi lighting control systems. Browse our automation products or contact us to discuss the right system for your project." }
     ],
     seoMetadata: {
-      title: "Smart Lighting Guide: DALI vs KNX vs Casambi · Credence",
+      title: "Smart Lighting Guide: DALI vs KNX vs Casambi",
       description: "A practical guide to smart lighting systems. Compares DALI, KNX, and Casambi protocols for homes and offices — features, wiring, cost, and use cases."
     }
   }
@@ -713,7 +713,7 @@ export const blogPosts = [
       { type: "paragraph", content: "To achieve the correct lux levels, you need a lighting design that factors in the lumens of the fixture, the beam angle, and the distance to the surface. Learn more about our commercial solutions on our [Office Lighting](/office-lighting) page." }
     ],
     seoMetadata: {
-      title: "Lumen vs Lux: The Difference Explained | Credence Lighting",
+      title: "Lumen vs Lux: The Difference Explained",
       description: "Learn the crucial difference between lumens (light output) and lux (light on a surface) to properly illuminate your space."
     }
   },
@@ -744,7 +744,7 @@ export const blogPosts = [
       { type: "callout", content: "When checking specs, look for the 'R9' value. R9 measures how well the light renders deep reds, which is essential for skin tones and food." }
     ],
     seoMetadata: {
-      title: "What is CRI? Color Rendering Index Guide | Credence",
+      title: "What is CRI? Color Rendering Index Guide",
       description: "Understand the Color Rendering Index (CRI) and why CRI 90+ is essential for luxury residential and retail lighting design."
     }
   },
@@ -773,7 +773,7 @@ export const blogPosts = [
       { type: "callout", content: "For commercial spaces, 4000K is the sweet spot for productivity without feeling sterile. Check out our [Office Lighting](/office-lighting) solutions." }
     ],
     seoMetadata: {
-      title: "LED Color Temperature (Kelvin) Guide | Credence",
+      title: "LED Color Temperature (Kelvin) Guide",
       description: "Choose the perfect color temperature (2700K vs 3000K vs 4000K) for your residential, commercial, or hospitality project."
     }
   },
@@ -805,7 +805,7 @@ export const blogPosts = [
       { type: "callout", content: "Never use IP20 fixtures in a bathroom, and never submerge an IP67 fixture permanently." }
     ],
     seoMetadata: {
-      title: "Understanding IP Ratings for Lighting | Credence",
+      title: "Understanding IP Ratings for Lighting",
       description: "A complete guide to IP20, IP44, IP65, IP67, and IP68 lighting ratings for safe bathroom and outdoor landscape installations."
     }
   },
@@ -836,7 +836,7 @@ export const blogPosts = [
       { type: "callout", content: "Need a comprehensive hospitality design? Visit our dedicated [Hotel Lighting Solutions](/hotel-lighting) page." }
     ],
     seoMetadata: {
-      title: "Hospitality Lighting Design Guide | Credence",
+      title: "Hospitality Lighting Design Guide",
       description: "Learn how to design lighting for 5-star hotels, lobbies, and guestrooms to enhance luxury and guest satisfaction."
     }
   },
@@ -867,7 +867,7 @@ export const blogPosts = [
       { type: "callout", content: "Upgrading your workspace? Discover our ergonomic [Office Lighting](/office-lighting) fixtures designed specifically for UGR<19 compliance." }
     ],
     seoMetadata: {
-      title: "Office Lighting Standards & UGR Explained | Credence",
+      title: "Office Lighting Standards & UGR Explained",
       description: "A guide to recommended lux levels and UGR glare ratings for productive, comfortable, and compliant office lighting."
     }
   },
@@ -897,7 +897,7 @@ export const blogPosts = [
       { type: "callout", content: "Beyond energy savings, LEDs last 50,000+ hours, drastically reducing maintenance costs. Contact our [Lighting Companies UAE](/lighting-companies-uae) team for a free energy audit." }
     ],
     seoMetadata: {
-      title: "Calculate LED Energy Savings & ROI | Credence Lighting",
+      title: "Calculate LED Energy Savings & ROI",
       description: "Learn how upgrading commercial lighting to LED delivers massive energy savings and rapid ROI for warehouses and offices."
     }
   },
@@ -927,7 +927,7 @@ export const blogPosts = [
       { type: "callout", content: "Need a comprehensive maintenance contract or a system health check? Get in touch via our [Contact](/contact) page." }
     ],
     seoMetadata: {
-      title: "LED Lighting Maintenance & Lifespan Guide | Credence",
+      title: "LED Lighting Maintenance & Lifespan Guide",
       description: "Expert tips on maintaining commercial LED lighting systems to prevent premature failure and ensure maximum lifespan."
     }
   },
@@ -971,7 +971,7 @@ export const blogPosts = [
       { type: "callout", content: "Are you looking for the perfect lighting partner for your next project? Visit our [Contact](/contact) page or reach out to our team of experts today." }
     ],
     seoMetadata: {
-      title: "Top 10 Best Lighting Companies in Dubai & UAE | Credence",
+      title: "Top 10 Best Lighting Companies in Dubai & UAE",
       description: "Looking for the best lighting company in Dubai? Explore our guide to the top lighting companies in UAE, featuring architectural and outdoor LED lighting suppliers."
     }
   },
@@ -1098,7 +1098,7 @@ export const blogPosts = [
       { type: "callout", content: "Need certified ATEX / IECEx explosion-proof luminaires for your next project? Explore our dedicated [Explosion-Proof Lights Collection](/products/explosion-proof) or contact our industrial engineering team for DIALux calculations and hazardous area lighting designs." }
     ],
     seoMetadata: {
-      title: "Types of Explosion-Proof Lights | ATEX & IECEx Hazardous Area Guide",
+      title: "Types of Explosion-Proof Lights · ATEX & IECEx Hazardous Area Guide",
       description: "Explore the different types of explosion-proof lights: High Bay, Linear Battens, Floodlights, Well Glass, and Emergency luminaires for ATEX Zone 1/2 hazardous areas."
     }
   },
@@ -1149,7 +1149,7 @@ export const blogPosts = [
       { type: "callout", content: "Planning a hazardous corridor, tunnel underpass, or refinery transit lighting upgrade? Contact Credence Lighting's infrastructure specialists today or explore our complete [Explosion-Proof Lighting Range](/explosion-proof-lights)." }
     ],
     seoMetadata: {
-      title: "Explosion-Proof Highway & Tunnel Lighting Guide | Credence Lighting",
+      title: "Explosion-Proof Highway & Tunnel Lighting Guide",
       description: "Learn how explosion-proof LED streetlights and tunnel luminaires ensure safety along hazardous refinery corridors, chemical transit highways, and petrochemical ports."
     }
   }

@@ -1,25 +1,25 @@
 import CeilingLightsDubai from "@/lib_src/pages/CeilingLightsDubai";
 
 export const metadata = {
-  title: 'Ceiling Lights Dubai · Credence Lighting',
-  description: 'Premium LED ceiling lights in Dubai — recessed downlights, surface panels, linear profiles, and decorative pendants. Visit our showroom or request a project quote.',
+  title: 'Architectural Ceiling Lights Dubai',
+  description: 'Premium architectural LED ceiling lights in Dubai. Recessed downlights, trimless plaster-in profiles, surface panels, and magnetic track systems.',
   alternates: {
-    canonical: "https://credencelighting.com/ceiling-lights-dubai",
+    canonical: "https://www.credencelighting.com/ceiling-lights-dubai",
   },
   openGraph: {
-    title: 'Ceiling Lights Dubai · Credence Lighting',
-    description: 'Premium LED ceiling lights in Dubai — recessed downlights, surface panels, linear profiles, and decorative pendants. Visit our showroom or request a project quote.',
-    url: "https://credencelighting.com/ceiling-lights-dubai",
+    title: 'Architectural Ceiling Lights Dubai · Credence Lighting',
+    description: 'Premium architectural LED ceiling lights in Dubai. Recessed downlights, trimless plaster-in profiles, surface panels, and magnetic track systems.',
+    url: "https://www.credencelighting.com/ceiling-lights-dubai",
     siteName: "Credence Lighting",
-    images: ["https://credencelighting.com/meta.png"],
+    images: ["https://www.credencelighting.com/meta.png"],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: 'Ceiling Lights Dubai · Credence Lighting',
-    description: 'Premium LED ceiling lights in Dubai — recessed downlights, surface panels, linear profiles, and decorative pendants. Visit our showroom or request a project quote.',
-    images: ["https://credencelighting.com/meta.png"],
+    title: 'Architectural Ceiling Lights Dubai · Credence Lighting',
+    description: 'Premium architectural LED ceiling lights in Dubai. Recessed downlights, trimless plaster-in profiles, surface panels, and magnetic track systems.',
+    images: ["https://www.credencelighting.com/meta.png"],
   },
 };
 

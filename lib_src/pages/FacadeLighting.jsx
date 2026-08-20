@@ -22,30 +22,23 @@ const schema = {
   "@graph": [
     {
       "@type": "Service",
-      "serviceType": "Facade Lighting",
+      "serviceType": "Architectural Facade Lighting Solutions",
       "provider": {
-        "@type": "LocalBusiness",
-          "@id": "https://credencelighting.com/#organization",
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "24.9788",
-            "longitude": "55.1764"
-          },
-        "name": "Credence Lighting",
-        "url": "https://credencelighting.com"
+        "@type": "Organization",
+        "@id": "https://www.credencelighting.com/#organization",
+        "name": "Credence Lighting LLC",
+        "url": "https://www.credencelighting.com"
       },
-      "description": "Architectural and media facade lighting solutions for high-rise buildings and commercial properties."
+      "areaServed": ["UAE", "Saudi Arabia", "Bahrain", "GCC"],
+      "description": "Bespoke exterior facade lighting design, supply, and installation across Dubai and the GCC."
     },
     {
-      "@type": "FAQPage",
-      "mainEntity": faqs.map(faq => ({
-        "@type": "Question",
-        "name": faq.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": faq.answer
-        }
-      }))
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://www.credencelighting.com/solutions" },
+        { "@type": "ListItem", "position": 3, "name": "Exterior Facade Lighting" }
+      ]
     }
   ]
 };

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter, useParams } from "next/navigation";
@@ -40,8 +41,17 @@ export default function ProductDetails() {
   const { slug } = useParams();
   const router = useRouter();
   
-  // Backward compatibility: might still get raw name like "LED%20Screen"
-  const matchedCategory = categoriesList.find(c => slugify(c) === slug) || decodeURIComponent(slug);
+  const safeSlug = typeof slug === "string" ? slug : "";
+  let decodedSlug = "";
+  try {
+    decodedSlug = decodeURIComponent(safeSlug);
+  } catch {
+    decodedSlug = safeSlug;
+  }
+  const matchedCategory =
+    categoriesList.find((c) => slugify(c) === safeSlug) ||
+    categoriesList.find((c) => c.toLowerCase() === decodedSlug.toLowerCase()) ||
+    decodedSlug;
   const categoryProducts = products.filter((item) => item.category === matchedCategory);
 
   const currentIndex = categoriesList.findIndex(c => c === matchedCategory);
@@ -116,11 +126,40 @@ export default function ProductDetails() {
   }
 
   const sampleProduct = categoryProducts[0];
-  // sampleProduct.image is a bundled Vite asset (/assets/xxx.webp) — relative path.
-  // og:image requires an absolute URL.
   const seoImage = sampleProduct.image
-    ? (sampleProduct.image.startsWith('http') ? sampleProduct.image : `https://credencelighting.com${sampleProduct.image}`)
-    : 'https://credencelighting.com/meta.png';
+    ? (sampleProduct.image.startsWith('http') ? sampleProduct.image : `https://www.credencelighting.com${sampleProduct.image}`)
+    : 'https://www.credencelighting.com/meta.png';
+
+  const productSchema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": `${matchedCategory} Architectural Lighting Collection`,
+      "image": [seoImage],
+      "description": categoryDescriptions[matchedCategory] || sampleProduct.subtitle || "Premium architectural lighting collection engineered for luxury spaces.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Credence Lighting"
+      },
+      "category": matchedCategory,
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "AED",
+        "price": "Custom Project Pricing",
+        "availability": "https://schema.org/InStock",
+        "url": `https://www.credencelighting.com/products/${slug}`
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.credencelighting.com/products" },
+        { "@type": "ListItem", "position": 3, "name": `${matchedCategory} Collection` }
+      ]
+    }
+  ];
 
   return (
     <main className="bg-transparent min-h-screen relative overflow-x-hidden text-white">
@@ -128,18 +167,7 @@ export default function ProductDetails() {
         title={`${matchedCategory} Lighting Collection · Credence Lighting`}
         description={`Explore our premium ${matchedCategory.toLowerCase()} lighting collection. Discover luxury ${sampleProduct.title.toLowerCase()}s engineered for uncompromised performance and aesthetic excellence.`}
         image={seoImage}
-        schema={[{
-          "@context": "https://schema.org",
-          "@type": "Product",
-          "name": sampleProduct.title,
-          "image": sampleProduct.image,
-          "description": categoryDescriptions[matchedCategory] || sampleProduct.subtitle,
-          "brand": {
-            "@type": "Brand",
-            "name": "Credence Lighting"
-          },
-          "category": matchedCategory
-        }]}
+        schema={productSchema}
       />
       {/* Background Decorative Gradient */}
       <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
@@ -228,9 +256,12 @@ export default function ProductDetails() {
               }}
               className="w-full mb-4 md:mb-6 overflow-hidden rounded-card border border-border-subtle bg-surface-elevated relative group break-inside-avoid cursor-pointer"
             >
-              <img
+              <Image
                 src={prod.image}
                 alt={prod.title}
+                width={800}
+                height={600}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px"
                 className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -251,13 +282,13 @@ export default function ProductDetails() {
               router.push(`/products/${slugify(previousCategory)}`);
             }}
             className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 text-white hover:bg-white/10"
-            aria-label="Previous collection"
+            aria-label="Previous category"
           >
             <span className="text-xl leading-none -translate-y-[1px]">←</span>
           </button>
           
           <span className="text-white/90 text-[10px] md:text-xs uppercase tracking-[0.2em] font-medium whitespace-nowrap">
-            Change Collection
+            Change Category
           </span>
 
           <button
@@ -266,7 +297,7 @@ export default function ProductDetails() {
               router.push(`/products/${slugify(nextCategory)}`);
             }}
             className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 text-white hover:bg-white/10"
-            aria-label="Next collection"
+            aria-label="Next category"
           >
             <span className="text-xl leading-none -translate-y-[1px]">→</span>
           </button>
@@ -324,10 +355,8 @@ export default function ProductDetails() {
             {/* Image Container */}
             <div className="relative w-full max-w-[90vw] md:max-w-[85vw] h-[85vh] flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
               <AnimatePresence initial={false} custom={direction}>
-                <motion.img
+                <motion.div
                   key={activeImageIndex}
-                  src={categoryProducts[activeImageIndex].image}
-                  alt={categoryProducts[activeImageIndex].title}
                   custom={direction}
                   variants={slideVariants}
                   initial="enter"
@@ -337,8 +366,17 @@ export default function ProductDetails() {
                     x: { type: "spring", stiffness: 300, damping: 30 },
                     opacity: { duration: 0.2 }
                   }}
-                  className="absolute max-w-full max-h-full object-contain drop-shadow-2xl rounded-sm"
-                />
+                  className="relative w-full h-full flex items-center justify-center"
+                >
+                  <Image
+                    src={categoryProducts[activeImageIndex].image}
+                    alt={categoryProducts[activeImageIndex].title}
+                    width={1600}
+                    height={1200}
+                    sizes="90vw"
+                    className="max-w-full max-h-full w-auto h-auto object-contain drop-shadow-2xl rounded-sm"
+                  />
+                </motion.div>
               </AnimatePresence>
             </div>
           </motion.div>

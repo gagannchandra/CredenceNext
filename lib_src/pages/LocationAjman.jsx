@@ -22,30 +22,30 @@ const schema = {
   "@graph": [
     {
       "@type": "LocalBusiness",
-          "@id": "https://credencelighting.com/#organization",
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "24.9788",
-            "longitude": "55.1764"
-          },
-      "name": "Credence Lighting",
-      "url": "https://credencelighting.com/lighting-solutions-ajman",
+      "@id": "https://www.credencelighting.com/#localbusiness-ajman",
+      "parentOrganization": {
+        "@type": "Organization",
+        "@id": "https://www.credencelighting.com/#organization"
+      },
+      "name": "Credence Lighting — Ajman",
+      "url": "https://www.credencelighting.com/lighting-solutions-ajman",
       "areaServed": {
-        "@type": "City",
+        "@type": "Place",
         "name": "Ajman"
       },
-      "description": "Cost-effective architectural and commercial lighting for Ajman and the Northern Emirates."
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "25.4052",
+        "longitude": "55.5136"
+      },
+      "description": "Premium architectural and commercial lighting design, supply, and installation serving Ajman."
     },
     {
-      "@type": "FAQPage",
-      "mainEntity": faqs.map(faq => ({
-        "@type": "Question",
-        "name": faq.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": faq.answer
-        }
-      }))
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Ajman Lighting", "item": "https://www.credencelighting.com/lighting-solutions-ajman" }
+      ]
     }
   ]
 };

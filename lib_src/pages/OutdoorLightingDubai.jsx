@@ -51,23 +51,12 @@ const faqs = [
 ];
 
 export default function OutdoorLightingDubai() {
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
-    }))
-  };
-
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://credencelighting.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://credencelighting.com/products" },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.credencelighting.com/products" },
       { "@type": "ListItem", "position": 3, "name": "Outdoor Lighting Dubai" }
     ]
   };
@@ -77,7 +66,7 @@ export default function OutdoorLightingDubai() {
       <SEO
         title="Outdoor Lighting Dubai · Credence Lighting"
         description="Premium outdoor lighting in Dubai — garden lights, wall lights, facade fixtures, and landscape lighting. IP-rated for Gulf climate. Visit our showroom."
-        schema={[faqSchema, breadcrumbSchema]}
+        schema={[breadcrumbSchema]}
       />
       <main className="relative bg-transparent overflow-hidden">
         {/* HERO */}

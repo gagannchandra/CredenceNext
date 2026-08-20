@@ -1,25 +1,25 @@
 import About from "@/lib_src/pages/About";
 
 export const metadata = {
-  title: 'About Credence Lighting | Premium Lighting Experts Dubai',
-  description: '10+ years of experience delivering premium lighting solutions. Aesthetics meets functionality.',
+  title: 'About Us',
+  description: 'Learn about Credence Lighting — premier architectural and commercial lighting consultants in Dubai, UAE, delivering luxury lighting projects across the GCC.',
   alternates: {
-    canonical: "https://credencelighting.com/about",
+    canonical: "https://www.credencelighting.com/about",
   },
   openGraph: {
-    title: 'About Credence Lighting | Premium Lighting Experts Dubai',
-    description: '10+ years of experience delivering premium lighting solutions. Aesthetics meets functionality.',
-    url: "https://credencelighting.com/about",
+    title: 'About Us · Credence Lighting',
+    description: 'Learn about Credence Lighting — premier architectural and commercial lighting consultants in Dubai, UAE, delivering luxury lighting projects across the GCC.',
+    url: "https://www.credencelighting.com/about",
     siteName: "Credence Lighting",
-    images: ["https://credencelighting.com/meta.png"],
+    images: ["https://www.credencelighting.com/meta.png"],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: 'About Credence Lighting | Premium Lighting Experts Dubai',
-    description: '10+ years of experience delivering premium lighting solutions. Aesthetics meets functionality.',
-    images: ["https://credencelighting.com/meta.png"],
+    title: 'About Us · Credence Lighting',
+    description: 'Learn about Credence Lighting — premier architectural and commercial lighting consultants in Dubai, UAE, delivering luxury lighting projects across the GCC.',
+    images: ["https://www.credencelighting.com/meta.png"],
   },
 };
 

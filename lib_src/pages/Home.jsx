@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Footer from "@/components/layout/Footer";
 import ReturnScrollHandler from "@/components/ReturnScrollHandler";
 import { scrollToSection } from "@/utils/scrollUtils";
 import SEO from "@/components/seo/SEO";
 import Loader from "@/components/ui/Loader";
-import { useState } from "react";
 
 import Hero from "@/components/home/Hero";
 import AboutSection from "@/components/home/AboutSection";
@@ -61,28 +60,28 @@ export default function Home() {
     </AnimatePresence>
     <PageTransition>
       <SEO
-        title="Credence Lighting | Premium Lighting Solutions Dubai"
-        description="Premium architectural, commercial, hospitality, and decorative lighting solutions across Dubai and the UAE. 10+ years of expertise and 1,000+ successful projects."
+        title="Credence Lighting · Architectural & Commercial Lighting Dubai"
+        description="Premier architectural, commercial, and hospitality lighting design, supply, and installation across Dubai and the UAE. 10+ years of expertise and 1,000+ completed projects."
         schema={[
           {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "Credence Lighting",
-            "url": "https://credencelighting.com",
+            "url": "https://www.credencelighting.com",
             "potentialAction": {
               "@type": "SearchAction",
-              "target": "https://credencelighting.com/products?search={search_term_string}",
+              "target": "https://www.credencelighting.com/products?search={search_term_string}",
               "query-input": "required name=search_term_string"
             }
           },
           {
             "@context": "https://schema.org",
             "@type": "Organization",
-          "@id": "https://credencelighting.com/#organization",
+            "@id": "https://www.credencelighting.com/#organization",
             "name": "Credence Lighting LLC",
-            "url": "https://credencelighting.com",
-            "logo": "https://credencelighting.com/logo.svg",
-            "description": "Premium architectural, commercial, and hospitality lighting design, supply, and installation across Dubai, UAE, and the GCC region.",
+            "url": "https://www.credencelighting.com",
+            "logo": "https://www.credencelighting.com/logo.svg",
+            "description": "Premier architectural, commercial, and hospitality lighting design, supply, and installation across Dubai, UAE, and the GCC region.",
             "telephone": "+971564965660",
             "email": "info@credencelighting.com",
             "address": {
@@ -100,13 +99,13 @@ export default function Home() {
           {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            "@id": "https://credencelighting.com/#localbusiness",
+            "@id": "https://www.credencelighting.com/#localbusiness",
             "parentOrganization": {
-              "@id": "https://credencelighting.com/#organization"
+              "@id": "https://www.credencelighting.com/#organization"
             },
             "name": "Credence Lighting LLC",
-            "image": "https://credencelighting.com/logo.svg",
-            "url": "https://credencelighting.com",
+            "image": "https://www.credencelighting.com/logo.svg",
+            "url": "https://www.credencelighting.com",
             "telephone": "+971564965660",
             "email": "info@credencelighting.com",
             "address": {
@@ -128,7 +127,7 @@ export default function Home() {
               "closes": "18:00"
             },
             "priceRange": "$$$$",
-            "areaServed": ["Dubai", "Abu Dhabi", "Sharjah", "UAE", "Saudi Arabia", "Bahrain"]
+            "areaServed": ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Ras Al Khaimah", "UAE", "Saudi Arabia", "Bahrain"]
           },
           {
             "@context": "https://schema.org",
@@ -138,44 +137,58 @@ export default function Home() {
               {
                 "@type": "SiteNavigationElement",
                 "position": 1,
-                "name": "Products",
-                "url": "https://credencelighting.com/products",
-                "description": "Explore our premium collection of indoor, outdoor, hospitality, and facade lighting fixtures."
+                "name": "Architectural Lighting Products",
+                "url": "https://www.credencelighting.com/products",
+                "description": "Explore our portfolio of indoor downlights, outdoor landscape fixtures, facade illumination, and smart automation systems."
               },
               {
                 "@type": "SiteNavigationElement",
                 "position": 2,
-                "name": "Contact Us",
-                "url": "https://credencelighting.com/contact",
-                "description": "Get in touch with our lighting specialists in Dubai for project inquiries and quotations."
+                "name": "Lighting Solutions & Services",
+                "url": "https://www.credencelighting.com/solutions",
+                "description": "Bespoke architectural, commercial, hospitality, and residential lighting solutions tailored to your space."
               },
               {
                 "@type": "SiteNavigationElement",
                 "position": 3,
-                "name": "Solutions",
-                "url": "https://credencelighting.com/solutions",
-                "description": "Bespoke architectural, commercial, and hospitality lighting solutions tailored to your space."
+                "name": "Portfolio & Case Studies",
+                "url": "https://www.credencelighting.com/projects",
+                "description": "Signature architectural, commercial, and entertainment lighting projects delivered across Dubai and the GCC."
               },
               {
                 "@type": "SiteNavigationElement",
                 "position": 4,
-                "name": "Our Clients & Brands",
-                "url": "https://credencelighting.com/brands",
-                "description": "Discover the visionary brands, architects, and developers we partner with across the UAE."
+                "name": "About Us",
+                "url": "https://www.credencelighting.com/about",
+                "description": "Learn about Credence Lighting — premier architectural lighting design and supply consultants in Dubai."
               },
               {
                 "@type": "SiteNavigationElement",
                 "position": 5,
-                "name": "About Us",
-                "url": "https://credencelighting.com/about",
-                "description": "10+ years of experience delivering premium lighting solutions. Aesthetics meets functionality."
+                "name": "Insights & Articles",
+                "url": "https://www.credencelighting.com/blog",
+                "description": "Expert architectural lighting design guides, municipal standards, and industry technology insights."
               },
               {
                 "@type": "SiteNavigationElement",
                 "position": 6,
-                "name": "Featured Projects",
-                "url": "https://credencelighting.com/projects",
-                "description": "View our featured lighting installations across architectural, entertainment, and retail sectors."
+                "name": "Contact Us",
+                "url": "https://www.credencelighting.com/contact",
+                "description": "Consult with our lighting design specialists in Dubai for project inquiries, photometric planning, and quotations."
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "position": 7,
+                "name": "Lighting Company in Dubai",
+                "url": "https://www.credencelighting.com/lighting-company-dubai",
+                "description": "Leading lighting company in Dubai offering end-to-end design, fixture supply, and commissioning across the UAE."
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "position": 8,
+                "name": "Lighting Showroom in Dubai",
+                "url": "https://www.credencelighting.com/lighting-showroom-dubai",
+                "description": "Experience live architectural lighting displays, tunable white LEDs, and control systems at our Dubai showroom."
               }
             ]
           }
@@ -183,20 +196,6 @@ export default function Home() {
       />
       <ReturnScrollHandler />
       <main className="bg-transparent min-h-screen relative overflow-hidden">
-        {/* Global Continuous Background Lighting */}
-        <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
-          <motion.div
-            animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="hidden md:block absolute top-[10%] -left-[10%] w-[50vw] h-[50vw] bg-brand-gold rounded-button blur-[60px] md:blur-[150px] opacity-[0.08] will-change-transform transform-gpu"
-          />
-          <motion.div
-            animate={{ x: [0, -50, 0], y: [0, -30, 0] }}
-            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="hidden md:block absolute top-[60%] -right-[10%] w-[40vw] h-[40vw] bg-brand-gold rounded-button blur-[60px] md:blur-[150px] opacity-[0.08] will-change-transform transform-gpu"
-          />
-        </div>
-
         <div className="relative z-10">
           <Hero />
           

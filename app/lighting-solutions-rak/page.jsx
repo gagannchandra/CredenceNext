@@ -1,25 +1,25 @@
 import LocationRAK from "@/lib_src/pages/LocationRAK";
 
 export const metadata = {
-  title: 'Lighting Companies in Ras Al Khaimah | Credence Lighting',
-  description: "Credence Lighting is a trusted lighting company in Ras Al Khaimah. We supply IP-rated landscape, facade, and luxury hotel lighting for RAK's booming tourism sector.",
+  title: 'Lighting Solutions in Ras Al Khaimah',
+  description: "Resort, hospitality, and commercial architectural lighting solutions in Ras Al Khaimah (RAK). Coastal-rated outdoor and interior LED lighting systems.",
   alternates: {
-    canonical: "https://credencelighting.com/lighting-solutions-rak",
+    canonical: "https://www.credencelighting.com/lighting-solutions-rak",
   },
   openGraph: {
-    title: 'Lighting Companies in Ras Al Khaimah | Credence Lighting',
-    description: "Credence Lighting is a trusted lighting company in Ras Al Khaimah. We supply IP-rated landscape, facade, and luxury hotel lighting for RAK's booming tourism sector.",
-    url: "https://credencelighting.com/lighting-solutions-rak",
+    title: 'Lighting Solutions in Ras Al Khaimah · Credence Lighting',
+    description: "Resort, hospitality, and commercial architectural lighting solutions in Ras Al Khaimah (RAK). Coastal-rated outdoor and interior LED lighting systems.",
+    url: "https://www.credencelighting.com/lighting-solutions-rak",
     siteName: "Credence Lighting",
-    images: ["https://credencelighting.com/meta.png"],
+    images: ["https://www.credencelighting.com/meta.png"],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: 'Lighting Companies in Ras Al Khaimah | Credence Lighting',
-    description: "Credence Lighting is a trusted lighting company in Ras Al Khaimah. We supply IP-rated landscape, facade, and luxury hotel lighting for RAK's booming tourism sector.",
-    images: ["https://credencelighting.com/meta.png"],
+    title: 'Lighting Solutions in Ras Al Khaimah · Credence Lighting',
+    description: "Resort, hospitality, and commercial architectural lighting solutions in Ras Al Khaimah (RAK). Coastal-rated outdoor and interior LED lighting systems.",
+    images: ["https://www.credencelighting.com/meta.png"],
   },
 };
 

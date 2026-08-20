@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import products from "../../data/products";
 import { useRouter, usePathname } from "next/navigation";
@@ -24,6 +25,7 @@ const categories = [
   "Automation",
   "Retail",
   "Audio",
+  "Explosion Proof",
 ];
 
 const categoryDescriptions = {
@@ -37,21 +39,14 @@ const categoryDescriptions = {
   Automation: "Home Automation Systems bring comfort, control, and efficiency through a wide range of smart solutions. Powered by advanced technology, our systems seamlessly integrate lighting, climate, security, and AV control.",
   Retail: "Retail Lighting enhances product visibility and customer experience through a wide range of modern lighting solutions. Powered by advanced lighting technology, our systems deliver precise illumination, visual comfort, and energy efficiency.",
   Audio: "We deliver innovative audio solutions for residential, commercial, hospitality, and retail spaces. From background music and public address systems to conference and entertainment audio, our team provides complete design, supply, installation, and support.",
+  "Explosion Proof": "Certified ATEX and IECEx flameproof lighting engineered for hazardous industrial environments, oil & gas facilities, chemical plants, refineries, and hazardous highway corridors. Built with copper-free cast aluminum enclosures and high-impact tempered glass.",
 };
 
 export default function ProductsSection({ hideHeader = false }) {
   const router = useRouter();
   const pathname = usePathname();
-  const [active, setActive] = useState(undefined || "All");
+  const [active, setActive] = useState("All");
   const [activeProductIndex, setActiveProductIndex] = useState(0);
-
-  const [prevCategory, setPrevCategory] = useState(undefined);
-
-  if (undefined && undefined.selectedCategory !== prevCategory) {
-    setActive(undefined.selectedCategory);
-    setActiveProductIndex(0);
-    setPrevCategory(undefined.selectedCategory);
-  }
 
   const filteredProducts = active === "All" ? products.slice(0, 6) : products.filter((item) => item.category === active);
 
@@ -67,10 +62,6 @@ export default function ProductsSection({ hideHeader = false }) {
 
   const handleNext = () => {
     setActiveProductIndex((prev) => (prev === filteredProducts.length - 1 ? 0 : prev + 1));
-  };
-
-  const handleEnquireClick = () => {
-    router.push("/contact");
   };
 
   // Auto-slide for category view
@@ -131,15 +122,23 @@ export default function ProductsSection({ hideHeader = false }) {
               </h2>
             </div>
 
-            <FadeUp delay={4} className="mx-auto md:mx-0 w-full md:w-auto">
-              <HoverLift>
-                <button
-                  onClick={handleEnquireClick}
-                  className="w-full md:w-auto border border-brand-gold/40 backdrop-blur-sm text-brand-gold px-8 py-4 tracking-[0.2em] uppercase text-xs transition-all duration-500 rounded-button flex items-center justify-center gap-3 group hover:bg-brand-gold hover:text-black"
+            <FadeUp delay={4} className="mx-auto md:mx-0 w-full md:w-auto flex flex-col sm:flex-row items-center gap-3">
+              <HoverLift className="w-full sm:w-auto">
+                <Link
+                  href="/products"
+                  className="w-full sm:w-auto border border-white/20 backdrop-blur-sm text-white px-8 py-4 tracking-[0.2em] uppercase text-xs transition-all duration-500 rounded-button flex items-center justify-center hover:bg-white hover:text-black"
+                >
+                  All Products
+                </Link>
+              </HoverLift>
+              <HoverLift className="w-full sm:w-auto">
+                <Link
+                  href="/contact"
+                  className="w-full sm:w-auto border border-brand-gold/40 backdrop-blur-sm text-brand-gold px-8 py-4 tracking-[0.2em] uppercase text-xs transition-all duration-500 rounded-button flex items-center justify-center gap-3 group hover:bg-brand-gold hover:text-black"
                 >
                   Enquire Now
                   <span className="transform transition-transform duration-500 group-hover:translate-x-1">→</span>
-                </button>
+                </Link>
               </HoverLift>
             </FadeUp>
           </div>
@@ -181,7 +180,7 @@ export default function ProductsSection({ hideHeader = false }) {
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[250px] grid-flow-dense"
             >
               <AnimatePresence>
-                {representativeProducts.slice(0, 8).map((item, index) => (
+                {representativeProducts.map((item, index) => (
                   <motion.div
                     key={item.id}
                     layout

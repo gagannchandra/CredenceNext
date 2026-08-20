@@ -1,3 +1,6 @@
+"use client";
+
+import Image from "next/image";
 import { useEffect } from "react";
 
 export default function Lightbox({ images = [], index = 0, onClose, onPrev, onNext }) {
@@ -39,7 +42,14 @@ export default function Lightbox({ images = [], index = 0, onClose, onPrev, onNe
       </button>
 
       <div className="relative max-w-[90%] max-h-[90%] flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
-        <img src={images[index]} alt="Gallery image fullscreen view" className="max-w-full max-h-full object-contain rounded-[1.5rem] shadow-2xl" />
+        <Image 
+          src={images[index]} 
+          alt="Gallery image fullscreen view" 
+          width={1600}
+          height={1200}
+          sizes="90vw"
+          className="max-w-full max-h-[85vh] w-auto h-auto object-contain rounded-[1.5rem] shadow-2xl" 
+        />
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-button bg-transparent/60 px-4 py-2 text-sm text-white/80">
           {index + 1} / {images.length}
         </div>

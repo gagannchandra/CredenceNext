@@ -1,7 +1,7 @@
 import NotFound from "@/lib_src/pages/NotFound";
 
 export const metadata = {
-  title: "404 - Page Not Found | Credence Lighting",
+  title: "Page Not Found",
   robots: "noindex, nofollow",
 };
 

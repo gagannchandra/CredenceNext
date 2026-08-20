@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import PageLink from "../ui/PageLink";
@@ -114,6 +116,7 @@ export default function BrandsSection() {
                       height={96}
                       loading="lazy"
                       draggable="false"
+                      style={{ width: "auto", height: "auto" }}
                       className="h-16 md:h-24 w-auto object-contain opacity-80 hover:opacity-100 transition duration-500 select-none"
                     />
                   </motion.div>

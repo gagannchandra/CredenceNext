@@ -1,4 +1,5 @@
 export function scrollToTop(immediate = true) {
+  if (typeof window === "undefined") return;
   if (window.lenis) {
     window.lenis.scrollTo(0, { immediate });
   } else {
@@ -8,6 +9,7 @@ export function scrollToTop(immediate = true) {
 }
 
 export function scrollToSection(sectionId) {
+  if (typeof window === "undefined" || typeof document === "undefined") return;
   const element = document.getElementById(sectionId);
 
   if (!element) return;
@@ -18,20 +20,30 @@ export function scrollToSection(sectionId) {
     element.scrollIntoView({ behavior: "auto", block: "start" });
   }
 
-  window.history.replaceState(null, "", `#${sectionId}`);
+  try {
+    window.history.replaceState(null, "", `#${sectionId}`);
+  } catch {
+    // Ignore history state errors in restricted contexts
+  }
 }
 
-export function restoreScrollPosition({ hash, scrollY }) {
-  if (hash) {
-    const element = document.querySelector(hash);
+export function restoreScrollPosition({ hash, scrollY } = {}) {
+  if (typeof window === "undefined" || typeof document === "undefined") return false;
 
-    if (element) {
-      if (window.lenis) {
-        window.lenis.scrollTo(element, { immediate: true });
-      } else {
-        element.scrollIntoView({ behavior: "auto", block: "start" });
+  if (hash) {
+    try {
+      const element = document.querySelector(hash);
+
+      if (element) {
+        if (window.lenis) {
+          window.lenis.scrollTo(element, { immediate: true });
+        } else {
+          element.scrollIntoView({ behavior: "auto", block: "start" });
+        }
+        return true;
       }
-      return true;
+    } catch {
+      // In case hash is an invalid selector
     }
   }
 

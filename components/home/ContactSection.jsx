@@ -1,12 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import TextReveal from "../ui/motion/TextReveal";
 import FadeUp from "../ui/motion/FadeUp";
 
+const emptySubscribe = () => () => {};
 
 export default function ContactSection({ asPage = false }) {
   const Heading = asPage ? "h1" : "h2";
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -193,102 +199,117 @@ export default function ContactSection({ asPage = false }) {
 
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-5" suppressHydrationWarning>
+              {mounted ? (
+                <form onSubmit={handleSubmit} className="space-y-5" suppressHydrationWarning>
 
-                <div className="grid md:grid-cols-2 gap-5" suppressHydrationWarning>
+                  <div className="grid md:grid-cols-2 gap-5" suppressHydrationWarning>
+
+                    <div className="w-full" suppressHydrationWarning>
+                      <input
+                        type="text"
+                        name="name"
+                        id="contact-name"
+                        autoComplete="name"
+                        value={form.name}
+                        onChange={handleChange}
+                        placeholder="Your Name"
+                        required
+                        suppressHydrationWarning
+                        className="w-full bg-surface-base border border-border-subtle rounded-panel px-6 py-4 outline-none focus:border-brand-gold transition duration-300 placeholder:text-white/60"
+                      />
+                    </div>
+
+                    <div className="w-full" suppressHydrationWarning>
+                      <input
+                        type="email"
+                        name="email"
+                        id="contact-email"
+                        autoComplete="email"
+                        value={form.email}
+                        onChange={handleChange}
+                        placeholder="Email Address"
+                        required
+                        suppressHydrationWarning
+                        className="w-full bg-surface-base border border-border-subtle rounded-panel px-6 py-4 outline-none focus:border-brand-gold transition duration-300 placeholder:text-white/60"
+                      />
+                    </div>
+
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-5" suppressHydrationWarning>
+                    <div className="w-full" suppressHydrationWarning>
+                      <input
+                        type="tel"
+                        name="phone"
+                        id="contact-phone"
+                        autoComplete="tel"
+                        value={form.phone}
+                        onChange={handleChange}
+                        placeholder="Phone Number"
+                        required
+                        suppressHydrationWarning
+                        className="w-full bg-surface-base border border-border-subtle rounded-panel px-6 py-4 outline-none focus:border-brand-gold transition duration-300 placeholder:text-white/60"
+                      />
+                    </div>
+
+                    <div className="w-full" suppressHydrationWarning>
+                      <input
+                        type="text"
+                        name="company"
+                        id="contact-company"
+                        autoComplete="organization"
+                        value={form.company}
+                        onChange={handleChange}
+                        placeholder="Company Name"
+                        suppressHydrationWarning
+                        className="w-full bg-surface-base border border-border-subtle rounded-panel px-6 py-4 outline-none focus:border-brand-gold transition duration-300 placeholder:text-white/60"
+                      />
+                    </div>
+                  </div>
 
                   <div className="w-full" suppressHydrationWarning>
-                    <input
-                      type="text"
-                      name="name"
-                      id="contact-name"
-                      autoComplete="name"
-                      value={form.name}
+                    <textarea
+                      name="message"
+                      id="contact-message"
+                      value={form.message}
                       onChange={handleChange}
-                      placeholder="Your Name"
+                      rows={7}
+                      placeholder="Tell us about your project..."
                       required
                       suppressHydrationWarning
-                      className="w-full bg-surface-base border border-border-subtle rounded-panel px-6 py-4 outline-none focus:border-brand-gold transition duration-300 placeholder:text-white/60"
+                      className="w-full bg-surface-base border border-border-subtle rounded-panel px-6 py-4 outline-none focus:border-brand-gold transition duration-300 placeholder:text-white/60 resize-none"
                     />
                   </div>
 
-                  <div className="w-full" suppressHydrationWarning>
-                    <input
-                      type="email"
-                      name="email"
-                      id="contact-email"
-                      autoComplete="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      placeholder="Email Address"
-                      required
-                      suppressHydrationWarning
-                      className="w-full bg-surface-base border border-border-subtle rounded-panel px-6 py-4 outline-none focus:border-brand-gold transition duration-300 placeholder:text-white/60"
-                    />
-                  </div>
-
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-5" suppressHydrationWarning>
-                  <div className="w-full" suppressHydrationWarning>
-                    <input
-                      type="tel"
-                      name="phone"
-                      id="contact-phone"
-                      autoComplete="tel"
-                      value={form.phone}
-                      onChange={handleChange}
-                      placeholder="Phone Number"
-                      required
-                      suppressHydrationWarning
-                      className="w-full bg-surface-base border border-border-subtle rounded-panel px-6 py-4 outline-none focus:border-brand-gold transition duration-300 placeholder:text-white/60"
-                    />
-                  </div>
-
-                  <div className="w-full" suppressHydrationWarning>
-                    <input
-                      type="text"
-                      name="company"
-                      id="contact-company"
-                      autoComplete="organization"
-                      value={form.company}
-                      onChange={handleChange}
-                      placeholder="Company Name"
-                      suppressHydrationWarning
-                      className="w-full bg-surface-base border border-border-subtle rounded-panel px-6 py-4 outline-none focus:border-brand-gold transition duration-300 placeholder:text-white/60"
-                    />
-                  </div>
-                </div>
-
-                <div className="w-full" suppressHydrationWarning>
-                  <textarea
-                    name="message"
-                    id="contact-message"
-                    value={form.message}
-                    onChange={handleChange}
-                    rows={7}
-                    placeholder="Tell us about your project..."
-                    required
+                  <button
+                    type="submit"
                     suppressHydrationWarning
-                    className="w-full bg-surface-base border border-border-subtle rounded-panel px-6 py-4 outline-none focus:border-brand-gold transition duration-300 placeholder:text-white/60 resize-none"
-                  />
+                    className="group mt-4 bg-brand-gold hover:opacity-90 text-black px-10 py-5 rounded-button uppercase tracking-[0.25em] text-sm transition duration-300 flex items-center gap-3 cursor-pointer"
+                  >
+                    {status.type === "loading" ? "Sending..." : "Send Message →"}
+                  </button>
+
+                  {status.message && (
+                    <p className={`text-sm ${status.type === "success" ? "text-green-400" : status.type === "error" ? "text-red-400" : "text-white/80"}`}>
+                      {status.message}
+                    </p>
+                  )}
+
+                </form>
+              ) : (
+                <div className="space-y-5" aria-hidden="true">
+                  <div className="grid md:grid-cols-2 gap-5">
+                    <div className="w-full h-[58px] bg-surface-base/60 border border-border-subtle rounded-panel" />
+                    <div className="w-full h-[58px] bg-surface-base/60 border border-border-subtle rounded-panel" />
+                  </div>
+                  <div className="grid md:grid-cols-2 gap-5">
+                    <div className="w-full h-[58px] bg-surface-base/60 border border-border-subtle rounded-panel" />
+                    <div className="w-full h-[58px] bg-surface-base/60 border border-border-subtle rounded-panel" />
+                  </div>
+                  <div className="w-full h-[180px] bg-surface-base/60 border border-border-subtle rounded-panel" />
+                  <div className="w-48 h-[54px] bg-brand-gold/60 rounded-button mt-4" />
                 </div>
-
-                <button
-                  type="submit"
-                  suppressHydrationWarning
-                  className="group mt-4 bg-brand-gold hover:opacity-90 text-black px-10 py-5 rounded-button uppercase tracking-[0.25em] text-sm transition duration-300 flex items-center gap-3 cursor-pointer"
-                >
-                  {status.type === "loading" ? "Sending..." : "Send Message →"}
-                </button>
-
-                {status.message && (
-                  <p className={`text-sm ${status.type === "success" ? "text-green-400" : status.type === "error" ? "text-red-400" : "text-white/80"}`}>
-                    {status.message}
-                  </p>
-                )}
-
-              </form>
+              )}
 
             </div>
 

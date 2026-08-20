@@ -1,25 +1,25 @@
 import RetailLighting from "@/lib_src/pages/RetailLighting";
 
 export const metadata = {
-  title: 'Retail & Shop Lighting Design | Credence Lighting',
-  description: 'Drive sales and enhance brand identity with our bespoke retail lighting solutions. High-CRI track lighting and architectural integration for showrooms.',
+  title: 'Retail & Showroom Lighting Solutions',
+  description: 'High-CRI retail and luxury showroom lighting design in Dubai. Accent track lights, display illumination, and immersive visual merchandising systems.',
   alternates: {
-    canonical: "https://credencelighting.com/retail-lighting",
+    canonical: "https://www.credencelighting.com/retail-lighting",
   },
   openGraph: {
-    title: 'Retail & Shop Lighting Design | Credence Lighting',
-    description: 'Drive sales and enhance brand identity with our bespoke retail lighting solutions. High-CRI track lighting and architectural integration for showrooms.',
-    url: "https://credencelighting.com/retail-lighting",
+    title: 'Retail & Showroom Lighting Solutions · Credence Lighting',
+    description: 'High-CRI retail and luxury showroom lighting design in Dubai. Accent track lights, display illumination, and immersive visual merchandising systems.',
+    url: "https://www.credencelighting.com/retail-lighting",
     siteName: "Credence Lighting",
-    images: ["https://credencelighting.com/meta.png"],
+    images: ["https://www.credencelighting.com/meta.png"],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: 'Retail & Shop Lighting Design | Credence Lighting',
-    description: 'Drive sales and enhance brand identity with our bespoke retail lighting solutions. High-CRI track lighting and architectural integration for showrooms.',
-    images: ["https://credencelighting.com/meta.png"],
+    title: 'Retail & Showroom Lighting Solutions · Credence Lighting',
+    description: 'High-CRI retail and luxury showroom lighting design in Dubai. Accent track lights, display illumination, and immersive visual merchandising systems.',
+    images: ["https://www.credencelighting.com/meta.png"],
   },
 };
 

@@ -53,20 +53,6 @@ export default function Faq() {
     return groups;
   }, [filteredFaqs]);
 
-  // Schema for SEO
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqData.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  };
-
   const scrollToCategory = (category) => {
     setIsManualScrolling(true);
     setActiveCategory(category);
@@ -138,7 +124,30 @@ export default function Faq() {
         <SEO 
         title="FAQ · Lighting Questions Answered · Credence" 
         description="Find answers to common questions about architectural lighting, LED products, smart controls, outdoor fixtures, and lighting design services from Credence Lighting Dubai."
-        schema={faqSchema}
+        schema={[{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+            { "@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://www.credencelighting.com/faq" }
+          ]
+        }, {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Credence Lighting Help & Frequently Asked Questions",
+          "description": "Comprehensive FAQ covering architectural lighting, LED supply, warranties, and smart lighting controls in Dubai and UAE."
+        }, {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqData.map((f) => ({
+            "@type": "Question",
+            "name": f.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": f.answer
+            }
+          }))
+        }]}
       />
       
       <main className="pt-32 pb-24">
@@ -164,6 +173,7 @@ export default function Faq() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
+            suppressHydrationWarning
             className="relative max-w-2xl mx-auto mt-10"
           >
             <input

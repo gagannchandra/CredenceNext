@@ -1,25 +1,25 @@
 import Downloads from "@/lib_src/pages/Downloads";
 
 export const metadata = {
-  title: 'Lighting Catalogues & Downloads | Credence Lighting',
-  description: 'Download our latest product catalogues, technical specifications, and brochures for premium lighting solutions in the UAE.',
+  title: 'Catalogues & Technical Specifications',
+  description: 'Download product catalogues, photometric IES files, technical data sheets, and specification brochures from Credence Lighting in Dubai.',
   alternates: {
-    canonical: "https://credencelighting.com/downloads",
+    canonical: "https://www.credencelighting.com/downloads",
   },
   openGraph: {
-    title: 'Lighting Catalogues & Downloads | Credence Lighting',
-    description: 'Download our latest product catalogues, technical specifications, and brochures for premium lighting solutions in the UAE.',
-    url: "https://credencelighting.com/downloads",
+    title: 'Catalogues & Technical Specifications · Credence Lighting',
+    description: 'Download product catalogues, photometric IES files, technical data sheets, and specification brochures from Credence Lighting in Dubai.',
+    url: "https://www.credencelighting.com/downloads",
     siteName: "Credence Lighting",
-    images: ["https://credencelighting.com/meta.png"],
+    images: ["https://www.credencelighting.com/meta.png"],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: 'Lighting Catalogues & Downloads | Credence Lighting',
-    description: 'Download our latest product catalogues, technical specifications, and brochures for premium lighting solutions in the UAE.',
-    images: ["https://credencelighting.com/meta.png"],
+    title: 'Catalogues & Technical Specifications · Credence Lighting',
+    description: 'Download product catalogues, photometric IES files, technical data sheets, and specification brochures from Credence Lighting in Dubai.',
+    images: ["https://www.credencelighting.com/meta.png"],
   },
 };
 

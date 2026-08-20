@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import projects from "../../data/projects";
 import { useRouter, usePathname } from "next/navigation";
@@ -9,6 +10,7 @@ import { saveReturnState } from "../../utils/navigationState";
 import { duration, ease } from "../../utils/motion";
 import TextReveal from "../ui/motion/TextReveal";
 import FadeUp from "../ui/motion/FadeUp";
+import HoverLift from "../ui/motion/HoverLift";
 
 const uniqueCategories = Array.from(new Set(projects.map((p) => p.category)));
 const categories = ["All", ...uniqueCategories];
@@ -38,10 +40,6 @@ export default function ProjectsSection({ hideHeader = false }) {
 
   const handleNext = () => {
     setActiveProjectIndex((prev) => (prev === filteredProjects.length - 1 ? 0 : prev + 1));
-  };
-
-  const handleViewAllClick = () => {
-    router.push("/gallery");
   };
 
   // Auto-slide for category view
@@ -102,16 +100,24 @@ export default function ProjectsSection({ hideHeader = false }) {
               </h2>
             </div>
 
-            <FadeUp delay={4} className="mx-auto md:mx-0 w-full md:w-auto">
-              <motion.button
-                whileHover={{ scale: 1.05, backgroundColor: "#c8a96b", color: "#000", transition: { duration: 0.4, ease: ease.standard } }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleViewAllClick}
-                className="w-full md:w-auto border border-brand-gold/40 backdrop-blur-sm text-brand-gold px-8 py-4 tracking-[0.2em] uppercase text-xs transition-all duration-500 rounded-button flex items-center justify-center gap-3 group"
-              >
-                View Gallery
-                <span className="transform transition-transform duration-500 group-hover:translate-x-1">→</span>
-              </motion.button>
+            <FadeUp delay={4} className="mx-auto md:mx-0 w-full md:w-auto flex flex-col sm:flex-row items-center gap-3">
+              <HoverLift className="w-full sm:w-auto">
+                <Link
+                  href="/projects"
+                  className="w-full sm:w-auto border border-white/20 backdrop-blur-sm text-white px-8 py-4 tracking-[0.2em] uppercase text-xs transition-all duration-500 rounded-button flex items-center justify-center hover:bg-white hover:text-black"
+                >
+                  All Projects
+                </Link>
+              </HoverLift>
+              <HoverLift className="w-full sm:w-auto">
+                <Link
+                  href="/gallery"
+                  className="w-full sm:w-auto border border-brand-gold/40 backdrop-blur-sm text-brand-gold px-8 py-4 tracking-[0.2em] uppercase text-xs transition-all duration-500 rounded-button flex items-center justify-center gap-3 group hover:bg-brand-gold hover:text-black"
+                >
+                  View Gallery
+                  <span className="transform transition-transform duration-500 group-hover:translate-x-1">→</span>
+                </Link>
+              </HoverLift>
             </FadeUp>
           </div>
         )}

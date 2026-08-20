@@ -1,25 +1,25 @@
 import OfficeLighting from "@/lib_src/pages/OfficeLighting";
 
 export const metadata = {
-  title: 'Commercial Office Lighting Solutions | Credence',
-  description: 'Boost productivity and wellness with our commercial office lighting solutions. We provide Human Centric Lighting (HCL) design and supply for modern workspaces.',
+  title: 'Commercial Office Lighting Solutions',
+  description: 'Human-centric commercial office lighting solutions in Dubai. Low-glare (UGR<19), energy-efficient, and DALI-controlled workspace lighting systems.',
   alternates: {
-    canonical: "https://credencelighting.com/office-lighting",
+    canonical: "https://www.credencelighting.com/office-lighting",
   },
   openGraph: {
-    title: 'Commercial Office Lighting Solutions | Credence',
-    description: 'Boost productivity and wellness with our commercial office lighting solutions. We provide Human Centric Lighting (HCL) design and supply for modern workspaces.',
-    url: "https://credencelighting.com/office-lighting",
+    title: 'Commercial Office Lighting Solutions · Credence Lighting',
+    description: 'Human-centric commercial office lighting solutions in Dubai. Low-glare (UGR<19), energy-efficient, and DALI-controlled workspace lighting systems.',
+    url: "https://www.credencelighting.com/office-lighting",
     siteName: "Credence Lighting",
-    images: ["https://credencelighting.com/meta.png"],
+    images: ["https://www.credencelighting.com/meta.png"],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: 'Commercial Office Lighting Solutions | Credence',
-    description: 'Boost productivity and wellness with our commercial office lighting solutions. We provide Human Centric Lighting (HCL) design and supply for modern workspaces.',
-    images: ["https://credencelighting.com/meta.png"],
+    title: 'Commercial Office Lighting Solutions · Credence Lighting',
+    description: 'Human-centric commercial office lighting solutions in Dubai. Low-glare (UGR<19), energy-efficient, and DALI-controlled workspace lighting systems.',
+    images: ["https://www.credencelighting.com/meta.png"],
   },
 };
 

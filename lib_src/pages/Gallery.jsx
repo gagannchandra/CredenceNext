@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Lightbox from "@/components/ui/Lightbox";
@@ -33,10 +34,17 @@ export default function Gallery() {
         description="View our gallery of premium lighting installations and architectural lighting inspiration across Dubai and the UAE." 
         schema={[{
           "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Project Gallery", "item": "https://www.credencelighting.com/gallery" }
+          ]
+        }, {
+          "@context": "https://schema.org",
           "@type": "CollectionPage",
           "name": "Lighting Gallery · Credence Lighting Dubai",
           "description": "Browse photos of premium lighting installations by Credence Lighting.",
-          "url": "https://credencelighting.com/gallery"
+          "url": "https://www.credencelighting.com/gallery"
         }]}
       />
       <section className="min-h-screen bg-transparent py-20 md:py-32 px-4 md:px-16">
@@ -99,12 +107,14 @@ export default function Gallery() {
                       >
                         <span className="sr-only">Open {project.name} image {imgIndex + 1}</span>
                       </button>
-                      <img
+                      <Image
                         src={image}
-                        alt={`${project.name} gallery ${imgIndex + 1}`}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        alt={`${project.name} lighting project installation ${imgIndex + 1}`}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-transparent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute inset-0 bg-transparent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                     </div>
                   ))}
                 </div>

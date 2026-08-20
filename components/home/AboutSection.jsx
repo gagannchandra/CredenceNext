@@ -1,7 +1,7 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 import { Wrench, Monitor, ClipboardList, Settings, Headset, Briefcase } from "lucide-react";
 import TextReveal from "../ui/motion/TextReveal";
 import FadeUp from "../ui/motion/FadeUp";
@@ -9,7 +9,6 @@ import HoverLift from "../ui/motion/HoverLift";
 import { duration, ease } from "../../utils/motion";
 
 export default function AboutSection({ preview = false, asPage = false }) {
-  const router = useRouter();
   const Heading = asPage ? "h1" : "h2";
 
   return (
@@ -149,9 +148,8 @@ export default function AboutSection({ preview = false, asPage = false }) {
           {/* PRODUCTS CARD */}
           <FadeUp delay={4} className="h-full">
             <HoverLift className="h-full">
-              <button
-                type="button"
-                onClick={() => router.push("/products")}
+              <Link
+                href="/products"
                 className="group relative overflow-hidden border border-white/10 rounded-3xl p-6 bg-white/[0.03] backdrop-blur-md md:backdrop-blur-2xl transition duration-500 h-full min-h-[160px] flex flex-col items-center justify-center w-full cursor-pointer"
               >
 
@@ -173,16 +171,15 @@ export default function AboutSection({ preview = false, asPage = false }) {
                     →
                   </div>
 
-              </button>
+              </Link>
             </HoverLift>
           </FadeUp>
 
           {/* CLIENTS CARD */}
           <FadeUp delay={5} className="h-full">
             <HoverLift className="h-full">
-              <button
-                type="button"
-                onClick={() => router.push("/brands")}
+              <Link
+                href="/brands"
                 className="group relative overflow-hidden border border-white/10 rounded-3xl p-6 bg-white/[0.03] backdrop-blur-md md:backdrop-blur-2xl transition duration-500 h-full min-h-[160px] flex flex-col items-center justify-center w-full cursor-pointer"
               >
 
@@ -204,16 +201,15 @@ export default function AboutSection({ preview = false, asPage = false }) {
                     →
                   </div>
 
-              </button>
+              </Link>
             </HoverLift>
           </FadeUp>
 
           {/* PORTFOLIO CARD */}
           <FadeUp delay={6} className="h-full">
             <HoverLift className="h-full">
-              <button
-                type="button"
-                onClick={() => router.push("/projects")}
+              <Link
+                href="/projects"
                 className="group relative overflow-hidden border border-brand-gold/20 rounded-3xl p-6 bg-brand-gold/[0.03] backdrop-blur-md md:backdrop-blur-2xl transition duration-500 h-full min-h-[160px] flex flex-col items-center justify-center w-full cursor-pointer"
               >
 
@@ -235,7 +231,7 @@ export default function AboutSection({ preview = false, asPage = false }) {
                     →
                   </div>
 
-              </button>
+              </Link>
             </HoverLift>
           </FadeUp>
           </div>

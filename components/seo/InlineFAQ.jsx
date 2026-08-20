@@ -1,11 +1,14 @@
+"use client";
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
-export default function InlineFAQ({ faqs, heading = "Frequently Asked Questions" }) {
+export default function InlineFAQ({ faqs, items, heading = "Frequently Asked Questions" }) {
   const [openId, setOpenId] = useState(null);
+  const faqList = faqs || items;
 
-  if (!faqs || faqs.length === 0) return null;
+  if (!faqList || faqList.length === 0) return null;
 
   return (
     <section className="mt-24 max-w-4xl mx-auto">
@@ -14,7 +17,7 @@ export default function InlineFAQ({ faqs, heading = "Frequently Asked Questions"
       </h2>
 
       <div className="space-y-3">
-        {faqs.map((faq) => {
+        {faqList.map((faq) => {
           const isOpen = openId === faq.id;
           return (
             <div
@@ -22,7 +25,10 @@ export default function InlineFAQ({ faqs, heading = "Frequently Asked Questions"
               className="border border-white/10 rounded-panel overflow-hidden bg-white/[0.02] backdrop-blur-sm"
             >
               <button
+                type="button"
                 onClick={() => setOpenId(isOpen ? null : faq.id)}
+                aria-expanded={isOpen}
+                aria-controls={`faq-answer-${faq.id}`}
                 className="w-full flex items-center justify-between px-6 py-5 text-center md:text-left gap-4 group"
               >
                 <span className="text-white text-base md:text-lg font-medium leading-snug group-hover:text-brand-gold transition-colors duration-300">
@@ -32,6 +38,7 @@ export default function InlineFAQ({ faqs, heading = "Frequently Asked Questions"
                   animate={{ rotate: isOpen ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
                   className="shrink-0 text-white/40"
+                  aria-hidden="true"
                 >
                   <ChevronDown size={20} />
                 </motion.span>
@@ -40,6 +47,9 @@ export default function InlineFAQ({ faqs, heading = "Frequently Asked Questions"
               <AnimatePresence>
                 {isOpen && (
                   <motion.div
+                    id={`faq-answer-${faq.id}`}
+                    role="region"
+                    aria-label={faq.question}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}

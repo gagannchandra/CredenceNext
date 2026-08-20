@@ -10,21 +10,27 @@ import Lenis from "lenis";
 export default function SmoothScroll() {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.5,
+      duration: 0.9,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: "vertical",
-      gestureDirection: "vertical",
-      smooth: true,
-      mouseMultiplier: 0.8,
-      smoothTouch: false,
-      touchMultiplier: 2,
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.2,
       infinite: false,
-      autoRaf: true,
     });
 
     window.lenis = lenis;
 
+    let rfId;
+    function raf(time) {
+      lenis.raf(time);
+      rfId = requestAnimationFrame(raf);
+    }
+    rfId = requestAnimationFrame(raf);
+
     return () => {
+      cancelAnimationFrame(rfId);
       window.lenis = null;
       lenis.destroy();
     };

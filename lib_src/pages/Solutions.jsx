@@ -100,6 +100,26 @@ export default function Solutions() {
       <SEO 
         title="Lighting Solutions | Credence Lighting Dubai" 
         description="Bespoke architectural, commercial, and hospitality lighting solutions tailored to your space." 
+        schema={[{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://www.credencelighting.com/solutions" }
+          ]
+        }, {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Architectural & Commercial Lighting Solutions",
+          "provider": {
+            "@type": "Organization",
+            "@id": "https://www.credencelighting.com/#organization",
+            "name": "Credence Lighting LLC",
+            "url": "https://www.credencelighting.com"
+          },
+          "areaServed": ["Dubai", "UAE", "Saudi Arabia", "Bahrain", "GCC"],
+          "description": "Comprehensive architectural, commercial, hospitality, and residential lighting solutions."
+        }]}
       />
       <div className="relative min-h-screen bg-transparent overflow-hidden pt-32 pb-20">
         {/* BACKGROUND GLOW */}
@@ -127,7 +147,6 @@ export default function Solutions() {
               <Link 
                 key={solution.id} 
                 href={solution.link}
-                onClick={() => scrollToTop()}
                 className="group relative block overflow-hidden rounded-card break-inside-avoid border border-white/5 hover:border-brand-gold/30 transition-colors duration-500 bg-surface-base"
               >
                 {/* Image Container with variable aspect ratio for masonry effect */}

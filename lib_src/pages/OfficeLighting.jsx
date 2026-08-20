@@ -20,46 +20,39 @@ const schema = {
   "@graph": [
     {
       "@type": "Service",
-      "serviceType": "Commercial Office Lighting",
+      "serviceType": "Corporate Office Lighting Solutions",
       "provider": {
-        "@type": "LocalBusiness",
-          "@id": "https://credencelighting.com/#organization",
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "24.9788",
-            "longitude": "55.1764"
-          },
-        "name": "Credence Lighting",
-        "url": "https://credencelighting.com"
+        "@type": "Organization",
+        "@id": "https://www.credencelighting.com/#organization",
+        "name": "Credence Lighting LLC",
+        "url": "https://www.credencelighting.com"
       },
-      "description": "Ergonomic, energy-efficient lighting design for modern corporate workspaces."
+      "areaServed": ["UAE", "Saudi Arabia", "Bahrain", "GCC"],
+      "description": "Bespoke commercial office lighting design, supply, and installation across Dubai and the GCC."
     },
     {
-      "@type": "FAQPage",
-      "mainEntity": faqs.map(faq => ({
-        "@type": "Question",
-        "name": faq.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": faq.answer
-        }
-      }))
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://www.credencelighting.com/solutions" },
+        { "@type": "ListItem", "position": 3, "name": "Commercial Office Lighting" }
+      ]
     }
   ]
 };
 
 const hero = {
   badge: "Commercial Lighting",
-  title: "Commercial Office Lighting Solutions | Credence",
+  title: "Human-Centric Lighting for Modern",
   titleItalic: "Workspaces",
   description: "Ergonomic, energy-efficient, and wellness-driven lighting solutions designed for corporate offices and commercial headquarters."
 };
 
 const benefits = [
-  { icon: Eye, title: "Commercial Office Lighting Solutions | Credence", description: "Visual comfort is paramount. We supply fixtures that eliminate screen glare and prevent eye strain." },
-  { icon: Zap, title: "Commercial Office Lighting Solutions | Credence", description: "Ultra-efficient LEDs paired with occupancy and daylight sensors maximize energy savings." },
-  { icon: Building, title: "Commercial Office Lighting Solutions | Credence", description: "Sleek linear profiles and acoustic lighting that complement modern, exposed-ceiling office designs." },
-  { icon: Settings, title: "Commercial Office Lighting Solutions | Credence", description: "DALI and Casambi networks for automated scheduling and individual desk-level control." }
+  { icon: Eye, title: "Glare-Free Visual Comfort", description: "Visual comfort is paramount. We supply fixtures that eliminate screen glare (UGR < 19) and prevent eye strain." },
+  { icon: Zap, title: "Energy & Sensor Optimization", description: "Ultra-efficient LEDs paired with occupancy and daylight sensors maximize energy savings." },
+  { icon: Building, title: "Architectural Aesthetics", description: "Sleek linear profiles and acoustic lighting that complement modern, exposed-ceiling office designs." },
+  { icon: Settings, title: "Smart Control & DALI", description: "DALI and Casambi networks for automated scheduling and individual desk-level control." }
 ];
 
 const contentBlocks = [

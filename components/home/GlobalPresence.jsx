@@ -161,6 +161,25 @@ export default function GlobalPresence() {
     setIsGlobeReady(true);
   }, []);
 
+  const isSectionVisibleRef = useRef(true);
+
+  useEffect(() => {
+    if (!sectionRef.current || typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isSectionVisibleRef.current = entry.isIntersecting;
+        if (globeRef.current && globeRef.current.controls()) {
+          globeRef.current.controls().autoRotate = entry.isIntersecting && !prefersReducedMotion;
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, [prefersReducedMotion]);
+
   useEffect(() => {
     if (!shouldRender) return;
     const currentGlobe = globeRef.current;
@@ -181,7 +200,7 @@ export default function GlobalPresence() {
       }
 
       const controls = globeRef.current.controls();
-      controls.autoRotate = !prefersReducedMotion;
+      controls.autoRotate = !prefersReducedMotion && isSectionVisibleRef.current;
       controls.autoRotateSpeed = 0.5; // Smoother, slightly faster
       controls.enableZoom = false;
       controls.enablePan = false;
@@ -217,7 +236,7 @@ export default function GlobalPresence() {
       // Bespoke Motion - skipped entirely for reduced-motion users, and
       // paused whenever the tab is hidden or the globe scrolls out of view.
       const animate = () => {
-        if (!prefersReducedMotion && isTabVisible) {
+        if (!prefersReducedMotion && isTabVisible && isSectionVisibleRef.current) {
           time += 0.002;
 
           // Imperceptible floating

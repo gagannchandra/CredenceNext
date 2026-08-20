@@ -1,25 +1,25 @@
 import Solutions from "@/lib_src/pages/Solutions";
 
 export const metadata = {
-  title: 'Lighting Solutions | Credence Lighting Dubai',
-  description: 'Bespoke architectural, commercial, and hospitality lighting solutions tailored to your space.',
+  title: 'Lighting Solutions & Services',
+  description: 'Comprehensive architectural, commercial, hospitality, and residential lighting solutions engineered for superior performance and elegance across the UAE.',
   alternates: {
-    canonical: "https://credencelighting.com/solutions",
+    canonical: "https://www.credencelighting.com/solutions",
   },
   openGraph: {
-    title: 'Lighting Solutions | Credence Lighting Dubai',
-    description: 'Bespoke architectural, commercial, and hospitality lighting solutions tailored to your space.',
-    url: "https://credencelighting.com/solutions",
+    title: 'Lighting Solutions & Services · Credence Lighting',
+    description: 'Comprehensive architectural, commercial, hospitality, and residential lighting solutions engineered for superior performance and elegance across the UAE.',
+    url: "https://www.credencelighting.com/solutions",
     siteName: "Credence Lighting",
-    images: ["https://credencelighting.com/meta.png"],
+    images: ["https://www.credencelighting.com/meta.png"],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: 'Lighting Solutions | Credence Lighting Dubai',
-    description: 'Bespoke architectural, commercial, and hospitality lighting solutions tailored to your space.',
-    images: ["https://credencelighting.com/meta.png"],
+    title: 'Lighting Solutions & Services · Credence Lighting',
+    description: 'Comprehensive architectural, commercial, hospitality, and residential lighting solutions engineered for superior performance and elegance across the UAE.',
+    images: ["https://www.credencelighting.com/meta.png"],
   },
 };
 

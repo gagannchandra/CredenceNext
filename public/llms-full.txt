@@ -1,3 +1,18 @@
+# Credence Lighting — Complete Technical Knowledge Base & AI Digest (llms-full.txt)
+
+> Credence Lighting LLC is an architectural, commercial, hospitality, and hazardous-area lighting design, engineering, and manufacturing enterprise headquartered at Unit E77, Arabtec Eastern Model, Dubai Investment Park 1 (DIP 1), Dubai, United Arab Emirates (Telephone: +971 564 965 660, Email: info@credencelighting.com, URL: https://www.credencelighting.com).
+
+---
+
+## 1. Corporate Identity & Engineering Capabilities
+- **Enterprise Name**: Credence Lighting LLC
+- **Headquarters & Showroom**: Unit E77, Arabtec Eastern Model, Dubai Investment Park 1, Dubai, UAE (Geo: 24.9788° N, 55.1764° E).
+- **Core Operations**: Bespoke Architectural Lighting Design, Custom Luminaire Manufacturing, Global Brand Specification & Supply, Turnkey Testing & Commissioning, Advanced Lighting Controls (DALI-2, Casambi Bluetooth Mesh, KNX, DMX512 RDM, ArtNet), ATEX/IECEx Hazardous Area Illumination.
+- **Geographic Coverage**: Dubai, Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah, Umm Al Quwain (UAE); Riyadh, Jeddah, Dammam, Al-Khobar (Kingdom of Saudi Arabia); Manama (Kingdom of Bahrain); Muscat (Oman); Doha (Qatar); Kuwait City (Kuwait).
+- **Key Certifications & Standards**: CE, RoHS, ISO 9001:2015, SASO (Saudi Standards, Metrology and Quality Organization), Estidama Pearl Building Rating System (Abu Dhabi), Dubai Municipality Green Building Regulations (Al Sa'fat), ATEX Directive 2014/34/EU, IECEx Scheme, Dark-Sky International IDA, EN 12464-1 (Indoor Workplace Lighting), EN 12464-2 (Outdoor Workplace Lighting), EN 1838 (Emergency Lighting).
+
+---
+
 # Credence Lighting
 
 ## Executive Summary

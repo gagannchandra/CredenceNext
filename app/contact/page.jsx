@@ -1,25 +1,25 @@
 import Contact from "@/lib_src/pages/Contact";
 
 export const metadata = {
-  title: 'Contact Credence Lighting | Lighting Experts Dubai',
-  description: 'Get in touch with our lighting specialists in Dubai for project inquiries and quotations.',
+  title: 'Contact Us',
+  description: 'Contact Credence Lighting in Dubai, UAE. Schedule a design consultation or request a project quotation with our architectural lighting specialists.',
   alternates: {
-    canonical: "https://credencelighting.com/contact",
+    canonical: "https://www.credencelighting.com/contact",
   },
   openGraph: {
-    title: 'Contact Credence Lighting | Lighting Experts Dubai',
-    description: 'Get in touch with our lighting specialists in Dubai for project inquiries and quotations.',
-    url: "https://credencelighting.com/contact",
+    title: 'Contact Us · Credence Lighting',
+    description: 'Contact Credence Lighting in Dubai, UAE. Schedule a design consultation or request a project quotation with our architectural lighting specialists.',
+    url: "https://www.credencelighting.com/contact",
     siteName: "Credence Lighting",
-    images: ["https://credencelighting.com/meta.png"],
+    images: ["https://www.credencelighting.com/meta.png"],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: 'Contact Credence Lighting | Lighting Experts Dubai',
-    description: 'Get in touch with our lighting specialists in Dubai for project inquiries and quotations.',
-    images: ["https://credencelighting.com/meta.png"],
+    title: 'Contact Us · Credence Lighting',
+    description: 'Contact Credence Lighting in Dubai, UAE. Schedule a design consultation or request a project quotation with our architectural lighting specialists.',
+    images: ["https://www.credencelighting.com/meta.png"],
   },
 };
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ShieldCheck, Flame, Zap, Gauge, Factory, HardHat, Compass, Sun, ArrowRight, BookOpen } from "lucide-react";
 import Footer from "@/components/layout/Footer";
@@ -75,25 +76,15 @@ const faqs = [
 ];
 
 export default function ExplosionProofLights() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
-    }))
-  };
-
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
     "serviceType": "Explosion Proof Lighting Solutions",
     "provider": {
       "@type": "LocalBusiness",
-      "@id": "https://credencelighting.com/#organization",
+      "@id": "https://www.credencelighting.com/#organization",
       "name": "Credence Lighting",
-      "url": "https://credencelighting.com",
+      "url": "https://www.credencelighting.com",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Unit E77, Arabtec Eastern Model, Dubai Investment Park 1",
@@ -113,8 +104,8 @@ export default function ExplosionProofLights() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://credencelighting.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://credencelighting.com/products" },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.credencelighting.com/products" },
       { "@type": "ListItem", "position": 3, "name": "Explosion Proof Lights" }
     ]
   };
@@ -124,7 +115,7 @@ export default function ExplosionProofLights() {
       <SEO
         title="Explosion Proof Lights Dubai · ATEX & IECEx Certified Lighting UAE"
         description="Premium ATEX & IECEx certified explosion-proof LED lights in Dubai & UAE. Flameproof high bays, linear battens, floodlights, and hazardous highway luminaires. Engineered for oil, gas, and petrochemical environments."
-        schema={[serviceSchema, faqSchema, breadcrumbSchema]}
+        schema={[serviceSchema, breadcrumbSchema]}
       />
       <main className="relative bg-transparent overflow-hidden">
         {/* HERO SECTION */}
@@ -339,9 +330,12 @@ export default function ExplosionProofLights() {
 
               <FadeUp delay={1}>
                 <div className="relative rounded-panel overflow-hidden border border-white/10 group">
-                  <img
+                  <Image
                     src="/images/blog/ai/highways_explosion_proof_lights.webp"
                     alt="Explosion Proof Highway and Tunnel Lighting"
+                    width={800}
+                    height={500}
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6">
@@ -411,7 +405,7 @@ export default function ExplosionProofLights() {
               </p>
             </FadeUp>
 
-            <InlineFAQ items={faqs} />
+            <InlineFAQ faqs={faqs} />
           </div>
         </section>
 

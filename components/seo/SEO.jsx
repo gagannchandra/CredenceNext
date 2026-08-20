@@ -16,9 +16,24 @@
 export default function SEO({ schema = null }) {
   if (!schema) return null;
 
-  const schemas = Array.isArray(schema) ? schema : [schema];
+  const rawSchemas = Array.isArray(schema) ? schema : [schema];
+  const flattened = [];
 
-  return schemas.map((s, i) => (
+  for (const item of rawSchemas) {
+    if (!item) continue;
+    if (item["@graph"] && Array.isArray(item["@graph"])) {
+      for (const graphItem of item["@graph"]) {
+        flattened.push({
+          "@context": item["@context"] || "https://schema.org",
+          ...graphItem,
+        });
+      }
+    } else {
+      flattened.push(item);
+    }
+  }
+
+  return flattened.map((s, i) => (
     <script
       key={s?.["@id"] || `${s?.["@type"] || "schema"}-${i}`}
       type="application/ld+json"

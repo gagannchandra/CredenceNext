@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef } from "react";
 import {
   motion,
@@ -63,7 +65,9 @@ export default function Hero() {
           <source media="(min-width: 768px)" srcSet={bgHorizontal} />
           <img
             src={bgVertical}
-            alt="Luxury Interior"
+            alt="Credence Luxury Architectural Interior Lighting Dubai"
+            width={1920}
+            height={1080}
             fetchPriority="high"
             className="w-full h-full object-cover grayscale brightness-[0.25] transition-all duration-700"
           />

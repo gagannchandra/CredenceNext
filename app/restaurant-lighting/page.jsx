@@ -1,25 +1,25 @@
 import RestaurantLighting from "@/lib_src/pages/RestaurantLighting";
 
 export const metadata = {
-  title: 'Restaurant & Cafe Lighting Design | Credence Lighting',
-  description: 'Create the perfect dining ambiance with our bespoke restaurant and cafe lighting solutions. We specialize in warm dimming, decorative supply, and mood lighting.',
+  title: 'Restaurant & Dining Lighting Solutions',
+  description: 'Atmospheric restaurant, bar, and fine-dining lighting design in Dubai. Warm dimming LEDs, bespoke decorative fixtures, and custom architectural scene controls.',
   alternates: {
-    canonical: "https://credencelighting.com/restaurant-lighting",
+    canonical: "https://www.credencelighting.com/restaurant-lighting",
   },
   openGraph: {
-    title: 'Restaurant & Cafe Lighting Design | Credence Lighting',
-    description: 'Create the perfect dining ambiance with our bespoke restaurant and cafe lighting solutions. We specialize in warm dimming, decorative supply, and mood lighting.',
-    url: "https://credencelighting.com/restaurant-lighting",
+    title: 'Restaurant & Dining Lighting Solutions · Credence Lighting',
+    description: 'Atmospheric restaurant, bar, and fine-dining lighting design in Dubai. Warm dimming LEDs, bespoke decorative fixtures, and custom architectural scene controls.',
+    url: "https://www.credencelighting.com/restaurant-lighting",
     siteName: "Credence Lighting",
-    images: ["https://credencelighting.com/meta.png"],
+    images: ["https://www.credencelighting.com/meta.png"],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: 'Restaurant & Cafe Lighting Design | Credence Lighting',
-    description: 'Create the perfect dining ambiance with our bespoke restaurant and cafe lighting solutions. We specialize in warm dimming, decorative supply, and mood lighting.',
-    images: ["https://credencelighting.com/meta.png"],
+    title: 'Restaurant & Dining Lighting Solutions · Credence Lighting',
+    description: 'Atmospheric restaurant, bar, and fine-dining lighting design in Dubai. Warm dimming LEDs, bespoke decorative fixtures, and custom architectural scene controls.',
+    images: ["https://www.credencelighting.com/meta.png"],
   },
 };
 

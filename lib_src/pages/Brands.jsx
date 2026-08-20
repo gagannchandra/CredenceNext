@@ -56,10 +56,17 @@ export default function Brands() {
         description="Discover the visionary brands, architects, and developers we partner with across the UAE." 
         schema={[{
           "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Brands & Partners", "item": "https://www.credencelighting.com/brands" }
+          ]
+        }, {
+          "@context": "https://schema.org",
           "@type": "CollectionPage",
           "name": "Our Clients · Credence Lighting Dubai",
           "description": "Credence Lighting has served 30+ globally recognized brands including Emaar, DAMAC, Nike, and IKEA",
-          "url": "https://credencelighting.com/brands"
+          "url": "https://www.credencelighting.com/brands"
         }]}
       />
       <section

@@ -2,7 +2,7 @@ import products from "@/data/products";
 import { slugify } from "@/utils/routeUtils";
 import ProductDetails from "@/lib_src/pages/ProductDetails";
 
-const SITE_URL = "https://credencelighting.com";
+const SITE_URL = "https://www.credencelighting.com";
 const FALLBACK_IMAGE = `${SITE_URL}/meta.png`;
 
 const categoriesList = [
@@ -19,15 +19,16 @@ export async function generateMetadata({ params }) {
   const matchedCategory = categoriesList.find((c) => slugify(c) === slug);
 
   if (!matchedCategory) {
-    return { title: "Products | Credence Lighting" };
+    return { title: "Collection Not Found" };
   }
 
   const categoryProducts = products.filter((p) => p.category === matchedCategory);
   const sample = categoryProducts[0];
 
-  const title = `${matchedCategory} Lighting Collection · Credence Lighting`;
+  const title = `${matchedCategory} Lighting Collection`;
+  const fullTitle = `${matchedCategory} Lighting Collection · Credence Lighting`;
   const description = sample
-    ? `Explore our premium ${matchedCategory.toLowerCase()} lighting collection. Discover luxury ${sample.title.toLowerCase()}s engineered for uncompromised performance and aesthetic excellence.`
+    ? `Explore our premium ${matchedCategory.toLowerCase()} lighting collection. Discover luxury ${sample.title.toLowerCase()} fixtures engineered for uncompromised performance and aesthetic excellence.`
     : `Explore our premium ${matchedCategory.toLowerCase()} lighting collection from Credence Lighting.`;
   const image = sample?.image ? `${SITE_URL}${sample.image}` : FALLBACK_IMAGE;
   const url = `${SITE_URL}/products/${slug}`;
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }) {
     description,
     alternates: { canonical: url },
     openGraph: {
-      title,
+      title: fullTitle,
       description,
       url,
       siteName: "Credence Lighting",
@@ -47,7 +48,7 @@ export async function generateMetadata({ params }) {
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: fullTitle,
       description,
       images: [image],
     },

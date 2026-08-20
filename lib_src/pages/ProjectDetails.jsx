@@ -1,28 +1,31 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter, useParams } from "next/navigation";
 import PageLink from "@/components/ui/PageLink";
 import projects from "@/data/projects";
 import SEO from "@/components/seo/SEO";
+import { Zap, Gauge, Sun, Cpu, TrendingDown } from "lucide-react";
 
 export default function ProjectDetails() {
   const { slug } = useParams();
   const router = useRouter();
+  const safeSlug = typeof slug === "string" ? slug : "";
 
   // Handle backward compatibility for numeric IDs
   useEffect(() => {
-    if (!isNaN(slug) && !isNaN(parseFloat(slug))) {
-      const oldId = Number(slug);
+    if (safeSlug && !isNaN(safeSlug) && !isNaN(parseFloat(safeSlug))) {
+      const oldId = Number(safeSlug);
       const oldProject = projects.find((item) => item.id === oldId);
       if (oldProject) {
         router.replace(`/projects/${oldProject.slug}`);
       }
     }
-  }, [slug, router]);
+  }, [safeSlug, router]);
 
-  const currentIndex = projects.findIndex((item) => item.slug === slug || item.id === Number(slug));
+  const currentIndex = projects.findIndex((item) => item.slug === safeSlug || item.id === Number(safeSlug));
   const project = projects[currentIndex];
 
   const previousProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
@@ -102,8 +105,38 @@ export default function ProjectDetails() {
   // project.hero is a bundled Vite asset (/assets/xxx.webp) — relative path.
   // og:image requires an absolute URL.
   const seoImage = project.hero
-    ? (project.hero.startsWith('http') ? project.hero : `https://credencelighting.com${project.hero}`)
-    : 'https://credencelighting.com/meta.png';
+    ? (project.hero.startsWith('http') ? project.hero : `https://www.credencelighting.com${project.hero}`)
+    : 'https://www.credencelighting.com/meta.png';
+
+  const projectSchema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": project.name,
+      "image": [seoImage],
+      "description": project.description,
+      "creator": {
+        "@type": "Organization",
+        "@id": "https://www.credencelighting.com/#organization",
+        "name": "Credence Lighting LLC",
+        "url": "https://www.credencelighting.com"
+      },
+      "datePublished": String(project.year),
+      "contentLocation": {
+        "@type": "Place",
+        "name": project.location
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://www.credencelighting.com/projects" },
+        { "@type": "ListItem", "position": 3, "name": project.name }
+      ]
+    }
+  ];
 
   return (
     <main className="bg-transparent min-h-screen relative overflow-x-hidden text-white">
@@ -111,23 +144,7 @@ export default function ProjectDetails() {
         title={`${project.name} · Luxury Lighting Project | Credence`}
         description={`Explore the architectural lighting design of ${project.name} in ${project.location} (${project.year}). Discover our bespoke ${project.category.toLowerCase()} solutions.`}
         image={seoImage}
-        schema={[{
-          "@context": "https://schema.org",
-          "@type": "CreativeWork",
-          "name": project.name,
-          "image": seoImage,
-          "description": project.description,
-          "creator": {
-            "@type": "Organization",
-          "@id": "https://credencelighting.com/#organization",
-            "name": "Credence Lighting"
-          },
-          "datePublished": project.year,
-          "contentLocation": {
-            "@type": "Place",
-            "name": project.location
-          }
-        }]}
+        schema={projectSchema}
       />
       {/* Background Decorative Gradient */}
       <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
@@ -169,6 +186,56 @@ export default function ProjectDetails() {
             <span className="w-1 h-1 rounded-button bg-brand-gold" />
             <span>{project.year}</span>
           </motion.div>
+
+          {/* ENGINEERING & PERFORMANCE METRICS BADGES */}
+          {project.engineeringMetrics && (
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.45, duration: 0.8, ease: "easeOut" }}
+              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 w-full max-w-4xl mb-10 text-left"
+            >
+              <div className="bg-white/[0.03] border border-white/10 rounded-card p-3.5 backdrop-blur-sm">
+                <div className="flex items-center gap-2 text-brand-gold text-xs uppercase tracking-wider font-semibold mb-1">
+                  <Sun size={14} />
+                  <span>Illuminance</span>
+                </div>
+                <p className="text-white text-xs font-mono">{project.engineeringMetrics.luxLevel}</p>
+              </div>
+
+              <div className="bg-white/[0.03] border border-white/10 rounded-card p-3.5 backdrop-blur-sm">
+                <div className="flex items-center gap-2 text-brand-gold text-xs uppercase tracking-wider font-semibold mb-1">
+                  <Gauge size={14} />
+                  <span>Power Density</span>
+                </div>
+                <p className="text-white text-xs font-mono">{project.engineeringMetrics.lpd}</p>
+              </div>
+
+              <div className="bg-white/[0.03] border border-white/10 rounded-card p-3.5 backdrop-blur-sm">
+                <div className="flex items-center gap-2 text-brand-gold text-xs uppercase tracking-wider font-semibold mb-1">
+                  <Zap size={14} />
+                  <span>Fidelity / CRI</span>
+                </div>
+                <p className="text-white text-xs font-mono">{project.engineeringMetrics.cri}</p>
+              </div>
+
+              <div className="bg-white/[0.03] border border-white/10 rounded-card p-3.5 backdrop-blur-sm">
+                <div className="flex items-center gap-2 text-brand-gold text-xs uppercase tracking-wider font-semibold mb-1">
+                  <Cpu size={14} />
+                  <span>Control Topology</span>
+                </div>
+                <p className="text-white text-xs font-mono">{project.engineeringMetrics.controls}</p>
+              </div>
+
+              <div className="bg-white/[0.03] border border-white/10 rounded-card p-3.5 backdrop-blur-sm col-span-2 sm:col-span-1">
+                <div className="flex items-center gap-2 text-brand-gold text-xs uppercase tracking-wider font-semibold mb-1">
+                  <TrendingDown size={14} />
+                  <span>Efficiency Gain</span>
+                </div>
+                <p className="text-white text-xs font-mono">{project.engineeringMetrics.energySaved}</p>
+              </div>
+            </motion.div>
+          )}
           
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -253,9 +320,12 @@ export default function ProjectDetails() {
               }}
               className="w-full mb-4 md:mb-6 overflow-hidden rounded-card border border-border-subtle bg-surface-elevated relative group break-inside-avoid cursor-pointer"
             >
-              <img
+              <Image
                 src={imgSrc}
                 alt={`${project.name} - Gallery Image ${idx + 1}`}
+                width={800}
+                height={600}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px"
                 className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -358,10 +428,8 @@ export default function ProjectDetails() {
             {/* Image Container */}
             <div className="relative w-full max-w-[90vw] md:max-w-[85vw] h-[85vh] flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
               <AnimatePresence initial={false} custom={direction}>
-                <motion.img
+                <motion.div
                   key={activeImageIndex}
-                  src={project.gallery[activeImageIndex]}
-                  alt={`${project.name} - Gallery Image ${activeImageIndex + 1}`}
                   custom={direction}
                   variants={slideVariants}
                   initial="enter"
@@ -371,8 +439,17 @@ export default function ProjectDetails() {
                     x: { type: "spring", stiffness: 300, damping: 30 },
                     opacity: { duration: 0.2 }
                   }}
-                  className="absolute max-w-full max-h-full object-contain drop-shadow-2xl rounded-sm"
-                />
+                  className="relative w-full h-full flex items-center justify-center"
+                >
+                  <Image
+                    src={project.gallery[activeImageIndex]}
+                    alt={`${project.name} - Gallery Image ${activeImageIndex + 1}`}
+                    width={1600}
+                    height={1200}
+                    sizes="90vw"
+                    className="max-w-full max-h-full w-auto h-auto object-contain drop-shadow-2xl rounded-sm"
+                  />
+                </motion.div>
               </AnimatePresence>
             </div>
           </motion.div>

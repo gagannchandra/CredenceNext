@@ -73,7 +73,7 @@ export default function IndustryTemplate({
           <section className="relative py-16 border-y border-white/10">
             <div className="max-w-[1200px] mx-auto px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-10">
               {stats.map(([number, label], index) => (
-                <FadeUp key={label} delay={index * 1}>
+                <FadeUp key={`${label}-${index}`} delay={index * 1}>
                   <div className={`text-center ${index !== 0 ? "md:border-l md:border-white/10" : ""}`}>
                     <h3 className="text-4xl md:text-5xl font-serif text-white mb-2">{number}</h3>
                     <p className="uppercase tracking-[0.3em] text-xs text-brand-gold/80">{label}</p>
@@ -99,7 +99,7 @@ export default function IndustryTemplate({
                 {benefits.map((benefit, index) => {
                   const Icon = benefit.icon;
                   return (
-                    <FadeUp key={benefit.title} delay={index * 1}>
+                    <FadeUp key={benefit.title ? `${benefit.title}-${index}` : `benefit-${index}`} delay={index * 1}>
                       <div className="group relative overflow-hidden border border-white/10 rounded-[2rem] p-8 bg-white/[0.02] backdrop-blur-md md:backdrop-blur-xl hover:bg-white/[0.05] transition-all duration-500 h-full">
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 bg-gradient-to-br from-brand-gold/10 via-transparent to-transparent pointer-events-none" />
                         <div className="relative z-10">
@@ -152,7 +152,7 @@ export default function IndustryTemplate({
               </FadeUp>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {relatedProducts.map((product, index) => (
-                  <FadeUp key={product.title} delay={index * 1}>
+                  <FadeUp key={product.title ? `${product.title}-${index}` : `prod-${index}`} delay={index * 1}>
                     <Link href={product.link} className="group block border border-white/10 rounded-panel overflow-hidden bg-white/[0.02] hover:border-brand-gold/30 transition-all duration-500">
                       <div className="h-48 overflow-hidden relative">
                         <Image src={product.image} alt={product.title} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />

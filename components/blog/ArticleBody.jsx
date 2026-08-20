@@ -2,6 +2,8 @@
 
 import React from 'react';
 import Link from "next/link";
+import Image from "next/image";
+import { Sparkles } from "lucide-react";
 
 const renderText = (text) => {
   if (typeof text !== 'string') return text;
@@ -48,11 +50,24 @@ export default function ArticleBody({ blocks }) {
                 {renderText(block.content)}
               </p>
             );
+          case "tldr":
+          case "takeaways":
+            return (
+              <div key={index} className="article-tldr bg-brand-gold/10 border border-brand-gold/40 p-6 rounded-card my-8 shadow-elevation-low">
+                <div className="flex items-center gap-2 text-brand-gold font-semibold uppercase tracking-wider text-xs mb-3">
+                  <Sparkles size={16} />
+                  <span>Key Takeaways & Quick Summary</span>
+                </div>
+                <div className="text-white/90 text-base leading-relaxed">
+                  {renderText(block.content)}
+                </div>
+              </div>
+            );
           case "heading2":
             return (
               <h2 
                 key={index} 
-                id={block.content.toLowerCase().replace(/[^a-z0-9]+/g, '-')} 
+                id={(typeof block.content === "string" ? block.content : "").toLowerCase().replace(/[^a-z0-9]+/g, '-')} 
                 className="text-fluid-h2 font-serif text-brand-gold mt-12 mb-6"
               >
                 {renderText(block.content)}
@@ -62,7 +77,7 @@ export default function ArticleBody({ blocks }) {
             return (
               <h3 
                 key={index} 
-                id={block.content.toLowerCase().replace(/[^a-z0-9]+/g, '-')} 
+                id={(typeof block.content === "string" ? block.content : "").toLowerCase().replace(/[^a-z0-9]+/g, '-')} 
                 className="text-2xl md:text-3xl font-serif text-brand-gold mt-10 mb-4"
               >
                 {renderText(block.content)}
@@ -83,7 +98,16 @@ export default function ArticleBody({ blocks }) {
           case "image":
             return (
               <figure key={index} className="my-10">
-                <img src={block.url} alt={block.caption || ""} className="w-full rounded-panel" />
+                <div className="relative w-full rounded-panel overflow-hidden bg-surface-elevated">
+                  <Image
+                    src={block.url}
+                    alt={block.caption || "Credence Lighting architectural guide diagram"}
+                    width={1200}
+                    height={700}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1000px"
+                    className="w-full h-auto object-cover rounded-panel"
+                  />
+                </div>
                 {block.caption && (
                   <figcaption className="text-center text-sm text-white/50 mt-3">{renderText(block.caption)}</figcaption>
                 )}

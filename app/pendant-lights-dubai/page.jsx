@@ -1,25 +1,25 @@
 import PendantLightsDubai from "@/lib_src/pages/PendantLightsDubai";
 
 export const metadata = {
-  title: 'Pendant Lights Dubai · Credence Lighting',
-  description: 'Premium pendant lights and hanging fixtures for Dubai homes, hotels, and commercial spaces. Statement pendants, custom designs, and kitchen island lighting.',
+  title: 'Decorative Pendant Lights Dubai',
+  description: 'Luxury decorative pendant lights and statement chandeliers in Dubai. Bespoke feature lighting for luxury villas, boutique hotels, and dining venues.',
   alternates: {
-    canonical: "https://credencelighting.com/pendant-lights-dubai",
+    canonical: "https://www.credencelighting.com/pendant-lights-dubai",
   },
   openGraph: {
-    title: 'Pendant Lights Dubai · Credence Lighting',
-    description: 'Premium pendant lights and hanging fixtures for Dubai homes, hotels, and commercial spaces. Statement pendants, custom designs, and kitchen island lighting.',
-    url: "https://credencelighting.com/pendant-lights-dubai",
+    title: 'Decorative Pendant Lights Dubai · Credence Lighting',
+    description: 'Luxury decorative pendant lights and statement chandeliers in Dubai. Bespoke feature lighting for luxury villas, boutique hotels, and dining venues.',
+    url: "https://www.credencelighting.com/pendant-lights-dubai",
     siteName: "Credence Lighting",
-    images: ["https://credencelighting.com/meta.png"],
+    images: ["https://www.credencelighting.com/meta.png"],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: 'Pendant Lights Dubai · Credence Lighting',
-    description: 'Premium pendant lights and hanging fixtures for Dubai homes, hotels, and commercial spaces. Statement pendants, custom designs, and kitchen island lighting.',
-    images: ["https://credencelighting.com/meta.png"],
+    title: 'Decorative Pendant Lights Dubai · Credence Lighting',
+    description: 'Luxury decorative pendant lights and statement chandeliers in Dubai. Bespoke feature lighting for luxury villas, boutique hotels, and dining venues.',
+    images: ["https://www.credencelighting.com/meta.png"],
   },
 };
 

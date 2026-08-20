@@ -13,23 +13,30 @@ import ArticleTOC from "@/components/blog/ArticleTOC";
 import { blogPosts } from "@/data/blog";
 
 export default function BlogDetail() {
-  const { id, slug } = useParams(); // Using slug for SEO URLs
+  const { id, slug } = useParams();
   const router = useRouter();
-  const post = blogPosts.find(p => p.slug === slug || p.id === id || p.slug === id);
-  
+  const currentSlug = typeof slug === "string" ? slug : typeof id === "string" ? id : "";
+  const post = blogPosts.find((p) => p.slug === currentSlug || p.id === currentSlug);
+
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
-    restDelta: 0.001
+    restDelta: 0.001,
   });
 
   useEffect(() => {
-    if (!post) router.replace("/blog");
+    if (!post) {
+      router.replace("/blog");
+    }
   }, [post, router]);
 
   if (!post) {
-    return null;
+    return (
+      <div className="min-h-screen bg-transparent flex items-center justify-center text-white/50 text-xl font-serif">
+        Article Not Found
+      </div>
+    );
   }
 
   // Find related posts (try same category first, then fill with others)
@@ -45,33 +52,50 @@ export default function BlogDetail() {
   // Schema for SEO
   const seoTitle = post.seoMetadata?.title || `${post.title} · Credence Lighting`;
   const seoDescription = post.seoMetadata?.description || post.excerpt;
-  // heroImage is a bundled Vite asset (e.g. /assets/xxx.webp) — a relative path.
-  // OG crawlers require absolute URLs, so we prepend the domain.
   const seoImage = post.heroImage
-    ? (post.heroImage.startsWith('http') ? post.heroImage : `https://credencelighting.com${post.heroImage}`)
-    : 'https://credencelighting.com/meta.png';
+    ? (post.heroImage.startsWith('http') ? post.heroImage : `https://www.credencelighting.com${post.heroImage}`)
+    : 'https://www.credencelighting.com/meta.png';
 
   const schemas = [
     {
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": post.title,
-      "image": [post.heroImage],
+      "image": [seoImage],
       "datePublished": post.date,
-      "author": [{ "@type": "Person", "name": post.author }],
+      "dateModified": post.dateModified || post.date,
+      "description": seoDescription,
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".article-headline", ".article-summary", ".article-tldr"]
+      },
+      "author": [{
+        "@type": "Person",
+        "name": post.author || "Credence Lighting Design Team",
+        "jobTitle": "Architectural Lighting Consultant",
+        "url": "https://www.credencelighting.com/about"
+      }],
       "publisher": {
         "@type": "Organization",
-          "@id": "https://credencelighting.com/#organization",
-        "name": "Credence Lighting",
-        "logo": { "@type": "ImageObject", "url": "https://credencelighting.com/logo.svg" }
+        "@id": "https://www.credencelighting.com/#organization",
+        "name": "Credence Lighting LLC",
+        "url": "https://www.credencelighting.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.credencelighting.com/logo.svg"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `https://www.credencelighting.com/blog/${post.slug}`
       }
     },
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://credencelighting.com/" },
-        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://credencelighting.com/blog" },
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.credencelighting.com/blog" },
         { "@type": "ListItem", "position": 3, "name": post.title }
       ]
     }
@@ -119,7 +143,7 @@ export default function BlogDetail() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-fluid-h1 font-serif text-white mb-8 "
+            className="article-headline text-fluid-h1 font-serif text-white mb-8"
           >
             {post.title}
           </motion.h1>
@@ -154,6 +178,18 @@ export default function BlogDetail() {
           
           {/* Main Content */}
           <article className="lg:w-2/3">
+            {/* Quick Answer Summary Callout for AEO */}
+            {post.excerpt && (
+              <div className="article-summary bg-brand-gold/10 border-l-4 border-brand-gold p-6 rounded-r-xl mb-10 text-white/90">
+                <div className="text-brand-gold text-xs uppercase tracking-wider font-semibold mb-2">
+                  Key Takeaway &amp; Summary
+                </div>
+                <p className="text-base md:text-lg leading-relaxed m-0 font-light text-white/80">
+                  {post.excerpt}
+                </p>
+              </div>
+            )}
+
             <ArticleBody blocks={post.contentBlocks} />
             
             {/* Tags */}

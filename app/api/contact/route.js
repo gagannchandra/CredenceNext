@@ -8,6 +8,15 @@ if (process.env.RESEND_API_KEY) {
 
 const rateLimitMap = new Map();
 
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 export async function POST(req) {
   if (!resend) {
     return NextResponse.json(
@@ -17,7 +26,8 @@ export async function POST(req) {
   }
 
   // Rate Limiting Logic (In-Memory per instance)
-  const ip = req.headers.get("x-forwarded-for") || "unknown";
+  const ipHeader = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown";
+  const ip = ipHeader.split(",")[0].trim();
   const now = Date.now();
   const windowMs = 60 * 60 * 1000; // 1 hour
 
@@ -29,7 +39,7 @@ export async function POST(req) {
       rateLimitMap.set(ip, { count: 1, firstRequest: now });
     } else {
       data.count += 1;
-      if (data.count > 3) {
+      if (data.count > 5) {
         return NextResponse.json(
           { success: false, message: "Too many requests. Please try again later." },
           { status: 429 }
@@ -66,6 +76,12 @@ export async function POST(req) {
   const fromEmail = process.env.RESEND_FROM_EMAIL || "Credence Lighting <onboarding@resend.dev>";
   const toEmail = process.env.RESEND_TO_EMAIL || "info@credencelighting.com";
 
+  const safeName = escapeHtml(nameStr);
+  const safeEmail = escapeHtml(emailStr);
+  const safePhone = escapeHtml(phoneStr);
+  const safeCompany = escapeHtml(companyStr);
+  const safeMessage = escapeHtml(messageStr).replace(/\n/g, "<br />");
+
   try {
     const adminEmail = await resend.emails.send({
       from: fromEmail,
@@ -78,14 +94,14 @@ export async function POST(req) {
             New Contact Form Submission
           </h2>
           <table style="width:100%;border-collapse:collapse;">
-            <tr><td style="padding:8px 0;font-weight:bold;width:120px;">Name:</td><td>${nameStr}</td></tr>
-            <tr><td style="padding:8px 0;font-weight:bold;">Email:</td><td><a href="mailto:${emailStr}">${emailStr}</a></td></tr>
-            <tr><td style="padding:8px 0;font-weight:bold;">Phone:</td><td>${phoneStr}</td></tr>
-            <tr><td style="padding:8px 0;font-weight:bold;">Company:</td><td>${companyStr || "N/A"}</td></tr>
+            <tr><td style="padding:8px 0;font-weight:bold;width:120px;">Name:</td><td>${safeName}</td></tr>
+            <tr><td style="padding:8px 0;font-weight:bold;">Email:</td><td><a href="mailto:${safeEmail}">${safeEmail}</a></td></tr>
+            <tr><td style="padding:8px 0;font-weight:bold;">Phone:</td><td>${safePhone}</td></tr>
+            <tr><td style="padding:8px 0;font-weight:bold;">Company:</td><td>${safeCompany || "N/A"}</td></tr>
           </table>
           <h3 style="margin-top:20px;color:#1a1a1a;">Message:</h3>
           <p style="background:#f9f9f9;padding:16px;border-left:4px solid #c8a96b;line-height:1.6;">
-            ${messageStr.replace(/\n/g, "<br />")}
+            ${safeMessage}
           </p>
           <p style="color:#888;font-size:12px;margin-top:24px;">
             Sent via credencelighting.com contact form

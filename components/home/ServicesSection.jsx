@@ -1,3 +1,5 @@
+"use client";
+
 import { Wrench, Monitor, ClipboardList, Settings, Headset, Briefcase } from "lucide-react";
 import TextReveal from "../ui/motion/TextReveal";
 import FadeUp from "../ui/motion/FadeUp";

@@ -171,6 +171,8 @@ body {
   filter: blur(80px);
   opacity: 0.6;
   animation: floatOrb 20s infinite ease-in-out alternate;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .ambient-orb-1 {

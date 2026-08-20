@@ -4,7 +4,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
 import PageTransition from "@/components/ui/motion/PageTransition";
 
 export default function NotFound() {
@@ -40,11 +39,6 @@ export default function NotFound() {
 
   return (
     <PageTransition>
-      <Helmet>
-        <title>404 - Page Not Found | Credence Lighting</title>
-        <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
-      
       <section className="relative min-h-screen bg-transparent flex flex-col items-center justify-center overflow-hidden">
         
         {/* INTERACTIVE SPOTLIGHT */}

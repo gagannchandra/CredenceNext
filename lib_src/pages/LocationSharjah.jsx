@@ -22,30 +22,30 @@ const schema = {
   "@graph": [
     {
       "@type": "LocalBusiness",
-          "@id": "https://credencelighting.com/#organization",
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "24.9788",
-            "longitude": "55.1764"
-          },
-      "name": "Credence Lighting",
-      "url": "https://credencelighting.com/lighting-companies-sharjah",
+      "@id": "https://www.credencelighting.com/#localbusiness-sharjah",
+      "parentOrganization": {
+        "@type": "Organization",
+        "@id": "https://www.credencelighting.com/#organization"
+      },
+      "name": "Credence Lighting — Sharjah",
+      "url": "https://www.credencelighting.com/lighting-companies-sharjah",
       "areaServed": {
-        "@type": "City",
+        "@type": "Place",
         "name": "Sharjah"
       },
-      "description": "Industrial and commercial lighting specialists serving Sharjah and SAIF Zone."
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "25.3463",
+        "longitude": "55.4209"
+      },
+      "description": "Premium architectural and commercial lighting design, supply, and installation serving Sharjah."
     },
     {
-      "@type": "FAQPage",
-      "mainEntity": faqs.map(faq => ({
-        "@type": "Question",
-        "name": faq.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": faq.answer
-        }
-      }))
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Sharjah Lighting", "item": "https://www.credencelighting.com/lighting-companies-sharjah" }
+      ]
     }
   ]
 };

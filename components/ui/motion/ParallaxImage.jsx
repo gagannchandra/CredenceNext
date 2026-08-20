@@ -1,3 +1,6 @@
+"use client";
+
+import Image from "next/image";
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { ease, duration } from "../../../utils/motion";
@@ -21,8 +24,14 @@ export default function ParallaxImage({
 
   if (shouldReduceMotion) {
     return (
-      <div className={`overflow-hidden ${containerClassName}`}>
-        <img src={src} alt={alt} className={`w-full h-full object-cover ${className}`} />
+      <div className={`overflow-hidden relative ${containerClassName}`}>
+        <Image 
+          src={src} 
+          alt={alt} 
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className={`object-cover ${className}`} 
+        />
       </div>
     );
   }
@@ -34,14 +43,20 @@ export default function ParallaxImage({
         whileInView={{ scale: 1, opacity: 1 }}
         viewport={{ once: true, amount: 0, margin: "0px 0px 50px 0px" }}
         transition={{ duration: duration.epic, ease: ease.slow }}
-        className="w-full h-full"
+        className="w-full h-full relative"
       >
-        <motion.img
+        <motion.div
           style={{ y, scale: 1.1 }}
-          src={src}
-          alt={alt}
-          className={`w-full h-full object-cover origin-center ${className}`}
-        />
+          className={`w-full h-full relative origin-center ${className}`}
+        >
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover"
+          />
+        </motion.div>
       </motion.div>
     </div>
   );

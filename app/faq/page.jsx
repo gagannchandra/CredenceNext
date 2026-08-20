@@ -1,25 +1,25 @@
 import Faq from "@/lib_src/pages/Faq";
 
 export const metadata = {
-  title: 'FAQ · Lighting Questions Answered · Credence',
-  description: 'Find answers to common questions about architectural lighting, LED products, smart controls, outdoor fixtures, and lighting design services from Credence Lighting Dubai.',
+  title: 'Frequently Asked Questions',
+  description: 'Answers to common questions regarding architectural lighting design, supply, Dubai municipal regulations, DEWA compliance, and warranty terms.',
   alternates: {
-    canonical: "https://credencelighting.com/faq",
+    canonical: "https://www.credencelighting.com/faq",
   },
   openGraph: {
-    title: 'FAQ · Lighting Questions Answered · Credence',
-    description: 'Find answers to common questions about architectural lighting, LED products, smart controls, outdoor fixtures, and lighting design services from Credence Lighting Dubai.',
-    url: "https://credencelighting.com/faq",
+    title: 'Frequently Asked Questions · Credence Lighting',
+    description: 'Answers to common questions regarding architectural lighting design, supply, Dubai municipal regulations, DEWA compliance, and warranty terms.',
+    url: "https://www.credencelighting.com/faq",
     siteName: "Credence Lighting",
-    images: ["https://credencelighting.com/meta.png"],
+    images: ["https://www.credencelighting.com/meta.png"],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: 'FAQ · Lighting Questions Answered · Credence',
-    description: 'Find answers to common questions about architectural lighting, LED products, smart controls, outdoor fixtures, and lighting design services from Credence Lighting Dubai.',
-    images: ["https://credencelighting.com/meta.png"],
+    title: 'Frequently Asked Questions · Credence Lighting',
+    description: 'Answers to common questions regarding architectural lighting design, supply, Dubai municipal regulations, DEWA compliance, and warranty terms.',
+    images: ["https://www.credencelighting.com/meta.png"],
   },
 };
 

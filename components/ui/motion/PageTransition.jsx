@@ -1,3 +1,5 @@
+"use client";
+
 import { motion, useReducedMotion } from "framer-motion";
 import { pageTransitionVariants } from "../../../utils/motion";
 

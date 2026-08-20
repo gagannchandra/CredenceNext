@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import FadeUp from "../ui/motion/FadeUp";
@@ -16,10 +17,11 @@ export default function Footer() {
             {/* Sunburst/Glow Effect Background */}
             <div className="absolute inset-0 bg-[#c8a96b]/30 blur-xl rounded-full scale-[1.5] group-hover:scale-[2] group-hover:bg-[#c8a96b]/40 transition-all duration-700 pointer-events-none"></div>
             
-            <img
+            <Image
               src="/logo.svg?v=2"
-              alt="Credence Lighting"
-              
+              alt="Credence Lighting Logo"
+              width={48}
+              height={48}
               className="relative z-10 h-12 w-auto object-contain opacity-90 drop-shadow-[0_0_12px_rgba(200,169,107,0.8)] group-hover:drop-shadow-[0_0_20px_rgba(200,169,107,1)] group-hover:opacity-100 transition-all duration-500"
             />
           </Link>
@@ -215,7 +217,7 @@ export default function Footer() {
 
               <motion.a
                 whileHover={{ y: -3 }}
-                href="https://www.youtube.com"
+                href="https://www.youtube.com/@credencelighting"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube"
@@ -244,7 +246,7 @@ export default function Footer() {
 
               <motion.a
                 whileHover={{ y: -3 }}
-                href="https://www.facebook.com"
+                href="https://www.facebook.com/credencelighting"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
@@ -273,7 +275,13 @@ export default function Footer() {
             {/* BACK TO TOP */}
             <button
               onClick={() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (typeof window !== "undefined") {
+                  if (window.lenis) {
+                    window.lenis.scrollTo(0);
+                  } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
+                }
               }}
               className="group uppercase tracking-[0.2em] text-xs text-white/60 hover:text-white transition duration-300 flex items-center gap-2"
             >

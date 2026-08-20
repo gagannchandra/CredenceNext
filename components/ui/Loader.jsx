@@ -1,3 +1,6 @@
+"use client";
+
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 
 export default function Loader({ isInitial = false }) {
@@ -36,12 +39,12 @@ export default function Loader({ isInitial = false }) {
           {/* Sunburst/Glow Effect Background */}
           <div className="absolute inset-0 bg-[#c8a96b]/30 blur-2xl rounded-full scale-[1.5] group-hover:scale-[2] group-hover:bg-[#c8a96b]/40 transition-all duration-700 pointer-events-none"></div>
           
-          <img
+          <Image
             src="/logo.svg?v=2"
             alt="Credence Lighting"
-            
-            fetchPriority="high"
-            loading="eager"
+            width={96}
+            height={96}
+            priority
             className="relative z-10 h-16 md:h-24 w-auto object-contain drop-shadow-none sm:drop-shadow-[0_0_12px_rgba(200,169,107,0.8)] sm:group-hover:drop-shadow-[0_0_20px_rgba(200,169,107,1)] transition-all duration-500 transform-gpu"
           />
         </motion.div>

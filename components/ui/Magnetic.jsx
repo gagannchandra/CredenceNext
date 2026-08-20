@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef } from "react";
 import { motion, useReducedMotion, useSpring, useMotionValue } from "framer-motion";
 
