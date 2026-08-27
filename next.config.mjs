@@ -69,6 +69,10 @@ const nextConfig = {
         permanent: true,
       },
       { source: "/products/strech-ceiling", destination: "/products/stretch-ceiling", permanent: true },
+      // "Xtreme Z" and "Xtreme Zone" were the same Roshn Front, Riyadh
+      // project entered twice under different names/slugs; consolidated
+      // into a single "Xtreme Zone" entry at /projects/xtreme-zone.
+      { source: "/projects/xtreme-z", destination: "/projects/xtreme-zone", permanent: true },
     ];
   },
 };

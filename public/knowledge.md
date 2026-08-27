@@ -101,20 +101,12 @@ We provide fixtures across the following categories:
 - **URL:** /projects/funtura
 
 ### Xtreme Zone
-- **Location:** Al Shifa, Dammam, Saudi Arabia
-- **Year:** 2024
-- **Category:** Linear Lighting
-- **Description:** Large-format linear installations and architectural lighting used for immersive entertainment spaces.
-- **Engineering Metrics:** Illuminance: 500 Lux direct/indirect | Power Density: 4.1 W/m² | Fidelity: CRI 90+ | Controls: 0-10V Master Zoning | Energy Reduction: -40% Energy Reduction
-- **URL:** /projects/xtreme-zone
-
-### Xtreme Z
-- **Location:** Riyadh, Saudi Arabia
+- **Location:** Roshn Front, Riyadh, Saudi Arabia
 - **Year:** 2024
 - **Category:** Architectural Lighting
 - **Description:** Premium architectural lighting installation featuring advanced illumination design and ambient atmosphere creation.
 - **Engineering Metrics:** Illuminance: 400 Lux ambient | Power Density: 4.4 W/m² | Fidelity: CRI 95+ | Controls: Casambi Bluetooth Mesh | Energy Reduction: -36% Consumption
-- **URL:** /projects/xtreme-z
+- **URL:** /projects/xtreme-zone
 
 ### Smarvy Spot
 - **Location:** Alamer Mall, Al-Ahsa, Saudi Arabia
@@ -652,7 +644,6 @@ The website utilizes JSON-LD structured data on all major pages:
 - /projects/ground-control — Ground Control
 - /projects/funtura — Funtura
 - /projects/xtreme-zone — Xtreme Zone
-- /projects/xtreme-z — Xtreme Z
 - /projects/smarvy-spot — Smarvy Spot
 
 ### Blog Posts

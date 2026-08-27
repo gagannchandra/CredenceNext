@@ -21,8 +21,7 @@ Credence Lighting is a premium lighting design and supply company based in Dubai
 - [My Town (Saudi Arabia)](/projects/my-town): Warm ambient illumination across Faisaliah, Lavanda Park, Dareen, and Jeddah Village Malls (350 Lux, DALI-2/Casambi).
 - [Ground Control (Bahrain)](/projects/ground-control): Dynamic entertainment and video pixel mapping at Galleria Mall Bahrain (RGBW DMX512).
 - [Funtura (Riyadh)](/projects/funtura): Interactive retail lighting with sensory control systems at Al Atyaf Mall (450 Lux uniform).
-- [Xtreme Zone (Dammam)](/projects/xtreme-zone): Large-format linear lighting installation at Al Shifa (500 Lux direct/indirect).
-- [Xtreme Z (Riyadh)](/projects/xtreme-z): Premium architectural lighting installation and ambient atmosphere creation (400 Lux ambient).
+- [Xtreme Zone (Riyadh)](/projects/xtreme-zone): Premium architectural lighting installation and ambient atmosphere creation at Roshn Front (400 Lux ambient).
 - [Smarvy Spot (Al-Ahsa)](/projects/smarvy-spot): Dynamic retail display and high-CRI accent lighting at Alamer Mall (800 Lux accent, CRI 97).
 - [Dubai Marina Penthouse (UAE)](/projects/dubai-marina-penthouse): Circadian cove illumination for ultra-luxury residence (150-300 Lux tunable, CRI 98+).
 - [Riyadh Commercial Tower (KSA)](/projects/riyadh-business-tower): Low-glare corporate lighting and facade media installation (500 Lux, UGR<16, DALI-2).
