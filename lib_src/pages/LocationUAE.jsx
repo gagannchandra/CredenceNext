@@ -27,7 +27,7 @@ const schema = {
         "@type": "Organization",
         "@id": "https://www.credencelighting.com/#organization"
       },
-      "name": "Credence Lighting — United Arab Emirates",
+      "name": "Credence Lighting, United Arab Emirates",
       "url": "https://www.credencelighting.com/lighting-companies-uae",
       "areaServed": {
         "@type": "Place",

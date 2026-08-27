@@ -1,48 +1,25 @@
 "use client";
 
-import { FaWhatsapp } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { FaWhatsapp } from "react-icons/fa6";
+import { motion, useReducedMotion } from "framer-motion";
 
 export default function WhatsappFloat() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <motion.a
       href="https://wa.me/971564965660?text=Hello%20Credence%20Lighting,%20I%20would%20like%20to%20enquire%20about%20your%20premium%20lighting%20solutions."
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="WhatsApp"
-      initial={{ scale: 0 }}
+      aria-label="Chat with us on WhatsApp"
+      initial={shouldReduceMotion ? false : { scale: 0 }}
       animate={{ scale: 1 }}
-      whileHover={{
-        scale: 1.1,
-      }}
-      whileTap={{
-        scale: 0.95,
-      }}
-      transition={{
-        duration: 0.4,
-      }}
-      className="
-        fixed
-        bottom-7
-        right-7
-        z-[999]
-        w-16
-        h-16
-        rounded-button
-        bg-[#25D366]
-        flex
-        items-center
-        justify-center
-        shadow-[0_0_40px_rgba(37,211,102,0.5)]
-        hover:shadow-[0_0_60px_rgba(37,211,102,0.8)]
-        transition-all
-        duration-500
-      "
+      whileHover={shouldReduceMotion ? undefined : { scale: 1.06 }}
+      whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
+      transition={{ duration: 0.4 }}
+      className="fixed bottom-6 right-6 z-[60] flex h-14 w-14 items-center justify-center rounded-button bg-[#25D366] shadow-elevation-high transition-shadow duration-300 hover:shadow-elevation-low"
     >
-      <FaWhatsapp
-        size={34}
-        className="text-white"
-      />
+      <FaWhatsapp size={28} className="text-white" aria-hidden="true" />
     </motion.a>
   );
 }

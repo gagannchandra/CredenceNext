@@ -27,7 +27,7 @@ const schema = {
         "@type": "Organization",
         "@id": "https://www.credencelighting.com/#organization"
       },
-      "name": "Credence Lighting — Ras Al Khaimah",
+      "name": "Credence Lighting, Ras Al Khaimah",
       "url": "https://www.credencelighting.com/lighting-solutions-rak",
       "areaServed": {
         "@type": "Place",
@@ -65,9 +65,9 @@ const services = [
 ];
 
 const contentBlocks = [
-  { type: "heading2", content: "Preserving Nature While Elevating Luxury" },
+  { type: "heading2", content: "Protecting the coastline while lighting the resort" },
   { type: "paragraph", content: "Ras Al Khaimah represents a unique intersection of luxury hospitality and rugged natural beauty. Lighting projects here must respect the environment while delivering a 5-star guest experience. As a premier lighting company in Ras Al Khaimah, our approach focuses on low-impact, highly durable illumination." },
-  { type: "paragraph", content: "We partner with developers and architects to use specialized optics that push light exactly where it is needed—onto pathways, facades, and dining areas—while ensuring zero upward light spill to protect the natural habitat." },
+  { type: "paragraph", content: "We partner with developers and architects to use specialized optics that push light exactly where it is needed, onto pathways, facades, and dining areas, while ensuring zero upward light spill to protect the natural habitat." },
   { type: "list", items: [
     "Corrosion Resistance: All outdoor fixtures undergo 1,000+ hour salt-spray testing.",
     "Wildlife Sensitivity: Amber and red-spectrum LEDs available for turtle-nesting beaches.",

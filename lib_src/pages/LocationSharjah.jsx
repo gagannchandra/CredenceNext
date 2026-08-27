@@ -27,7 +27,7 @@ const schema = {
         "@type": "Organization",
         "@id": "https://www.credencelighting.com/#organization"
       },
-      "name": "Credence Lighting — Sharjah",
+      "name": "Credence Lighting, Sharjah",
       "url": "https://www.credencelighting.com/lighting-companies-sharjah",
       "areaServed": {
         "@type": "Place",

@@ -64,7 +64,7 @@ export default function Blog() {
         }]}
       />
       
-      <main className="pt-32 pb-24 relative overflow-hidden">
+      <div className="pt-32 pb-24 relative overflow-hidden">
         {/* Ambient Glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand-gold/10 blur-[60px] md:blur-[150px] rounded-button pointer-events-none -z-10" />
 
@@ -114,11 +114,11 @@ export default function Blog() {
                 suppressHydrationWarning
                 className="w-full bg-white/5 border border-white/10 hover:border-white/20 rounded-button py-4 pl-14 pr-6 text-sm text-white focus:outline-none focus:border-brand-gold/50 focus:bg-white/10 transition-all shadow-2xl"
               />
-              <Search size={18} className="absolute left-6 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-brand-gold transition-colors" />
+              <Search size={18} className="absolute left-6 top-1/2 -translate-y-1/2 text-white/60 group-focus-within:text-brand-gold transition-colors" />
               {searchQuery && (
                 <button 
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-5 top-1/2 -translate-y-1/2 text-white/40 hover:text-white transition-colors"
+                  className="absolute right-5 top-1/2 -translate-y-1/2 text-white/60 hover:text-white transition-colors"
                 >
                   <X size={16} />
                 </button>
@@ -143,19 +143,19 @@ export default function Blog() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-32 bg-surface-elevated rounded-3xl border border-border-subtle">
+            <div className="text-center py-32 bg-surface-elevated rounded-panel border border-border-subtle">
               <h3 className="text-2xl text-white font-serif mb-4">No articles found</h3>
               <p className="text-white/50">Try adjusting your search.</p>
               <button 
                 onClick={() => setSearchQuery("")}
-                className="mt-8 px-6 py-3 bg-brand-gold text-black text-sm uppercase tracking-widest font-semibold hover:bg-white transition-colors duration-300"
+                className="mt-8 px-6 py-3 bg-brand-gold text-black text-sm uppercase tracking-widest font-semibold hover:bg-white transition-colors duration-300 rounded-button"
               >
                 Clear Search
               </button>
             </div>
           )}
         </div>
-      </main>
+      </div>
 
       <Footer />
       </div>

@@ -94,7 +94,7 @@ export default function LightingCompanyDubai() {
         description="Credence Lighting is a leading lighting company in Dubai providing architectural, commercial, and hospitality lighting. 1000+ projects, 10+ years, GCC-wide delivery."
         schema={[serviceSchema, breadcrumbSchema]}
       />
-      <main className="relative bg-transparent overflow-hidden">
+      <div className="relative bg-transparent overflow-hidden">
         {/* HERO */}
         <section className="relative pt-36 pb-24 px-6 md:px-12">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-brand-gold/10 blur-[60px] md:blur-[180px] pointer-events-none" />
@@ -128,7 +128,7 @@ export default function LightingCompanyDubai() {
                 <Link href="/contact"
                   className="px-8 py-4 bg-brand-gold text-black text-sm uppercase tracking-[0.2em] font-semibold hover:bg-white transition-colors duration-300 rounded-button"
                 >
-                  Request a Quote
+                  Enquire
                 </Link>
                 <Link href="/projects"
                   className="px-8 py-4 border border-white/20 text-white text-sm uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-300 rounded-button"
@@ -179,7 +179,7 @@ export default function LightingCompanyDubai() {
                 const Icon = service.icon;
                 return (
                   <FadeUp key={service.title} delay={index * 1}>
-                    <div className="group relative overflow-hidden border border-white/10 rounded-[2rem] p-8 bg-white/[0.02] backdrop-blur-md md:backdrop-blur-xl hover:bg-white/[0.05] transition-all duration-500 h-full">
+                    <div className="group relative overflow-hidden border border-white/10 rounded-panel p-8 bg-white/[0.02] backdrop-blur-md md:backdrop-blur-xl hover:bg-white/[0.05] transition-all duration-500 h-full">
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 bg-gradient-to-br from-brand-gold/10 via-transparent to-transparent pointer-events-none" />
                       <div className="relative z-10">
                         <div className="w-12 h-12 rounded-button bg-white/10 flex items-center justify-center group-hover:bg-brand-gold transition-colors duration-500 mb-6">
@@ -203,7 +203,7 @@ export default function LightingCompanyDubai() {
         {/* INDUSTRIES WE SERVE */}
         <IndustriesWeServe />
 
-        {/* WHY CHOOSE US — CONTENT SECTION FOR SEO */}
+        {/* WHY CHOOSE US, CONTENT SECTION FOR SEO */}
         <section className="py-24 px-6 md:px-12 border-t border-white/10">
           <div className="max-w-4xl mx-auto">
             <FadeUp>
@@ -213,7 +213,7 @@ export default function LightingCompanyDubai() {
             </FadeUp>
 
             <FadeUp delay={1}>
-              <div className="prose prose-invert max-w-none text-white/60 text-base md:text-lg leading-relaxed space-y-6">
+              <div className="max-w-none text-white/60 text-base md:text-lg leading-relaxed space-y-6">
                 <p>
                   Selecting a lighting company in Dubai requires evaluating several factors beyond 
                   price. The UAE&apos;s unique climate, building codes, and architectural ambitions demand 
@@ -223,7 +223,7 @@ export default function LightingCompanyDubai() {
                 <h3 className="text-white text-xl font-serif mt-8 mb-4">Look for End-to-End Capability</h3>
                 <p>
                   The best lighting companies in the UAE offer more than product supply. They provide 
-                  complete project delivery — from lighting design and technical coordination through 
+                  complete project delivery, from lighting design and technical coordination through 
                   procurement, installation, and commissioning. This single-source approach reduces 
                   coordination risk and ensures design intent is maintained from concept to completion.
                 </p>
@@ -239,7 +239,7 @@ export default function LightingCompanyDubai() {
                 <h3 className="text-white text-xl font-serif mt-8 mb-4">Assess the Product Portfolio</h3>
                 <p>
                   Leading lighting suppliers in the UAE carry both international premium brands and 
-                  custom-manufactured solutions. This dual capability allows for flexibility — you 
+                  custom-manufactured solutions. This dual capability allows for flexibility. You 
                   can specify brand-name products where needed while using cost-effective custom 
                   alternatives for standard applications without compromising quality.
                 </p>
@@ -270,7 +270,7 @@ export default function LightingCompanyDubai() {
         <section className="py-24 px-6 md:px-12 border-t border-white/10">
           <div className="max-w-4xl mx-auto text-center">
             <FadeUp>
-              <div className="p-10 md:p-16 bg-gradient-to-br from-[#111111] to-[#0a0a0a] border border-brand-gold/30 rounded-3xl relative overflow-hidden">
+              <div className="p-10 md:p-16 bg-gradient-to-br from-[#111111] to-[#0a0a0a] border border-brand-gold/30 rounded-panel relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/10 blur-[40px] md:blur-[100px] rounded-button pointer-events-none" />
                 <h2 className="text-3xl md:text-4xl font-serif text-white mb-4 relative z-10">
                   Ready to Start Your Lighting Project?
@@ -281,12 +281,12 @@ export default function LightingCompanyDubai() {
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
                   <Link href="/contact"
-                    className="px-8 py-3 bg-brand-gold text-black text-sm uppercase tracking-widest font-semibold hover:bg-white transition-colors duration-300"
+                    className="px-8 py-3 bg-brand-gold text-black text-sm uppercase tracking-widest font-semibold hover:bg-white transition-colors duration-300 rounded-button"
                   >
-                    Contact Us
+                    Enquire
                   </Link>
                   <Link href="/products"
-                    className="px-8 py-3 border border-white/20 text-white text-sm uppercase tracking-widest font-semibold hover:bg-white/10 transition-colors duration-300"
+                    className="px-8 py-3 border border-white/20 text-white text-sm uppercase tracking-widest font-semibold hover:bg-white/10 transition-colors duration-300 rounded-button"
                   >
                     Browse Products
                   </Link>
@@ -295,7 +295,7 @@ export default function LightingCompanyDubai() {
             </FadeUp>
           </div>
         </section>
-      </main>
+      </div>
 
       <Footer />
     </PageTransition>

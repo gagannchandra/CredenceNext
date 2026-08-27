@@ -1,12 +1,45 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Wrench, Monitor, ClipboardList, Settings, Headset, Briefcase } from "lucide-react";
+import {
+  Wrench,
+  Monitor,
+  ClipboardList,
+  Settings,
+  Headset,
+  Briefcase,
+  ArrowRight,
+} from "lucide-react";
 import TextReveal from "../ui/motion/TextReveal";
 import FadeUp from "../ui/motion/FadeUp";
 import HoverLift from "../ui/motion/HoverLift";
 import { duration, ease } from "../../utils/motion";
+
+// Three tiles across four columns: 2 + 1 + 1 fills exactly one row, so the
+// grid has no empty cell and the widths are not all identical.
+const continueLinks = [
+  {
+    href: "/projects",
+    title: "Completed projects",
+    description: "Hospitality, retail, and entertainment work across the GCC.",
+    image: "/images/hospitality/1.webp",
+    wide: true,
+  },
+  {
+    href: "/products",
+    title: "Fixture range",
+    description: "Indoor, outdoor, facade, and controls.",
+    image: "/images/indoor/1.webp",
+  },
+  {
+    href: "/brands",
+    title: "Partner brands",
+    description: "The manufacturers we specify from.",
+    image: "/images/facade/1.webp",
+  },
+];
 
 export default function AboutSection({ preview = false, asPage = false }) {
   const Heading = asPage ? "h1" : "h2";
@@ -41,13 +74,12 @@ export default function AboutSection({ preview = false, asPage = false }) {
         {/* DESCRIPTION */}
         <FadeUp delay={4}>
           <p className="max-w-4xl mx-auto mt-8 text-white/60 text-lg md:text-xl font-light leading-relaxed">
-            At Credence Lighting, we bring spaces to life through light and sound. We work hand-in-hand 
-            with consultants, developers, and contractors across commercial, hospitality, and residential 
-            projects to craft environments people truly love to experience. By carefully blending the best 
-            international and regional brands, we curate lighting and audio solutions that hit the perfect 
-            sweet spot between stunning design, reliable performance, and practical budgets. For us, it’s all 
-            about taking the complexity out of the process—ensuring a seamless journey that results in spaces 
-            that look and sound absolutely incredible.
+            We work alongside consultants, developers, and contractors on
+            commercial, hospitality, and residential projects across the GCC.
+            By combining international and regional brands, we specify lighting
+            and audio that balances design intent, measured performance, and a
+            realistic budget. One team carries the project from the first layout
+            through to commissioning, so nothing gets lost between trades.
           </p>
         </FadeUp>
 
@@ -71,7 +103,7 @@ export default function AboutSection({ preview = false, asPage = false }) {
               <p className="text-fluid-h2 font-serif text-white mb-3">
                 {number}
               </p>
-              <p className="uppercase tracking-[0.3em] text-xs text-brand-gold/80">
+              <p className="text-xs text-white/50 leading-snug">
                 {text}
               </p>
             </FadeUp>
@@ -90,10 +122,8 @@ export default function AboutSection({ preview = false, asPage = false }) {
 
             <FadeUp delay={4}>
               <p className="text-white/60 text-lg font-light leading-relaxed text-center mt-8">
-                End-to-end delivery from design to commissioning.{" "}
-                <span className="text-white/80 font-medium">Complete system validation and documentation.</span>{" "}
-                Strong after-sales support, including{" "}
-                <span className="text-white/80 font-medium">maintenance, warranty, and AMC</span>.
+                Six stages from first brief to handover, with system validation,
+                documentation, and ongoing AMC support at the end of it.
               </p>
             </FadeUp>
           </div>
@@ -112,7 +142,7 @@ export default function AboutSection({ preview = false, asPage = false }) {
               <FadeUp
                 key={service.title}
                 delay={index * 2}
-                className="group relative overflow-hidden border border-white/10 rounded-[2rem] p-8 bg-white/[0.02] backdrop-blur-md md:backdrop-blur-xl hover:bg-white/[0.05] transition-all duration-500 text-center md:text-left"
+                className="group relative overflow-hidden border border-white/10 rounded-panel p-8 bg-white/[0.02] backdrop-blur-md md:backdrop-blur-xl hover:bg-white/[0.05] transition-all duration-500 text-center md:text-left"
               >
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 bg-gradient-to-br from-brand-gold/10 via-transparent to-transparent pointer-events-none" />
                 <div className="relative z-10">
@@ -131,109 +161,61 @@ export default function AboutSection({ preview = false, asPage = false }) {
           </div>
         </div>
 
-        {/* CALL TO ACTION CARDS (Moved to the end) */}
-        <div className="mt-32 pt-16 border-t border-border-subtle text-center">
+        {/* CONTINUE - asymmetric image tiles.
+            Previously three identical glass cards with "Discover" / "Network" /
+            "Showcase" labels above them: the three-equal-feature-card pattern
+            (Section 9.C) with cell eyebrows and text-glyph arrows. Real
+            photography and unequal tile widths give the row a shape. */}
+        <div className="mt-32 pt-16 border-t border-border-subtle">
           <h3 className="text-fluid-h2 font-serif text-white mb-4 flex flex-wrap justify-center">
             <TextReveal text="Continue Your Journey" />
           </h3>
 
           <FadeUp delay={2}>
-            <p className="text-white/60 text-base md:text-lg font-light max-w-2xl mx-auto mb-12">
-              Immerse yourself in our world of light. Browse our curated collections of premium fixtures or discover how we have transformed spaces across our featured projects.
+            <p className="text-white/60 text-base md:text-lg font-light max-w-2xl mx-auto mb-12 text-center">
+              Browse the fixture range, see who we supply, or look through
+              completed projects across the region.
             </p>
           </FadeUp>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-[1000px] mx-auto text-center">
-
-          {/* PRODUCTS CARD */}
-          <FadeUp delay={4} className="h-full">
-            <HoverLift className="h-full">
-              <Link
-                href="/products"
-                className="group relative overflow-hidden border border-white/10 rounded-3xl p-6 bg-white/[0.03] backdrop-blur-md md:backdrop-blur-2xl transition duration-500 h-full min-h-[160px] flex flex-col items-center justify-center w-full cursor-pointer"
+          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-4 max-w-[1100px] mx-auto">
+            {continueLinks.map((entry, index) => (
+              <FadeUp
+                key={entry.href}
+                delay={4 + index}
+                className={entry.wide ? "sm:col-span-2" : ""}
               >
-
-                  {/* HOVER GLOW */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 bg-gradient-to-br from-white/[0.07] via-transparent to-transparent" />
-
-                  {/* INNER GOLD GLOW */}
-                  <div className="absolute w-[150px] h-[150px] bg-white/5 blur-[80px] opacity-0 group-hover:opacity-100 transition duration-700" />
-
-                  <p className="relative z-10 tracking-[0.3em] uppercase text-xs text-white/40">
-                    Discover
-                  </p>
-
-                  <h4 className="relative z-10 mt-2 text-xl md:text-2xl font-serif text-white tracking-[0.05em]">
-                    Explore Products
-                  </h4>
-
-                  <div className="relative z-10 mt-3 text-2xl text-white/40 group-hover:translate-x-2 transition duration-500">
-                    →
+                <Link
+                  href={entry.href}
+                  className="group relative block h-full min-h-[220px] overflow-hidden rounded-panel border border-white/10 hover:border-brand-gold/30 transition-colors duration-500"
+                >
+                  <Image
+                    src={entry.image}
+                    alt=""
+                    fill
+                    sizes={entry.wide ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 25vw"}
+                    className="object-cover opacity-45 group-hover:opacity-65 group-hover:scale-[1.03] transition-[opacity,transform] duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-surface-base via-surface-base/60 to-transparent" />
+                  <div className="relative z-10 flex h-full flex-col justify-end p-8 text-left">
+                    <h4
+                      className={`font-serif text-white group-hover:text-brand-gold transition-colors duration-300 ${
+                        entry.wide ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"
+                      }`}
+                    >
+                      {entry.title}
+                    </h4>
+                    <p className="mt-2 text-sm text-white/60">{entry.description}</p>
+                    <ArrowRight
+                      size={20}
+                      aria-hidden="true"
+                      className="mt-4 text-brand-gold transition-transform duration-500 group-hover:translate-x-2"
+                    />
                   </div>
-
-              </Link>
-            </HoverLift>
-          </FadeUp>
-
-          {/* CLIENTS CARD */}
-          <FadeUp delay={5} className="h-full">
-            <HoverLift className="h-full">
-              <Link
-                href="/brands"
-                className="group relative overflow-hidden border border-white/10 rounded-3xl p-6 bg-white/[0.03] backdrop-blur-md md:backdrop-blur-2xl transition duration-500 h-full min-h-[160px] flex flex-col items-center justify-center w-full cursor-pointer"
-              >
-
-                  {/* HOVER GLOW */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 bg-gradient-to-br from-white/[0.07] via-transparent to-transparent" />
-
-                  {/* INNER GLOW */}
-                  <div className="absolute w-[150px] h-[150px] bg-white/5 blur-[80px] opacity-0 group-hover:opacity-100 transition duration-700" />
-
-                  <p className="relative z-10 tracking-[0.3em] uppercase text-xs text-white/40">
-                    Network
-                  </p>
-
-                  <h4 className="relative z-10 mt-2 text-xl md:text-2xl font-serif text-white tracking-[0.05em]">
-                    Our Clients
-                  </h4>
-
-                  <div className="relative z-10 mt-3 text-2xl text-white/40 group-hover:translate-x-2 transition duration-500">
-                    →
-                  </div>
-
-              </Link>
-            </HoverLift>
-          </FadeUp>
-
-          {/* PORTFOLIO CARD */}
-          <FadeUp delay={6} className="h-full">
-            <HoverLift className="h-full">
-              <Link
-                href="/projects"
-                className="group relative overflow-hidden border border-brand-gold/20 rounded-3xl p-6 bg-brand-gold/[0.03] backdrop-blur-md md:backdrop-blur-2xl transition duration-500 h-full min-h-[160px] flex flex-col items-center justify-center w-full cursor-pointer"
-              >
-
-                  {/* GOLD HOVER GLOW */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 bg-gradient-to-br from-brand-gold/10 via-transparent to-transparent" />
-
-                  {/* GOLD AMBIENT */}
-                  <div className="absolute w-[150px] h-[150px] bg-brand-gold/10 blur-[80px] opacity-0 group-hover:opacity-100 transition duration-700" />
-
-                  <p className="relative z-10 tracking-[0.3em] uppercase text-xs text-brand-gold/60">
-                    Showcase
-                  </p>
-
-                  <h4 className="relative z-10 mt-2 text-xl md:text-2xl font-serif text-brand-gold tracking-[0.05em]">
-                    View Portfolio
-                  </h4>
-
-                  <div className="relative z-10 mt-3 text-2xl text-brand-gold/60 group-hover:translate-x-2 transition duration-500">
-                    →
-                  </div>
-
-              </Link>
-            </HoverLift>
-          </FadeUp>
+                </Link>
+              </FadeUp>
+            ))}
           </div>
         </div>
         </>

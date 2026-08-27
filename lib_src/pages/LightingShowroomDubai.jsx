@@ -59,7 +59,7 @@ export default function LightingShowroomDubai() {
             "latitude": "24.9788",
             "longitude": "55.1764"
           },
-    "name": "Credence Lighting LLC — Dubai Showroom",
+    "name": "Credence Lighting LLC, Dubai Showroom",
     "image": "https://www.credencelighting.com/logo.svg",
     "url": "https://www.credencelighting.com/lighting-showroom-dubai",
     "telephone": "+971564965660",
@@ -96,7 +96,7 @@ export default function LightingShowroomDubai() {
         description="Visit Credence Lighting's showroom in Dubai Investment Park. See premium LED fixtures, control systems, and architectural lighting in working displays. Book a visit today."
         schema={[localBusinessSchema, breadcrumbSchema]}
       />
-      <main className="relative bg-transparent overflow-hidden">
+      <div className="relative bg-transparent overflow-hidden">
         {/* HERO */}
         <section className="relative pt-36 pb-24 px-6 md:px-12">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-brand-gold/10 blur-[60px] md:blur-[180px] pointer-events-none" />
@@ -120,7 +120,7 @@ export default function LightingShowroomDubai() {
               <p className="mt-8 text-white/60 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
                 Experience premium architectural and commercial lighting in person at our 
                 Dubai showroom. Browse working product displays, compare color temperatures, 
-                test control systems, and consult with our lighting specialists — all in one visit.
+                test control systems, and consult with our lighting specialists. All in one visit.
               </p>
             </FadeUp>
 
@@ -171,8 +171,8 @@ export default function LightingShowroomDubai() {
                 <div>
                   <h3 className="text-white font-medium mb-1">Opening Hours</h3>
                   <p className="text-white/60 text-sm leading-relaxed">
-                    Saturday – Thursday<br />
-                    9:00 AM – 6:00 PM<br />
+                    Saturday - Thursday<br />
+                    9:00 AM - 6:00 PM<br />
                     Friday: Closed
                   </p>
                 </div>
@@ -217,7 +217,7 @@ export default function LightingShowroomDubai() {
                 const Icon = feature.icon;
                 return (
                   <FadeUp key={feature.title} delay={index * 1}>
-                    <div className="group relative overflow-hidden border border-white/10 rounded-[2rem] p-8 bg-white/[0.02] backdrop-blur-md md:backdrop-blur-xl hover:bg-white/[0.05] transition-all duration-500 h-full">
+                    <div className="group relative overflow-hidden border border-white/10 rounded-panel p-8 bg-white/[0.02] backdrop-blur-md md:backdrop-blur-xl hover:bg-white/[0.05] transition-all duration-500 h-full">
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 bg-gradient-to-br from-brand-gold/10 via-transparent to-transparent pointer-events-none" />
                       <div className="relative z-10 flex items-start gap-6">
                         <div className="w-12 h-12 rounded-button bg-white/10 flex items-center justify-center group-hover:bg-brand-gold transition-colors duration-500 shrink-0">
@@ -324,7 +324,7 @@ export default function LightingShowroomDubai() {
           <div className="max-w-6xl mx-auto">
             <InlineFAQ
               faqs={faqs}
-              heading="Lighting Showroom — Frequently Asked Questions"
+              heading="Lighting Showroom: Frequently Asked Questions"
             />
           </div>
         </section>
@@ -333,7 +333,7 @@ export default function LightingShowroomDubai() {
         <section className="py-24 px-6 md:px-12 border-t border-white/10">
           <div className="max-w-4xl mx-auto text-center">
             <FadeUp>
-              <div className="p-10 md:p-16 bg-gradient-to-br from-[#111111] to-[#0a0a0a] border border-brand-gold/30 rounded-3xl relative overflow-hidden">
+              <div className="p-10 md:p-16 bg-gradient-to-br from-[#111111] to-[#0a0a0a] border border-brand-gold/30 rounded-panel relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/10 blur-[40px] md:blur-[100px] rounded-button pointer-events-none" />
                 <h2 className="text-3xl md:text-4xl font-serif text-white mb-4 relative z-10">
                   Visit Our Dubai Showroom
@@ -344,15 +344,15 @@ export default function LightingShowroomDubai() {
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
                   <Link href="/contact"
-                    className="px-8 py-3 bg-brand-gold text-black text-sm uppercase tracking-widest font-semibold hover:bg-white transition-colors duration-300"
+                    className="px-8 py-3 bg-brand-gold text-black text-sm uppercase tracking-widest font-semibold hover:bg-white transition-colors duration-300 rounded-button"
                   >
-                    Book an Appointment
+                    Book a Visit
                   </Link>
                   <a
                     href="https://maps.app.goo.gl/ec2HMCDNXYtYviV7A"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-8 py-3 border border-white/20 text-white text-sm uppercase tracking-widest font-semibold hover:bg-white/10 transition-colors duration-300"
+                    className="px-8 py-3 border border-white/20 text-white text-sm uppercase tracking-widest font-semibold hover:bg-white/10 transition-colors duration-300 rounded-button"
                   >
                     Get Directions
                   </a>
@@ -361,7 +361,7 @@ export default function LightingShowroomDubai() {
             </FadeUp>
           </div>
         </section>
-      </main>
+      </div>
 
       <Footer />
     </PageTransition>

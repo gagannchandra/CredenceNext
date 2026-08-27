@@ -55,8 +55,8 @@ export default function ArticleBody({ blocks }) {
             return (
               <div key={index} className="article-tldr bg-brand-gold/10 border border-brand-gold/40 p-6 rounded-card my-8 shadow-elevation-low">
                 <div className="flex items-center gap-2 text-brand-gold font-semibold uppercase tracking-wider text-xs mb-3">
-                  <Sparkles size={16} />
-                  <span>Key Takeaways & Quick Summary</span>
+                  <Sparkles size={16} aria-hidden="true" />
+                  <span>Key takeaways</span>
                 </div>
                 <div className="text-white/90 text-base leading-relaxed">
                   {renderText(block.content)}
@@ -68,7 +68,7 @@ export default function ArticleBody({ blocks }) {
               <h2 
                 key={index} 
                 id={(typeof block.content === "string" ? block.content : "").toLowerCase().replace(/[^a-z0-9]+/g, '-')} 
-                className="text-fluid-h2 font-serif text-brand-gold mt-12 mb-6"
+                className="text-2xl md:text-3xl font-serif text-white mt-12 mb-5 scroll-mt-28"
               >
                 {renderText(block.content)}
               </h2>
@@ -78,7 +78,7 @@ export default function ArticleBody({ blocks }) {
               <h3 
                 key={index} 
                 id={(typeof block.content === "string" ? block.content : "").toLowerCase().replace(/[^a-z0-9]+/g, '-')} 
-                className="text-2xl md:text-3xl font-serif text-brand-gold mt-10 mb-4"
+                className="text-lg md:text-xl font-serif text-brand-gold mt-10 mb-3 scroll-mt-28"
               >
                 {renderText(block.content)}
               </h3>
@@ -115,7 +115,7 @@ export default function ArticleBody({ blocks }) {
             );
           case "list":
             return (
-              <ul key={index} className="list-disc list-inside mb-6 text-white/70 text-base leading-relaxed space-y-3">
+              <ul key={index} className="list-disc list-outside pl-5 mb-6 text-white/70 text-base leading-relaxed space-y-3 marker:text-brand-gold/60">
                 {block.items.map((item, i) => (
                   <li key={i}>{renderText(item)}</li>
                 ))}

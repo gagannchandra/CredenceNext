@@ -402,7 +402,7 @@ export default function GlobalPresence() {
                   masks the pop-in the moment the canvas finishes painting */}
               <div
                 aria-hidden="true"
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[70%] rounded-full bg-brand-gold/10 blur-[80px] md:blur-[120px] pointer-events-none"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[70%] rounded-button bg-brand-gold/10 blur-[80px] md:blur-[120px] pointer-events-none"
               />
 
               {/* Skeleton state: shown until the globe scrolls into view
@@ -416,9 +416,9 @@ export default function GlobalPresence() {
                     transition={{ duration: duration.standard, ease: ease.standard }}
                     className="absolute inset-0 flex flex-col items-center justify-center gap-4 pointer-events-none"
                   >
-                    <div className="relative w-[45%] aspect-square rounded-full border border-brand-gold/20">
-                      <div className="absolute inset-0 rounded-full border-t-2 border-brand-gold/60 animate-spin [animation-duration:2.4s]" />
-                      <div className="absolute inset-[15%] rounded-full bg-brand-gold/5" />
+                    <div className="relative w-[45%] aspect-square rounded-button border border-brand-gold/20">
+                      <div className="absolute inset-0 rounded-button border-t-2 border-brand-gold/60 animate-spin [animation-duration:2.4s]" />
+                      <div className="absolute inset-[15%] rounded-button bg-brand-gold/5" />
                     </div>
                     <p className="text-[10px] tracking-[0.3em] uppercase text-brand-gold/50 font-medium">
                       Mapping Our Global Reach

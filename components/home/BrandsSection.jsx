@@ -7,6 +7,7 @@ import TextReveal from "../ui/motion/TextReveal";
 import FadeUp from "../ui/motion/FadeUp";
 import HoverLift from "../ui/motion/HoverLift";
 import { ease } from "../../utils/motion";
+import { ArrowRight } from "lucide-react";
 
 const featuredLogos = [
   "/brands/al-othaim.webp",
@@ -66,7 +67,7 @@ export default function BrandsSection() {
               <h3 className="text-fluid-h2 text-white font-serif">
                 {item.number}
               </h3>
-              <p className="text-white/40 uppercase tracking-[0.3em] text-xs mt-3">
+              <p className="text-white/60 uppercase tracking-[0.3em] text-xs mt-3">
                 {item.label}
               </p>
             </FadeUp>
@@ -134,13 +135,11 @@ export default function BrandsSection() {
             <PageLink
               to="/brands"
               returnHash="#brands"
-              className="group border border-brand-gold/40 text-brand-gold px-10 py-5 uppercase tracking-[0.3em] text-xs hover:bg-brand-gold hover:text-black transition duration-500 flex items-center justify-center"
+              className="group border border-brand-gold/40 text-brand-gold px-10 py-5 uppercase tracking-[0.3em] text-xs hover:bg-brand-gold hover:text-black transition duration-500 flex items-center justify-center rounded-button"
             >
               View All Clients
 
-              <span className="inline-block ml-3 group-hover:translate-x-1 transition duration-300">
-                →
-              </span>
+              <ArrowRight size={16} aria-hidden="true" className="ml-3 inline-block group-hover:translate-x-1 transition-transform duration-300" />
             </PageLink>
           </HoverLift>
         </FadeUp>

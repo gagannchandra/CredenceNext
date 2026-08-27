@@ -22,7 +22,7 @@ export default function Loader({ isInitial = false }) {
     >
 
       {/* GOLD AMBIENT GLOW (Responsive) */}
-      <div className="absolute w-[100vw] h-[100vw] sm:w-[700px] sm:h-[700px] bg-brand-gold/10 sm:bg-brand-gold/15 blur-[40px] sm:blur-[180px] rounded-full" />
+      <div className="absolute w-[100vw] h-[100vw] sm:w-[700px] sm:h-[700px] bg-brand-gold/10 sm:bg-brand-gold/15 blur-[40px] sm:blur-[180px] rounded-button" />
 
       {/* GRID LIGHT EFFECT */}
       <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:40px_40px] sm:bg-[size:60px_60px]" />
@@ -37,7 +37,7 @@ export default function Loader({ isInitial = false }) {
           className="relative flex items-center justify-center group will-change-transform transform-gpu"
         >
           {/* Sunburst/Glow Effect Background */}
-          <div className="absolute inset-0 bg-[#c8a96b]/30 blur-2xl rounded-full scale-[1.5] group-hover:scale-[2] group-hover:bg-[#c8a96b]/40 transition-all duration-700 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-[#c8a96b]/30 blur-2xl rounded-button scale-[1.5] group-hover:scale-[2] group-hover:bg-[#c8a96b]/40 transition-all duration-700 pointer-events-none"></div>
           
           <Image
             src="/logo.svg?v=2"

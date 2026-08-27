@@ -6,17 +6,28 @@
   /* Deep charcoal/blue-black */
   --color-surface-elevated: #05070a;
   --color-surface-glass: rgba(5, 7, 10, 0.6);
+  /* Scrim: for image/video overlays. `bg-transparent/40` is a no-op
+     (transparent stays transparent at any alpha) - use bg-scrim/40 instead. */
+  --color-scrim: #000000;
   --color-brand-gold: #c8a96b;
   --color-content-primary: #f8fafc;
   --color-content-muted: #94a3b8;
   --color-border-subtle: rgba(255, 255, 255, 0.05);
   --color-border-focus: rgba(200, 169, 107, 0.3);
 
+  /* Form + status colors, tuned against --color-surface-base so they clear
+     WCAG AA (4.5:1) instead of Tailwind's default green-400 / red-400. */
+  --color-state-success: #6ee7a8;
+  --color-state-error: #ff8a80;
+
   /* =========================================
      TYPOGRAPHY
+     The --font-inter / --font-playfair variables are supplied by next/font
+     from app/layout.jsx and land on <html>, i.e. :root. The fallback stacks
+     stay in place so text still renders if a font file fails to load.
      ========================================= */
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
 
   /* Fluid typography tokens for seamless scaling */
   --text-fluid-h1: clamp(2.5rem, 5vw + 1rem, 5.5rem);
@@ -32,14 +43,15 @@
   --spacing-container: 1500px;
 
   /* =========================================
-     BORDER RADIUS
+     BORDER RADIUS - SHAPE LOCK
+     Three steps, no arbitrary values. Every surface on the site picks one:
+       panel  (24px) - large surfaces: hero panels, floating navbar, sections
+       card   (16px) - cards, tiles, form inputs, images inside cards
+       button (pill) - anything interactive that reads as a pill or a dot
      ========================================= */
   --radius-panel: 1.5rem;
-  /* 24px - for large floating elements like navbar */
   --radius-card: 1rem;
-  /* 16px - for standard cards */
   --radius-button: 9999px;
-  /* Pill shape */
 
   /* =========================================
      SHADOWS & ELEVATION

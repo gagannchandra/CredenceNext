@@ -12,6 +12,7 @@ import TextReveal from "../ui/motion/TextReveal";
 import FadeUp from "../ui/motion/FadeUp";
 import HoverLift from "../ui/motion/HoverLift";
 import { duration, ease } from "../../utils/motion";
+import { ArrowRight } from "lucide-react";
 
 const categories = [
   "All",
@@ -136,8 +137,8 @@ export default function ProductsSection({ hideHeader = false }) {
                   href="/contact"
                   className="w-full sm:w-auto border border-brand-gold/40 backdrop-blur-sm text-brand-gold px-8 py-4 tracking-[0.2em] uppercase text-xs transition-all duration-500 rounded-button flex items-center justify-center gap-3 group hover:bg-brand-gold hover:text-black"
                 >
-                  Enquire Now
-                  <span className="transform transition-transform duration-500 group-hover:translate-x-1">→</span>
+                  Enquire
+                  <ArrowRight size={16} aria-hidden="true" className="transition-transform duration-500 group-hover:translate-x-1" />
                 </Link>
               </HoverLift>
             </FadeUp>
@@ -206,9 +207,6 @@ export default function ProductsSection({ hideHeader = false }) {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
 
                     <div className="absolute inset-x-0 bottom-0 p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                      <p className="uppercase tracking-[0.3em] text-xs text-brand-gold mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                        Explore Collection
-                      </p>
                       <h3 className="text-white text-2xl md:text-3xl font-serif leading-tight">{item.category}</h3>
                     </div>
                   </motion.div>

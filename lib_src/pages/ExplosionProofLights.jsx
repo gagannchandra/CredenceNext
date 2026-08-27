@@ -13,7 +13,7 @@ const explosionProofCategories = [
   {
     icon: Flame,
     title: "Flameproof High Bay Luminaires",
-    description: "High-output Ex d / Ex tb luminaires (12,000–45,000 lm) for high-ceiling refineries, oil processing facilities, and chemical plants with heavy-duty finned heatsinks."
+    description: "High-output Ex d / Ex tb luminaires (12,000-45,000 lm) for high-ceiling refineries, oil processing facilities, and chemical plants with heavy-duty finned heatsinks."
   },
   {
     icon: Factory,
@@ -38,7 +38,7 @@ const explosionProofCategories = [
   {
     icon: Zap,
     title: "Explosion-Proof Emergency & Exit",
-    description: "Autonomous 90–180 minute battery-backed emergency egress luminaires with self-diagnostic circuitry and illuminated hazardous exit graphics."
+    description: "Autonomous 90-180 minute battery-backed emergency egress luminaires with self-diagnostic circuitry and illuminated hazardous exit graphics."
   }
 ];
 
@@ -117,14 +117,14 @@ export default function ExplosionProofLights() {
         description="Premium ATEX & IECEx certified explosion-proof LED lights in Dubai & UAE. Flameproof high bays, linear battens, floodlights, and hazardous highway luminaires. Engineered for oil, gas, and petrochemical environments."
         schema={[serviceSchema, breadcrumbSchema]}
       />
-      <main className="relative bg-transparent overflow-hidden">
+      <div className="relative bg-transparent overflow-hidden">
         {/* HERO SECTION */}
         <section className="relative pt-36 pb-24 px-6 md:px-12">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-brand-gold/10 blur-[60px] md:blur-[180px] pointer-events-none" />
 
           <div className="relative z-10 max-w-5xl mx-auto text-center">
             <FadeUp>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-gold/40 bg-brand-gold/10 backdrop-blur-md mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-button border border-brand-gold/40 bg-brand-gold/10 backdrop-blur-md mb-6">
                 <ShieldCheck className="w-4 h-4 text-brand-gold" />
                 <span className="uppercase tracking-[0.3em] text-xs text-brand-gold font-medium">
                   ATEX & IECEx Certified Industrial Lighting
@@ -170,19 +170,19 @@ export default function ExplosionProofLights() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
               <div className="p-4 border border-white/5 rounded-card bg-white/[0.02]">
                 <p className="text-brand-gold text-2xl md:text-3xl font-serif font-bold">ATEX</p>
-                <p className="text-white/60 text-xs uppercase tracking-wider mt-1">Directive 2014/34/EU</p>
+                <p className="text-white/60 text-xs mt-1">Directive 2014/34/EU</p>
               </div>
               <div className="p-4 border border-white/5 rounded-card bg-white/[0.02]">
                 <p className="text-brand-gold text-2xl md:text-3xl font-serif font-bold">IECEx</p>
-                <p className="text-white/60 text-xs uppercase tracking-wider mt-1">Global Ex Certification</p>
+                <p className="text-white/60 text-xs mt-1">Global Ex Certification</p>
               </div>
               <div className="p-4 border border-white/5 rounded-card bg-white/[0.02]">
                 <p className="text-brand-gold text-2xl md:text-3xl font-serif font-bold">IP66 / IP67</p>
-                <p className="text-white/60 text-xs uppercase tracking-wider mt-1">Dust &amp; High-Pressure Jets</p>
+                <p className="text-white/60 text-xs mt-1">Dust &amp; High-Pressure Jets</p>
               </div>
               <div className="p-4 border border-white/5 rounded-card bg-white/[0.02]">
                 <p className="text-brand-gold text-2xl md:text-3xl font-serif font-bold">IK10 / T6</p>
-                <p className="text-white/60 text-xs uppercase tracking-wider mt-1">Impact &amp; Temp Ratings</p>
+                <p className="text-white/60 text-xs mt-1">Impact &amp; Temp Ratings</p>
               </div>
             </div>
           </div>
@@ -193,9 +193,6 @@ export default function ExplosionProofLights() {
           <div className="max-w-5xl mx-auto">
             <FadeUp>
               <div className="text-center mb-12">
-                <p className="uppercase tracking-[0.3em] text-xs text-brand-gold mb-3 font-medium">
-                  Hazardous Area Zoning
-                </p>
                 <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">
                   ATEX &amp; IECEx Zone Classification Matrix
                 </h2>
@@ -226,7 +223,7 @@ export default function ExplosionProofLights() {
                     <tr className="border-b border-border-subtle hover:bg-white/[0.02]">
                       <td className="py-4 px-6 font-semibold text-white">Zone 1 / Zone 21</td>
                       <td className="py-4 px-6">Flammable Gas / Combustible Dust</td>
-                      <td className="py-4 px-6 text-white/50">Likely during normal ops (10–1,000 hrs/yr)</td>
+                      <td className="py-4 px-6 text-white/50">Likely during normal ops (10-1,000 hrs/yr)</td>
                       <td className="py-4 px-6 text-brand-gold">Ex d (Flameproof), Ex eb, Ex mb</td>
                     </tr>
                     <tr className="hover:bg-white/[0.02]">
@@ -247,9 +244,6 @@ export default function ExplosionProofLights() {
           <div className="max-w-6xl mx-auto">
             <FadeUp>
               <div className="text-center mb-16">
-                <p className="uppercase tracking-[0.3em] text-xs text-brand-gold mb-3 font-medium">
-                  Product Types
-                </p>
                 <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">
                   Specialized Explosion-Proof Luminaires
                 </h2>
@@ -264,7 +258,7 @@ export default function ExplosionProofLights() {
                 const Icon = cat.icon;
                 return (
                   <FadeUp key={cat.title} delay={index * 1}>
-                    <div className="group relative overflow-hidden border border-white/10 rounded-[2rem] p-8 bg-white/[0.02] backdrop-blur-md hover:bg-white/[0.05] hover:border-brand-gold/40 transition-all duration-500 h-full flex flex-col justify-between">
+                    <div className="group relative overflow-hidden border border-white/10 rounded-panel p-8 bg-white/[0.02] backdrop-blur-md hover:bg-white/[0.05] hover:border-brand-gold/40 transition-all duration-500 h-full flex flex-col justify-between">
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 bg-gradient-to-br from-brand-gold/10 via-transparent to-transparent pointer-events-none" />
                       <div>
                         <div className="w-12 h-12 rounded-button bg-white/10 flex items-center justify-center group-hover:bg-brand-gold transition-colors duration-500 mb-6">
@@ -295,9 +289,6 @@ export default function ExplosionProofLights() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <FadeUp>
                 <div>
-                  <p className="uppercase tracking-[0.3em] text-xs text-brand-gold mb-3 font-medium">
-                    Hazardous Infrastructure &amp; Transit
-                  </p>
                   <h2 className="text-3xl md:text-4xl font-serif text-white mb-6 leading-tight">
                     Explosion-Proof Highway, Tunnel &amp; Refinery Transit Lighting
                   </h2>
@@ -339,10 +330,9 @@ export default function ExplosionProofLights() {
                     className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6">
-                    <div>
-                      <span className="text-brand-gold text-xs uppercase tracking-widest font-semibold">Corridor Case Study</span>
-                      <p className="text-white text-sm font-medium mt-1">Refinery Transit &amp; Hazardous Tunnel Underpass Illumination</p>
-                    </div>
+                    <p className="text-white text-sm font-medium">
+                      Refinery transit and hazardous tunnel underpass illumination
+                    </p>
                   </div>
                 </div>
               </FadeUp>
@@ -438,7 +428,7 @@ export default function ExplosionProofLights() {
         </section>
 
         <Footer />
-      </main>
+      </div>
     </PageTransition>
   );
 }

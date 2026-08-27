@@ -41,10 +41,10 @@ export default function LEDStripLightsDubai() {
     <PageTransition>
       <SEO
         title="LED Strip Lights Dubai · Credence Lighting"
-        description="Premium LED strip lights in Dubai — flexible strips, neon flex, RGBW, IP-rated outdoor strips, and high-density architectural profiles. Cut-to-length service available."
+        description="Premium LED strip lights in Dubai, flexible strips, neon flex, RGBW, IP-rated outdoor strips, and high-density architectural profiles. Cut-to-length service available."
         schema={[breadcrumbSchema]}
       />
-      <main className="relative bg-transparent overflow-hidden">
+      <div className="relative bg-transparent overflow-hidden">
         {/* HERO */}
         <section className="relative pt-36 pb-24 px-6 md:px-12">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-brand-gold/10 blur-[60px] md:blur-[180px] pointer-events-none" />
@@ -65,7 +65,7 @@ export default function LEDStripLightsDubai() {
               <p className="mt-8 text-white/60 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
                 Credence Lighting supplies architectural-grade LED strip lights for cove lighting, 
                 accent illumination, facade highlighting, and decorative applications. Available in 
-                single-color, tunable white, RGB, and addressable pixel configurations — all 
+                single-color, tunable white, RGB, and addressable pixel configurations. All 
                 cut-to-length and ready for installation.
               </p>
             </FadeUp>
@@ -73,7 +73,7 @@ export default function LEDStripLightsDubai() {
             <FadeUp delay={3}>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
                 <Link href="/contact" className="px-8 py-4 bg-brand-gold text-black text-sm uppercase tracking-[0.2em] font-semibold hover:bg-white transition-colors duration-300 rounded-button">
-                  Request a Quote
+                  Enquire
                 </Link>
                 <Link href="/lighting-showroom-dubai" className="px-8 py-4 border border-white/20 text-white text-sm uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-300 rounded-button">
                   Visit Showroom
@@ -95,7 +95,7 @@ export default function LEDStripLightsDubai() {
                 const Icon = type.icon;
                 return (
                   <FadeUp key={type.title} delay={index * 1}>
-                    <div className="group relative overflow-hidden border border-white/10 rounded-[2rem] p-8 bg-white/[0.02] backdrop-blur-md md:backdrop-blur-xl hover:bg-white/[0.05] transition-all duration-500 h-full">
+                    <div className="group relative overflow-hidden border border-white/10 rounded-panel p-8 bg-white/[0.02] backdrop-blur-md md:backdrop-blur-xl hover:bg-white/[0.05] transition-all duration-500 h-full">
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 bg-gradient-to-br from-brand-gold/10 via-transparent to-transparent pointer-events-none" />
                       <div className="relative z-10">
                         <div className="w-12 h-12 rounded-button bg-white/10 flex items-center justify-center group-hover:bg-brand-gold transition-colors duration-500 mb-6">
@@ -134,8 +134,8 @@ export default function LEDStripLightsDubai() {
                   <tbody className="text-white/60 text-sm">
                     <tr className="border-b border-border-subtle">
                       <td className="py-3 pr-6 text-white">LEDs per meter</td>
-                      <td className="py-3 pr-6">60 – 120</td>
-                      <td className="py-3">120 – 240</td>
+                      <td className="py-3 pr-6">60 - 120</td>
+                      <td className="py-3">120 - 240</td>
                     </tr>
                     <tr className="border-b border-border-subtle">
                       <td className="py-3 pr-6 text-white">CRI</td>
@@ -225,7 +225,7 @@ export default function LEDStripLightsDubai() {
                   { label: "Ceiling Lights", to: "/ceiling-lights-dubai" },
                   { label: "Outdoor Lighting", to: "/outdoor-lighting-dubai" },
                   { label: "Automation", to: "/products/automation" },
-                  { label: "Contact Us", to: "/contact" },
+                  { label: "Enquire", to: "/contact" },
                 ].map(link => (
                   <Link key={link.to} href={link.to} className="px-5 py-2 border border-white/10 rounded-button text-white/60 text-sm hover:text-brand-gold hover:border-brand-gold/30 transition-all duration-300">
                     {link.label}
@@ -239,7 +239,7 @@ export default function LEDStripLightsDubai() {
         {/* INLINE FAQ */}
         <section className="py-12 px-6 md:px-12 border-t border-white/10">
           <div className="max-w-6xl mx-auto">
-            <InlineFAQ faqs={faqs} heading="LED Strip Lights — Frequently Asked Questions" />
+            <InlineFAQ faqs={faqs} heading="LED Strip Lights: Frequently Asked Questions" />
           </div>
         </section>
 
@@ -247,7 +247,7 @@ export default function LEDStripLightsDubai() {
         <section className="py-24 px-6 md:px-12 border-t border-white/10">
           <div className="max-w-4xl mx-auto text-center">
             <FadeUp>
-              <div className="p-10 md:p-16 bg-gradient-to-br from-[#111111] to-[#0a0a0a] border border-brand-gold/30 rounded-3xl relative overflow-hidden">
+              <div className="p-10 md:p-16 bg-gradient-to-br from-[#111111] to-[#0a0a0a] border border-brand-gold/30 rounded-panel relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/10 blur-[40px] md:blur-[100px] rounded-button pointer-events-none" />
                 <h2 className="text-3xl md:text-4xl font-serif text-white mb-4 relative z-10">
                   Need LED Strip Lights for Your Project?
@@ -256,14 +256,14 @@ export default function LEDStripLightsDubai() {
                   We supply and cut LED strips to your exact specifications. Contact us with your 
                   project details for a tailored recommendation and quote.
                 </p>
-                <Link href="/contact" className="inline-block px-8 py-3 bg-brand-gold text-black text-sm uppercase tracking-widest font-semibold hover:bg-white transition-colors duration-300 relative z-10">
+                <Link href="/contact" className="inline-block px-8 py-3 bg-brand-gold text-black text-sm uppercase tracking-widest font-semibold hover:bg-white transition-colors duration-300 relative z-10 rounded-button">
                   Get a Quote
                 </Link>
               </div>
             </FadeUp>
           </div>
         </section>
-      </main>
+      </div>
 
       <Footer />
     </PageTransition>

@@ -49,7 +49,7 @@ const hero = {
 
 const benefits = [
   { icon: Speaker, title: "Acoustic Design", description: "Strategic speaker placement based on acoustic modeling for even SPL coverage." },
-  { icon: Settings2, title: "Smart Integration", description: "Seamlessly connect your audio zones with lighting and AV control systems." },
+  { icon: Settings2, title: "Smart Integration", description: "Connect your audio zones with lighting and AV control systems." },
   { icon: Mic2, title: "Public Address", description: "Clear, reliable PA and voice evacuation systems compliant with civil defense codes." },
   { icon: ShieldCheck, title: "Premium Brands", description: "Supplying top-tier professional audio equipment for uncompromising sound quality." }
 ];

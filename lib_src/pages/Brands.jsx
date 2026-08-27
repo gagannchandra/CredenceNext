@@ -102,7 +102,7 @@ export default function Brands() {
 
             <div className="mt-12 flex justify-center">
               <Link href="/projects"
-                className="px-10 py-4 bg-brand-gold text-black rounded-full text-sm font-semibold tracking-wider uppercase hover:bg-white transition-colors"
+                className="px-10 py-4 bg-brand-gold text-black rounded-button text-sm font-semibold tracking-wider uppercase hover:bg-white transition-colors"
               >
                 View Our Projects
               </Link>
@@ -121,13 +121,13 @@ export default function Brands() {
             ].map((item) => (
               <div
                 key={item.label}
-                className="border border-white/10 bg-white/[0.03] backdrop-blur-md md:backdrop-blur-xl rounded-[30px] p-10 text-center"
+                className="border border-white/10 bg-white/[0.03] backdrop-blur-md md:backdrop-blur-xl rounded-panel p-10 text-center"
               >
                 <h3 className="text-fluid-h2 text-white font-serif">
                   {item.number}
                 </h3>
 
-                <p className="mt-4 uppercase tracking-[0.3em] text-xs text-white/40">
+                <p className="mt-4 uppercase tracking-[0.3em] text-xs text-white/60">
                   {item.label}
                 </p>
               </div>
@@ -158,7 +158,7 @@ export default function Brands() {
                   y: -8,
                   scale: 1.03,
                 }}
-                className="group relative border border-white/10 bg-white/[0.03] backdrop-blur-md md:backdrop-blur-2xl rounded-[28px] h-[180px] flex items-center justify-center overflow-hidden"
+                className="group relative border border-white/10 bg-white/[0.03] backdrop-blur-md md:backdrop-blur-2xl rounded-panel h-[180px] flex items-center justify-center overflow-hidden"
               >
                 {/* HOVER GLOW */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-brand-gold/10 via-transparent to-transparent" />
@@ -166,7 +166,7 @@ export default function Brands() {
                 {/* LOGO */}
                 <Image
                   src={brand.logo}
-                  alt={`${brand.name} — Credence Lighting client`}
+                  alt={`${brand.name}, Credence Lighting client`}
                   fill
                   sizes="(max-width: 768px) 45vw, 20vw"
                   loading="lazy"

@@ -32,7 +32,7 @@ export default function CategoryCarousel({ items, isProduct = false, isSplitLayo
 
   return (
     <motion.div 
-      className={`relative w-full flex items-center justify-center group select-none overflow-hidden rounded-[2.5rem] ${
+      className={`relative w-full flex items-center justify-center group select-none overflow-hidden rounded-panel ${
         isSplitLayout ? "h-[75vh] min-h-[600px]" : "h-[60vh] min-h-[500px]"
       }`}
       onMouseEnter={() => setIsHovered(true)}
@@ -81,7 +81,7 @@ export default function CategoryCarousel({ items, isProduct = false, isSplitLayo
               zIndex: isCenter ? 30 : isVisible ? 20 : 0,
             }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className={`absolute ${itemWidthClasses} h-[90%] md:h-[95%] lg:h-full rounded-[2.5rem] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] ${isCenter ? '' : 'cursor-pointer hover:opacity-70'} ${!isVisible ? 'pointer-events-none' : ''}`}
+            className={`absolute ${itemWidthClasses} h-[90%] md:h-[95%] lg:h-full rounded-panel overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] ${isCenter ? '' : 'cursor-pointer hover:opacity-70'} ${!isVisible ? 'pointer-events-none' : ''}`}
             style={{ filter: isCenter ? "grayscale(0%)" : "grayscale(20%)" }}
             onClick={() => {
               if (isLeft) handlePrev();
@@ -122,7 +122,7 @@ export default function CategoryCarousel({ items, isProduct = false, isSplitLayo
                   {!isProduct && !hideLinkOverlay && (
                     <div className="absolute bottom-8 left-0 right-0 flex justify-center z-20 pointer-events-auto">
                       <Link href={`/projects/${item.slug}`} 
-                        className="bg-transparent/30 backdrop-blur-md border border-white/20 text-white px-8 py-3 rounded-button text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-black transition-colors shadow-2xl"
+                        className="bg-scrim/30 backdrop-blur-md border border-white/20 text-white px-8 py-3 rounded-button text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-black transition-colors shadow-2xl"
                       >
                         View Project Details
                       </Link>

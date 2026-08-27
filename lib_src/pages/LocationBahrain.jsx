@@ -27,7 +27,7 @@ const schema = {
         "@type": "Organization",
         "@id": "https://www.credencelighting.com/#organization"
       },
-      "name": "Credence Lighting — Bahrain",
+      "name": "Credence Lighting, Bahrain",
       "url": "https://www.credencelighting.com/lighting-companies-bahrain",
       "areaServed": {
         "@type": "Place",

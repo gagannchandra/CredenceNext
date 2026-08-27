@@ -51,9 +51,9 @@ export default function BackButton({ fallback }) {
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.96 }}
       onClick={handleBack}
-      className="fixed top-32 left-12 z-[100] hidden md:flex items-center gap-2 rounded-button bg-transparent/50 px-4 py-2 text-white text-sm font-semibold tracking-[0.2em] uppercase shadow-2xl backdrop-blur-lg border border-white/10 hover:bg-transparent/70 hover:border-white/20 transition duration-300"
+      className="fixed top-[88px] right-6 z-30 hidden md:flex items-center gap-2 rounded-button bg-scrim/50 px-4 py-2 text-white text-sm font-semibold tracking-[0.2em] uppercase shadow-2xl backdrop-blur-lg border border-white/10 hover:bg-scrim/70 hover:border-white/20 transition duration-300"
     >
-      <ArrowLeft size={16} />
+      <ArrowLeft size={16} aria-hidden="true" />
       <span>Back</span>
     </motion.button>
   );

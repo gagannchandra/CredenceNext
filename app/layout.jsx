@@ -1,6 +1,28 @@
 import Script from "next/script";
+import { Inter, Playfair_Display } from "next/font/google";
 import ClientApp from "@/components/ClientApp";
 import "./globals.css";
+
+// The brand type stack was declared in styles/tokens.css but never actually
+// loaded, so every page rendered in system-ui / Georgia. next/font self-hosts
+// both families, emits `size-adjust` fallback metrics (no CLS on swap), and
+// exposes them as CSS variables that tokens.css maps onto --font-sans /
+// --font-serif.
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-playfair",
+  // Display cuts only: headings and the italic accent word. Loading the full
+  // weight range would ship four extra files nothing on the site references.
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+});
 
 export const metadata = {
   metadataBase: new URL("https://www.credencelighting.com"),
@@ -42,7 +64,7 @@ export const metadata = {
         url: "https://www.credencelighting.com/meta.png",
         width: 1200,
         height: 630,
-        alt: "Credence Lighting — Luxury Architectural & Commercial Lighting",
+        alt: "Credence Lighting, luxury architectural and commercial lighting",
       },
     ],
     locale: "en_US",
@@ -152,7 +174,11 @@ const rootOrganizationSchema = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${inter.variable} ${playfair.variable}`}
+      suppressHydrationWarning
+    >
       <body suppressHydrationWarning>
         <script
           type="application/ld+json"

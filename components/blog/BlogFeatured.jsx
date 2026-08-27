@@ -13,7 +13,7 @@ export default function BlogFeatured({ post }) {
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="relative w-full rounded-3xl overflow-hidden group mb-16 border border-white/10"
+      className="relative w-full rounded-panel overflow-hidden group mb-16 border border-white/10"
     >
       <div className="flex flex-col lg:flex-row">
         {/* Image Section */}
@@ -37,7 +37,7 @@ export default function BlogFeatured({ post }) {
             <span className="px-3 py-1 bg-brand-gold/10 text-brand-gold text-xs uppercase tracking-widest border border-brand-gold/20 rounded-button">
               Featured
             </span>
-            <span className="text-white/40 text-xs flex items-center gap-1.5">
+            <span className="text-white/60 text-xs flex items-center gap-1.5">
               <Clock size={14} />
               {post.readTime}
             </span>
