@@ -44,6 +44,7 @@ const standardRoutes = [
   "/gallery",
   "/contact",
   "/blog",
+  "/guides",
   "/faq",
 ];
 
