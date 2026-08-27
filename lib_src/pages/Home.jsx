@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Footer from "@/components/layout/Footer";
 import ReturnScrollHandler from "@/components/ReturnScrollHandler";
 import { scrollToSection } from "@/utils/scrollUtils";
 import SEO from "@/components/seo/SEO";
-import Loader from "@/components/ui/Loader";
 
 import Hero from "@/components/home/Hero";
 import AboutSection from "@/components/home/AboutSection";
@@ -21,43 +20,27 @@ import GlobalPresence from "@/components/home/GlobalPresence";
 import ProjectsSection from "@/components/home/ProjectsSection";
 import ContactSection from "@/components/home/ContactSection";
 import PageTransition from "@/components/ui/motion/PageTransition";
-import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
-  // Must match between server and first client render, so start as "not
-  // loading" (document doesn't exist on the server) and correct it in an
-  // effect immediately after mount if the page is in fact still loading.
-  const [isLoading, setIsLoading] = useState(false);
-
+  // The full-screen splash that used to sit here was gated on `window.load`,
+  // which waits for every image on the page. It covered the hero for the whole
+  // of that wait, so the hero could never be the LCP element and the real LCP
+  // was whatever painted after the overlay left. The hero is server-rendered
+  // and its background image is fetchPriority="high" - it paints on its own.
   useEffect(() => {
-    if (document.readyState === "complete") {
-      return;
-    }
-    queueMicrotask(() => setIsLoading(true));
-    const handleLoad = () => setIsLoading(false);
-    window.addEventListener("load", handleLoad);
-    return () => window.removeEventListener("load", handleLoad);
-  }, []);
-
-  useEffect(() => {
-    if (isLoading) return; // Wait until loading finishes before scrolling
     const hash = window.location.hash;
-
     if (!hash) return;
 
     const sectionId = hash.replace("#", "");
     const timer = setTimeout(() => scrollToSection(sectionId), 150);
 
     return () => clearTimeout(timer);
-  }, [isLoading]);
+  }, []);
 
 
 
   return (
     <>
-    <AnimatePresence>
-      {isLoading && <Loader isInitial={true} key="home-loader" />}
-    </AnimatePresence>
     <PageTransition>
       <SEO
         title="Credence Lighting · Architectural & Commercial Lighting Dubai"
@@ -160,7 +143,7 @@ export default function Home() {
                 "position": 4,
                 "name": "About Us",
                 "url": "https://www.credencelighting.com/about",
-                "description": "Learn about Credence Lighting — premier architectural lighting design and supply consultants in Dubai."
+                "description": "Learn about Credence Lighting, premier architectural lighting design and supply consultants in Dubai."
               },
               {
                 "@type": "SiteNavigationElement",
@@ -195,7 +178,7 @@ export default function Home() {
         ]}
       />
       <ReturnScrollHandler />
-      <main className="bg-transparent min-h-screen relative overflow-hidden">
+      <div className="bg-transparent relative overflow-hidden">
         <div className="relative z-10">
           <Hero />
           
@@ -205,12 +188,10 @@ export default function Home() {
           <ProductsSection preview={true} />
           <BrandsSection preview={true} />
 
-          <div className="min-h-screen md:min-h-[90vh]">
-            <GlobalPresence />
-          </div>
+          <GlobalPresence />
           <ContactSection preview={true} />
         </div>
-      </main>
+      </div>
 
       <Footer />
     </PageTransition>

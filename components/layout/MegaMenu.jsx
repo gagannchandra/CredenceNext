@@ -1,12 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import { useId } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 export default function MegaMenu({ item, active, setActive }) {
   const isOpen = active === item.name;
   const pathname = usePathname();
+  const panelId = useId();
   const isActiveRoute =
     pathname === item.to ||
     (item.to !== "/" && pathname.startsWith(item.to)) ||
@@ -19,12 +22,21 @@ export default function MegaMenu({ item, active, setActive }) {
     <div
       onMouseEnter={() => setActive(item.name)}
       onMouseLeave={() => setActive(null)}
+      onFocus={() => setActive(item.name)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setActive(null);
+      }}
+      onKeyDown={(event) => {
+        if (event.key === "Escape" && isOpen) setActive(null);
+      }}
       className="relative h-full flex items-center"
     >
       <Link
         href={item.to || "#"}
         onClick={() => setActive(null)}
-        className={`text-sm uppercase tracking-[0.08em] transition-colors duration-300 relative py-2 ${
+        aria-expanded={isOpen}
+        aria-controls={item.dropdown ? panelId : undefined}
+        className={`text-sm uppercase tracking-[0.08em] transition-colors duration-300 relative py-2 whitespace-nowrap ${
           isActiveRoute ? "text-white font-medium" : "text-white/70 hover:text-white"
         }`}
       >
@@ -43,11 +55,12 @@ export default function MegaMenu({ item, active, setActive }) {
       <AnimatePresence>
         {isOpen && item.dropdown && (
           <motion.div
+            id={panelId}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 5 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="absolute top-full left-1/2 -translate-x-1/2 mt-6 w-max min-w-[350px] bg-surface-elevated/95 backdrop-blur-heavy border border-border-subtle rounded-card p-6 shadow-elevation-high"
+            className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-max min-w-[350px] bg-surface-elevated/95 backdrop-blur-heavy border border-border-subtle rounded-panel p-6 shadow-elevation-high"
           >
             <div className="grid grid-cols-[max-content_220px] gap-8">
               {/* Links Column */}
@@ -81,9 +94,6 @@ export default function MegaMenu({ item, active, setActive }) {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
                     <div className="absolute bottom-4 left-4 right-4 pointer-events-none">
-                      <p className="text-brand-gold uppercase tracking-[0.2em] text-[10px] mb-1 font-medium">
-                        Featured
-                      </p>
                       <p className="text-white font-serif text-lg leading-tight group-hover/feat:text-brand-gold transition-colors">
                         {item.featured.title}
                       </p>

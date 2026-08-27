@@ -57,7 +57,7 @@ const benefits = [
 
 const contentBlocks = [
   { type: "heading2", content: "The Art of Villa Lighting" },
-  { type: "paragraph", content: "A luxury home requires more than just standard illumination; it requires a layered lighting strategy. By balancing ambient light, task lighting, and decorative accent lighting, we create environments that feel expansive during the day and intimately cozy at night. Our approach to residential lighting emphasizes visual comfort—hiding the light source to eliminate glare while ensuring art, textures, and architectural details are perfectly highlighted." },
+  { type: "paragraph", content: "A luxury home requires more than just standard illumination; it requires a layered lighting strategy. By balancing ambient light, task lighting, and decorative accent lighting, we create environments that feel expansive during the day and intimately cozy at night. Our approach to residential lighting emphasizes visual comfort. Hiding the light source to eliminate glare while ensuring art, textures, and architectural details are perfectly highlighted." },
   { type: "list", items: [
     "Trimless Downlights: For a perfectly clean, minimalist ceiling.",
     "Linear Cove Lighting: For soft, indirect ambient illumination.",

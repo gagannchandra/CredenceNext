@@ -14,7 +14,7 @@ export default function FaqAccordionGroup({ category, faqs }) {
         <div className="h-px bg-white/10 flex-grow" />
       </div>
       
-      <div className="bg-surface-elevated/50 border border-border-subtle rounded-3xl px-6 md:px-10">
+      <div className="bg-surface-elevated/50 border border-border-subtle rounded-panel px-6 md:px-10">
         {faqs.map((faq, index) => (
           <FaqAccordionItem key={faq.id} faq={faq} index={index} />
         ))}

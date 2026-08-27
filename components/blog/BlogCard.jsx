@@ -23,7 +23,7 @@ export default function BlogCard({ post, index }) {
           loading="lazy"
           className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <div className="absolute top-4 left-4 bg-transparent/60 backdrop-blur-md border border-white/10 px-3 py-1 rounded-button">
+        <div className="absolute top-4 left-4 bg-scrim/60 backdrop-blur-md border border-white/10 px-3 py-1 rounded-button">
           <span className="text-xs uppercase tracking-wider text-brand-gold font-medium">
             {post.category}
           </span>
@@ -31,7 +31,7 @@ export default function BlogCard({ post, index }) {
       </Link>
 
       <div className="p-6 flex flex-col flex-grow">
-        <div className="flex items-center gap-4 text-white/40 text-xs mb-4">
+        <div className="flex items-center gap-4 text-white/60 text-xs mb-4">
           <div className="flex items-center gap-1.5">
             <Calendar size={14} />
             <span>{new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>

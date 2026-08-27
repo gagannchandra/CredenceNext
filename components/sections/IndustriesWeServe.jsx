@@ -21,43 +21,46 @@ export default function IndustriesWeServe() {
 
   return (
     <section className="py-24 px-6 md:px-12 border-t border-white/10">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <FadeUp>
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-serif text-white mb-6">
-              Industries We Serve
-            </h2>
-            <p className="text-white/60 text-lg leading-relaxed">
-              From luxury hotel lobbies to high-energy entertainment venues, our solutions are designed for the specific demands of each industry.
-            </p>
-          </div>
+          <h2 className="text-3xl md:text-4xl font-serif text-white mb-6 max-w-2xl">
+            Industries we serve
+          </h2>
+          <p className="text-white/60 text-lg leading-relaxed max-w-2xl mb-12">
+            From hotel lobbies to explosion-proof plant rooms, each sector sets
+            its own performance and compliance requirements.
+          </p>
         </FadeUp>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {industries.map((industry, index) => {
-            // Using includes allows highlighting even if there are nested routes or hash params
-            const isActive = pathname.includes(industry.link);
-            
-            return (
-              <FadeUp key={industry.name} delay={index * 0.1}>
-                <Link href={industry.link}
-                  className={`group relative rounded-panel p-6 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-500 text-center block border ${
-                    isActive 
-                      ? "border-brand-gold shadow-[0_0_30px_rgba(212,175,55,0.15)]" 
-                      : "border-white/10 hover:border-brand-gold/30"
-                  }`}
-                >
+        {/* Nine short category links. As a 4-column card grid this left three
+            empty cells on the last row and read as a third identical card wall
+            two sections after the last one. A flowing chip list has no cell
+            count to get wrong and gives the page a different texture. */}
+        <FadeUp delay={1}>
+          <nav aria-label="Industries we serve">
+            <ul className="flex flex-wrap gap-3 list-none m-0 p-0">
+              {industries.map((industry) => {
+                const isActive = pathname === industry.link;
 
-                  <h3 className={`text-base font-medium transition-colors duration-300 ${
-                    isActive ? "text-brand-gold" : "text-white group-hover:text-brand-gold"
-                  }`}>
-                    {industry.name}
-                  </h3>
-                </Link>
-              </FadeUp>
-            );
-          })}
-        </div>
+                return (
+                  <li key={industry.name}>
+                    <Link
+                      href={industry.link}
+                      aria-current={isActive ? "page" : undefined}
+                      className={`inline-flex items-center rounded-button border px-5 py-3 text-sm transition-colors duration-300 ${
+                        isActive
+                          ? "border-brand-gold/60 bg-brand-gold/10 text-brand-gold"
+                          : "border-white/10 bg-white/[0.02] text-white/80 hover:border-brand-gold/30 hover:bg-white/[0.05] hover:text-brand-gold"
+                      }`}
+                    >
+                      {industry.name}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+        </FadeUp>
       </div>
     </section>
   );

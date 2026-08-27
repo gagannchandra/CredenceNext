@@ -2,6 +2,9 @@
 
 import { useEffect, useState, useMemo } from "react";
 
+const slugify = (value) =>
+  (value || "").toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
 export default function ArticleTOC({ blocks = [] }) {
   const [activeId, setActiveId] = useState("");
   const headings = useMemo(() => {
@@ -14,29 +17,35 @@ export default function ArticleTOC({ blocks = [] }) {
   useEffect(() => {
     if (headings.length === 0) return;
 
-    const handleScroll = () => {
-      const headingElements = headings
-        .map((h) => {
-          const id = (h.content || "").toLowerCase().replace(/[^a-z0-9]+/g, "-");
-          return document.getElementById(id);
-        })
-        .filter(Boolean);
+    const elements = headings
+      .map((heading) => document.getElementById(slugify(heading.content)))
+      .filter(Boolean);
 
-      let currentActiveId = "";
-      for (const el of headingElements) {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < 150) {
-          currentActiveId = el.id;
+    if (elements.length === 0) return;
+
+    // Was a scroll listener that called getBoundingClientRect() on every
+    // heading on every scroll frame - a forced synchronous layout per frame.
+    // IntersectionObserver reports the same crossings off the main thread.
+    // The top rootMargin pulls the trigger line to 150px below the viewport
+    // top so a heading activates as it reaches the reading position.
+    const visible = new Set();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) visible.add(entry.target.id);
+          else visible.delete(entry.target.id);
         }
-      }
 
-      if (currentActiveId) {
-        setActiveId(currentActiveId);
-      }
-    };
+        // Whichever tracked heading sits highest in document order and is
+        // currently inside the band is the one being read.
+        const current = elements.find((el) => visible.has(el.id));
+        if (current) setActiveId(current.id);
+      },
+      { rootMargin: "-150px 0px -70% 0px", threshold: 0 }
+    );
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
   }, [headings]);
 
   if (headings.length === 0) return null;
@@ -55,10 +64,12 @@ export default function ArticleTOC({ blocks = [] }) {
 
   return (
     <div className="sticky top-32 p-6 border border-white/10 rounded-panel bg-surface-elevated">
-      <h4 className="text-sm uppercase tracking-widest text-white/50 mb-4">Table of Contents</h4>
-      <nav className="flex flex-col gap-3 border-l border-white/10">
+      <h2 id="toc-heading" className="font-sans text-sm uppercase tracking-widest text-white/60 mb-4">
+        Table of Contents
+      </h2>
+      <nav aria-labelledby="toc-heading" className="flex flex-col gap-3 border-l border-white/10">
         {headings.map((heading, index) => {
-          const id = (heading.content || "").toLowerCase().replace(/[^a-z0-9]+/g, "-");
+          const id = slugify(heading.content);
           const isActive = activeId === id;
 
           return (

@@ -13,7 +13,7 @@ const resources = [
       "Learn about Credence Lighting, our global presence, and project expertise.",
     href: "/pdfs/credence-profile.pdf",
     download: true,
-    actionLabel: "Download PDF ↗",
+    actionLabel: "Download PDF",
   },
   {
     title: "Project Album",
@@ -22,7 +22,7 @@ const resources = [
       "A visual album showcasing our completed lighting and architectural projects.",
     href: "/pdfs/album.pdf",
     download: true,
-    actionLabel: "Download PDF ↗",
+    actionLabel: "Download PDF",
   },
   {
     title: "Product Catalogue",
@@ -31,7 +31,7 @@ const resources = [
       "Request our complete technical catalogue and fixture specifications tailored to your project requirements.",
     href: "/contact",
     download: false,
-    actionLabel: "Request Catalogue ↗",
+    actionLabel: "Request Catalogue",
   },
 ];
 
@@ -98,7 +98,7 @@ export default function Downloads() {
                   key={item.title}
                   href={item.href}
                   download={true}
-                  className="group border border-white/10 bg-white/5 backdrop-blur-md md:backdrop-blur-xl p-8 hover:border-brand-gold transition duration-500 rounded-[1.5rem] flex flex-col justify-between"
+                  className="group border border-white/10 bg-white/5 backdrop-blur-md md:backdrop-blur-xl p-8 hover:border-brand-gold transition duration-500 rounded-panel flex flex-col justify-between"
                 >
                   {cardContent}
                 </a>
@@ -106,7 +106,7 @@ export default function Downloads() {
                 <Link
                   key={item.title}
                   href={item.href}
-                  className="group border border-white/10 bg-white/5 backdrop-blur-md md:backdrop-blur-xl p-8 hover:border-brand-gold transition duration-500 rounded-[1.5rem] flex flex-col justify-between"
+                  className="group border border-white/10 bg-white/5 backdrop-blur-md md:backdrop-blur-xl p-8 hover:border-brand-gold transition duration-500 rounded-panel flex flex-col justify-between"
                 >
                   {cardContent}
                 </Link>

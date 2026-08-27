@@ -45,7 +45,7 @@ const faqs = [
   { id: "od1", question: "What IP rating do I need for outdoor lights in Dubai?", answer: "For general outdoor use (under cover or on walls), IP65 is sufficient. For ground-level installations exposed to direct rain and sand, IP66 or IP67 is recommended. For pool and water feature lighting, IP68 is required for submersible fixtures." },
   { id: "od2", question: "How do I protect outdoor lights from sand and humidity?", answer: "Use fixtures with proper IP ratings (IP65 minimum), marine-grade or powder-coated aluminum housings, and stainless steel screws. Avoid fixtures with exposed metal contacts. Regular cleaning of optical surfaces helps maintain light output in dusty conditions." },
   { id: "od3", question: "What is the best lighting for a Dubai garden?", answer: "A layered approach works best: uplighters on key trees and palms, pathway bollards for safe navigation, and subtle accent lights on water features or architectural elements. Use warm white (2700K to 3000K) for a natural, inviting atmosphere." },
-  { id: "od4", question: "What is the difference between IP65 and IP68?", answer: "IP65 protects against low-pressure water jets from any direction — suitable for wall-mounted outdoor fixtures. IP68 protects against continuous submersion in water — required for pool lights and underwater fixtures. The first digit (6) indicates full dust protection in both cases." },
+  { id: "od4", question: "What is the difference between IP65 and IP68?", answer: "IP65 protects against low-pressure water jets from any direction. Suitable for wall-mounted outdoor fixtures. IP68 protects against continuous submersion in water. Required for pool lights and underwater fixtures. The first digit (6) indicates full dust protection in both cases." },
   { id: "od5", question: "Can LED outdoor lights withstand Dubai's summer heat?", answer: "Quality LED outdoor fixtures are designed to operate at ambient temperatures up to 50°C or higher. Look for fixtures with proper aluminum heat sinks and thermal management. Avoid plastic-bodied outdoor fixtures as they can deform in extreme heat." },
   { id: "od6", question: "How much do outdoor lighting installations cost in Dubai?", answer: "Costs vary significantly based on project scale, fixture quality, and installation complexity. A basic villa garden lighting scheme might start from AED 15,000 to 25,000, while large commercial facade projects can exceed AED 200,000. Contact us with your project details for an accurate estimate." },
 ];
@@ -65,10 +65,10 @@ export default function OutdoorLightingDubai() {
     <PageTransition>
       <SEO
         title="Outdoor Lighting Dubai · Credence Lighting"
-        description="Premium outdoor lighting in Dubai — garden lights, wall lights, facade fixtures, and landscape lighting. IP-rated for Gulf climate. Visit our showroom."
+        description="Premium outdoor lighting in Dubai, garden lights, wall lights, facade fixtures, and landscape lighting. IP-rated for Gulf climate. Visit our showroom."
         schema={[breadcrumbSchema]}
       />
-      <main className="relative bg-transparent overflow-hidden">
+      <div className="relative bg-transparent overflow-hidden">
         {/* HERO */}
         <section className="relative pt-36 pb-24 px-6 md:px-12">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-brand-gold/10 blur-[60px] md:blur-[180px] pointer-events-none" />
@@ -102,7 +102,7 @@ export default function OutdoorLightingDubai() {
                   Browse Outdoor Products
                 </Link>
                 <Link href="/contact" className="px-8 py-4 border border-white/20 text-white text-sm uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-300 rounded-button">
-                  Request a Quote
+                  Enquire
                 </Link>
               </div>
             </FadeUp>
@@ -179,7 +179,7 @@ export default function OutdoorLightingDubai() {
                 const Icon = cat.icon;
                 return (
                   <FadeUp key={cat.title} delay={index * 1}>
-                    <div className="group relative overflow-hidden border border-white/10 rounded-[2rem] p-8 bg-white/[0.02] backdrop-blur-md md:backdrop-blur-xl hover:bg-white/[0.05] transition-all duration-500 h-full">
+                    <div className="group relative overflow-hidden border border-white/10 rounded-panel p-8 bg-white/[0.02] backdrop-blur-md md:backdrop-blur-xl hover:bg-white/[0.05] transition-all duration-500 h-full">
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 bg-gradient-to-br from-brand-gold/10 via-transparent to-transparent pointer-events-none" />
                       <div className="relative z-10">
                         <div className="w-12 h-12 rounded-button bg-white/10 flex items-center justify-center group-hover:bg-brand-gold transition-colors duration-500 mb-6">
@@ -219,7 +219,7 @@ export default function OutdoorLightingDubai() {
                 <h3 className="text-white text-xl font-serif mt-8 mb-4">Material Selection</h3>
                 <p>
                   Always specify marine-grade aluminum or die-cast aluminum with powder-coated 
-                  finishes. Avoid mild steel housings — they corrode rapidly in Gulf conditions. 
+                  finishes. Avoid mild steel housings. They corrode rapidly in Gulf conditions. 
                   Stainless steel fixings (A4/316 grade) are essential for all outdoor 
                   installations near the coast.
                 </p>
@@ -247,7 +247,7 @@ export default function OutdoorLightingDubai() {
                   { label: "Facade Products", to: "/products/facade" },
                   { label: "Ceiling Lights", to: "/ceiling-lights-dubai" },
                   { label: "Lighting Company", to: "/lighting-company-dubai" },
-                  { label: "Contact Us", to: "/contact" },
+                  { label: "Enquire", to: "/contact" },
                 ].map(link => (
                   <Link key={link.to} href={link.to} className="px-5 py-2 border border-white/10 rounded-button text-white/60 text-sm hover:text-brand-gold hover:border-brand-gold/30 transition-all duration-300">
                     {link.label}
@@ -261,7 +261,7 @@ export default function OutdoorLightingDubai() {
         {/* INLINE FAQ */}
         <section className="py-12 px-6 md:px-12 border-t border-white/10">
           <div className="max-w-6xl mx-auto">
-            <InlineFAQ faqs={faqs} heading="Outdoor Lighting — Frequently Asked Questions" />
+            <InlineFAQ faqs={faqs} heading="Outdoor Lighting: Frequently Asked Questions" />
           </div>
         </section>
 
@@ -269,7 +269,7 @@ export default function OutdoorLightingDubai() {
         <section className="py-24 px-6 md:px-12 border-t border-white/10">
           <div className="max-w-4xl mx-auto text-center">
             <FadeUp>
-              <div className="p-10 md:p-16 bg-gradient-to-br from-[#111111] to-[#0a0a0a] border border-brand-gold/30 rounded-3xl relative overflow-hidden">
+              <div className="p-10 md:p-16 bg-gradient-to-br from-[#111111] to-[#0a0a0a] border border-brand-gold/30 rounded-panel relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/10 blur-[40px] md:blur-[100px] rounded-button pointer-events-none" />
                 <h2 className="text-3xl md:text-4xl font-serif text-white mb-4 relative z-10">
                   Plan Your Outdoor Lighting Project
@@ -278,14 +278,14 @@ export default function OutdoorLightingDubai() {
                   Our team specializes in outdoor and landscape lighting for Dubai&apos;s unique climate. 
                   Share your project details and we will recommend the right fixtures and layout.
                 </p>
-                <Link href="/contact" className="inline-block px-8 py-3 bg-brand-gold text-black text-sm uppercase tracking-widest font-semibold hover:bg-white transition-colors duration-300 relative z-10">
+                <Link href="/contact" className="inline-block px-8 py-3 bg-brand-gold text-black text-sm uppercase tracking-widest font-semibold hover:bg-white transition-colors duration-300 relative z-10 rounded-button">
                   Get a Free Consultation
                 </Link>
               </div>
             </FadeUp>
           </div>
         </section>
-      </main>
+      </div>
 
       <Footer />
     </PageTransition>

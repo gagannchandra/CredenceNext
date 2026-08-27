@@ -23,6 +23,7 @@ const categoryDescriptions = {
 };
 
 import PageTransition from "@/components/ui/motion/PageTransition";
+import { ArrowRight } from "lucide-react";
 
 export default function Products() {
 
@@ -93,8 +94,8 @@ export default function Products() {
                       <Link href="/contact"
                         className="shrink-0 hidden md:inline-flex border border-brand-gold/40 backdrop-blur-sm text-brand-gold px-8 py-3 tracking-[0.2em] uppercase text-xs transition-all duration-500 rounded-button items-center justify-center gap-3 group hover:bg-brand-gold hover:text-black"
                       >
-                        Enquire Now
-                        <span className="transform transition-transform duration-500 group-hover:translate-x-1">→</span>
+                        Enquire
+                        <ArrowRight size={16} aria-hidden="true" className="transition-transform duration-500 group-hover:translate-x-1" />
                       </Link>
                     </div>
                   </div>
@@ -124,8 +125,8 @@ export default function Products() {
                   <Link href="/contact"
                     className="w-full inline-flex border border-brand-gold/40 backdrop-blur-sm text-brand-gold px-6 py-3 tracking-[0.2em] uppercase text-xs sm:text-sm transition-all duration-500 rounded-button items-center justify-center gap-3 group hover:bg-brand-gold hover:text-black"
                   >
-                    Enquire Now
-                    <span className="transform transition-transform duration-500 group-hover:translate-x-1">→</span>
+                    Enquire
+                    <ArrowRight size={16} aria-hidden="true" className="transition-transform duration-500 group-hover:translate-x-1" />
                   </Link>
                 </div>
               </div>

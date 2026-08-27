@@ -37,7 +37,7 @@ export default function InlineFAQ({ faqs, items, heading = "Frequently Asked Que
                 <motion.span
                   animate={{ rotate: isOpen ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
-                  className="shrink-0 text-white/40"
+                  className="shrink-0 text-white/60"
                   aria-hidden="true"
                 >
                   <ChevronDown size={20} />

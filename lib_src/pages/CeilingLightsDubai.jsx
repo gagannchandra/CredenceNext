@@ -17,7 +17,7 @@ const ceilingTypes = [
   {
     icon: Sun,
     title: "Surface-Mounted Panels",
-    description: "Sleek LED panels that attach directly to the ceiling surface — perfect for spaces without a ceiling void."
+    description: "Sleek LED panels that attach directly to the ceiling surface. Perfect for spaces without a ceiling void."
   },
   {
     icon: Lightbulb,
@@ -44,7 +44,7 @@ const ceilingTypes = [
 const faqs = [
   { id: "cd1", question: "What are the best ceiling lights for low ceilings?", answer: "For ceilings under 2.7 meters, recessed LED downlights or ultra-slim surface-mounted panels are ideal. They provide excellent illumination without reducing headroom. Avoid pendant lights or chandeliers in low-ceiling spaces." },
   { id: "cd2", question: "How many downlights do I need per room?", answer: "Plan for one downlight per 1.5 to 2 square meters of floor space in living areas. Kitchens and workspaces may need higher density at one per 1 to 1.2 square meters. The exact number depends on ceiling height, fixture lumen output, and desired lux level." },
-  { id: "cd3", question: "What is the difference between recessed and surface-mounted ceiling lights?", answer: "Recessed lights sit flush within the ceiling cavity, creating a minimal appearance. Surface-mounted lights attach directly to the ceiling and are ideal where there is no ceiling void. Both can deliver excellent performance — the choice depends on your ceiling construction." },
+  { id: "cd3", question: "What is the difference between recessed and surface-mounted ceiling lights?", answer: "Recessed lights sit flush within the ceiling cavity, creating a minimal appearance. Surface-mounted lights attach directly to the ceiling and are ideal where there is no ceiling void. Both can deliver excellent performance, the choice depends on your ceiling construction." },
   { id: "cd4", question: "What color temperature is best for ceiling lights in Dubai?", answer: "For living rooms and bedrooms, warm white (2700K to 3000K) creates a cozy atmosphere. For kitchens and offices, neutral white (4000K) provides better task visibility. Consider tunable white fixtures for spaces that serve multiple purposes." },
   { id: "cd5", question: "Can I buy ceiling lights from a showroom in Dubai?", answer: "Yes. Visit the Credence Lighting showroom at Dubai Investment Park 1 to see ceiling lights in working displays. Compare recessed, surface-mounted, and pendant options side by side with different color temperatures and beam angles." },
   { id: "cd6", question: "What ceiling lights are best for modern interiors?", answer: "Modern interiors typically use a combination of recessed downlights for general illumination, linear LED profiles for architectural accents, and carefully placed decorative pendants as focal points. The key is using minimal, clean-line fixtures that complement rather than dominate the space." },
@@ -65,10 +65,10 @@ export default function CeilingLightsDubai() {
     <PageTransition>
       <SEO
         title="Ceiling Lights Dubai · Credence Lighting"
-        description="Premium LED ceiling lights in Dubai — recessed downlights, surface panels, linear profiles, and decorative pendants. Visit our showroom or request a project quote."
+        description="Premium LED ceiling lights in Dubai, recessed downlights, surface panels, linear profiles, and decorative pendants. Visit our showroom or request a project quote."
         schema={[breadcrumbSchema]}
       />
-      <main className="relative bg-transparent overflow-hidden">
+      <div className="relative bg-transparent overflow-hidden">
         {/* HERO */}
         <section className="relative pt-36 pb-24 px-6 md:px-12">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-brand-gold/10 blur-[60px] md:blur-[180px] pointer-events-none" />
@@ -102,7 +102,7 @@ export default function CeilingLightsDubai() {
                   Browse Indoor Products
                 </Link>
                 <Link href="/contact" className="px-8 py-4 border border-white/20 text-white text-sm uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-300 rounded-button">
-                  Request a Quote
+                  Enquire
                 </Link>
               </div>
             </FadeUp>
@@ -129,7 +129,7 @@ export default function CeilingLightsDubai() {
                 const Icon = type.icon;
                 return (
                   <FadeUp key={type.title} delay={index * 1}>
-                    <div className="group relative overflow-hidden border border-white/10 rounded-[2rem] p-8 bg-white/[0.02] backdrop-blur-md md:backdrop-blur-xl hover:bg-white/[0.05] transition-all duration-500 h-full">
+                    <div className="group relative overflow-hidden border border-white/10 rounded-panel p-8 bg-white/[0.02] backdrop-blur-md md:backdrop-blur-xl hover:bg-white/[0.05] transition-all duration-500 h-full">
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 bg-gradient-to-br from-brand-gold/10 via-transparent to-transparent pointer-events-none" />
                       <div className="relative z-10">
                         <div className="w-12 h-12 rounded-button bg-white/10 flex items-center justify-center group-hover:bg-brand-gold transition-colors duration-500 mb-6">
@@ -171,9 +171,9 @@ export default function CeilingLightsDubai() {
                   <tbody className="text-white/60 text-sm">
                     <tr className="border-b border-border-subtle">
                       <td className="py-3 pr-6 text-white">Color Temperature</td>
-                      <td className="py-3 pr-6">2700K – 6500K</td>
-                      <td className="py-3 pr-6">3000K – 5000K</td>
-                      <td className="py-3">2700K – 6500K (Tunable)</td>
+                      <td className="py-3 pr-6">2700K - 6500K</td>
+                      <td className="py-3 pr-6">3000K - 5000K</td>
+                      <td className="py-3">2700K - 6500K (Tunable)</td>
                     </tr>
                     <tr className="border-b border-border-subtle">
                       <td className="py-3 pr-6 text-white">CRI</td>
@@ -183,9 +183,9 @@ export default function CeilingLightsDubai() {
                     </tr>
                     <tr className="border-b border-border-subtle">
                       <td className="py-3 pr-6 text-white">Beam Angle</td>
-                      <td className="py-3 pr-6">15° – 60°</td>
+                      <td className="py-3 pr-6">15° - 60°</td>
                       <td className="py-3 pr-6">120°</td>
-                      <td className="py-3">120° – 180°</td>
+                      <td className="py-3">120° - 180°</td>
                     </tr>
                     <tr className="border-b border-border-subtle">
                       <td className="py-3 pr-6 text-white">Dimming</td>
@@ -262,7 +262,7 @@ export default function CeilingLightsDubai() {
                   { label: "Pendant Lights", to: "/pendant-lights-dubai" },
                   { label: "LED Strip Lights", to: "/led-strip-lights-dubai" },
                   { label: "Lighting Showroom", to: "/lighting-showroom-dubai" },
-                  { label: "Contact Us", to: "/contact" },
+                  { label: "Enquire", to: "/contact" },
                 ].map(link => (
                   <Link key={link.to} href={link.to} className="px-5 py-2 border border-white/10 rounded-button text-white/60 text-sm hover:text-brand-gold hover:border-brand-gold/30 transition-all duration-300">
                     {link.label}
@@ -276,7 +276,7 @@ export default function CeilingLightsDubai() {
         {/* INLINE FAQ */}
         <section className="py-12 px-6 md:px-12 border-t border-white/10">
           <div className="max-w-6xl mx-auto">
-            <InlineFAQ faqs={faqs} heading="Ceiling Lights — Frequently Asked Questions" />
+            <InlineFAQ faqs={faqs} heading="Ceiling Lights: Frequently Asked Questions" />
           </div>
         </section>
 
@@ -284,7 +284,7 @@ export default function CeilingLightsDubai() {
         <section className="py-24 px-6 md:px-12 border-t border-white/10">
           <div className="max-w-4xl mx-auto text-center">
             <FadeUp>
-              <div className="p-10 md:p-16 bg-gradient-to-br from-[#111111] to-[#0a0a0a] border border-brand-gold/30 rounded-3xl relative overflow-hidden">
+              <div className="p-10 md:p-16 bg-gradient-to-br from-[#111111] to-[#0a0a0a] border border-brand-gold/30 rounded-panel relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/10 blur-[40px] md:blur-[100px] rounded-button pointer-events-none" />
                 <h2 className="text-3xl md:text-4xl font-serif text-white mb-4 relative z-10">
                   Need Help Choosing Ceiling Lights?
@@ -294,10 +294,10 @@ export default function CeilingLightsDubai() {
                   our team for a tailored recommendation based on your project requirements.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
-                  <Link href="/contact" className="px-8 py-3 bg-brand-gold text-black text-sm uppercase tracking-widest font-semibold hover:bg-white transition-colors duration-300">
+                  <Link href="/contact" className="px-8 py-3 bg-brand-gold text-black text-sm uppercase tracking-widest font-semibold hover:bg-white transition-colors duration-300 rounded-button">
                     Get a Quote
                   </Link>
-                  <Link href="/lighting-showroom-dubai" className="px-8 py-3 border border-white/20 text-white text-sm uppercase tracking-widest font-semibold hover:bg-white/10 transition-colors duration-300">
+                  <Link href="/lighting-showroom-dubai" className="px-8 py-3 border border-white/20 text-white text-sm uppercase tracking-widest font-semibold hover:bg-white/10 transition-colors duration-300 rounded-button">
                     Visit Showroom
                   </Link>
                 </div>
@@ -305,7 +305,7 @@ export default function CeilingLightsDubai() {
             </FadeUp>
           </div>
         </section>
-      </main>
+      </div>
 
       <Footer />
     </PageTransition>

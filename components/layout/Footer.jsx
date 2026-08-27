@@ -3,8 +3,41 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { ArrowUp } from "lucide-react";
+import {
+  FaYoutube,
+  FaInstagram,
+  FaFacebookF,
+  FaLinkedinIn,
+} from "react-icons/fa6";
 import FadeUp from "../ui/motion/FadeUp";
 import TextReveal from "../ui/motion/TextReveal";
+
+// Real brand marks instead of hand-drawn <path> approximations. One family
+// (Font Awesome 6 brands, already a dependency via WhatsappFloat) so the
+// glyphs share optical weight.
+const socials = [
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/@credencelighting",
+    Icon: FaYoutube,
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/credencelighting/",
+    Icon: FaInstagram,
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/credencelighting",
+    Icon: FaFacebookF,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/credence-lighting-llc/",
+    Icon: FaLinkedinIn,
+  },
+];
 
 export default function Footer() {
   return (
@@ -15,7 +48,7 @@ export default function Footer() {
         <FadeUp delay={0} className="mb-24 flex flex-col items-center text-center">
           <Link href="/" className="inline-flex items-center justify-center mb-10 group relative">
             {/* Sunburst/Glow Effect Background */}
-            <div className="absolute inset-0 bg-[#c8a96b]/30 blur-xl rounded-full scale-[1.5] group-hover:scale-[2] group-hover:bg-[#c8a96b]/40 transition-all duration-700 pointer-events-none"></div>
+            <div className="absolute inset-0 bg-[#c8a96b]/30 blur-xl rounded-button scale-[1.5] group-hover:scale-[2] group-hover:bg-[#c8a96b]/40 transition-all duration-700 pointer-events-none"></div>
             
             <Image
               src="/logo.svg?v=2"
@@ -29,10 +62,10 @@ export default function Footer() {
             <TextReveal text="Illuminating Spaces" />
             <TextReveal text="With Elegance" delay={2} className="italic text-brand-gold" />
           </h3>
-          <p className="text-white/40 leading-[1.8] max-w-lg">
-            Premium architectural and commercial lighting
-            solutions crafted to elevate atmosphere,
-            functionality, and spatial identity.
+          <p className="text-white/60 leading-[1.8] max-w-lg">
+            Architectural and commercial lighting for hospitality, retail,
+            workplace, and residential projects across the UAE and the wider
+            GCC.
           </p>
         </FadeUp>
 
@@ -42,11 +75,11 @@ export default function Footer() {
 
           <FadeUp delay={2} className="text-center md:text-left">
 
-            <p className="uppercase tracking-[0.1em] text-xs text-brand-gold mb-6 font-medium">
+            <h2 className="uppercase tracking-[0.1em] text-xs text-brand-gold mb-6 font-medium font-sans">
               Navigation
-            </p>
+            </h2>
 
-            <div className="space-y-3 text-white/40 text-sm">
+            <nav aria-label="Footer navigation" className="space-y-3 text-white/60 text-sm">
 
               <Link href="/" className="block hover:text-white transition duration-300 touch-glow">
                 Home
@@ -80,18 +113,18 @@ export default function Footer() {
                 Contact
               </Link>
 
-            </div>
+            </nav>
 
           </FadeUp>
 
           {/* SOLUTIONS */}
           <FadeUp delay={3} className="text-center md:text-left">
 
-            <p className="uppercase tracking-[0.1em] text-xs text-brand-gold mb-6 font-medium">
+            <h2 className="uppercase tracking-[0.1em] text-xs text-brand-gold mb-6 font-medium font-sans">
               Solutions
-            </p>
+            </h2>
 
-            <div className="space-y-3 text-white/40 text-sm">
+            <nav aria-label="Footer solutions" className="space-y-3 text-white/60 text-sm">
 
               <Link href="/lighting-company-dubai" className="block hover:text-white transition duration-300 touch-glow">
                 Lighting Company Dubai
@@ -121,18 +154,18 @@ export default function Footer() {
                 Explosion Proof Lights
               </Link>
 
-            </div>
+            </nav>
 
           </FadeUp>
 
           {/* LOCATIONS */}
           <FadeUp delay={4} className="text-center md:text-left">
 
-            <p className="uppercase tracking-[0.1em] text-xs text-brand-gold mb-6 font-medium">
+            <h2 className="uppercase tracking-[0.1em] text-xs text-brand-gold mb-6 font-medium font-sans">
               Locations
-            </p>
+            </h2>
 
-            <div className="space-y-3 text-white/40 text-sm">
+            <nav aria-label="Footer locations" className="space-y-3 text-white/60 text-sm">
 
               <Link href="/lighting-company-dubai" className="block hover:text-white transition duration-300 touch-glow">
                 Dubai
@@ -166,18 +199,18 @@ export default function Footer() {
                 Bahrain
               </Link>
 
-            </div>
+            </nav>
 
           </FadeUp>
 
           {/* CONTACT */}
           <FadeUp delay={5} className="text-center md:text-left">
 
-            <p className="uppercase tracking-[0.1em] text-xs text-brand-gold mb-6 font-medium">
+            <h2 className="uppercase tracking-[0.1em] text-xs text-brand-gold mb-6 font-medium font-sans">
               Contact
-            </p>
+            </h2>
 
-            <div className="space-y-4 text-white/40 text-sm">
+            <address className="not-italic space-y-4 text-white/60 text-sm">
               <a
                 href="https://maps.app.goo.gl/ec2HMCDNXYtYviV7A"
                 target="_blank"
@@ -201,7 +234,7 @@ export default function Footer() {
                 +971 564 965 660
               </a>
 
-            </div>
+            </address>
 
           </FadeUp>
 
@@ -213,67 +246,26 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
 
             {/* SOCIALS */}
-            <div className="flex gap-6">
-
-              <motion.a
-                whileHover={{ y: -3 }}
-                href="https://www.youtube.com/@credencelighting"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YouTube"
-                className="text-white/40 hover:text-white transition duration-300"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M10 8l6 4-6 4V8z" />
-                  <path fillRule="evenodd" d="M20 5.5a3 3 0 0 0-2.12-.88H6.12A3 3 0 0 0 4 5.5 3 3 0 0 0 3.5 8.9v6.2a3 3 0 0 0 .5 2.4 3 3 0 0 0 2.12.88h11.76a3 3 0 0 0 2.12-.88 3 3 0 0 0 .5-2.4V8.9a3 3 0 0 0-.5-2.4z" clipRule="evenodd" />
-                </svg>
-              </motion.a>
-
-              <motion.a
-                whileHover={{ y: -3 }}
-                href="https://www.instagram.com/credencelighting/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="text-white/40 hover:text-white transition duration-300"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="3" width="18" height="18" rx="5" />
-                  <path d="M16 11.37a4 4 0 1 1-7.99.37 4 4 0 0 1 7.99-.37z" />
-                  <path d="M17.5 6.5h.01" />
-                </svg>
-              </motion.a>
-
-              <motion.a
-                whileHover={{ y: -3 }}
-                href="https://www.facebook.com/credencelighting"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="text-white/40 hover:text-white transition duration-300"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M22 12a10 10 0 1 0-11.5 9.86v-6.98h-2.2V12h2.2V9.8c0-2.17 1.28-3.37 3.24-3.37.94 0 1.92.17 1.92.17v2.12h-1.09c-1.08 0-1.42.67-1.42 1.35V12h2.42l-.39 2.88h-2.03v6.98A10 10 0 0 0 22 12Z" />
-                </svg>
-              </motion.a>
-
-              <motion.a
-                whileHover={{ y: -3 }}
-                href="https://www.linkedin.com/company/credence-lighting-llc/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="text-white/40 hover:text-white transition duration-300"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M4.98 3.5A2.5 2.5 0 1 0 4.98 8.5 2.5 2.5 0 0 0 4.98 3.5Zm.02 5.13H2.5V21h4.98V8.63H5Zm7.64 0h-4.7V21h4.7v-6.34c0-3.4 4.35-3.67 4.35 0V21h4.7v-7.42c0-6.32-6.8-6.08-9.05-2.55V8.63Z" />
-                </svg>
-              </motion.a>
-
-            </div>
+            <ul className="flex gap-6 list-none m-0 p-0">
+              {socials.map(({ label, href, Icon }) => (
+                <li key={label}>
+                  <motion.a
+                    whileHover={{ y: -3 }}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="block text-white/60 hover:text-white transition-colors duration-300"
+                  >
+                    <Icon size={20} aria-hidden="true" />
+                  </motion.a>
+                </li>
+              ))}
+            </ul>
 
             {/* BACK TO TOP */}
             <button
+              type="button"
               onClick={() => {
                 if (typeof window !== "undefined") {
                   if (window.lenis) {
@@ -286,10 +278,11 @@ export default function Footer() {
               className="group uppercase tracking-[0.2em] text-xs text-white/60 hover:text-white transition duration-300 flex items-center gap-2"
             >
               Back To Top
-
-              <span className="group-hover:-translate-y-1 group-hover:translate-x-1 transition duration-300">
-                ↗
-              </span>
+              <ArrowUp
+                size={14}
+                aria-hidden="true"
+                className="group-hover:-translate-y-1 transition-transform duration-300"
+              />
             </button>
           </div>
 
@@ -300,9 +293,12 @@ export default function Footer() {
               © 2026 Credence Lighting LLC. All Rights Reserved.
             </p>
 
-            <p className="uppercase tracking-[0.15em] text-[10px] text-white/60">
-              Crafted With Precision
-            </p>
+            <Link
+              href="/contact"
+              className="text-xs text-white/60 hover:text-white transition-colors duration-300"
+            >
+              Dubai, United Arab Emirates
+            </Link>
 
           </div>
 

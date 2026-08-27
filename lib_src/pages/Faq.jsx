@@ -73,49 +73,59 @@ export default function Faq() {
     }, 1000);
   };
 
-  // Scrollspy logic
+  // Scrollspy. Was a window scroll listener that ran getBoundingClientRect()
+  // over every category on every frame; IntersectionObserver reports the same
+  // crossings without forcing layout. The rootMargin puts the trigger line
+  // 250px below the viewport top, matching the old threshold.
   useEffect(() => {
     if (isManualScrolling) return;
 
-    const handleScroll = () => {
-      let currentActive = "All";
-      
-      // If user is at the top of the page
-      if (window.scrollY < 300) {
-        currentActive = "All";
-      } else {
-        // Iterate categories in reverse order to find the last one whose top is above the threshold
-        for (let i = faqCategories.length - 1; i >= 0; i--) {
-          const cat = faqCategories[i];
-          const id = `faq-category-${cat.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
-          const el = document.getElementById(id);
-          if (el) {
-            const rect = el.getBoundingClientRect();
-            if (rect.top <= 250) {
-              currentActive = cat;
-              break;
-            }
-          }
-        }
-      }
+    const slug = (value) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
-      setActiveCategory(prev => {
-        if (prev !== currentActive) {
-          const sidebarBtn = document.getElementById(`sidebar-cat-${currentActive === "All" ? "all" : currentActive.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`);
-          const sidebarContainer = document.getElementById('faq-sidebar-container');
-          if (sidebarBtn && sidebarContainer) {
-            const containerHalf = sidebarContainer.clientHeight / 2;
-            const btnHalf = sidebarBtn.clientHeight / 2;
-            const scrollPos = sidebarBtn.offsetTop - containerHalf + btnHalf;
-            sidebarContainer.scrollTo({ top: scrollPos, behavior: 'smooth' });
-          }
-        }
-        return currentActive;
-      });
+    const sections = faqCategories
+      .map((cat) => ({
+        cat,
+        el: document.getElementById(`faq-category-${slug(cat)}`),
+      }))
+      .filter((entry) => entry.el);
+
+    if (sections.length === 0) return;
+
+    const visible = new Set();
+
+    const syncSidebar = (nextActive) => {
+      const sidebarBtn = document.getElementById(
+        `sidebar-cat-${nextActive === "All" ? "all" : slug(nextActive)}`
+      );
+      const sidebarContainer = document.getElementById("faq-sidebar-container");
+      if (!sidebarBtn || !sidebarContainer) return;
+      const scrollPos =
+        sidebarBtn.offsetTop -
+        sidebarContainer.clientHeight / 2 +
+        sidebarBtn.clientHeight / 2;
+      sidebarContainer.scrollTo({ top: scrollPos, behavior: "smooth" });
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) visible.add(entry.target.id);
+          else visible.delete(entry.target.id);
+        }
+
+        const match = sections.find((entry) => visible.has(entry.el.id));
+        const nextActive = match ? match.cat : "All";
+
+        setActiveCategory((prev) => {
+          if (prev !== nextActive) syncSidebar(nextActive);
+          return nextActive;
+        });
+      },
+      { rootMargin: "-250px 0px -60% 0px", threshold: 0 }
+    );
+
+    sections.forEach((entry) => observer.observe(entry.el));
+    return () => observer.disconnect();
   }, [isManualScrolling]);
 
   return (
@@ -150,7 +160,7 @@ export default function Faq() {
         }]}
       />
       
-      <main className="pt-32 pb-24">
+      <div className="pt-32 pb-24">
         {/* Hero Section */}
         <div className="max-w-5xl mx-auto px-6 md:px-12 text-center mb-16">
           <motion.div
@@ -185,11 +195,11 @@ export default function Faq() {
               suppressHydrationWarning
               className="w-full bg-surface-elevated border border-white/10 rounded-button py-4 pl-14 pr-6 text-white text-lg focus:outline-none focus:border-brand-gold/50 transition-colors shadow-2xl"
             />
-            <Search size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-white/40" />
+            <Search size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-white/60" />
             {searchQuery && (
               <button 
                 onClick={() => setSearchQuery("")}
-                className="absolute right-6 top-1/2 -translate-y-1/2 text-white/40 hover:text-white"
+                className="absolute right-6 top-1/2 -translate-y-1/2 text-white/60 hover:text-white"
               >
                 <X size={18} />
               </button>
@@ -202,8 +212,8 @@ export default function Faq() {
           {/* Sticky Sidebar Categories */}
           <aside className="lg:w-1/4">
             <div id="faq-sidebar-container" className="sticky top-32 max-h-[calc(100vh-10rem)] overflow-y-auto no-scrollbar pb-8">
-              <h3 className="text-lg font-serif text-white mb-6">Categories</h3>
-              <nav className="flex flex-col gap-2 relative">
+              <h2 id="faq-categories-heading" className="text-lg font-serif text-white mb-6">Categories</h2>
+              <nav aria-labelledby="faq-categories-heading" className="flex flex-col gap-2 relative">
                 <button
                   id="sidebar-cat-all"
                   onClick={() => scrollToCategory("All")}
@@ -244,8 +254,8 @@ export default function Faq() {
                 />
               ))
             ) : (
-              <div className="text-center py-24 bg-surface-elevated rounded-3xl border border-border-subtle">
-                <h3 className="text-2xl text-white font-serif mb-4">No results found</h3>
+              <div className="text-center py-24 bg-surface-elevated rounded-panel border border-border-subtle">
+                <h2 className="text-2xl text-white font-serif mb-4">No results found</h2>
                 <p className="text-white/50 mb-8">We couldn&apos;t find any FAQs matching your search.</p>
                 <button 
                   onClick={() => { setSearchQuery(""); setActiveCategory("All"); }}
@@ -257,24 +267,24 @@ export default function Faq() {
             )}
 
             {/* Still Need Help CTA */}
-            <div className="mt-20 p-10 bg-gradient-to-br from-[#111111] to-[#0a0a0a] border border-brand-gold/30 rounded-3xl text-center relative overflow-hidden">
+            <div className="mt-20 p-10 bg-surface-elevated border border-brand-gold/30 rounded-panel text-center relative overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/10 blur-[40px] md:blur-[100px] rounded-button pointer-events-none" />
-              <h3 className="text-3xl font-serif text-white mb-4 relative z-10">Still have questions?</h3>
+              <h2 className="text-3xl font-serif text-white mb-4 relative z-10">Still have questions?</h2>
               <p className="text-white/60 mb-8 max-w-lg mx-auto relative z-10">
                 Can&apos;t find the answer you&apos;re looking for? Please chat to our friendly team.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
-                <Link href="/contact" className="px-8 py-3 bg-brand-gold text-black text-sm uppercase tracking-widest font-semibold hover:bg-white transition-colors duration-300 w-full sm:w-auto">
-                  Contact Us
+                <Link href="/contact" className="px-8 py-3 bg-brand-gold text-black text-sm uppercase tracking-widest font-semibold hover:bg-white transition-colors duration-300 w-full sm:w-auto rounded-button">
+                  Enquire
                 </Link>
-                <a href="mailto:info@credencelighting.com" className="px-8 py-3 border border-white/20 text-white text-sm uppercase tracking-widest font-semibold hover:bg-white/10 transition-colors duration-300 w-full sm:w-auto">
+                <a href="mailto:info@credencelighting.com" className="px-8 py-3 border border-white/20 text-white text-sm uppercase tracking-widest font-semibold hover:bg-white/10 transition-colors duration-300 w-full sm:w-auto rounded-button">
                   Email Support
                 </a>
               </div>
             </div>
           </div>
         </div>
-      </main>
+      </div>
 
       <Footer />
       </div>

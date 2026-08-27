@@ -117,7 +117,7 @@ export default function BlogDetail() {
         style={{ scaleX }}
       />
 
-      <main className="pt-24 pb-24">
+      <div className="pt-24 pb-24">
         {/* Back Link */}
         <div className="max-w-4xl mx-auto px-6 md:px-12 mb-8">
           <Link href="/blog" 
@@ -167,7 +167,7 @@ export default function BlogDetail() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative w-full h-[400px] md:h-[600px] rounded-3xl overflow-hidden"
+            className="relative w-full h-[400px] md:h-[600px] rounded-panel overflow-hidden"
           >
             <Image src={post.heroImage} alt={post.title} fill sizes="100vw" priority className="object-cover" />
           </motion.div>
@@ -194,7 +194,7 @@ export default function BlogDetail() {
             
             {/* Tags */}
             <div className="mt-16 pt-8 border-t border-white/10 flex flex-wrap gap-2">
-              <span className="text-white/40 text-sm uppercase tracking-widest mr-4">Tags:</span>
+              <span className="text-white/60 text-sm uppercase tracking-widest mr-4">Tags:</span>
               {post.tags.map(tag => (
                 <span key={tag} className="px-3 py-1 bg-white/5 border border-white/10 rounded-button text-xs text-white/60">
                   {tag}
@@ -227,9 +227,9 @@ export default function BlogDetail() {
                 <Link key={rp.id} href={`/blog/${rp.slug}`} className="group block">
                   <div className="h-48 rounded-panel overflow-hidden mb-4 relative">
                     <Image src={rp.heroImage} alt={rp.title} fill sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                    <div className="absolute inset-0 bg-transparent/40 group-hover:bg-transparent transition-colors duration-500" />
+                    <div className="absolute inset-0 bg-scrim/40 group-hover:bg-transparent transition-colors duration-500" />
                   </div>
-                  <div className="flex items-center gap-3 text-xs text-white/40 mb-2 uppercase tracking-widest">
+                  <div className="flex items-center gap-3 text-xs text-white/60 mb-2 uppercase tracking-widest">
                     <span>{rp.category}</span>
                   </div>
                   <h4 className="text-xl font-serif text-white/90 group-hover:text-brand-gold transition-colors">{rp.title}</h4>
@@ -238,7 +238,7 @@ export default function BlogDetail() {
             </div>
           </div>
         )}
-      </main>
+      </div>
       
       <Footer />
     </div>

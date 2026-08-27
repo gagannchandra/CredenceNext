@@ -8,6 +8,7 @@ import PageLink from "@/components/ui/PageLink";
 import products from "@/data/products";
 import { slugify } from "@/utils/routeUtils";
 import SEO from "@/components/seo/SEO";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const categoriesList = [
   "Indoor",
@@ -119,8 +120,15 @@ export default function ProductDetails() {
 
   if (categoryProducts.length === 0) {
     return (
-      <div className="h-screen bg-transparent flex flex-col items-center justify-center text-white text-3xl font-serif">
-        Collection Not Found
+      <div className="min-h-[70dvh] bg-transparent flex flex-col items-center justify-center gap-6 px-6 text-center">
+        <h1 className="text-white text-3xl md:text-4xl font-serif">Collection not found</h1>
+        <p className="text-white/60 max-w-md">That collection may have moved or been renamed. Browse the full fixture range instead.</p>
+        <PageLink
+          to="/products"
+          className="inline-flex items-center justify-center rounded-button bg-brand-gold px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-black transition-[background-color,transform] duration-300 hover:bg-white active:scale-[0.98]"
+        >
+          All products
+        </PageLink>
       </div>
     );
   }
@@ -162,7 +170,7 @@ export default function ProductDetails() {
   ];
 
   return (
-    <main className="bg-transparent min-h-screen relative overflow-x-hidden text-white">
+    <div className="bg-transparent min-h-screen relative overflow-x-hidden text-white">
       <SEO 
         title={`${matchedCategory} Lighting Collection · Credence Lighting`}
         description={`Explore our premium ${matchedCategory.toLowerCase()} lighting collection. Discover luxury ${sampleProduct.title.toLowerCase()}s engineered for uncompromised performance and aesthetic excellence.`}
@@ -233,10 +241,10 @@ export default function ProductDetails() {
           >
             <PageLink
               to="/contact"
-              className="inline-flex items-center justify-center bg-white/5 border border-border-subtle text-white px-12 py-4 tracking-[0.2em] uppercase text-xs font-medium hover:bg-white hover:border-white hover:text-black transition-all duration-500 rounded-sm group"
+              className="inline-flex items-center justify-center bg-white/5 border border-border-subtle text-white px-12 py-4 tracking-[0.2em] uppercase text-xs font-medium hover:bg-white hover:border-white hover:text-black transition-all duration-500 rounded-card group"
             >
-              Enquire Now
-              <span className="ml-3 group-hover:translate-x-1 transition-transform duration-300">→</span>
+              Enquire
+              <ArrowRight size={16} aria-hidden="true" className="ml-3 group-hover:translate-x-1 transition-transform duration-300" />
             </PageLink>
           </motion.div>
         </div>
@@ -275,16 +283,16 @@ export default function ProductDetails() {
 
       {/* Navigation Controls */}
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 md:bottom-8 z-40 pointer-events-none">
-        <div className="flex items-center gap-4 md:gap-8 px-4 md:px-6 py-2.5 md:py-3 rounded-full bg-black/60 border border-white/10 backdrop-blur-md shadow-2xl pointer-events-auto">
+        <div className="flex items-center gap-4 md:gap-8 px-4 md:px-6 py-2.5 md:py-3 rounded-button bg-black/60 border border-white/10 backdrop-blur-md shadow-2xl pointer-events-auto">
           <button
             onClick={() => {
               window.scrollTo({ top: 0, behavior: 'instant' });
               router.push(`/products/${slugify(previousCategory)}`);
             }}
-            className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 text-white hover:bg-white/10"
+            className="w-10 h-10 rounded-button flex items-center justify-center transition-all duration-300 text-white hover:bg-white/10"
             aria-label="Previous category"
           >
-            <span className="text-xl leading-none -translate-y-[1px]">←</span>
+            <ArrowLeft size={18} aria-hidden="true" />
           </button>
           
           <span className="text-white/90 text-[10px] md:text-xs uppercase tracking-[0.2em] font-medium whitespace-nowrap">
@@ -296,10 +304,10 @@ export default function ProductDetails() {
               window.scrollTo({ top: 0, behavior: 'instant' });
               router.push(`/products/${slugify(nextCategory)}`);
             }}
-            className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 text-white hover:bg-white/10"
+            className="w-10 h-10 rounded-button flex items-center justify-center transition-all duration-300 text-white hover:bg-white/10"
             aria-label="Next category"
           >
-            <span className="text-xl leading-none -translate-y-[1px]">→</span>
+            <ArrowRight size={18} aria-hidden="true" />
           </button>
         </div>
       </div>
@@ -374,7 +382,7 @@ export default function ProductDetails() {
                     width={1600}
                     height={1200}
                     sizes="90vw"
-                    className="max-w-full max-h-full w-auto h-auto object-contain drop-shadow-2xl rounded-sm"
+                    className="max-w-full max-h-full w-auto h-auto object-contain drop-shadow-2xl rounded-card"
                   />
                 </motion.div>
               </AnimatePresence>
@@ -382,6 +390,6 @@ export default function ProductDetails() {
           </motion.div>
         )}
       </AnimatePresence>
-    </main>
+    </div>
   );
 }

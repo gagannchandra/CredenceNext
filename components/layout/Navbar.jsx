@@ -1,8 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef, useId } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useMotionValueEvent,
+} from "framer-motion";
 import { Menu, X, ArrowUpRight, ChevronDown } from "lucide-react";
 import PageLink from "../ui/PageLink";
 import MegaMenu from "./MegaMenu";
@@ -131,15 +136,44 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
   const [mobileExpanded, setMobileExpanded] = useState(null);
+  const menuButtonRef = useRef(null);
+  const menuPanelRef = useRef(null);
+  const menuId = useId();
 
+  // A raw window scroll listener fires on every frame and re-renders the whole
+  // nav; useScroll reads from Motion's batched scroll loop and setScrolled only
+  // runs on the two frames where the 40px threshold is actually crossed.
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const next = latest > 40;
+    setScrolled((prev) => (prev === next ? prev : next));
+  });
+
+  // Escape closes the mobile drawer and returns focus to the trigger, and the
+  // page behind it stops scrolling while it is open.
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+    if (!open) return;
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        menuButtonRef.current?.focus();
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKeyDown);
+
+    // Move focus into the drawer so keyboard and screen-reader users land
+    // inside it rather than continuing through the page underneath.
+    menuPanelRef.current?.focus();
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
 
   const handleLogoClick = () => {
     setActiveMenu(null);
@@ -148,6 +182,7 @@ export default function Navbar() {
 
   const closeMenu = () => {
     setOpen(false);
+    menuButtonRef.current?.focus();
   };
 
   const toggleMobileSubmenu = (name) => {
@@ -157,13 +192,20 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full z-40 flex justify-center transition-all duration-700 ease-out`}
+        aria-label="Primary"
+        className="fixed top-0 left-0 w-full z-40 flex justify-center px-3 pt-3"
       >
-        <div className={`transition-all duration-700 ease-out flex items-center justify-between ${
-          scrolled
-            ? "mt-4 w-[96%] md:w-[92%] rounded-panel bg-surface-glass backdrop-blur-heavy border border-border-subtle shadow-elevation-high px-6 py-4"
-            : "mt-0 w-full rounded-none bg-transparent border-transparent shadow-none px-6 md:px-12 py-6 md:py-8"
-        }`}>
+        {/* Geometry (width, padding, radius, margin) is identical in both
+            states so crossing the scroll threshold repaints instead of
+            re-laying-out the page. Only background, border and shadow
+            transition - all compositor-cheap paint properties. */}
+        <div
+          className={`w-full max-w-[1600px] h-16 lg:h-[72px] rounded-panel border px-4 sm:px-6 flex items-center justify-between transition-[background-color,border-color,box-shadow,backdrop-filter] duration-500 ease-out ${
+            scrolled
+              ? "bg-surface-glass backdrop-blur-heavy border-border-subtle shadow-elevation-high"
+              : "bg-transparent border-transparent shadow-none"
+          }`}
+        >
           
           {/* Logo */}
           <div className="flex-1 flex justify-start items-center">
@@ -174,7 +216,7 @@ export default function Navbar() {
             >
               <div className="relative flex items-center justify-center">
                 {/* Sunburst/Glow Effect Background */}
-                <div className="absolute inset-0 bg-[#c8a96b]/30 blur-xl rounded-full scale-[1.5] group-hover:scale-[2] group-hover:bg-[#c8a96b]/40 transition-all duration-700 pointer-events-none"></div>
+                <div className="absolute inset-0 bg-[#c8a96b]/30 blur-xl rounded-button scale-[1.5] group-hover:scale-[2] group-hover:bg-[#c8a96b]/40 transition-all duration-700 pointer-events-none"></div>
                 
                 <Image
                   src="/logo.svg?v=2"
@@ -185,14 +227,14 @@ export default function Navbar() {
                   className="relative z-10 h-8 md:h-10 w-auto object-contain drop-shadow-[0_0_12px_rgba(200,169,107,0.8)] group-hover:drop-shadow-[0_0_20px_rgba(200,169,107,1)] transition-all duration-500"
                 />
               </div>
-              <span className="hidden lg:inline-flex font-serif text-white tracking-wide text-lg group-hover:text-[#c8a96b] transition-colors duration-500">
+              <span className="hidden xl:inline-flex font-serif text-white tracking-wide text-lg group-hover:text-brand-gold transition-colors duration-500">
                 Credence Lighting
               </span>
             </PageLink>
           </div>
 
           {/* Desktop Mega Menu */}
-          <div className="hidden lg:flex items-center justify-center gap-10 h-full">
+          <div className="hidden lg:flex items-center justify-center gap-6 xl:gap-9 h-full">
             {navItems.map((item) => (
               <MegaMenu 
                 key={item.name} 
@@ -217,11 +259,15 @@ export default function Navbar() {
 
             {/* Mobile Hamburger */}
             <button
-              aria-label="Open Menu"
+              ref={menuButtonRef}
+              type="button"
+              aria-label="Open menu"
+              aria-expanded={open}
+              aria-controls={menuId}
               onClick={() => setOpen(true)}
               className="lg:hidden text-white flex items-center justify-center p-2"
             >
-              <Menu size={28} strokeWidth={1.5} />
+              <Menu size={28} strokeWidth={1.5} aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -250,7 +296,13 @@ export default function Navbar() {
               damping: 25,
               stiffness: 180,
             }}
-            className="fixed top-0 right-0 h-[100dvh] w-full sm:w-[400px] bg-surface-base border-l border-white/10 z-50 flex flex-col px-6 md:px-10 py-6 overflow-y-auto lg:hidden shadow-2xl"
+            id={menuId}
+            ref={menuPanelRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site menu"
+            tabIndex={-1}
+            className="fixed top-0 right-0 h-[100dvh] w-full sm:w-[400px] bg-surface-base border-l border-white/10 z-50 flex flex-col px-6 md:px-10 py-6 overflow-y-auto lg:hidden shadow-2xl outline-none"
           >
             {/* MENU HEADER */}
             <div className="flex items-center justify-between pb-6 border-b border-white/10 mb-6 shrink-0">
@@ -260,7 +312,7 @@ export default function Navbar() {
                 className="flex items-center gap-3 shrink-0 group"
               >
                 <div className="relative flex items-center justify-center">
-                  <div className="absolute inset-0 bg-[#c8a96b]/30 blur-xl rounded-full scale-[1.5] group-hover:scale-[2] group-hover:bg-[#c8a96b]/40 transition-all duration-700 pointer-events-none"></div>
+                  <div className="absolute inset-0 bg-[#c8a96b]/30 blur-xl rounded-button scale-[1.5] group-hover:scale-[2] group-hover:bg-[#c8a96b]/40 transition-all duration-700 pointer-events-none"></div>
                   <Image
                     src="/logo.svg?v=2"
                     alt="Credence Lighting"
@@ -274,11 +326,12 @@ export default function Navbar() {
                 </span>
               </PageLink>
               <button
-                aria-label="Close Menu"
+                type="button"
+                aria-label="Close menu"
                 onClick={closeMenu}
-                className="p-2 text-white/70 hover:text-white transition-colors bg-white/5 rounded-full"
+                className="p-2 text-white/70 hover:text-white transition-colors bg-white/5 rounded-button"
               >
-                <X size={24} strokeWidth={1.5} />
+                <X size={24} strokeWidth={1.5} aria-hidden="true" />
               </button>
             </div>
 
@@ -349,10 +402,10 @@ export default function Navbar() {
                 <PageLink
                   to="/contact"
                   onClick={closeMenu}
-                  className="flex items-center justify-center w-full gap-3 bg-brand-gold text-black px-6 py-4 uppercase tracking-[0.15em] text-sm font-bold rounded-button shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] transition-shadow"
+                  className="flex items-center justify-center w-full gap-3 bg-brand-gold text-black px-6 py-4 uppercase tracking-[0.15em] text-sm font-semibold rounded-button hover:bg-white active:scale-[0.98] transition-[background-color,transform] duration-300"
                 >
-                  Enquire Now
-                  <ArrowUpRight size={18} />
+                  Enquire
+                  <ArrowUpRight size={18} aria-hidden="true" />
                 </PageLink>
               </motion.div>
             </div>

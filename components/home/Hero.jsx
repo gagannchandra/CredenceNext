@@ -6,30 +6,25 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
+  useReducedMotion,
 } from "framer-motion";
 
 const bgHorizontal = "/images/homepage/horizontal.webp";
 const bgVertical = "/images/homepage/vertical.webp";
-import FadeUp from "../ui/motion/FadeUp";
 
 export default function Hero() {
   const containerRef = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Smooth cursor
-  const smoothX = useSpring(mouseX, {
-    stiffness: 120,
-    damping: 20,
-  });
+  const smoothX = useSpring(mouseX, { stiffness: 120, damping: 20 });
+  const smoothY = useSpring(mouseY, { stiffness: 120, damping: 20 });
 
-  const smoothY = useSpring(mouseY, {
-    stiffness: 120,
-    damping: 20,
-  });
-
-  // Spotlight mask
+  // Spotlight mask: the colour image is revealed only where the cursor is, so
+  // the visitor "lights" the room. Motivated motion (Section 5) - it is the
+  // page's one metaphor and it is what a lighting company sells.
   const maskImage = useTransform(
     [smoothX, smoothY],
     ([x, y]) =>
@@ -42,90 +37,83 @@ export default function Hero() {
       `radial-gradient(circle 300px at ${x}px ${y}px, rgba(255,255,255,0.18), transparent 70%)`
   );
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (event) => {
     if (!containerRef.current) return;
-
     const rect = containerRef.current.getBoundingClientRect();
-
-    mouseX.set(e.clientX - rect.left);
-    mouseY.set(e.clientY - rect.top);
+    mouseX.set(event.clientX - rect.left);
+    mouseY.set(event.clientY - rect.top);
   };
 
   return (
     <section
       id="hero"
       ref={containerRef}
-      onMouseMove={handleMouseMove}
-
-      className="relative h-screen w-full bg-transparent flex items-center justify-center overflow-hidden"
+      onMouseMove={shouldReduceMotion ? undefined : handleMouseMove}
+      // 100dvh, not h-screen: on iOS Safari the address bar makes 100vh taller
+      // than the visible viewport, so the hero jumped on first scroll.
+      className="relative min-h-[100dvh] w-full bg-transparent flex items-center justify-center overflow-hidden"
     >
-      {/* B&W IMAGE */}
+      {/* Base greyscale plate. Stays a raw <picture> rather than next/image
+          because the two sources are art-directed crops (portrait vs
+          landscape), not one image at two widths. */}
       <div className="absolute inset-0 z-0">
-        <picture>
+        <picture className="block w-full h-full">
           <source media="(min-width: 768px)" srcSet={bgHorizontal} />
           <img
             src={bgVertical}
-            alt="Credence Luxury Architectural Interior Lighting Dubai"
+            alt="A hotel interior lit by Credence architectural fixtures"
             width={1920}
             height={1080}
             fetchPriority="high"
-            className="w-full h-full object-cover grayscale brightness-[0.25] transition-all duration-700"
+            decoding="async"
+            className="w-full h-full object-cover grayscale brightness-[0.25]"
           />
         </picture>
       </div>
 
-      {/* COLOR REVEAL - DESKTOP */}
-      <motion.div
-        className="hidden md:block absolute inset-0 z-10"
-        style={{
-          backgroundImage: `url(${bgHorizontal})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          WebkitMaskImage: maskImage,
-          maskImage: maskImage,
-        }}
-      />
-
-      {/* GLOW */}
-      <motion.div
-        className="hidden md:block absolute inset-0 z-10 pointer-events-none"
-        style={{ background: glowBackground }}
-      />
-
-      {/* CONTENT */}
-      <div className="relative z-20 text-center px-6 max-w-5xl pointer-events-none flex flex-col items-center">
-        <h1 className="sr-only">Premium Lighting Solutions Dubai - Luminous Sophistication</h1>
-        <div className="flex flex-col items-center justify-center animate-hero-title" aria-hidden="true">
-          <span className="text-white text-fluid-h1 font-serif">
-            Luminous
-          </span>
-          <span className="italic gold-gradient-text text-fluid-h1 font-serif mt-2">
-            Sophistication
-          </span>
-        </div>
-
-        <p className="text-white/70 mt-8 text-fluid-p tracking-wide animate-hero-subtitle">
-          Where Premium Design Meets Functional Excellence
-        </p>
-      </div>
-
-      {/* SCROLL INDICATOR */}
-      <FadeUp delay={10} className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 pointer-events-none">
-        <span className="uppercase tracking-[0.3em] text-[9px] text-brand-gold/80">Scroll to Explore</span>
-        <div className="w-[1px] h-12 bg-white/20 relative overflow-hidden">
+      {/* Colour reveal, desktop pointer only. Reduced motion gets the static
+          greyscale plate, which still reads as a finished hero. */}
+      {!shouldReduceMotion && (
+        <>
           <motion.div
-            className="w-full h-1/2 bg-brand-gold"
-            animate={{ y: ["-100%", "200%"] }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              ease: "linear",
+            aria-hidden="true"
+            className="hidden md:block absolute inset-0 z-10"
+            style={{
+              backgroundImage: `url(${bgHorizontal})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              WebkitMaskImage: maskImage,
+              maskImage,
             }}
           />
-        </div>
-      </FadeUp>
+          <motion.div
+            aria-hidden="true"
+            className="hidden md:block absolute inset-0 z-10 pointer-events-none"
+            style={{ background: glowBackground }}
+          />
+        </>
+      )}
 
+      <div className="relative z-20 text-center px-6 max-w-5xl pointer-events-none flex flex-col items-center">
+        <h1 className="flex flex-col items-center animate-hero-title">
+          <span className="text-white text-fluid-h1 font-serif">Luminous</span>
+          {/* leading-[1.1] + pb reserve: "Sophistication" has a descender and
+              Playfair italic clips it at leading-none (Section 4.1). */}
+          <span className="italic gold-gradient-text text-fluid-h1 font-serif mt-2 leading-[1.1] pb-2">
+            Sophistication
+          </span>
+          {/* Keeps the ranking phrase inside the H1 without a second, hidden
+              H1 competing with the visible one. */}
+          <span className="sr-only">
+            : premium architectural lighting solutions in Dubai
+          </span>
+        </h1>
 
+        <p className="text-white/70 mt-8 text-fluid-p tracking-wide animate-hero-subtitle max-w-xl">
+          Architectural lighting design, supply, and commissioning across Dubai
+          and the GCC.
+        </p>
+      </div>
     </section>
   );
 }

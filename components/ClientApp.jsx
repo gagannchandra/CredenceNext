@@ -3,7 +3,6 @@
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { Suspense } from "react";
-import { AnimatePresence } from "framer-motion";
 import Loader from "./ui/Loader";
 import ScrollToTop from "./ScrollToTop";
 import WhatsappFloat from "./ui/WhatsappFloat";
@@ -12,31 +11,32 @@ import Navbar from "./layout/Navbar";
 import BackButton from "./ui/BackButton";
 import ErrorBoundary from "./ui/ErrorBoundary";
 
-// These two touch `window`/`document`/WebGL at module-load or mount time in
-// ways that aren't safe to execute on the server, so they're isolated as
-// client-only leaves. Crucially, neither wraps {children} - they're
-// siblings - so the actual page content below is free to render on the
-// server like any normal Next.js page.
+// Lenis touches `window` at module-load time, so it stays a client-only leaf.
+// Crucially it does not wrap {children} - it is a sibling - so the actual page
+// content below is free to render on the server like any normal Next.js page.
 const SmoothScroll = dynamic(() => import("./ui/SmoothScroll"), { ssr: false });
-const CustomCursor = dynamic(() => import("./ui/CustomCursor"), { ssr: false });
 
 export default function ClientApp({ children }) {
   const pathname = usePathname();
 
   return (
     <>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-button focus:bg-brand-gold focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-black"
+      >
+        Skip to content
+      </a>
+
       <SmoothScroll />
       <AmbientBackground />
       <Navbar />
-      <CustomCursor />
       <ScrollToTop />
       {pathname !== "/" && <BackButton />}
 
       <ErrorBoundary>
         <Suspense fallback={<Loader />}>
-          <AnimatePresence mode="wait">
-            <div key={pathname}>{children}</div>
-          </AnimatePresence>
+          <main id="main-content">{children}</main>
         </Suspense>
       </ErrorBoundary>
 

@@ -11,6 +11,7 @@ import { duration, ease } from "../../utils/motion";
 import TextReveal from "../ui/motion/TextReveal";
 import FadeUp from "../ui/motion/FadeUp";
 import HoverLift from "../ui/motion/HoverLift";
+import { ArrowRight } from "lucide-react";
 
 const uniqueCategories = Array.from(new Set(projects.map((p) => p.category)));
 const categories = ["All", ...uniqueCategories];
@@ -115,7 +116,7 @@ export default function ProjectsSection({ hideHeader = false }) {
                   className="w-full sm:w-auto border border-brand-gold/40 backdrop-blur-sm text-brand-gold px-8 py-4 tracking-[0.2em] uppercase text-xs transition-all duration-500 rounded-button flex items-center justify-center gap-3 group hover:bg-brand-gold hover:text-black"
                 >
                   View Gallery
-                  <span className="transform transition-transform duration-500 group-hover:translate-x-1">→</span>
+                  <ArrowRight size={16} aria-hidden="true" className="transition-transform duration-500 group-hover:translate-x-1" />
                 </Link>
               </HoverLift>
             </FadeUp>
@@ -166,7 +167,7 @@ export default function ProjectsSection({ hideHeader = false }) {
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.9, y: 20 }}
                     transition={{ duration: duration.standard, delay: index * 0.05, ease: ease.standard }}
-                    className={`group relative overflow-hidden rounded-[2rem] cursor-pointer shadow-lg hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 bg-surface-elevated ${getBentoClasses(index)}`}
+                    className={`group relative overflow-hidden rounded-panel cursor-pointer shadow-lg hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 bg-surface-elevated ${getBentoClasses(index)}`}
                     onClick={() => {
                       setActive(item.category);
                       const newFiltered = projects.filter((p) => p.category === item.category);
@@ -197,7 +198,7 @@ export default function ProjectsSection({ hideHeader = false }) {
             </motion.div>
           ) : (
             // Featured View for Specific Category - Continuous Coverflow Carousel
-            <div className="relative w-full h-[70vh] min-h-[600px] flex items-center justify-center group select-none overflow-hidden rounded-[2.5rem]">
+            <div className="relative w-full h-[70vh] min-h-[600px] flex items-center justify-center group select-none overflow-hidden rounded-panel">
               {filteredProjects.map((item, index) => {
                 const total = filteredProjects.length;
                 let diff = index - activeProjectIndex;
@@ -230,7 +231,7 @@ export default function ProjectsSection({ hideHeader = false }) {
                       zIndex: isCenter ? 30 : isVisible ? 20 : 0,
                     }}
                     transition={{ duration: duration.standard, ease: ease.standard }}
-                    className={`absolute w-[90%] md:w-[60%] lg:w-[50%] h-[90%] md:h-[95%] lg:h-full rounded-[2.5rem] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] ${isCenter ? '' : 'cursor-pointer hover:opacity-60'} ${!isVisible ? 'pointer-events-none' : ''}`}
+                    className={`absolute w-[90%] md:w-[60%] lg:w-[50%] h-[90%] md:h-[95%] lg:h-full rounded-panel overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] ${isCenter ? '' : 'cursor-pointer hover:opacity-60'} ${!isVisible ? 'pointer-events-none' : ''}`}
                     style={{ filter: isCenter ? "grayscale(0%)" : "grayscale(30%)" }}
                     onClick={() => {
                       if (isCenter) {
