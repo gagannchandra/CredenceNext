@@ -23,11 +23,11 @@ const projects = [
     id: 1,
     slug: "my-town",
     name: "My Town",
-    location: "Multiple Locations, Saudi Arabia",
+    location: "Abha Mall & Al Rawda Mall, Saudi Arabia",
     year: "2024",
     category: "Architectural Lighting",
     hero: mytown141,
-    description: "An elegant commercial lighting environment developed for immersive retail and hospitality experiences through warm ambient illumination. Featured in Faisaliah Mall (Riyadh), Lavanda Park Mall, Dareen Mall (Dammam), and Jeddah Village Mall.",
+    description: "An elegant commercial lighting environment developed for immersive retail and hospitality experiences through warm ambient illumination. Featured in Abha Mall and Al Rawda Mall.",
     gallery: [mytown140, mytown141, mytown145, mytown146, mytown148],
     engineeringMetrics: {
       luxLevel: "350 Lux avg",
@@ -61,7 +61,7 @@ const projects = [
     id: 3,
     slug: "funtura",
     name: "Funtura",
-    location: "Al Atyaf Mall, Riyadh",
+    location: "Atyaf Mall, Riyadh & Cenomi Mall, Saudi Arabia",
     year: "2024",
     category: "Interactive Lighting",
     hero: funtura134,
@@ -99,7 +99,7 @@ const projects = [
     id: 5,
     slug: "xtreme-z",
     name: "Xtreme Z",
-    location: "Riyadh, Saudi Arabia",
+    location: "Roshn Front, Riyadh, Saudi Arabia",
     year: "2024",
     category: "Architectural Lighting",
     hero: xtremez144,
@@ -245,6 +245,231 @@ const projects = [
       controls: "Astronomical Timeclock & DALI",
       energySaved: "-55% Dark-Sky Certified",
     },
+  },
+
+  // ---------------------------------------------------------------------------
+  // Client-supplied portfolio additions (see "Credence's Website Changes").
+  // Names + locations are from the client; descriptions are written from the
+  // publicly documented nature of each venue. `engineeringMetrics` and real
+  // project photography are intentionally absent - both need to come from
+  // Credence. The gallery paths below are category-matched placeholders drawn
+  // from existing site imagery and should be swapped for the real shots.
+  // ---------------------------------------------------------------------------
+
+  {
+    id: 13,
+    slug: "urth-cafe-roshn-front",
+    name: "Urth Caffé",
+    location: "Roshn Front, Riyadh, Saudi Arabia",
+    year: "2025",
+    category: "Hospitality & Hotel Lighting",
+    hero: "/images/hospitality/rest_pendant.webp",
+    description: "Warm, layered illumination for the Riyadh outpost of the organic coffee house, tuned to its rustic timber seating, planted interior and all-day trading pattern across indoor and terrace covers.",
+    gallery: ["/images/hospitality/rest_pendant.webp", "/images/hospitality/rest_dimming.webp", "/images/hospitality/4.webp"],
+  },
+
+  {
+    id: 14,
+    slug: "al-akaria-coworking-space",
+    name: "Co-Working Space",
+    location: "Al Akaria, Al Olaya Street, Riyadh, Saudi Arabia",
+    year: "2025",
+    category: "Commercial Office Lighting",
+    hero: "/images/indoor/office_linear.webp",
+    description: "Low-glare linear and task lighting for a flexible workspace on Al Olaya Street, balancing focused desk illumination against softer light in the lounge, meeting and breakout zones.",
+    gallery: ["/images/indoor/office_linear.webp", "/images/indoor/office_downlight.webp", "/images/indoor/office_task.webp"],
+  },
+
+  {
+    id: 15,
+    slug: "villa-al-arid-riyadh",
+    name: "Private Villa — Al Arid",
+    location: "Al Arid District, North Riyadh, Saudi Arabia",
+    year: "2025",
+    category: "Luxury Residential Lighting",
+    hero: "/images/indoor/res_chandelier.webp",
+    description: "A complete residential lighting scheme for a private villa in North Riyadh, combining architectural cove detailing, decorative feature pieces and discreet circulation lighting throughout.",
+    gallery: ["/images/indoor/res_chandelier.webp", "/images/indoor/4.webp", "/images/stretch-ceiling/IMG_0124.webp"],
+  },
+
+  {
+    id: 16,
+    slug: "elysium-residences-satwa",
+    name: "Elysium Residences",
+    location: "Al Satwa, Dubai, UAE",
+    year: "2025",
+    category: "Luxury Residential Lighting",
+    hero: "/images/indoor/res_downlight.webp",
+    description: "Lighting for a residential building in Al Satwa covering apartment interiors alongside the lobby, corridors and shared amenity areas, specified for consistency and low maintenance across the block.",
+    gallery: ["/images/indoor/res_downlight.webp", "/images/indoor/5.webp", "/images/facade/7.webp"],
+  },
+
+  {
+    id: 17,
+    slug: "fitness-first",
+    name: "Fitness First",
+    location: "United Arab Emirates",
+    year: "2025",
+    category: "Fitness & Wellness Lighting",
+    hero: "/images/indoor/office_tunable.webp",
+    description: "Training-floor lighting for the international health club brand, prioritising even vertical illumination, controlled glare for floor-facing exercises and distinct atmospheres between the weights floor and studio spaces.",
+    gallery: ["/images/indoor/office_tunable.webp", "/images/Home Automation/office_sensor.webp", "/images/stretch-ceiling/IMG_0126.webp"],
+  },
+
+  {
+    id: 18,
+    slug: "laduree-roshn-front",
+    name: "Ladurée",
+    location: "Roshn Front, Riyadh, Saudi Arabia",
+    year: "2025",
+    category: "Hospitality & Hotel Lighting",
+    hero: "/images/hospitality/hotel_pendant.webp",
+    description: "Boutique patisserie lighting for the French maison at Roshn Front, using high colour-fidelity accent light over the pastry display and softer ambient layers across the salon seating.",
+    gallery: ["/images/hospitality/hotel_pendant.webp", "/images/hospitality/5.webp", "/images/hospitality/6.webp"],
+  },
+
+  {
+    id: 19,
+    slug: "fabyland",
+    name: "Fabyland",
+    location: "Dubai Silicon Oasis, Dubai Festival City & Sharjah Central Mall, UAE",
+    year: "2025",
+    category: "Entertainment Lighting",
+    hero: "/images/family entertainment/80.webp",
+    description: "Lighting and effects across three UAE branches of the Al Othaim Entertainment family entertainment brand, covering arcade and ride zones, bowling and billiards areas, and the party rooms.",
+    gallery: ["/images/family entertainment/80.webp", "/images/family entertainment/81.webp", "/images/family entertainment/82.webp"],
+  },
+
+  {
+    id: 20,
+    slug: "gemo",
+    name: "Gémo",
+    location: "Ibn Battuta Mall & Marina Mall, UAE",
+    year: "2025",
+    category: "Retail & Showroom Lighting",
+    hero: "/images/Retail Lighting/3.webp",
+    description: "Fashion retail lighting for two mall stores of the French clothing and footwear brand, with track-mounted accent light on wall bays and merchandising tables and even ambient cover across the shop floor.",
+    gallery: ["/images/Retail Lighting/3.webp", "/images/Retail Lighting/4.webp", "/images/led-screen/2.webp"],
+  },
+
+  {
+    id: 21,
+    slug: "villa-palm-jumeirah",
+    name: "Private Villa — Palm Jumeirah",
+    location: "Palm Jumeirah, Dubai, UAE",
+    year: "2025",
+    category: "Luxury Residential Lighting",
+    hero: "/images/indoor/res_strip.webp",
+    description: "A waterfront villa scheme pairing architectural interior lighting with marine-grade exterior fittings for the terrace, pool surround and landscaped frontage.",
+    gallery: ["/images/indoor/res_strip.webp", "/images/outdoor/4.webp", "/images/outdoor/5.webp"],
+  },
+
+  {
+    id: 22,
+    slug: "sephora-roshn-front",
+    name: "Sephora",
+    location: "Roshn Front, Riyadh, Saudi Arabia",
+    year: "2025",
+    category: "Retail & Showroom Lighting",
+    hero: "/images/Retail Lighting/5.webp",
+    description: "Beauty retail lighting for the Roshn Front store, specified for faithful colour rendering at the make-up testers and mirrors alongside bright, uniform light across the open shop floor.",
+    gallery: ["/images/Retail Lighting/5.webp", "/images/Retail Lighting/6.webp", "/images/stretch-ceiling/20C9BA80-EAC4-4F42-B725-D901580BB9B7.webp"],
+  },
+
+  {
+    id: 23,
+    slug: "orange-wheels",
+    name: "Orange Wheels",
+    location: "Al Mamsha, Sharjah & Nad Al Sheba Mall, Dubai, UAE",
+    year: "2025",
+    category: "Entertainment Lighting",
+    hero: "/images/family entertainment/83.webp",
+    description: "Lighting for two branches of the children's indoor play brand, covering the soft play, role-play and climbing zones with bright, glare-controlled light and colour accents at the themed set pieces.",
+    gallery: ["/images/family entertainment/83.webp", "/images/family entertainment/84.webp", "/images/family entertainment/85.webp"],
+  },
+
+  {
+    id: 24,
+    slug: "dyar-bakery-roshn-front",
+    name: "Dyar Bakery",
+    location: "Roshn Front, Riyadh, Saudi Arabia",
+    year: "2025",
+    category: "Hospitality & Hotel Lighting",
+    hero: "/images/hospitality/hotel_downlight.webp",
+    description: "Bakery and café lighting at Roshn Front, with warm accent light over the counter and product displays and a softer ambient layer across the seating area.",
+    gallery: ["/images/hospitality/hotel_downlight.webp", "/images/hospitality/rest_spotlight.webp", "/images/hospitality/7.webp"],
+  },
+
+  {
+    id: 25,
+    slug: "villa-tilal-al-ghaf",
+    name: "Private Villa — Tilal Al Ghaf",
+    location: "Tilal Al Ghaf, Dubai, UAE",
+    year: "2025",
+    category: "Luxury Residential Lighting",
+    hero: "/images/indoor/res_step.webp",
+    description: "Interior and landscape lighting for a private villa in Tilal Al Ghaf, layering recessed architectural light indoors with discreet garden and facade illumination outside.",
+    gallery: ["/images/indoor/res_step.webp", "/images/outdoor/6.webp", "/images/outdoor/res_landscape.webp"],
+  },
+
+  {
+    id: 26,
+    slug: "rolling-wheels",
+    name: "Rolling Wheels",
+    location: "Abu Dhabi Mall & Dalma Mall, Abu Dhabi, UAE",
+    year: "2025",
+    category: "Entertainment Lighting",
+    hero: "/images/family entertainment/86.webp",
+    description: "Family entertainment lighting across two Abu Dhabi mall venues, combining bright general illumination for the play areas with dynamic colour effects at the ride and activity zones.",
+    gallery: ["/images/family entertainment/86.webp", "/images/family entertainment/87.webp", "/images/entertainment/3.webp"],
+  },
+
+  {
+    id: 27,
+    slug: "clay-coffee-boutique",
+    name: "Clay Coffee Boutique",
+    location: "Roshn Front, Riyadh, Saudi Arabia",
+    year: "2025",
+    category: "Hospitality & Hotel Lighting",
+    hero: "/images/hospitality/rest_pinhole.webp",
+    description: "A speciality coffee boutique scheme at Roshn Front, using tightly controlled pinhole and accent fittings over the bar and retail shelving against a warm, low-level ambient base.",
+    gallery: ["/images/hospitality/rest_pinhole.webp", "/images/hospitality/8.webp", "/images/hospitality/9.webp"],
+  },
+
+  {
+    id: 28,
+    slug: "gym-nation-khalidiya",
+    name: "GymNation",
+    location: "Khalidiyah Mall, Abu Dhabi, UAE",
+    year: "2025",
+    category: "Fitness & Wellness Lighting",
+    hero: "/images/indoor/office_acoustic.webp",
+    description: "Large-format gym lighting for the Khalidiyah Mall club, covering the cardio and free-weights floors and the group class studios, with separate scenes for high-energy classes and recovery zones.",
+    gallery: ["/images/indoor/office_acoustic.webp", "/images/led-screen/1.webp", "/images/stretch-ceiling/IMG_0127.webp"],
+  },
+
+  {
+    id: 29,
+    slug: "villa-emirates-hills",
+    name: "Private Villa — Emirates Hills",
+    location: "Emirates Hills 3, Dubai, UAE",
+    year: "2025",
+    category: "Luxury Residential Lighting",
+    hero: "/images/indoor/6.webp",
+    description: "A bespoke residential lighting design for an Emirates Hills villa, integrating architectural cove and recessed detailing with decorative fixtures and controlled exterior illumination.",
+    gallery: ["/images/indoor/6.webp", "/images/indoor/7.webp", "/images/facade/8.webp"],
+  },
+
+  {
+    id: 30,
+    slug: "octave-fashion",
+    name: "Octave Fashion",
+    location: "Sharjah Central Mall & Grand Mall, Al Qusais, UAE",
+    year: "2025",
+    category: "Retail & Showroom Lighting",
+    hero: "/images/Retail Lighting/7.webp",
+    description: "Menswear retail lighting for two stores of the business-casual fashion label, with accent light on garment walls and mannequins and neutral, high-fidelity light at the fitting rooms.",
+    gallery: ["/images/Retail Lighting/7.webp", "/images/led-screen/3.webp", "/images/stretch-ceiling/4E0995DA-5A01-4BAE-BCAF-4F3896703E59.webp"],
   },
 ];
 

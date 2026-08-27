@@ -90,7 +90,7 @@ export default function Footer() {
               </Link>
 
               <Link href="/products" className="block hover:text-white transition duration-300 touch-glow">
-                Products
+                Services
               </Link>
 
               <Link href="/downloads" className="block hover:text-white transition duration-300 touch-glow">
@@ -105,6 +105,10 @@ export default function Footer() {
                 Blog
               </Link>
 
+              <Link href="/guides" className="block hover:text-white transition duration-300 touch-glow">
+                Guides
+              </Link>
+
               <Link href="/faq" className="block hover:text-white transition duration-300 touch-glow">
                 FAQ
               </Link>
@@ -117,41 +121,37 @@ export default function Footer() {
 
           </FadeUp>
 
-          {/* SOLUTIONS */}
+          {/* SECTORS */}
           <FadeUp delay={3} className="text-center md:text-left">
 
             <h2 className="uppercase tracking-[0.1em] text-xs text-brand-gold mb-6 font-medium font-sans">
-              Solutions
+              Sectors
             </h2>
 
-            <nav aria-label="Footer solutions" className="space-y-3 text-white/60 text-sm">
+            <nav aria-label="Footer sectors" className="space-y-3 text-white/60 text-sm">
 
-              <Link href="/lighting-company-dubai" className="block hover:text-white transition duration-300 touch-glow">
-                Lighting Company Dubai
+              <Link href="/residential-lighting" className="block hover:text-white transition duration-300 touch-glow">
+                Residential
               </Link>
 
-              <Link href="/lighting-showroom-dubai" className="block hover:text-white transition duration-300 touch-glow">
-                Showroom Dubai
+              <Link href="/hotel-lighting" className="block hover:text-white transition duration-300 touch-glow">
+                Hospitality
               </Link>
 
-              <Link href="/ceiling-lights-dubai" className="block hover:text-white transition duration-300 touch-glow">
-                Ceiling Lights
+              <Link href="/retail-lighting" className="block hover:text-white transition duration-300 touch-glow">
+                Retail
               </Link>
 
-              <Link href="/outdoor-lighting-dubai" className="block hover:text-white transition duration-300 touch-glow">
-                Outdoor Lighting
+              <Link href="/office-lighting" className="block hover:text-white transition duration-300 touch-glow">
+                Commercial
               </Link>
 
-              <Link href="/pendant-lights-dubai" className="block hover:text-white transition duration-300 touch-glow">
-                Pendant Lights
+              <Link href="/facade-lighting" className="block hover:text-white transition duration-300 touch-glow">
+                Architectural
               </Link>
 
-              <Link href="/led-strip-lights-dubai" className="block hover:text-white transition duration-300 touch-glow">
-                LED Strip Lights
-              </Link>
-
-              <Link href="/explosion-proof-lights" className="block hover:text-white transition duration-300 touch-glow">
-                Explosion Proof Lights
+              <Link href="/entertainment-lighting" className="block hover:text-white transition duration-300 touch-glow">
+                Entertainment
               </Link>
 
             </nav>

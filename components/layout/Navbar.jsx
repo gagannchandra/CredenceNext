@@ -19,20 +19,15 @@ const projectsImg = "/images/xtremezone/136.webp";
 
 const navItems = [
   {
-    name: "Products",
+    name: "Services",
     to: "/products",
     dropdown: [
-      { name: "Indoor Lighting", to: "/products/indoor" },
-      { name: "Outdoor Lighting", to: "/products/outdoor" },
-      { name: "Hospitality Lighting", to: "/products/hospitality" },
-      { name: "Facade Lighting", to: "/products/facade" },
-      { name: "Entertainment Systems", to: "/products/entertainment" },
-      { name: "LED Screen Solutions", to: "/products/led-screen" },
-      { name: "Stretch Ceilings", to: "/products/stretch-ceiling" },
-      { name: "Smart Automation & Control", to: "/products/automation" },
-      { name: "Retail & Accent Lighting", to: "/products/retail" },
-      { name: "Commercial Audio Systems", to: "/products/audio" },
-      { name: "Explosion Proof Lighting", to: "/products/explosion-proof" },
+      { name: "Indoor & Outdoor Lighting", to: "/products/indoor" },
+      { name: "LED Screens", to: "/products/led-screen" },
+      { name: "Stretch Ceiling", to: "/products/stretch-ceiling" },
+      { name: "Home Automation", to: "/products/automation" },
+      { name: "Audio Systems", to: "/products/audio" },
+      { name: "Browse All Products", to: "/products" },
     ],
     featured: {
       title: "Architectural Indoor Collection",
@@ -41,20 +36,15 @@ const navItems = [
     }
   },
   {
-    name: "Solutions",
+    name: "Sectors",
     to: "/solutions",
     dropdown: [
-      { name: "Lighting Company Dubai", to: "/lighting-company-dubai" },
-      { name: "Lighting Showroom Dubai", to: "/lighting-showroom-dubai" },
-      { name: "Hospitality Lighting", to: "/hotel-lighting" },
-      { name: "Commercial & Office Lighting", to: "/office-lighting" },
-      { name: "Retail & Showroom Lighting", to: "/retail-lighting" },
-      { name: "Restaurant & Dining Lighting", to: "/restaurant-lighting" },
-      { name: "Architectural Facade Lighting", to: "/facade-lighting" },
-      { name: "Luxury Residential Lighting", to: "/residential-lighting" },
-      { name: "Entertainment & Theme Park", to: "/entertainment-lighting" },
-      { name: "Commercial Architectural Audio", to: "/audio-solutions" },
-      { name: "Explosion Proof Lighting", to: "/explosion-proof-lights" },
+      { name: "Residential", to: "/residential-lighting" },
+      { name: "Hospitality", to: "/hotel-lighting" },
+      { name: "Retail", to: "/retail-lighting" },
+      { name: "Commercial", to: "/office-lighting" },
+      { name: "Architectural", to: "/facade-lighting" },
+      { name: "Entertainment", to: "/entertainment-lighting" },
     ],
     featured: {
       title: "Lighting Solutions in Dubai",
@@ -84,10 +74,10 @@ const navItems = [
     name: "Resources",
     to: "/blog",
     dropdown: [
-      { name: "Articles & Insights", to: "/blog" },
-      { name: "Interactive FAQ", to: "/faq" },
-      { name: "Catalogues & Downloads", to: "/downloads" },
-      { name: "Curated Visual Gallery", to: "/gallery" },
+      { name: "Blog", to: "/blog" },
+      { name: "Guide", to: "/guides" },
+      { name: "Downloads", to: "/downloads" },
+      { name: "FAQs", to: "/faq" },
     ],
     featured: {
       title: "Lighting Design Insights",
@@ -96,32 +86,13 @@ const navItems = [
     }
   },
   {
-    name: "Locations",
-    to: "/lighting-companies-uae",
-    dropdown: [
-      { name: "Dubai (Headquarters)", to: "/lighting-company-dubai" },
-      { name: "UAE (All Emirates)", to: "/lighting-companies-uae" },
-      { name: "Abu Dhabi", to: "/lighting-suppliers-abu-dhabi" },
-      { name: "Sharjah", to: "/lighting-companies-sharjah" },
-      { name: "Ajman", to: "/lighting-solutions-ajman" },
-      { name: "Ras Al Khaimah", to: "/lighting-solutions-rak" },
-      { name: "Saudi Arabia (KSA)", to: "/lighting-companies-saudi-arabia" },
-      { name: "Bahrain", to: "/lighting-companies-bahrain" },
-    ],
-    featured: {
-      title: "GCC Regional Service Hubs",
-      image: companyImg,
-      to: "/lighting-companies-uae",
-    }
-  },
-  {
-    name: "Company",
+    name: "About Us",
     to: "/about",
     dropdown: [
-      { name: "About Credence", to: "/about" },
-      { name: "Partner Brands", to: "/brands" },
-      { name: "Showroom Experience", to: "/lighting-showroom-dubai" },
-      { name: "Contact Specialists", to: "/contact" },
+      { name: "About", to: "/about" },
+      { name: "Clients", to: "/brands" },
+      { name: "Gallery", to: "/gallery" },
+      { name: "Contact", to: "/contact" },
     ],
     featured: {
       title: "About Credence Lighting",

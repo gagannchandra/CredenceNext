@@ -15,9 +15,11 @@ import { ease, duration } from "../../utils/motion";
 // far enough to see it (see the in-view gate below).
 const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
 
-const GEOJSON_URL =
-  "https://raw.githubusercontent.com/vasturiano/react-globe.gl/master/example/datasets/ne_110m_admin_0_countries.geojson";
-const GEOJSON_CACHE_KEY = "credence:globe-geojson:v1";
+// Served from public/ rather than raw.githubusercontent.com: the remote copy
+// was a single point of failure - any rate-limit, offline dev session or
+// strict CSP left the globe as a featureless dark sphere with no continents.
+const GEOJSON_URL = "/data/ne_110m_admin_0_countries.geojson";
+const GEOJSON_CACHE_KEY = "credence:globe-geojson:v2";
 
 const DUBAI = { lat: 25.2048, lng: 55.2708 };
 
@@ -77,12 +79,18 @@ export default function GlobalPresence() {
   const globeRef = useRef();
   const containerRef = useRef(null);
   const sectionRef = useRef(null);
+  // The rAF loop below is created once and never re-created, so it must read
+  // these through refs - a captured state value would be frozen at init time
+  // and the "pause when hidden" / reduced-motion checks would never fire.
+  const prefersReducedMotionRef = useRef(false);
+  const isTabVisibleRef = useRef(true);
+  const teardownRef = useRef({ renderer: null, scene: null });
 
   const prefersReducedMotion = useReducedMotion();
   const shouldRender = useInView(sectionRef); // gate: fetch + mount only near viewport
   const [isGlobeReady, setIsGlobeReady] = useState(false); // gate: reveal once painted
+  const [isGlobeMounted, setIsGlobeMounted] = useState(false); // gate: instance exists
   const [isLowPower, setIsLowPower] = useState(false);
-  const [isTabVisible, setIsTabVisible] = useState(true);
 
   const [globeSize, setGlobeSize] = useState({
     width: typeof window !== "undefined" ? Math.min(window.innerWidth - 32, 1000) : 1000,
@@ -113,10 +121,18 @@ export default function GlobalPresence() {
   // Pause all rendering work (rAF loop + auto-rotate) when the tab isn't
   // visible - a backgrounded tab has no business spinning a WebGL globe.
   useEffect(() => {
-    const handleVisibility = () => setIsTabVisible(document.visibilityState === "visible");
+    // Ref only - flipping React state here would re-render the whole section
+    // (and the globe) on every tab switch for no visual benefit.
+    const handleVisibility = () => {
+      isTabVisibleRef.current = document.visibilityState === "visible";
+    };
     document.addEventListener("visibilitychange", handleVisibility);
     return () => document.removeEventListener("visibilitychange", handleVisibility);
   }, []);
+
+  useEffect(() => {
+    prefersReducedMotionRef.current = Boolean(prefersReducedMotion);
+  }, [prefersReducedMotion]);
 
   // Fetch the countries geojson once we're actually about to show the
   // globe, and cache it in sessionStorage so client-side navigation back to
@@ -141,7 +157,10 @@ export default function GlobalPresence() {
     }
 
     fetch(GEOJSON_URL, { signal: controller.signal })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error(`Globe geojson: HTTP ${res.status}`);
+        return res.json();
+      })
       .then((countries) => {
         setHexData(countries.features);
         try {
@@ -157,11 +176,30 @@ export default function GlobalPresence() {
     return () => controller.abort();
   }, [shouldRender]);
 
-  const handleGlobeReady = useCallback(() => {
-    setIsGlobeReady(true);
+  // Fired by react-globe.gl once the instance is constructed and the ref is
+  // populated. Previously initialisation was kicked off by a bare 150ms
+  // setTimeout, which raced the `next/dynamic` chunk load: on the very first
+  // visit the globe module had not resolved yet, so `globeRef.current` was
+  // still null, the effect bailed out early and - because none of its
+  // dependencies ever changed again - never retried. The result was a globe
+  // that was configured, lit and revealed on exactly nobody's machine: the
+  // section sat on its "Mapping Our Global Reach" skeleton forever. Keying
+  // off the instance's own ready callback removes the race entirely.
+  const handleGlobeMounted = useCallback(() => {
+    setIsGlobeMounted(true);
   }, []);
 
   const isSectionVisibleRef = useRef(true);
+
+  const applyPointOfView = useCallback(() => {
+    const globe = globeRef.current;
+    if (!globe) return;
+    globe.pointOfView({
+      lat: 25,
+      lng: 55,
+      altitude: window.innerWidth < 768 ? 3.8 : 2.9,
+    });
+  }, []);
 
   useEffect(() => {
     if (!sectionRef.current || typeof IntersectionObserver === "undefined") return;
@@ -169,8 +207,9 @@ export default function GlobalPresence() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         isSectionVisibleRef.current = entry.isIntersecting;
-        if (globeRef.current && globeRef.current.controls()) {
-          globeRef.current.controls().autoRotate = entry.isIntersecting && !prefersReducedMotion;
+        const controls = globeRef.current?.controls?.();
+        if (controls) {
+          controls.autoRotate = entry.isIntersecting && !prefersReducedMotion;
         }
       },
       { rootMargin: "200px" }
@@ -180,121 +219,112 @@ export default function GlobalPresence() {
     return () => observer.disconnect();
   }, [prefersReducedMotion]);
 
+  // Scene setup: renderer tuning, camera framing and studio lighting.
+  // Re-runs only if the power profile changes, and its cleanup removes just
+  // the lights it added - GPU resources are released once, on unmount, by the
+  // teardown effect below. (Disposing geometries/materials here used to run on
+  // every re-run and could leave the memoised globe material disposed but
+  // still mounted.)
   useEffect(() => {
-    if (!shouldRender) return;
-    const currentGlobe = globeRef.current;
-    if (!currentGlobe) return;
+    if (!isGlobeMounted) return;
+    const globe = globeRef.current;
+    if (!globe) return;
+
+    const renderer = globe.renderer();
+    if (renderer) {
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isLowPower ? 1.5 : 2));
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.3;
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+    }
+
+    const controls = globe.controls();
+    if (controls) {
+      controls.autoRotate = !prefersReducedMotion && isSectionVisibleRef.current;
+      controls.autoRotateSpeed = 0.5;
+      controls.enableZoom = false;
+      controls.enablePan = false;
+    }
+
+    // Cinematic angle (matched to the oversized canvas so the globe keeps its
+    // intended on-screen size).
+    applyPointOfView();
+
+    const scene = globe.scene();
+    if (!scene) return;
+
+    teardownRef.current = { renderer, scene };
+
+    // Drop react-globe.gl's default lighting in favour of the studio rig.
+    const defaultLights = scene.children.filter((obj) => obj.isLight);
+    defaultLights.forEach((light) => scene.remove(light));
+
+    const keyLight = new THREE.DirectionalLight("#D4AF37", 5);
+    keyLight.position.set(-200, 100, 200);
+
+    const fillLight = new THREE.DirectionalLight("#3e4e68", 3);
+    fillLight.position.set(200, -50, 100);
+
+    const rimLight = new THREE.DirectionalLight("#F3E5AB", 8);
+    rimLight.position.set(-200, 150, -250);
+
+    const ambientLight = new THREE.AmbientLight("#ffffff", 0.2);
+
+    const addedLights = [keyLight, fillLight, rimLight, ambientLight];
+    addedLights.forEach((light) => scene.add(light));
+
+    setIsGlobeReady(true);
+
+    return () => {
+      addedLights.forEach((light) => {
+        scene.remove(light);
+        light.dispose?.();
+      });
+    };
+  }, [isGlobeMounted, isLowPower, prefersReducedMotion, applyPointOfView]);
+
+  // Bespoke idle motion. Created once and left running; the guards inside read
+  // live values through refs so the loop genuinely idles when the tab is
+  // backgrounded or the section scrolls away.
+  useEffect(() => {
+    if (!isGlobeMounted) return;
+    const scene = globeRef.current?.scene?.();
+    if (!scene) return;
 
     let animationFrameId;
     let time = 0;
 
-    const initCinematicRender = () => {
-      if (!globeRef.current) return;
-
-      const renderer = globeRef.current.renderer();
-      if (renderer) {
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isLowPower ? 1.5 : 2));
-        renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.3; // Slightly brighter exposure
-        renderer.outputColorSpace = THREE.SRGBColorSpace;
+    const animate = () => {
+      if (
+        !prefersReducedMotionRef.current &&
+        isTabVisibleRef.current &&
+        isSectionVisibleRef.current
+      ) {
+        time += 0.002;
+        scene.position.y = Math.sin(time) * 0.3; // imperceptible float
+        scene.scale.setScalar(1.0 + Math.sin(time * 0.5) * 0.002); // slow breath
       }
-
-      const controls = globeRef.current.controls();
-      controls.autoRotate = !prefersReducedMotion && isSectionVisibleRef.current;
-      controls.autoRotateSpeed = 0.5; // Smoother, slightly faster
-      controls.enableZoom = false;
-      controls.enablePan = false;
-
-      // Cinematic angle (adjusted for larger canvas scale to keep globe same visual size)
-      const alt = window.innerWidth < 768 ? 3.8 : 2.9;
-      globeRef.current.pointOfView({ lat: 25, lng: 55, altitude: alt });
-
-      const scene = globeRef.current.scene();
-
-      // Clear default lighting safely
-      if (scene && scene.children) {
-        const lights = scene.children.filter((obj) => obj.isLight);
-        lights.forEach((light) => scene.remove(light));
-      }
-
-      // Studio Lighting
-      const keyLight = new THREE.DirectionalLight("#D4AF37", 5);
-      keyLight.position.set(-200, 100, 200);
-      scene.add(keyLight);
-
-      const fillLight = new THREE.DirectionalLight("#3e4e68", 3); // Cool fill
-      fillLight.position.set(200, -50, 100);
-      scene.add(fillLight);
-
-      const rimLight = new THREE.DirectionalLight("#F3E5AB", 8);
-      rimLight.position.set(-200, 150, -250);
-      scene.add(rimLight);
-
-      const ambientLight = new THREE.AmbientLight("#ffffff", 0.2);
-      scene.add(ambientLight);
-
-      // Bespoke Motion - skipped entirely for reduced-motion users, and
-      // paused whenever the tab is hidden or the globe scrolls out of view.
-      const animate = () => {
-        if (!prefersReducedMotion && isTabVisible && isSectionVisibleRef.current) {
-          time += 0.002;
-
-          // Imperceptible floating
-          scene.position.y = Math.sin(time) * 0.3;
-
-          // Slow breathing
-          const scale = 1.0 + Math.sin(time * 0.5) * 0.002;
-          scene.scale.set(scale, scale, scale);
-        }
-
-        animationFrameId = requestAnimationFrame(animate);
-      };
-
-      animate();
-      handleGlobeReady();
+      animationFrameId = requestAnimationFrame(animate);
     };
 
-    // Small delay ensures textures and geometries are initialized
-    const initTimer = setTimeout(() => {
-      initCinematicRender();
-    }, 150);
+    animate();
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isGlobeMounted]);
 
+  // Release GPU resources exactly once, when the section leaves the tree.
+  useEffect(() => {
     return () => {
-      clearTimeout(initTimer);
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
-
-      if (currentGlobe) {
-        const scene = currentGlobe.scene();
-        const renderer = currentGlobe.renderer();
-
-        if (scene) {
-          scene.traverse((object) => {
-            if (object.isMesh) {
-              if (object.geometry) object.geometry.dispose();
-              if (object.material) {
-                if (Array.isArray(object.material)) {
-                  object.material.forEach((m) => m.dispose());
-                } else {
-                  object.material.dispose();
-                }
-              }
-            }
-            if (object.isLight && object.dispose) {
-              object.dispose();
-            }
-          });
-        }
-
-        if (renderer) {
-          renderer.dispose();
-        }
-      }
+      const { renderer, scene } = teardownRef.current;
+      scene?.traverse((object) => {
+        if (!object.isMesh) return;
+        object.geometry?.dispose();
+        const material = object.material;
+        if (Array.isArray(material)) material.forEach((m) => m.dispose());
+        else material?.dispose();
+      });
+      renderer?.dispose();
     };
-    // isTabVisible/prefersReducedMotion are read inside the rAF closure via
-    // ref-stable values already captured each frame, so they don't need to
-    // retrigger this whole effect (which would tear down & reinit the scene).
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [shouldRender, isLowPower, handleGlobeReady]);
+  }, []);
 
   useEffect(() => {
     const updateSize = () => {
@@ -318,13 +348,14 @@ export default function GlobalPresence() {
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
-  const handleMouseEnter = () => {
-    if (globeRef.current && !prefersReducedMotion) globeRef.current.controls().autoRotateSpeed = 0.05;
+  const setAutoRotateSpeed = (speed) => {
+    if (prefersReducedMotion) return;
+    const controls = globeRef.current?.controls?.();
+    if (controls) controls.autoRotateSpeed = speed;
   };
 
-  const handleMouseLeave = () => {
-    if (globeRef.current && !prefersReducedMotion) globeRef.current.controls().autoRotateSpeed = 0.5;
-  };
+  const handleMouseEnter = () => setAutoRotateSpeed(0.05);
+  const handleMouseLeave = () => setAutoRotateSpeed(0.5);
 
   const isMobile = windowWidth < 768;
   const labelScale = isMobile ? Math.max(windowWidth / 768, 0.45) : 1;
@@ -440,6 +471,7 @@ export default function GlobalPresence() {
                 {shouldRender && (
                   <Globe
                     ref={globeRef}
+                    onGlobeReady={handleGlobeMounted}
                     globeMaterial={customGlobeMaterial}
                     backgroundColor="rgba(0,0,0,0)"
                     showGlobe={true}

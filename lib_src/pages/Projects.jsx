@@ -5,6 +5,7 @@ import Link from "next/link";
 import Footer from "@/components/layout/Footer";
 import projects from "@/data/projects";
 import CategoryCarousel from "@/components/gallery/CategoryCarousel";
+import ProjectRail from "@/components/projects/ProjectRail";
 import SEO from "@/components/seo/SEO";
 
 
@@ -42,7 +43,7 @@ export default function Projects() {
           }))
         }]}
       />
-      <div className="relative min-h-screen bg-transparent overflow-hidden pt-32 pb-10">
+      <div className="relative min-h-screen bg-transparent overflow-x-clip pt-32 pb-10">
         {/* BACKGROUND GLOW */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-brand-gold/10 blur-[60px] md:blur-[180px] pointer-events-none" />
 
@@ -61,9 +62,18 @@ export default function Projects() {
           </div>
         </div>
 
-        <div className="max-w-[1700px] mx-auto px-6 md:px-12 mt-10 relative z-10">
+        <div className="max-w-[1700px] mx-auto px-6 md:px-12 mt-10 relative z-10 flex gap-12 xl:gap-16">
+          <ProjectRail projects={projects} />
+
+          <div className="min-w-0 flex-1">
           {projects.map((project) => (
-            <div key={project.id} className="mb-32 last:mb-10">
+            <section
+              key={project.id}
+              id={`project-${project.slug}`}
+              data-slug={project.slug}
+              aria-label={project.name}
+              className="mb-32 last:mb-10 scroll-mt-32"
+            >
               <div className="mb-8 md:mb-12">
                 <div className="border-b border-white/10 pb-4 md:pb-6 mb-4 md:mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6">
                   <div className="flex items-center gap-4 md:gap-6">
@@ -118,8 +128,9 @@ export default function Projects() {
                   <ArrowRight size={16} aria-hidden="true" className="transition-transform duration-500 group-hover:translate-x-1" />
                 </Link>
               </div>
-            </div>
+            </section>
           ))}
+          </div>
         </div>
 
       </div>
