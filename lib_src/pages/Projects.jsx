@@ -66,7 +66,7 @@ export default function Projects() {
           <ProjectRail projects={projects} />
 
           <div className="min-w-0 flex-1">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <section
               key={project.id}
               id={`project-${project.slug}`}
@@ -113,6 +113,7 @@ export default function Projects() {
                 items={project.gallery.map((img, idx) => ({ id: idx, hero: img, name: `${project.name}, Gallery Image ${idx + 1}` }))} 
                 isProduct={false} 
                 hideLinkOverlay={true} 
+                priority={index === 0} 
               />
               
               <div className="mt-8 flex flex-col sm:flex-row justify-center md:hidden w-full gap-4">

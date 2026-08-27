@@ -71,7 +71,7 @@ export default function Gallery() {
           viewport={{ once: true }}
           className="space-y-24 md:space-y-32"
         >
-          {projects.map((project) => (
+          {projects.map((project, projectIndex) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 20 }}
@@ -107,11 +107,20 @@ export default function Gallery() {
                       >
                         <span className="sr-only">Open {project.name} image {imgIndex + 1}</span>
                       </button>
+                      {/* The tiles sit in the right-hand 1.1fr column of a
+                          two-column grid and split it three ways, so a desktop
+                          tile is ~15vw wide - not the 33vw the old `sizes`
+                          claimed, which had every one of the 80-odd images on
+                          this page fetched at roughly twice the pixels it
+                          could show. */}
                       <Image
                         src={image}
                         alt={`${project.name} lighting project installation ${imgIndex + 1}`}
                         fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 20vw"
+                        {...(projectIndex === 0 && imgIndex < 3
+                          ? { priority: true }
+                          : { loading: "lazy" })}
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-scrim/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
