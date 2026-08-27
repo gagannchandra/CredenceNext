@@ -5,7 +5,12 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
-export default function CategoryCarousel({ items, isProduct = false, isSplitLayout = false, hideLinkOverlay = false }) {
+// `priority` marks this carousel as the one holding the page's LCP image.
+// Only the first carousel in a stack should set it - the centre slide then
+// loads eagerly at high fetch priority instead of waiting on the lazy-load
+// observer, which on /projects and /products was delaying the largest paint
+// on screen by a full network round trip.
+export default function CategoryCarousel({ items, isProduct = false, isSplitLayout = false, hideLinkOverlay = false, priority = false }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -93,7 +98,7 @@ export default function CategoryCarousel({ items, isProduct = false, isSplitLayo
               alt={isProduct ? item.title : item.name}
               fill
               sizes="(max-width: 768px) 90vw, 60vw"
-              loading="lazy"
+              {...(priority && isCenter ? { priority: true } : { loading: "lazy" })}
               className="object-cover pointer-events-none"
             />
             

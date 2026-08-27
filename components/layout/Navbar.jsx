@@ -60,8 +60,7 @@ const navItems = [
       { name: "My Town (Multiple Locations)", to: "/projects/my-town" },
       { name: "Ground Control (Bahrain)", to: "/projects/ground-control" },
       { name: "Funtura (Riyadh)", to: "/projects/funtura" },
-      { name: "Xtreme Zone (Dammam)", to: "/projects/xtreme-zone" },
-      { name: "Xtreme Z (Riyadh)", to: "/projects/xtreme-z" },
+      { name: "Xtreme Zone (Riyadh)", to: "/projects/xtreme-zone" },
       { name: "Smarvy Spot (Al-Ahsa)", to: "/projects/smarvy-spot" },
     ],
     featured: {

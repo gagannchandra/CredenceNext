@@ -108,17 +108,25 @@ export default function BrandsSection() {
                     transition={{
                       duration: 0.4, ease: ease.standard
                     }}
-                    className="flex items-center justify-center w-[180px] md:w-[240px]"
+                    className="relative flex items-center justify-center w-[180px] md:w-[240px] h-16 md:h-24"
                   >
+                    {/* Every partner logo has its own aspect ratio, so the tile
+                        - not the image - owns the geometry: a fixed box with
+                        `fill` + `object-contain` letterboxes each logo into a
+                        uniform slot. The previous markup declared a flat
+                        240x96 on <Image> and then corrected it with an inline
+                        style={{ width: "auto", height: "auto" }}, which (being
+                        inline) also beat the h-16/md:h-24 classes, so every
+                        logo rendered at its own intrinsic pixel size and the
+                        marquee stepped up and down across a dozen heights. */}
                     <Image
                       src={logo}
                       alt="Credence Lighting Partner Brand Logo"
-                      width={240}
-                      height={96}
+                      fill
                       loading="lazy"
                       draggable="false"
-                      style={{ width: "auto", height: "auto" }}
-                      className="h-16 md:h-24 w-auto object-contain opacity-80 hover:opacity-100 transition duration-500 select-none"
+                      sizes="(max-width: 768px) 180px, 240px"
+                      className="object-contain opacity-80 hover:opacity-100 transition duration-500 select-none"
                     />
                   </motion.div>
                 )

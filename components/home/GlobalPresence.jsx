@@ -4,15 +4,20 @@ import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
-import * as THREE from "three";
 import TextReveal from "../ui/motion/TextReveal";
 import FadeUp from "../ui/motion/FadeUp";
 import { ease, duration } from "../../utils/motion";
 
 // react-globe.gl reaches for `window`/WebGL at import time, so it can only
 // ever run on the client. Splitting it into its own chunk also means the
-// ~250kb three.js + globe bundle never ships to visitors who never scroll
-// far enough to see it (see the in-view gate below).
+// three.js + globe bundle never ships to visitors who never scroll far
+// enough to see it (see the in-view gate below).
+//
+// three itself is imported the same way, lower down, rather than at module
+// scope: a static `import * as THREE from "three"` here put the whole engine
+// (83kB gzipped, a third of the homepage's total script weight) on the
+// critical path of every first visit, which defeated the point of splitting
+// the globe out at all.
 const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
 
 // Served from public/ rather than raw.githubusercontent.com: the remote copy
@@ -91,6 +96,7 @@ export default function GlobalPresence() {
   const [isGlobeReady, setIsGlobeReady] = useState(false); // gate: reveal once painted
   const [isGlobeMounted, setIsGlobeMounted] = useState(false); // gate: instance exists
   const [isLowPower, setIsLowPower] = useState(false);
+  const [three, setThree] = useState(null); // gate: three.js chunk resolved
 
   const [globeSize, setGlobeSize] = useState({
     width: typeof window !== "undefined" ? Math.min(window.innerWidth - 32, 1000) : 1000,
@@ -100,13 +106,32 @@ export default function GlobalPresence() {
   const [hexData, setHexData] = useState([]);
 
   const customGlobeMaterial = useMemo(() => {
-    const mat = new THREE.MeshPhongMaterial();
-    mat.color = new THREE.Color("#030408");
+    if (!three) return null;
+    const mat = new three.MeshPhongMaterial();
+    mat.color = new three.Color("#030408");
     mat.transparent = true;
     mat.opacity = 0.9;
     mat.shininess = 1;
     return mat;
-  }, []);
+  }, [three]);
+
+  // Pull three in on the same trigger as the globe chunk. Both resolve to the
+  // same module instance, so the material built here is the very one
+  // react-globe.gl's renderer expects.
+  useEffect(() => {
+    if (!shouldRender || three) return;
+
+    let cancelled = false;
+    import("three")
+      .then((mod) => {
+        if (!cancelled) setThree(mod);
+      })
+      .catch((err) => console.error("Globe: three.js failed to load", err));
+
+    return () => {
+      cancelled = true;
+    };
+  }, [shouldRender, three]);
 
   // Low-end devices already get a `perf-low` class from the hardware
   // sniffer in the root layout - reuse that signal so the heaviest 3D
@@ -226,16 +251,16 @@ export default function GlobalPresence() {
   // every re-run and could leave the memoised globe material disposed but
   // still mounted.)
   useEffect(() => {
-    if (!isGlobeMounted) return;
+    if (!isGlobeMounted || !three) return;
     const globe = globeRef.current;
     if (!globe) return;
 
     const renderer = globe.renderer();
     if (renderer) {
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isLowPower ? 1.5 : 2));
-      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMapping = three.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.3;
-      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.outputColorSpace = three.SRGBColorSpace;
     }
 
     const controls = globe.controls();
@@ -259,16 +284,16 @@ export default function GlobalPresence() {
     const defaultLights = scene.children.filter((obj) => obj.isLight);
     defaultLights.forEach((light) => scene.remove(light));
 
-    const keyLight = new THREE.DirectionalLight("#D4AF37", 5);
+    const keyLight = new three.DirectionalLight("#D4AF37", 5);
     keyLight.position.set(-200, 100, 200);
 
-    const fillLight = new THREE.DirectionalLight("#3e4e68", 3);
+    const fillLight = new three.DirectionalLight("#3e4e68", 3);
     fillLight.position.set(200, -50, 100);
 
-    const rimLight = new THREE.DirectionalLight("#F3E5AB", 8);
+    const rimLight = new three.DirectionalLight("#F3E5AB", 8);
     rimLight.position.set(-200, 150, -250);
 
-    const ambientLight = new THREE.AmbientLight("#ffffff", 0.2);
+    const ambientLight = new three.AmbientLight("#ffffff", 0.2);
 
     const addedLights = [keyLight, fillLight, rimLight, ambientLight];
     addedLights.forEach((light) => scene.add(light));
@@ -281,7 +306,7 @@ export default function GlobalPresence() {
         light.dispose?.();
       });
     };
-  }, [isGlobeMounted, isLowPower, prefersReducedMotion, applyPointOfView]);
+  }, [isGlobeMounted, isLowPower, prefersReducedMotion, applyPointOfView, three]);
 
   // Bespoke idle motion. Created once and left running; the guards inside read
   // live values through refs so the loop genuinely idles when the tab is
@@ -468,7 +493,7 @@ export default function GlobalPresence() {
                 transition={{ duration: duration.slow, ease: ease.slow }}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center transition-transform duration-[800ms] ease-out group-hover:scale-105 pointer-events-auto"
               >
-                {shouldRender && (
+                {shouldRender && customGlobeMaterial && (
                   <Globe
                     ref={globeRef}
                     onGlobeReady={handleGlobeMounted}

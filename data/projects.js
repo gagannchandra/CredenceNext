@@ -10,8 +10,6 @@ const gc155 = "/images/ground-control/155.webp";
 const funtura134 = "/images/Funtura/134.webp";
 const funtura135 = "/images/Funtura/135.webp";
 
-const xtreme136 = "/images/xtremezone/136.webp";
-const xtreme137 = "/images/xtremezone/137.webp";
 
 const xtremez144 = "/images/xtremez/144.webp";
 
@@ -80,25 +78,6 @@ const projects = [
     id: 4,
     slug: "xtreme-zone",
     name: "Xtreme Zone",
-    location: "Al Shifa, Dammam, Saudi Arabia",
-    year: "2024",
-    category: "Linear Lighting",
-    hero: xtreme136,
-    description: "Large-format linear installations and architectural lighting used for immersive entertainment spaces.",
-    gallery: [xtreme136, xtreme137],
-    engineeringMetrics: {
-      luxLevel: "500 Lux direct/indirect",
-      lpd: "4.1 W/m²",
-      cri: "CRI 90+",
-      controls: "0-10V Master Zoning",
-      energySaved: "-40% Energy Reduction",
-    },
-  },
-
-  {
-    id: 5,
-    slug: "xtreme-z",
-    name: "Xtreme Z",
     location: "Roshn Front, Riyadh, Saudi Arabia",
     year: "2024",
     category: "Architectural Lighting",

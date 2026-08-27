@@ -75,7 +75,7 @@ export default function Products() {
         </div>
 
         <div className="max-w-[1700px] mx-auto px-6 md:px-12 mt-20 relative z-10">
-          {Array.from(new Set(products.map(p => p.category))).map((category) => {
+          {Array.from(new Set(products.map(p => p.category))).map((category, index) => {
             const categoryProducts = products.filter(p => p.category === category);
             return (
               <div key={category} className="mb-32 last:mb-10">
@@ -114,7 +114,7 @@ export default function Products() {
                   )}
                 </div>
                 
-                <CategoryCarousel items={categoryProducts} isProduct={true} />
+                <CategoryCarousel items={categoryProducts} isProduct={true} priority={index === 0} />
                 
                 <div className="mt-8 flex flex-col sm:flex-row justify-center md:hidden w-full gap-4">
                   <Link href={`/products/${slugify(category)}`}

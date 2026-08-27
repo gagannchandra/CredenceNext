@@ -5,7 +5,6 @@ export const projectSlugs = [
   "ground-control",
   "funtura",
   "xtreme-zone",
-  "xtreme-z",
   "smarvy-spot",
   "dubai-marina-penthouse",
   "riyadh-business-tower",
