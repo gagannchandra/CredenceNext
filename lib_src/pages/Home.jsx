@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import Footer from "@/components/layout/Footer";
 import ReturnScrollHandler from "@/components/ReturnScrollHandler";
 import { scrollToSection } from "@/utils/scrollUtils";
 import SEO from "@/components/seo/SEO";
+import Loader from "@/components/ui/Loader";
 
 import Hero from "@/components/home/Hero";
 import AboutSection from "@/components/home/AboutSection";
@@ -16,17 +18,59 @@ import BrandsSection from "@/components/home/BrandsSection";
 // longer needs to be wrapped in a top-level ssr:false dynamic import here.
 // That means its heading/copy/CTA now server-render like the rest of the
 // page instead of being blank until JS loads.
+//
+// The globe (and a page-level loader gated on it) previously loaded eagerly
+// on every homepage visit, to avoid a pop-in when scrolling down to it. That
+// pulled three.js's full module graph (core, module, webgpu, tsl, three-globe,
+// d3-geo, h3-js, polished - ~83kB gzipped) into the critical path of every
+// first visit and made the whole page feel slower to load. GlobalPresence's
+// own in-view gate (see its useInView hook) now does what it was built for:
+// nothing globe-related loads until the visitor scrolls near it.
 import GlobalPresence from "@/components/home/GlobalPresence";
 import ProjectsSection from "@/components/home/ProjectsSection";
 import ContactSection from "@/components/home/ContactSection";
 import PageTransition from "@/components/ui/motion/PageTransition";
 
+// Once shown in this tab, later visits to "/" (client-side nav away and
+// back) skip the loader - it's a first-impression flourish, not something
+// worth replaying every time someone bounces back to the homepage.
+const LOADER_SEEN_KEY = "credence:home-loader-seen";
+
 export default function Home() {
-  // The full-screen splash that used to sit here was gated on `window.load`,
-  // which waits for every image on the page. It covered the hero for the whole
-  // of that wait, so the hero could never be the LCP element and the real LCP
-  // was whatever painted after the overlay left. The hero is server-rendered
-  // and its background image is fetchPriority="high" - it paints on its own.
+  // The original full-screen splash here was gated on `window.load`, which
+  // waits for every image on the page - it covered the hero for the whole of
+  // that wait, so the hero could never be the LCP element. A later version
+  // was gated on the 3D globe finishing loading, which "fixed" that but
+  // forced the globe to load eagerly on every visit (~83kB of three.js in
+  // the critical path) to have something to wait for - regressing load
+  // performance instead. This version depends on neither: it's a fixed,
+  // short (~1.5s) timer-driven intro that doesn't wait on any network
+  // resource, so it can't block or slow down anything real.
+  // Always starts true so server and client render the same thing on first
+  // paint (reading sessionStorage here would desync them and trigger a
+  // hydration mismatch) - the "already seen" check below runs client-only,
+  // one effect tick later, and closes the loader immediately if it applies.
+  const [showLoader, setShowLoader] = useState(true);
+
+  const handleLoaderDone = () => {
+    try {
+      sessionStorage.setItem(LOADER_SEEN_KEY, "true");
+    } catch {
+      // sessionStorage can throw in private-browsing / quota-exceeded cases - non-fatal
+    }
+    setShowLoader(false);
+  };
+
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem(LOADER_SEEN_KEY) === "true") {
+        queueMicrotask(() => setShowLoader(false));
+      }
+    } catch {
+      // sessionStorage can throw in private-browsing / quota-exceeded cases - non-fatal
+    }
+  }, []);
+
   useEffect(() => {
     const hash = window.location.hash;
     if (!hash) return;
@@ -41,6 +85,9 @@ export default function Home() {
 
   return (
     <>
+    <AnimatePresence>
+      {showLoader && <Loader onDone={handleLoaderDone} />}
+    </AnimatePresence>
     <PageTransition>
       <SEO
         title="Credence Lighting · Architectural & Commercial Lighting Dubai"

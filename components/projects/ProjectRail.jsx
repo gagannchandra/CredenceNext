@@ -120,6 +120,7 @@ export default function ProjectRail({ projects }) {
         {/* Scrollable list */}
         <div
           ref={railRef}
+          data-lenis-prevent
           className="project-rail-scroll min-h-0 flex-1 overflow-y-auto pr-2 -mr-2 py-2"
         >
           <ul className="flex flex-col">

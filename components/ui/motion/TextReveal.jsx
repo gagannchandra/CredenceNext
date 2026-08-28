@@ -9,10 +9,11 @@ export default function TextReveal({
   className = "",
   delay = 0,
   once = true,
+  static: isStatic = false,
 }) {
   const shouldReduceMotion = useReducedMotion();
 
-  if (shouldReduceMotion) {
+  if (shouldReduceMotion || isStatic) {
     return <Component className={className}>{text}</Component>;
   }
 

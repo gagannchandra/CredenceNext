@@ -303,6 +303,21 @@ h1, h2, h3, h4, h5, h6 {
 .animate-hero-title {
   animation: slideUpFade 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
 }
+
+/* Brand logo marquee: a pure CSS transform loop so it runs on the
+   compositor thread instead of competing with Lenis's rAF loop for main-
+   thread time (the previous Framer Motion `animate` + `drag` version did,
+   and never paused off-screen since it had no whileInView gate). */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
 .animate-hero-subtitle {
   animation: slideUpFade 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both;
 }

@@ -3,18 +3,19 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { fadeUpVariants } from "../../../utils/motion";
 
-export default function FadeUp({ 
-  children, 
-  delay = 0, 
-  className = "", 
-  once = true, 
+export default function FadeUp({
+  children,
+  delay = 0,
+  className = "",
+  once = true,
   amount = 0,
-  as: Component = "div" 
+  as: Component = "div",
+  static: isStatic = false,
 }) {
   const shouldReduceMotion = useReducedMotion();
   const MotionComponent = motion[Component] || motion.div;
 
-  if (shouldReduceMotion) {
+  if (shouldReduceMotion || isStatic) {
     return <Component className={className}>{children}</Component>;
   }
 

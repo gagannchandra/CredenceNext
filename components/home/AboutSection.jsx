@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { duration, ease } from "../../utils/motion";
 import {
   Wrench,
   Monitor,
@@ -15,7 +16,7 @@ import {
 import TextReveal from "../ui/motion/TextReveal";
 import FadeUp from "../ui/motion/FadeUp";
 import HoverLift from "../ui/motion/HoverLift";
-import { duration, ease } from "../../utils/motion";
+import Counter from "../ui/motion/Counter";
 
 // Three tiles across four columns: 2 + 1 + 1 fills exactly one row, so the
 // grid has no empty cell and the widths are not all identical.
@@ -101,7 +102,7 @@ export default function AboutSection({ preview = false, asPage = false }) {
               }`}
             >
               <p className="text-fluid-h2 font-serif text-white mb-3">
-                {number}
+                <Counter value={number} />
               </p>
               <p className="text-xs text-white/50 leading-snug">
                 {text}

@@ -1,12 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
 import PageLink from "../ui/PageLink";
 import TextReveal from "../ui/motion/TextReveal";
 import FadeUp from "../ui/motion/FadeUp";
 import HoverLift from "../ui/motion/HoverLift";
-import { ease } from "../../utils/motion";
+import Counter from "../ui/motion/Counter";
 import { ArrowRight } from "lucide-react";
 
 const featuredLogos = [
@@ -25,8 +24,6 @@ const featuredLogos = [
 ];
 
 export default function BrandsSection() {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
     <section
       id="brands"
@@ -65,7 +62,7 @@ export default function BrandsSection() {
           ].map((item, i) => (
             <FadeUp key={item.label} delay={6 + i * 2} className="text-center">
               <h3 className="text-fluid-h2 text-white font-serif">
-                {item.number}
+                <Counter value={item.number} />
               </h3>
               <p className="text-white/60 uppercase tracking-[0.3em] text-xs mt-3">
                 {item.label}
@@ -86,52 +83,31 @@ export default function BrandsSection() {
           {/* GLASS WRAPPER */}
           <div className="border-y border-white/10 bg-white/[0.03] backdrop-blur-md md:backdrop-blur-2xl py-14 overflow-hidden">
 
-            <motion.div
-              drag="x"
-              dragConstraints={{ left: -1200, right: 0 }}
-              animate={{ x: shouldReduceMotion ? "0%" : ["0%", "-50%"] }}
-              transition={{
-                duration: 120,
-                repeat: shouldReduceMotion ? 0 : Infinity,
-                ease: "linear",
-              }}
-              className="flex items-center gap-20 md:gap-28 min-w-max px-10 cursor-grab active:cursor-grabbing"
-            >
-              {[...featuredLogos, ...featuredLogos].map(
-                (logo, index) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{
-                      scale: 1.05,
-                      y: -3,
-                    }}
-                    transition={{
-                      duration: 0.4, ease: ease.standard
-                    }}
-                    className="relative flex items-center justify-center w-[180px] md:w-[240px] h-16 md:h-24"
-                  >
-                    {/* Every partner logo has its own aspect ratio, so the tile
-                        - not the image - owns the geometry: a fixed box with
-                        `fill` + `object-contain` letterboxes each logo into a
-                        uniform slot. The previous markup declared a flat
-                        240x96 on <Image> and then corrected it with an inline
-                        style={{ width: "auto", height: "auto" }}, which (being
-                        inline) also beat the h-16/md:h-24 classes, so every
-                        logo rendered at its own intrinsic pixel size and the
-                        marquee stepped up and down across a dozen heights. */}
-                    <Image
-                      src={logo}
-                      alt="Credence Lighting Partner Brand Logo"
-                      fill
-                      loading="lazy"
-                      draggable="false"
-                      sizes="(max-width: 768px) 180px, 240px"
-                      className="object-contain opacity-80 hover:opacity-100 transition duration-500 select-none"
-                    />
-                  </motion.div>
-                )
-              )}
-            </motion.div>
+            {/* Pure CSS transform loop (see .animate-marquee in globals.css) -
+                runs on the compositor thread, so it never competes with
+                Lenis's rAF loop for main-thread time the way the previous
+                Framer Motion `animate` + `drag` version did. */}
+            <div className="flex items-center gap-20 md:gap-28 min-w-max px-10 animate-marquee">
+              {[...featuredLogos, ...featuredLogos].map((logo, index) => (
+                <div
+                  key={index}
+                  className="relative flex items-center justify-center w-[180px] md:w-[240px] h-16 md:h-24 transition-transform duration-300 hover:scale-105 hover:-translate-y-1"
+                >
+                  {/* Every partner logo has its own aspect ratio, so the tile
+                      - not the image - owns the geometry: a fixed box with
+                      `fill` + `object-contain` letterboxes each logo into a
+                      uniform slot. */}
+                  <Image
+                    src={logo}
+                    alt="Credence Lighting Partner Brand Logo"
+                    fill
+                    loading="lazy"
+                    sizes="(max-width: 768px) 180px, 240px"
+                    className="object-contain opacity-80 hover:opacity-100 transition duration-500"
+                  />
+                </div>
+              ))}
+            </div>
 
           </div>
 

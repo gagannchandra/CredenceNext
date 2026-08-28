@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { Suspense } from "react";
-import Loader from "./ui/Loader";
+import RouteLoader from "./ui/RouteLoader";
 import ScrollToTop from "./ScrollToTop";
 import WhatsappFloat from "./ui/WhatsappFloat";
 import AmbientBackground from "./layout/AmbientBackground";
@@ -35,7 +35,7 @@ export default function ClientApp({ children }) {
       {pathname !== "/" && <BackButton />}
 
       <ErrorBoundary>
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<RouteLoader />}>
           <main id="main-content">{children}</main>
         </Suspense>
       </ErrorBoundary>
