@@ -11,6 +11,7 @@ import { slugify } from "../../utils/routeUtils";
 import TextReveal from "../ui/motion/TextReveal";
 import FadeUp from "../ui/motion/FadeUp";
 import HoverLift from "../ui/motion/HoverLift";
+import useTiltHover from "../ui/motion/useTiltHover";
 import { duration, ease } from "../../utils/motion";
 import { ArrowRight } from "lucide-react";
 
@@ -42,6 +43,43 @@ const categoryDescriptions = {
   Audio: "We deliver innovative audio solutions for residential, commercial, hospitality, and retail spaces. From background music and public address systems to conference and entertainment audio, our team provides complete design, supply, installation, and support.",
   "Explosion Proof": "Certified ATEX and IECEx flameproof lighting engineered for hazardous industrial environments, oil & gas facilities, chemical plants, refineries, and hazardous highway corridors. Built with copper-free cast aluminum enclosures and high-impact tempered glass.",
 };
+
+function BentoCard({ item, index, bentoClass, onSelect }) {
+  const { handlers, tiltStyle, glowStyle } = useTiltHover({ max: 6 });
+
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, scale: 0.9, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.9, y: 20 }}
+      transition={{ duration: duration.standard, delay: index * 0.05, ease: ease.standard }}
+      onClick={onSelect}
+      style={tiltStyle}
+      {...handlers}
+      className={`group relative overflow-hidden rounded-card cursor-pointer shadow-elevation-low hover:shadow-elevation-high transition-all duration-500 bg-surface-elevated [transform-style:preserve-3d] ${bentoClass}`}
+    >
+      <Image
+        src={item.image}
+        alt={item.title}
+        fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+        loading="lazy"
+        className="object-cover transition-transform duration-1000 group-hover:scale-[1.08] opacity-80 group-hover:opacity-100"
+      />
+
+      {glowStyle && (
+        <motion.div aria-hidden="true" className="absolute inset-0 pointer-events-none mix-blend-overlay" style={glowStyle} />
+      )}
+
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
+
+      <div className="absolute inset-x-0 bottom-0 p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+        <h3 className="text-white text-2xl md:text-3xl font-serif leading-tight">{item.category}</h3>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function ProductsSection({ hideHeader = false }) {
   const router = useRouter();
@@ -101,7 +139,7 @@ export default function ProductsSection({ hideHeader = false }) {
       "md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-1", // Item 4
       "md:col-span-1 md:row-span-1 lg:col-span-2 lg:row-span-1", // Item 5
       "md:col-span-2 md:row-span-1 lg:col-span-1 lg:row-span-1", // Item 6
-      "md:col-span-2 md:row-span-1 lg:col-span-4 lg:row-span-1", // Item 7
+      "md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-1", // Item 7
     ];
     return patterns[index % 8];
   };
@@ -182,34 +220,16 @@ export default function ProductsSection({ hideHeader = false }) {
             >
               <AnimatePresence>
                 {representativeProducts.map((item, index) => (
-                  <motion.div
+                  <BentoCard
                     key={item.id}
-                    layout
-                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                    transition={{ duration: duration.standard, delay: index * 0.05, ease: ease.standard }}
-                    className={`group relative overflow-hidden rounded-card cursor-pointer shadow-elevation-low hover:shadow-elevation-high transition-all duration-500 bg-surface-elevated ${getBentoClasses(index)}`}
-                    onClick={() => {
+                    item={item}
+                    index={index}
+                    bentoClass={getBentoClasses(index)}
+                    onSelect={() => {
                       setActive(item.category);
                       setActiveProductIndex(0);
                     }}
-                  >
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      loading="lazy"
-                      className="object-cover transition-transform duration-1000 group-hover:scale-[1.08] opacity-80 group-hover:opacity-100"
-                    />
-
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
-
-                    <div className="absolute inset-x-0 bottom-0 p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                      <h3 className="text-white text-2xl md:text-3xl font-serif leading-tight">{item.category}</h3>
-                    </div>
-                  </motion.div>
+                  />
                 ))}
               </AnimatePresence>
             </motion.div>

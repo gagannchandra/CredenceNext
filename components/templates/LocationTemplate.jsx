@@ -100,16 +100,16 @@ export default function LocationTemplate({
           <div className="absolute top-0 left-0 w-[900px] h-[500px] bg-brand-gold/10 blur-[60px] md:blur-[180px] pointer-events-none" />
           <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
 
-          <div className="relative z-10 max-w-6xl mx-auto">
+          <div className="relative z-10 max-w-6xl mx-auto text-center md:text-left">
             {/* The page's only eyebrow (Section 4.7). */}
             <FadeUp>
-              <p className="flex items-center gap-2 uppercase tracking-[0.35em] text-xs text-brand-gold mb-6">
+              <p className="flex items-center justify-center md:justify-start gap-2 uppercase tracking-[0.35em] text-xs text-brand-gold mb-6">
                 <MapPin size={14} aria-hidden="true" />
                 {hero.location}
               </p>
             </FadeUp>
             <FadeUp delay={1}>
-              <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] leading-[1.08] font-serif text-white max-w-5xl">
+              <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] leading-[1.08] font-serif text-white max-w-5xl mx-auto md:mx-0">
                 {hero.title}{" "}
                 <span className="italic text-brand-gold leading-[1.1] pb-1 inline-block">
                   {hero.titleItalic}
@@ -117,12 +117,12 @@ export default function LocationTemplate({
               </h1>
             </FadeUp>
             <FadeUp delay={2}>
-              <p className="mt-8 text-white/60 text-lg md:text-xl leading-relaxed max-w-2xl">
+              <p className="mt-8 text-white/60 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto md:mx-0">
                 {hero.description}
               </p>
             </FadeUp>
             <FadeUp delay={3}>
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-10">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center md:justify-start gap-4 mt-10">
                 {/* Was "Discuss Your Ras Al Khaimah Project" - at
                     tracking-[0.2em] that label wrapped to three lines inside
                     the button (Section 4.5). The location is already the H1. */}
