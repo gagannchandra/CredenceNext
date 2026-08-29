@@ -48,7 +48,7 @@ export default function AboutSection({ preview = false, asPage = false }) {
   return (
     <section
       id="about"
-      className="relative text-white flex flex-col items-center px-6 pt-24 pb-12 md:pt-36 md:pb-24"
+      className="relative text-white flex flex-col items-center px-6 pt-20 pb-8 md:pt-28 md:pb-14"
     >
       <div className="relative z-10 max-w-[1400px] w-full mx-auto text-center">
 

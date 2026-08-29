@@ -166,7 +166,7 @@ export default function ContactSection({ asPage = false }) {
   return (
     <section
       id="contact"
-      className="relative bg-transparent z-10 text-white px-4 md:px-16 py-12 md:py-24 overflow-hidden"
+      className="relative bg-transparent z-10 text-white px-4 md:px-16 py-8 md:py-16 overflow-hidden"
     >
 
       <div className="relative z-10 max-w-[1500px] mx-auto">

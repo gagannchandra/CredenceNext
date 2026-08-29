@@ -13,7 +13,11 @@ import FadeUp from "../ui/motion/FadeUp";
 import HoverLift from "../ui/motion/HoverLift";
 import useTiltHover from "../ui/motion/useTiltHover";
 import { duration, ease } from "../../utils/motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
+
+// How far (px) a drag has to travel before it commits to advancing a slide
+// rather than snapping back to the current one.
+const DRAG_THRESHOLD = 60;
 
 const categories = [
   "All",
@@ -145,41 +149,59 @@ export default function ProductsSection({ hideHeader = false }) {
   };
 
   return (
-    <section id="products" className="text-white px-4 md:px-12 py-12 md:py-24 relative overflow-hidden bg-transparent z-10">
+    <section id="products" className="text-white px-4 md:px-12 py-8 md:py-16 relative overflow-hidden bg-transparent z-10">
 
       <div className="max-w-[1500px] mx-auto relative z-10">
         {!hideHeader && (
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 mb-16 text-center md:text-left">
-            <div className="flex flex-col items-center md:items-start mx-auto md:mx-0">
-              <FadeUp delay={0}>
-                <p className="uppercase tracking-[0.4em] text-xs text-brand-gold mb-6 font-semibold">
-                  Premium Collection
-                </p>
-              </FadeUp>
+          <div className="mb-16 text-center md:text-left">
+            <FadeUp delay={0}>
+              <p className="uppercase tracking-[0.4em] text-xs text-brand-gold mb-6 font-semibold">
+                Premium Collection
+              </p>
+            </FadeUp>
+
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
               <h2 className="text-fluid-h1 font-serif text-white flex flex-wrap justify-center md:justify-start gap-2">
                 <TextReveal text="Our Product" /> <TextReveal text="Range" delay={2} className="italic text-brand-gold font-light block w-full text-center md:text-left md:w-auto md:inline-block" />
               </h2>
+
+              <FadeUp delay={4} className="mx-auto md:mx-0 w-full md:w-auto flex flex-col sm:flex-row items-center gap-3 shrink-0">
+                <HoverLift className="w-full sm:w-auto">
+                  <Link
+                    href="/products"
+                    className="w-full sm:w-auto border border-white/20 backdrop-blur-sm text-white px-8 py-4 tracking-[0.2em] uppercase text-xs transition-all duration-500 rounded-button flex items-center justify-center hover:bg-white hover:text-black"
+                  >
+                    All Products
+                  </Link>
+                </HoverLift>
+                <HoverLift className="w-full sm:w-auto">
+                  <Link
+                    href="/contact"
+                    className="w-full sm:w-auto border border-brand-gold/40 backdrop-blur-sm text-brand-gold px-8 py-4 tracking-[0.2em] uppercase text-xs transition-all duration-500 rounded-button flex items-center justify-center gap-3 group hover:bg-brand-gold hover:text-black"
+                  >
+                    Enquire
+                    <ArrowRight size={16} aria-hidden="true" className="transition-transform duration-500 group-hover:translate-x-1" />
+                  </Link>
+                </HoverLift>
+              </FadeUp>
             </div>
 
-            <FadeUp delay={4} className="mx-auto md:mx-0 w-full md:w-auto flex flex-col sm:flex-row items-center gap-3">
-              <HoverLift className="w-full sm:w-auto">
-                <Link
-                  href="/products"
-                  className="w-full sm:w-auto border border-white/20 backdrop-blur-sm text-white px-8 py-4 tracking-[0.2em] uppercase text-xs transition-all duration-500 rounded-button flex items-center justify-center hover:bg-white hover:text-black"
+            <div className="mt-6 min-h-[3.5rem]">
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={active}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.35, ease: ease.standard }}
+                  className="text-white/60 text-sm md:text-base leading-relaxed w-full line-clamp-2"
                 >
-                  All Products
-                </Link>
-              </HoverLift>
-              <HoverLift className="w-full sm:w-auto">
-                <Link
-                  href="/contact"
-                  className="w-full sm:w-auto border border-brand-gold/40 backdrop-blur-sm text-brand-gold px-8 py-4 tracking-[0.2em] uppercase text-xs transition-all duration-500 rounded-button flex items-center justify-center gap-3 group hover:bg-brand-gold hover:text-black"
-                >
-                  Enquire
-                  <ArrowRight size={16} aria-hidden="true" className="transition-transform duration-500 group-hover:translate-x-1" />
-                </Link>
-              </HoverLift>
-            </FadeUp>
+                  {active === "All"
+                    ? "Our full fixture range, from architectural downlights to explosion-proof luminaires."
+                    : categoryDescriptions[active]}
+                </motion.p>
+              </AnimatePresence>
+            </div>
           </div>
         )}
 
@@ -235,7 +257,18 @@ export default function ProductsSection({ hideHeader = false }) {
             </motion.div>
           ) : (
             // Featured View for Specific Category - Continuous Coverflow Carousel
-            <div className="relative w-full h-[70vh] min-h-[600px] flex items-center justify-center group select-none overflow-hidden rounded-panel">
+            <div className="relative">
+              <motion.div
+                drag="x"
+                dragElastic={0.15}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragMomentum={false}
+                onDragEnd={(_, info) => {
+                  if (info.offset.x < -DRAG_THRESHOLD) handleNext();
+                  else if (info.offset.x > DRAG_THRESHOLD) handlePrev();
+                }}
+                className="relative w-full h-[70vh] min-h-[600px] flex items-center justify-center group select-none overflow-hidden rounded-panel cursor-grab active:cursor-grabbing"
+              >
               {filteredProducts.map((item, index) => {
                 const total = filteredProducts.length;
                 let diff = index - activeProductIndex;
@@ -341,6 +374,30 @@ export default function ProductsSection({ hideHeader = false }) {
                   </motion.div>
                 );
               })}
+              </motion.div>
+
+              {/* Arrow Controls - overlaid on the image, outside the drag layer */}
+              <button
+                type="button"
+                onClick={handlePrev}
+                aria-label="Previous product"
+                className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-40 w-11 h-11 md:w-12 md:h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:text-black hover:bg-white hover:border-white transition-all duration-300"
+              >
+                <ArrowLeft size={18} aria-hidden="true" />
+              </button>
+              <button
+                type="button"
+                onClick={handleNext}
+                aria-label="Next product"
+                className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-40 w-11 h-11 md:w-12 md:h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:text-black hover:bg-white hover:border-white transition-all duration-300"
+              >
+                <ArrowRight size={18} aria-hidden="true" />
+              </button>
+
+              {/* Index indicator */}
+              <span className="absolute bottom-4 left-1/2 -translate-x-1/2 z-40 font-mono text-xs text-white/50 tabular-nums bg-black/30 backdrop-blur-md px-3 py-1 rounded-full pointer-events-none">
+                {String(activeProductIndex + 1).padStart(2, "0")} / {String(filteredProducts.length).padStart(2, "0")}
+              </span>
             </div>
           )}
         </div>
