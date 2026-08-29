@@ -15,6 +15,7 @@ import ErrorBoundary from "./ui/ErrorBoundary";
 // Crucially it does not wrap {children} - it is a sibling - so the actual page
 // content below is free to render on the server like any normal Next.js page.
 const SmoothScroll = dynamic(() => import("./ui/SmoothScroll"), { ssr: false });
+const CustomCursor = dynamic(() => import("./ui/CustomCursor"), { ssr: false });
 
 export default function ClientApp({ children }) {
   const pathname = usePathname();
@@ -29,6 +30,7 @@ export default function ClientApp({ children }) {
       </a>
 
       <SmoothScroll />
+      <CustomCursor />
       <AmbientBackground />
       <Navbar />
       <ScrollToTop />

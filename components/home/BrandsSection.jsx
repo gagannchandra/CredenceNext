@@ -27,7 +27,7 @@ export default function BrandsSection() {
   return (
     <section
       id="brands"
-      className="relative bg-transparent z-10 py-12 md:py-24 overflow-hidden"
+      className="relative bg-transparent z-10 py-8 md:py-16 overflow-hidden"
     >
       <div className="relative z-10">
 

@@ -400,7 +400,7 @@ export default function GlobalPresence() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-transparent z-10 py-20 md:py-32 overflow-hidden flex items-center min-h-screen md:min-h-[90vh]"
+      className="relative bg-transparent z-10 py-12 md:py-20 overflow-hidden flex items-center min-h-screen md:min-h-[90vh]"
     >
       <div className="relative z-10 w-full max-w-[1500px] mx-auto px-6 md:px-16">
         <div className="grid md:grid-cols-12 gap-8 items-center">

@@ -1,217 +1,238 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import projects from "../../data/projects";
 import { useRouter, usePathname } from "next/navigation";
 import { saveReturnState } from "../../utils/navigationState";
+import { duration, ease } from "../../utils/motion";
 import TextReveal from "../ui/motion/TextReveal";
 import FadeUp from "../ui/motion/FadeUp";
 import HoverLift from "../ui/motion/HoverLift";
-import useTiltHover from "../ui/motion/useTiltHover";
 import { ArrowRight, ArrowLeft, ArrowUpRight } from "lucide-react";
 
-// Distinguishes a real drag from a click so dragging the rail doesn't
-// accidentally navigate to whatever card the pointer lifted over.
-const DRAG_CLICK_THRESHOLD = 6;
-
-function ProjectCard({ item, index, onSelect }) {
-  const { handlers, tiltStyle, glowStyle } = useTiltHover({ max: 6 });
-
-  return (
-    <motion.div
-      data-card
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.6, delay: (index % 6) * 0.06 }}
-      onClick={() => onSelect(item.slug)}
-      style={tiltStyle}
-      {...handlers}
-      className="group relative shrink-0 snap-start w-[78vw] sm:w-[380px] md:w-[440px] lg:w-[480px] aspect-[4/5] overflow-hidden rounded-panel cursor-pointer shadow-lg hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-shadow duration-500 bg-surface-elevated [transform-style:preserve-3d]"
-    >
-      <Image
-        src={item.hero}
-        alt={item.name}
-        fill
-        draggable={false}
-        sizes="(max-width: 640px) 80vw, (max-width: 1024px) 440px, 480px"
-        loading="lazy"
-        className="object-cover pointer-events-none transition-transform duration-1000 group-hover:scale-[1.08] opacity-85 group-hover:opacity-100"
-      />
-
-      {glowStyle && (
-        <motion.div aria-hidden="true" className="absolute inset-0 pointer-events-none mix-blend-overlay" style={glowStyle} />
-      )}
-
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent pointer-events-none" />
-
-      <div className="absolute top-6 left-6 right-6 flex items-center justify-between pointer-events-none">
-        <span className="uppercase tracking-[0.25em] text-[10px] text-brand-gold font-semibold bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-full">
-          {item.category}
-        </span>
-        <span className="text-white/50 text-xs font-mono">{item.year}</span>
-      </div>
-
-      <div className="absolute inset-x-0 bottom-0 p-6 md:p-8 pointer-events-none">
-        <h3 className="text-white text-2xl md:text-3xl font-serif leading-tight mb-2">{item.name}</h3>
-        <p className="text-white/60 text-xs uppercase tracking-[0.15em] mb-4">{item.location}</p>
-        <span className="inline-flex items-center gap-2 text-brand-gold text-xs uppercase tracking-[0.2em] font-semibold opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300">
-          View Project
-          <ArrowUpRight size={14} aria-hidden="true" />
-        </span>
-      </div>
-    </motion.div>
-  );
-}
+// How far (px) a drag has to travel before it commits to advancing a slide
+// rather than snapping back to the current one.
+const DRAG_THRESHOLD = 60;
 
 export default function ProjectsSection({ hideHeader = false }) {
   const router = useRouter();
   const pathname = usePathname();
-  const trackRef = useRef(null);
-  const dragState = useRef({ pointerId: null, startX: 0, startScrollLeft: 0, moved: 0 });
-  const [isDragging, setIsDragging] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const total = projects.length;
 
-  const goToProject = useCallback(
-    (slug) => {
-      saveReturnState({ pathname, hash: pathname === "/" ? "#projects" : "", scrollY: window.scrollY });
-      router.push(`/projects/${slug}`);
-    },
-    [pathname, router]
-  );
-
-  const scrollByCard = (direction) => {
-    const track = trackRef.current;
-    if (!track) return;
-    const card = track.querySelector("[data-card]");
-    const gap = 24;
-    const amount = card ? card.getBoundingClientRect().width + gap : track.clientWidth * 0.8;
-    track.scrollBy({ left: direction * amount, behavior: "smooth" });
+  const goToProject = (slug) => {
+    saveReturnState({ pathname, hash: pathname === "/" ? "#projects" : "", scrollY: window.scrollY });
+    router.push(`/projects/${slug}`);
   };
 
-  const onPointerDown = (e) => {
-    const track = trackRef.current;
-    if (!track || e.pointerType === "touch") return; // native touch scrolling handles itself
-    track.setPointerCapture(e.pointerId);
-    dragState.current = { pointerId: e.pointerId, startX: e.clientX, startScrollLeft: track.scrollLeft, moved: 0 };
-    setIsDragging(true);
-  };
+  const handlePrev = () => setActiveIndex((prev) => (prev === 0 ? total - 1 : prev - 1));
+  const handleNext = () => setActiveIndex((prev) => (prev === total - 1 ? 0 : prev + 1));
 
-  const onPointerMove = (e) => {
-    const track = trackRef.current;
-    if (!track || dragState.current.pointerId !== e.pointerId) return;
-    const dx = e.clientX - dragState.current.startX;
-    dragState.current.moved = Math.max(dragState.current.moved, Math.abs(dx));
-    track.scrollLeft = dragState.current.startScrollLeft - dx;
-  };
-
-  const endDrag = () => {
-    const track = trackRef.current;
-    if (track && dragState.current.pointerId != null) {
-      track.releasePointerCapture(dragState.current.pointerId);
-    }
-    dragState.current.pointerId = null;
-    setIsDragging(false);
-  };
-
-  const handleCardClick = (slug) => {
-    if (dragState.current.moved > DRAG_CLICK_THRESHOLD) return;
-    goToProject(slug);
-  };
+  // Keyboard navigation, matching the equivalent carousel in ProductsSection.
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (["INPUT", "TEXTAREA"].includes(document.activeElement?.tagName)) return;
+      if (e.key === "ArrowLeft") setActiveIndex((prev) => (prev === 0 ? total - 1 : prev - 1));
+      else if (e.key === "ArrowRight") setActiveIndex((prev) => (prev === total - 1 ? 0 : prev + 1));
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [total]);
 
   return (
-    <section id="projects" className="text-white px-4 md:px-12 py-12 md:py-24 relative overflow-hidden bg-transparent z-10">
+    <section id="projects" className="text-white px-4 md:px-12 py-8 md:py-16 relative overflow-hidden bg-transparent z-10">
 
       <div className="max-w-[1500px] mx-auto relative z-10">
         {!hideHeader && (
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 mb-16 text-center md:text-left">
-            <div className="flex flex-col items-center md:items-start mx-auto md:mx-0">
-              <FadeUp delay={0}>
-                <p className="uppercase tracking-[0.4em] text-xs text-brand-gold mb-6 font-semibold">
-                  Portfolio
-                </p>
-              </FadeUp>
-              <h2 className="text-fluid-h2 font-serif text-white flex flex-wrap justify-center md:justify-start gap-2">
+          <div className="mb-16 text-center md:text-left">
+            <FadeUp delay={0}>
+              <p className="uppercase tracking-[0.4em] text-xs text-brand-gold mb-6 font-semibold">
+                Portfolio
+              </p>
+            </FadeUp>
+
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+              <h2 className="text-fluid-h1 font-serif text-white flex flex-wrap justify-center md:justify-start gap-2">
                 <TextReveal text="Featured" /> <TextReveal text="Projects" delay={2} className="italic gold-gradient-text font-light block w-full text-center md:text-left md:w-auto md:inline-block" />
               </h2>
+
+              <FadeUp delay={4} className="mx-auto md:mx-0 w-full md:w-auto flex flex-col sm:flex-row items-center gap-3 shrink-0">
+                <HoverLift className="w-full sm:w-auto">
+                  <Link
+                    href="/projects"
+                    className="w-full sm:w-auto border border-white/20 backdrop-blur-sm text-white px-8 py-4 tracking-[0.2em] uppercase text-xs transition-all duration-500 rounded-button flex items-center justify-center hover:bg-white hover:text-black"
+                  >
+                    All Projects
+                  </Link>
+                </HoverLift>
+                <HoverLift className="w-full sm:w-auto">
+                  <Link
+                    href="/gallery"
+                    className="w-full sm:w-auto border border-brand-gold/40 backdrop-blur-sm text-brand-gold px-8 py-4 tracking-[0.2em] uppercase text-xs transition-all duration-500 rounded-button flex items-center justify-center gap-3 group hover:bg-brand-gold hover:text-black"
+                  >
+                    View Gallery
+                    <ArrowRight size={16} aria-hidden="true" className="transition-transform duration-500 group-hover:translate-x-1" />
+                  </Link>
+                </HoverLift>
+              </FadeUp>
             </div>
 
-            <FadeUp delay={4} className="mx-auto md:mx-0 w-full md:w-auto flex flex-col sm:flex-row items-center gap-3">
-              <HoverLift className="w-full sm:w-auto">
-                <Link
-                  href="/projects"
-                  className="w-full sm:w-auto border border-white/20 backdrop-blur-sm text-white px-8 py-4 tracking-[0.2em] uppercase text-xs transition-all duration-500 rounded-button flex items-center justify-center hover:bg-white hover:text-black"
+            <div className="mt-6 min-h-[3.5rem]">
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={projects[activeIndex].id}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.35, ease: ease.standard }}
+                  className="text-white/60 text-sm md:text-base leading-relaxed w-full line-clamp-2"
                 >
-                  All Projects
-                </Link>
-              </HoverLift>
-              <HoverLift className="w-full sm:w-auto">
-                <Link
-                  href="/gallery"
-                  className="w-full sm:w-auto border border-brand-gold/40 backdrop-blur-sm text-brand-gold px-8 py-4 tracking-[0.2em] uppercase text-xs transition-all duration-500 rounded-button flex items-center justify-center gap-3 group hover:bg-brand-gold hover:text-black"
-                >
-                  View Gallery
-                  <ArrowRight size={16} aria-hidden="true" className="transition-transform duration-500 group-hover:translate-x-1" />
-                </Link>
-              </HoverLift>
-            </FadeUp>
+                  {projects[activeIndex].description}
+                </motion.p>
+              </AnimatePresence>
+            </div>
           </div>
         )}
 
-        {/* Horizontal Project Showcase */}
+        {/* Coverflow Carousel - one project centered at a time, draggable */}
         <div className="relative">
-          <div
-            ref={trackRef}
-            onPointerDown={onPointerDown}
-            onPointerMove={onPointerMove}
-            onPointerUp={endDrag}
-            onPointerCancel={endDrag}
-            data-lenis-prevent
-            className={`flex gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-4 -mx-4 px-4 md:-mx-12 md:px-12 select-none ${
-              isDragging ? "cursor-grabbing scroll-auto" : "cursor-grab scroll-smooth"
-            }`}
+          <motion.div
+            drag="x"
+            dragElastic={0.15}
+            dragConstraints={{ left: 0, right: 0 }}
+            dragMomentum={false}
+            onDragEnd={(_, info) => {
+              if (info.offset.x < -DRAG_THRESHOLD) handleNext();
+              else if (info.offset.x > DRAG_THRESHOLD) handlePrev();
+            }}
+            className="relative w-full h-[70vh] min-h-[520px] md:min-h-[600px] flex items-center justify-center group select-none overflow-hidden rounded-panel cursor-grab active:cursor-grabbing"
           >
-            {projects.map((item, index) => (
-              <ProjectCard key={item.id} item={item} index={index} onSelect={handleCardClick} />
-            ))}
+            {projects.map((item, index) => {
+              let diff = index - activeIndex;
 
-            {/* View All CTA Card */}
-            <Link
-              href="/projects"
-              data-card
-              className="group relative shrink-0 snap-start w-[78vw] sm:w-[380px] md:w-[300px] aspect-[4/5] overflow-hidden rounded-panel border border-dashed border-white/20 hover:border-brand-gold/50 flex flex-col items-center justify-center gap-4 text-center p-8 transition-colors duration-500 bg-surface-elevated/40"
-            >
-              <span className="w-14 h-14 rounded-full border border-white/20 group-hover:border-brand-gold flex items-center justify-center transition-colors duration-300">
-                <ArrowRight size={20} aria-hidden="true" className="text-white group-hover:text-brand-gold transition-colors duration-300" />
-              </span>
-              <div>
-                <p className="text-white font-serif text-xl mb-1">View All Projects</p>
-                <p className="text-white/40 text-xs uppercase tracking-[0.2em]">{projects.length} Case Studies</p>
-              </div>
-            </Link>
-          </div>
+              // Normalize diff for infinite wrapping (shortest path around the loop)
+              const half = total / 2;
+              if (diff > half) diff -= total;
+              if (diff < -half) diff += total;
 
-          {/* Arrow Controls */}
-          <div className="hidden md:flex items-center justify-end gap-3 mt-8">
-            <button
-              type="button"
-              onClick={() => scrollByCard(-1)}
-              aria-label="Previous project"
-              className="w-11 h-11 rounded-full border border-white/15 flex items-center justify-center text-white/70 hover:text-black hover:bg-white hover:border-white transition-all duration-300"
-            >
-              <ArrowLeft size={18} aria-hidden="true" />
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollByCard(1)}
-              aria-label="Next project"
-              className="w-11 h-11 rounded-full border border-white/15 flex items-center justify-center text-white/70 hover:text-black hover:bg-white hover:border-white transition-all duration-300"
-            >
-              <ArrowRight size={18} aria-hidden="true" />
-            </button>
-          </div>
+              const isCenter = diff === 0;
+              const isLeft = diff === -1;
+              const isRight = diff === 1;
+              const isVisible = isCenter || isLeft || isRight;
+
+              let xPos = "0%";
+              if (isLeft) xPos = "-95%";
+              else if (isRight) xPos = "95%";
+              else if (diff < -1) xPos = "-160%";
+              else if (diff > 1) xPos = "160%";
+
+              return (
+                <motion.div
+                  key={item.id}
+                  initial={false}
+                  animate={{
+                    x: xPos,
+                    scale: isCenter ? 1 : 0.85,
+                    opacity: isVisible ? (isCenter ? 1 : 0.4) : 0,
+                    zIndex: isCenter ? 30 : isVisible ? 20 : 0,
+                  }}
+                  transition={{ duration: duration.standard, ease: ease.standard }}
+                  className={`absolute w-[90%] md:w-[60%] lg:w-[50%] h-[90%] md:h-[95%] lg:h-full rounded-panel overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.4)] ${isCenter ? "" : "cursor-pointer hover:opacity-60"} ${!isVisible ? "pointer-events-none" : ""}`}
+                  style={{ filter: isCenter ? "grayscale(0%)" : "grayscale(15%)" }}
+                  onClick={() => {
+                    if (isLeft) handlePrev();
+                    if (isRight) handleNext();
+                  }}
+                >
+                  <Image
+                    src={item.hero}
+                    alt={item.name}
+                    fill
+                    draggable={false}
+                    sizes="(max-width: 768px) 90vw, (max-width: 1024px) 60vw, 50vw"
+                    loading="lazy"
+                    className="object-cover pointer-events-none"
+                  />
+
+                  <AnimatePresence>
+                    {isCenter && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.4 }}
+                        className="absolute inset-0 z-10"
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 pointer-events-none" />
+
+                        {/* Snapchat-style click zones for the center image */}
+                        <div className="absolute inset-0 z-10 flex cursor-pointer">
+                          <div className="w-1/2 h-full flex items-center justify-start" onClick={handlePrev} />
+                          <div className="w-1/2 h-full flex items-center justify-end" onClick={handleNext} />
+                        </div>
+
+                        {/* Top Left Topic Overlay */}
+                        <div className="absolute top-8 left-8 md:top-12 md:left-12 z-20 pointer-events-none flex items-center gap-4">
+                          <span className="w-8 h-[1px] bg-brand-gold" />
+                          <p className="uppercase tracking-[0.3em] text-xs text-brand-gold font-semibold drop-shadow-md">
+                            {item.category}
+                          </p>
+                        </div>
+
+                        {/* Bottom Description Overlay */}
+                        <div className="absolute bottom-8 left-8 right-8 md:bottom-12 md:left-12 md:right-12 z-20 pointer-events-none max-w-2xl">
+                          <h3 className="text-white text-2xl md:text-4xl font-serif leading-tight mb-3">{item.name}</h3>
+                          <div className="flex flex-wrap items-center gap-3 text-white/70 text-xs md:text-sm mb-4">
+                            <span>{item.location}</span>
+                            <span className="inline-block w-1 h-1 rounded-full bg-brand-gold" />
+                            <span>{item.year}</span>
+                          </div>
+                          <div className="pointer-events-auto inline-block">
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                goToProject(item.slug);
+                              }}
+                              className="inline-flex items-center gap-2 text-brand-gold uppercase tracking-[0.2em] text-xs md:text-xs font-semibold hover:text-white transition-colors border-b border-brand-gold/30 hover:border-white pb-1"
+                            >
+                              View Project Details
+                              <ArrowUpRight size={14} aria-hidden="true" />
+                            </button>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+
+          {/* Arrow Controls - overlaid on the image, outside the drag layer so they stay put during a drag gesture */}
+          <button
+            type="button"
+            onClick={handlePrev}
+            aria-label="Previous project"
+            className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-40 w-11 h-11 md:w-12 md:h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:text-black hover:bg-white hover:border-white transition-all duration-300"
+          >
+            <ArrowLeft size={18} aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            onClick={handleNext}
+            aria-label="Next project"
+            className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-40 w-11 h-11 md:w-12 md:h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:text-black hover:bg-white hover:border-white transition-all duration-300"
+          >
+            <ArrowRight size={18} aria-hidden="true" />
+          </button>
+
+          {/* Index indicator */}
+          <span className="absolute bottom-4 left-1/2 -translate-x-1/2 z-40 font-mono text-xs text-white/50 tabular-nums bg-black/30 backdrop-blur-md px-3 py-1 rounded-full pointer-events-none">
+            {String(activeIndex + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+          </span>
         </div>
       </div>
     </section>
