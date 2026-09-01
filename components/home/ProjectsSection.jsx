@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -30,6 +30,23 @@ export default function ProjectsSection({ hideHeader = false }) {
 
   const handlePrev = () => setActiveIndex((prev) => (prev === 0 ? total - 1 : prev - 1));
   const handleNext = () => setActiveIndex((prev) => (prev === total - 1 ? 0 : prev + 1));
+
+  // Trackpad horizontal swipes (and shift+wheel) advance the carousel like a
+  // drag would. A cooldown ref - not state - throttles it to one slide per
+  // gesture, since trackpads fire dozens of wheel events for a single swipe.
+  const wheelCooldownRef = useRef(false);
+  const handleWheel = (e) => {
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+    if (Math.abs(e.deltaX) < 20 || wheelCooldownRef.current) return;
+
+    e.preventDefault();
+    wheelCooldownRef.current = true;
+    if (e.deltaX > 0) handleNext();
+    else handlePrev();
+    setTimeout(() => {
+      wheelCooldownRef.current = false;
+    }, 400);
+  };
 
   // Keyboard navigation, matching the equivalent carousel in ProductsSection.
   useEffect(() => {
@@ -108,7 +125,15 @@ export default function ProjectsSection({ hideHeader = false }) {
               if (info.offset.x < -DRAG_THRESHOLD) handleNext();
               else if (info.offset.x > DRAG_THRESHOLD) handlePrev();
             }}
-            className="relative w-full h-[70vh] min-h-[520px] md:min-h-[600px] flex items-center justify-center group select-none overflow-hidden rounded-panel cursor-grab active:cursor-grabbing"
+            onWheel={handleWheel}
+            // The side cards are cropped by this container's straight edges,
+            // not by their own rounded corners - without a fade, that reads
+            // as a hard, unfinished cut instead of a deliberate coverflow.
+            style={{
+              maskImage: "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+              WebkitMaskImage: "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+            }}
+            className="relative w-full h-[70vh] min-h-[520px] md:min-h-[600px] flex items-center justify-center group select-none overflow-hidden cursor-grab active:cursor-grabbing"
           >
             {projects.map((item, index) => {
               let diff = index - activeIndex;
@@ -203,6 +228,25 @@ export default function ProjectsSection({ hideHeader = false }) {
                             </button>
                           </div>
                         </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Small concise label for the prev/next side slides - just
+                      enough context to know what's next without the full
+                      center overlay (category, description, CTA). */}
+                  <AnimatePresence>
+                    {!isCenter && isVisible && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 8 }}
+                        transition={{ duration: 0.3, ease: ease.standard }}
+                        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 pointer-events-none max-w-[85%] px-4 py-2 rounded-full bg-black/30 backdrop-blur-md border border-white/20"
+                      >
+                        <p className="text-white/90 text-xs md:text-sm font-medium text-center truncate">
+                          {item.name}
+                        </p>
                       </motion.div>
                     )}
                   </AnimatePresence>
