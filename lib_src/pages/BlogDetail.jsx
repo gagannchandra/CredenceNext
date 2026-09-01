@@ -128,7 +128,7 @@ export default function BlogDetail() {
         </div>
 
         {/* Article Header */}
-        <header className="max-w-4xl mx-auto px-6 md:px-12 mb-12 text-center">
+        <header className="max-w-6xl mx-auto px-6 md:px-12 mb-12 text-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

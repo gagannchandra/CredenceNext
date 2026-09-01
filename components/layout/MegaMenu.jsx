@@ -54,6 +54,18 @@ export default function MegaMenu({ item, active, setActive }) {
 
       <AnimatePresence>
         {isOpen && item.dropdown && (
+          // The visible panel sits mt-4 (16px) below the trigger so it reads as a
+          // floating card. That gap falls outside this wrapper's own box, so the
+          // cursor briefly lands on whatever renders underneath while crossing it -
+          // an element outside this subtree, which fires mouseleave and closes the
+          // menu before the pointer ever reaches the links. This bridge is an
+          // invisible extension of the wrapper's hit area spanning that gap, so the
+          // hover stays "inside" all the way down.
+          <div className="absolute top-full left-1/2 -translate-x-1/2 h-4 w-max min-w-[350px]" />
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {isOpen && item.dropdown && (
           <motion.div
             id={panelId}
             initial={{ opacity: 0, y: 10 }}

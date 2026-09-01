@@ -36,10 +36,17 @@ export default function ArticleTOC({ blocks = [] }) {
           else visible.delete(entry.target.id);
         }
 
-        // Whichever tracked heading sits highest in document order and is
-        // currently inside the band is the one being read.
-        const current = elements.find((el) => visible.has(el.id));
-        if (current) setActiveId(current.id);
+        // Short sections can put two headings inside the band at once. The
+        // one being read is whichever tracked heading is furthest down the
+        // page (most recently scrolled past), not just the first match -
+        // otherwise an earlier heading that's still barely in the band keeps
+        // a later one from ever lighting up.
+        for (let i = elements.length - 1; i >= 0; i--) {
+          if (visible.has(elements[i].id)) {
+            setActiveId(elements[i].id);
+            break;
+          }
+        }
       },
       { rootMargin: "-150px 0px -70% 0px", threshold: 0 }
     );
@@ -53,6 +60,10 @@ export default function ArticleTOC({ blocks = [] }) {
   const scrollToHeading = (id) => {
     const el = document.getElementById(id);
     if (el) {
+      // Set active on click rather than waiting on the IntersectionObserver -
+      // the scroll animation takes up to a second, and a short section can
+      // leave the heading only briefly (or never fully) alone in the band.
+      setActiveId(id);
       if (typeof window !== "undefined" && window.lenis) {
         window.lenis.scrollTo(el, { offset: -100, duration: 1.0 });
       } else {

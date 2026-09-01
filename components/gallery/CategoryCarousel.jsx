@@ -50,6 +50,11 @@ export default function CategoryCarousel({ items, isProduct = false, isSplitLayo
         else if (offset.x > 50) handlePrev();
       }}
     >
+      {items.length > 1 && (
+        <span className="absolute top-4 left-4 z-20 font-mono text-xs text-white/90 tabular-nums bg-scrim/40 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 pointer-events-none">
+          {String(activeIndex + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
+        </span>
+      )}
       {items.map((item, index) => {
         const total = items.length;
         let diff = index - activeIndex;
@@ -139,6 +144,16 @@ export default function CategoryCarousel({ items, isProduct = false, isSplitLayo
           </motion.div>
         );
       })}
+
+      {items.length > 1 && (
+        <div className="absolute bottom-0 left-0 right-0 z-20 h-[2px] bg-white/10 pointer-events-none">
+          <motion.div
+            className="h-full bg-brand-gold"
+            animate={{ width: `${((activeIndex + 1) / items.length) * 100}%` }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          />
+        </div>
+      )}
     </motion.div>
   );
 }

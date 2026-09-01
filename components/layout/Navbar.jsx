@@ -39,12 +39,12 @@ const navItems = [
     name: "Sectors",
     to: "/solutions",
     dropdown: [
-      { name: "Residential", to: "/residential-lighting" },
       { name: "Hospitality", to: "/hotel-lighting" },
+      { name: "Residential", to: "/residential-lighting" },
       { name: "Retail", to: "/retail-lighting" },
+      { name: "Entertainment", to: "/entertainment-lighting" },
       { name: "Commercial", to: "/office-lighting" },
       { name: "Architectural", to: "/facade-lighting" },
-      { name: "Entertainment", to: "/entertainment-lighting" },
     ],
     featured: {
       title: "Lighting Solutions in Dubai",

@@ -87,9 +87,9 @@ export default function Brands() {
             </p>
 
             <h1 className="text-fluid-h1 font-serif text-white">
-              Serving Clients
+              Serving Clients{" "}
               <span className="italic text-brand-gold">
-                {" "}Across the Globe
+                Across the Globe
               </span>
             </h1>
 

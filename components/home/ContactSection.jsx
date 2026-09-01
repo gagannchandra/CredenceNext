@@ -172,7 +172,7 @@ export default function ContactSection({ asPage = false }) {
       <div className="relative z-10 max-w-[1500px] mx-auto">
 
         {/* TOP */}
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-10 lg:items-center mb-20 text-center lg:text-left">
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-10 lg:items-center mb-10 text-center lg:text-left">
 
           <div className="flex flex-col items-center lg:items-start mx-auto lg:mx-0">
             <Heading className="text-fluid-h1 font-serif flex flex-wrap justify-center lg:justify-start gap-2">
@@ -275,9 +275,9 @@ export default function ContactSection({ asPage = false }) {
               <div className="mb-12">
 
                 <PanelHeading className="text-3xl md:text-4xl font-serif mb-4">
-                  Tell us about
+                  Tell us about{" "}
                   <span className="italic text-brand-gold leading-[1.1] pb-1 inline-block">
-                    {" "}your project
+                    your project
                   </span>
                 </PanelHeading>
 

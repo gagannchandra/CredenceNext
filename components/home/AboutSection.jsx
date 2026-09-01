@@ -118,7 +118,7 @@ export default function AboutSection({ preview = false, asPage = false }) {
           <div className="text-center max-w-4xl mx-auto mb-16">
             <h2 className="text-fluid-h2 font-serif text-white flex flex-wrap justify-center gap-2">
               <TextReveal text="How We" />
-              <TextReveal text="Deliver Excellence" delay={2} className="italic gold-gradient-text" />
+              <TextReveal text="Deliver Excellence?" delay={2} className="italic gold-gradient-text" />
             </h2>
 
             <FadeUp delay={4}>
