@@ -135,14 +135,26 @@ export default function ProjectsSection({ hideHeader = false }) {
             }}
             className="relative w-full h-[70vh] min-h-[520px] md:min-h-[600px] flex items-center justify-center group select-none overflow-hidden cursor-grab active:cursor-grabbing"
           >
-            {projects.map((item, index) => {
-              let diff = index - activeIndex;
+            {projects
+              .map((item, index) => {
+                let diff = index - activeIndex;
 
-              // Normalize diff for infinite wrapping (shortest path around the loop)
-              const half = total / 2;
-              if (diff > half) diff -= total;
-              if (diff < -half) diff += total;
+                // Normalize diff for infinite wrapping (shortest path around the loop)
+                const half = total / 2;
+                if (diff > half) diff -= total;
+                if (diff < -half) diff += total;
 
+                return { item, index, diff };
+              })
+              // Anything beyond +/-1 already renders at the same fixed
+              // off-screen position (+/-160%, opacity 0) no matter how far
+              // away it is - diff 2 and diff 14 are pixel-identical. Keeping
+              // one step of buffer (+/-2) preserves the slide-in transition
+              // when a card enters the +/-1 window, without permanently
+              // mounting and animating all `total` cards (up to 29) when at
+              // most 5 are ever visually distinct at once.
+              .filter(({ diff }) => Math.abs(diff) <= 2)
+              .map(({ item, index, diff }) => {
               const isCenter = diff === 0;
               const isLeft = diff === -1;
               const isRight = diff === 1;

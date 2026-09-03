@@ -48,7 +48,12 @@ export default function CustomCursor() {
         }
       `}</style>
       
-      {/* OUTER RING (Trailing motion) */}
+      {/* OUTER RING (Trailing motion). Fixed at its largest (hovered) size and
+          scaled down at rest via `transform: scale()` instead of animating
+          width/height - scale is compositor-only, width/height force layout
+          + paint on every frame of the 0.3s transition, and this element
+          re-triggers that transition on almost every mouseover across the
+          page. */}
       <motion.div
         className="fixed top-0 left-0 pointer-events-none z-[99998] rounded-button hidden md:flex items-center justify-center border"
         style={{
@@ -56,16 +61,16 @@ export default function CustomCursor() {
           y: cursorYSpring,
           translateX: "-50%",
           translateY: "-50%",
+          width: 42,
+          height: 42,
         }}
         initial={{
-          width: 22,
-          height: 22,
+          scale: 22 / 42,
           backgroundColor: "rgba(200, 169, 107, 0)",
           borderColor: "rgba(255, 255, 255, 0.25)",
         }}
         animate={{
-          width: isHovered ? 42 : 22,
-          height: isHovered ? 42 : 22,
+          scale: isHovered ? 1 : 22 / 42,
           backgroundColor: isHovered ? "rgba(200, 169, 107, 0.08)" : "rgba(200, 169, 107, 0)",
           borderColor: isHovered ? "rgba(200, 169, 107, 0.5)" : "rgba(255, 255, 255, 0.25)",
         }}
@@ -87,7 +92,8 @@ export default function CustomCursor() {
         }}
       />
 
-      {/* INNER DOT (Instant motion) */}
+      {/* INNER DOT (Instant motion). Same fixed-size-plus-scale trick as the
+          outer ring - avoids layout thrash on every hover boundary. */}
       <motion.div
         className="fixed top-0 left-0 pointer-events-none z-[99999] rounded-button hidden md:block bg-white"
         style={{
@@ -95,10 +101,11 @@ export default function CustomCursor() {
           y: cursorY,
           translateX: "-50%",
           translateY: "-50%",
+          width: 10,
+          height: 10,
         }}
         animate={{
-          width: isHovered ? 8 : 10,
-          height: isHovered ? 8 : 10,
+          scale: isHovered ? 0.8 : 1,
           opacity: isHovered ? 0.5 : 1,
         }}
         transition={{ duration: 0.3, ease: "easeOut" }}

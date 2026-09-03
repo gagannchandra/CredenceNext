@@ -269,14 +269,24 @@ export default function ProductsSection({ hideHeader = false }) {
                 }}
                 className="relative w-full h-[70vh] min-h-[600px] flex items-center justify-center group select-none overflow-hidden rounded-panel cursor-grab active:cursor-grabbing"
               >
-              {filteredProducts.map((item, index) => {
-                const total = filteredProducts.length;
-                let diff = index - activeProductIndex;
+              {filteredProducts
+                .map((item, index) => {
+                  const total = filteredProducts.length;
+                  let diff = index - activeProductIndex;
 
-                // Normalize diff to be between -total/2 and total/2 for infinite wrapping
-                if (diff > total / 2) diff -= total;
-                if (diff < -total / 2) diff += total;
+                  // Normalize diff to be between -total/2 and total/2 for infinite wrapping
+                  if (diff > total / 2) diff -= total;
+                  if (diff < -total / 2) diff += total;
 
+                  return { item, index, diff };
+                })
+                // Anything beyond +/-1 already renders at the same fixed
+                // off-screen position (+/-160%, opacity 0) regardless of how
+                // far away it is, so a +/-2 window reproduces the exact same
+                // visuals without permanently mounting and animating every
+                // item in the category (up to 20).
+                .filter(({ diff }) => Math.abs(diff) <= 2)
+                .map(({ item, index, diff }) => {
                 const isCenter = Math.abs(diff) < 0.5; // diff === 0
                 const isLeft = diff >= -1.5 && diff <= -0.5; // diff === -1
                 const isRight = diff >= 0.5 && diff <= 1.5; // diff === 1

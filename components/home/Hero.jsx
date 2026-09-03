@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import {
   motion,
   useMotionValue,
@@ -25,16 +25,52 @@ export default function Hero() {
   // Spotlight mask: the colour image is revealed only where the cursor is, so
   // the visitor "lights" the room. Motivated motion (Section 5) - it is the
   // page's one metaphor and it is what a lighting company sells.
-  const maskImage = useTransform(
-    [smoothX, smoothY],
-    ([x, y]) =>
-      `radial-gradient(circle 350px at ${x}px ${y}px, black 0%, transparent 100%)`
-  );
+  //
+  // Perf: this used to be a full-viewport <div> whose mask-image/background
+  // gradient string was rebuilt with new pixel coordinates every animation
+  // frame - a full-viewport paint at up to 60fps while the cursor moved.
+  // The reveal/glow layers are fixed-size (matching the circle diameter) and
+  // their gradients are computed once, local to the layer's own box, so only
+  // `transform: translate3d(...)` changes per frame.
+  //
+  // The reveal layer's colour image can't just use `background-attachment:
+  // fixed` to fake a "window" into a full-page image - fixed attachment
+  // forces a main-thread repaint of the box every time its position relative
+  // to the viewport changes, which is every frame here, defeating the point
+  // of moving it via transform. Instead it's two nested layers: an outer
+  // clipped/masked window that moves by (x, y), and an inner full-hero-size
+  // image inside it that moves by exactly (-x, -y). The two transforms
+  // cancel out, so the inner image stays visually pinned to the hero
+  // (matching the grayscale plate beneath) while only ever paying for
+  // transform updates, which the compositor moves without repainting either
+  // layer.
+  const REVEAL_SIZE = 700; // 2x the 350px reveal radius
+  const GLOW_SIZE = 600; // 2x the 300px glow radius
 
-  const glowBackground = useTransform(
+  const [heroSize, setHeroSize] = useState({ width: 0, height: 0 });
+
+  useLayoutEffect(() => {
+    if (!containerRef.current) return;
+    const el = containerRef.current;
+    const observer = new ResizeObserver((entries) => {
+      const { width, height } = entries[0].contentRect;
+      setHeroSize({ width, height });
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const spotTransform = useTransform(
     [smoothX, smoothY],
-    ([x, y]) =>
-      `radial-gradient(circle 300px at ${x}px ${y}px, rgba(255,255,255,0.18), transparent 70%)`
+    ([x, y]) => `translate3d(${x - REVEAL_SIZE / 2}px, ${y - REVEAL_SIZE / 2}px, 0)`
+  );
+  const spotCounterTransform = useTransform(
+    [smoothX, smoothY],
+    ([x, y]) => `translate3d(${-(x - REVEAL_SIZE / 2)}px, ${-(y - REVEAL_SIZE / 2)}px, 0)`
+  );
+  const glowTransform = useTransform(
+    [smoothX, smoothY],
+    ([x, y]) => `translate3d(${x - GLOW_SIZE / 2}px, ${y - GLOW_SIZE / 2}px, 0)`
   );
 
   const handleMouseMove = (event) => {
@@ -77,19 +113,48 @@ export default function Hero() {
         <>
           <motion.div
             aria-hidden="true"
-            className="hidden md:block absolute inset-0 z-10"
+            className="hidden md:block absolute top-0 left-0 z-10 pointer-events-none overflow-hidden"
             style={{
-              backgroundImage: `url(${bgHorizontal})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              WebkitMaskImage: maskImage,
-              maskImage,
+              width: REVEAL_SIZE,
+              height: REVEAL_SIZE,
+              transform: spotTransform,
+              willChange: "transform",
+              WebkitMaskImage:
+                "radial-gradient(circle 350px at 50% 50%, black 0%, transparent 100%)",
+              maskImage:
+                "radial-gradient(circle 350px at 50% 50%, black 0%, transparent 100%)",
             }}
-          />
+          >
+            {/* Counter-moves against the outer window's transform so it stays
+                visually pinned to the hero, registered with the grayscale
+                plate beneath - the "fixed background" effect via two
+                compositor-only transforms instead of background-attachment. */}
+            <motion.div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: heroSize.width || "100vw",
+                height: heroSize.height || "100vh",
+                transform: spotCounterTransform,
+                willChange: "transform",
+                backgroundImage: `url(${bgHorizontal})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            />
+          </motion.div>
           <motion.div
             aria-hidden="true"
-            className="hidden md:block absolute inset-0 z-10 pointer-events-none"
-            style={{ background: glowBackground }}
+            className="hidden md:block absolute top-0 left-0 z-10 pointer-events-none"
+            style={{
+              width: GLOW_SIZE,
+              height: GLOW_SIZE,
+              transform: glowTransform,
+              willChange: "transform",
+              background:
+                "radial-gradient(circle 300px at 50% 50%, rgba(255,255,255,0.18), transparent 70%)",
+            }}
           />
         </>
       )}

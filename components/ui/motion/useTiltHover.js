@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { useMotionValue, useSpring, useMotionTemplate, useReducedMotion } from "framer-motion";
 
 // 3D pointer-tilt + cursor-following glow for hover cards. Everything here
@@ -21,9 +22,20 @@ export default function useTiltHover({ max = 8 } = {}) {
   const glowSpringY = useSpring(glowY, { stiffness: 200, damping: 30 });
   const glowBackground = useMotionTemplate`radial-gradient(circle at ${glowSpringX}% ${glowSpringY}%, rgba(255,255,255,0.16), transparent 55%)`;
 
+  // The card's rect is read once per hover (mouseenter), not on every
+  // mousemove - getBoundingClientRect() forces a synchronous layout read,
+  // and native mousemove can fire well over 100 times/sec on a high-poll-rate
+  // mouse. A hovered card doesn't reflow mid-hover, so one read is enough.
+  const rectRef = useRef(null);
+
+  const onMouseEnter = (event) => {
+    if (shouldReduceMotion) return;
+    rectRef.current = event.currentTarget.getBoundingClientRect();
+  };
+
   const onMouseMove = (event) => {
     if (shouldReduceMotion) return;
-    const rect = event.currentTarget.getBoundingClientRect();
+    const rect = rectRef.current ?? event.currentTarget.getBoundingClientRect();
     const px = (event.clientX - rect.left) / rect.width;
     const py = (event.clientY - rect.top) / rect.height;
     rotateY.set((px - 0.5) * max * 2);
@@ -33,12 +45,13 @@ export default function useTiltHover({ max = 8 } = {}) {
   };
 
   const onMouseLeave = () => {
+    rectRef.current = null;
     rotateX.set(0);
     rotateY.set(0);
   };
 
   return {
-    handlers: shouldReduceMotion ? {} : { onMouseMove, onMouseLeave },
+    handlers: shouldReduceMotion ? {} : { onMouseEnter, onMouseMove, onMouseLeave },
     tiltStyle: shouldReduceMotion
       ? undefined
       : { rotateX: springX, rotateY: springY, transformPerspective: 800 },

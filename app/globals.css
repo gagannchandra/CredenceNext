@@ -281,6 +281,20 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Pause the blur(80px) orb animation while the tab is hidden (toggled by
+   AmbientBackground.jsx via the Page Visibility API) - no reason to keep
+   rasterizing three large blurred layers nobody can see. */
+.ambient-paused .ambient-orb {
+  animation-play-state: paused !important;
+}
+
+/* Same tab-hidden pause for the brand logo marquee (.animate-marquee) -
+   it's compositor-only so it's cheap, but there's still no reason to keep
+   it running in the background. */
+.ambient-paused .animate-marquee {
+  animation-play-state: paused !important;
+}
+
 /* =========================================
    PERFORMANCE MODE (HARDWARE SNIFFER)
    ========================================= */
