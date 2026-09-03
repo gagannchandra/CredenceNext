@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { ArrowRight, Loader2 } from "lucide-react";
 import TextReveal from "../ui/motion/TextReveal";
 import FadeUp from "../ui/motion/FadeUp";
 
 const emptySubscribe = () => () => {};
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 const inputClass =
   "w-full bg-surface-base border rounded-card px-5 py-3.5 text-white outline-none transition-colors duration-300 placeholder:text-white/60 focus:border-brand-gold";
@@ -107,10 +108,64 @@ export default function ContactSection({ asPage = false }) {
     phone: "",
     company: "",
     message: "",
+    website: "", // honeypot — left blank by real visitors
   });
   const [status, setStatus] = useState({ type: "", message: "" });
   const [errors, setErrors] = useState({});
   const isSending = status.type === "loading";
+  // Timestamp the form rendered, not the first keystroke, so a bot that
+  // fetches the page and posts within a second or two gets caught.
+  const renderedAtRef = useRef(0);
+  const [turnstileToken, setTurnstileToken] = useState("");
+
+  useEffect(() => {
+    renderedAtRef.current = Date.now();
+  }, []);
+
+  useEffect(() => {
+    if (!TURNSTILE_SITE_KEY || typeof window === "undefined") return;
+    if (window.turnstile || document.getElementById("cf-turnstile-script")) return;
+
+    const script = document.createElement("script");
+    script.id = "cf-turnstile-script";
+    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+  }, []);
+
+  useEffect(() => {
+    if (!TURNSTILE_SITE_KEY || typeof window === "undefined" || !mounted) return;
+
+    let widgetId;
+    const render = () => {
+      if (!window.turnstile) return;
+      const el = document.getElementById("cf-turnstile-widget");
+      if (!el || el.childElementCount > 0) return;
+      widgetId = window.turnstile.render(el, {
+        sitekey: TURNSTILE_SITE_KEY,
+        theme: "dark",
+        callback: (token) => setTurnstileToken(token),
+        "expired-callback": () => setTurnstileToken(""),
+      });
+    };
+
+    if (window.turnstile) {
+      render();
+    } else {
+      const interval = setInterval(() => {
+        if (window.turnstile) {
+          clearInterval(interval);
+          render();
+        }
+      }, 200);
+      return () => clearInterval(interval);
+    }
+
+    return () => {
+      if (widgetId && window.turnstile) window.turnstile.remove(widgetId);
+    };
+  }, [mounted]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -133,6 +188,11 @@ export default function ContactSection({ asPage = false }) {
       return;
     }
 
+    if (TURNSTILE_SITE_KEY && !turnstileToken) {
+      setStatus({ type: "error", message: "Please complete the verification check." });
+      return;
+    }
+
     setErrors({});
     setStatus({ type: "loading", message: "Sending your message." });
 
@@ -140,14 +200,23 @@ export default function ContactSection({ asPage = false }) {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          // Honeypot: real visitors never see or fill this field.
+          website: form.website || "",
+          formRenderedAt: renderedAtRef.current,
+          turnstileToken,
+        }),
       });
 
       const data = await response.json();
 
       if (response.ok && data.success) {
         setStatus({ type: "success", message: "Thanks. Your message is on its way and we will reply within one business day." });
-        setForm({ name: "", email: "", phone: "", company: "", message: "" });
+        setForm({ name: "", email: "", phone: "", company: "", message: "", website: "" });
+        setTurnstileToken("");
+        renderedAtRef.current = Date.now();
+        if (window.turnstile) window.turnstile.reset();
       } else {
         setStatus({
           type: "error",
@@ -290,6 +359,25 @@ export default function ContactSection({ asPage = false }) {
               {mounted ? (
                 <form onSubmit={handleSubmit} className="space-y-5" noValidate suppressHydrationWarning>
 
+                  {/* Honeypot: hidden from sighted and screen-reader users alike,
+                      but visible to most form-filling bots. Any fill-in fails
+                      the request server-side. */}
+                  <div
+                    aria-hidden="true"
+                    style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}
+                  >
+                    <label htmlFor="contact-website">Website</label>
+                    <input
+                      id="contact-website"
+                      name="website"
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={form.website}
+                      onChange={handleChange}
+                    />
+                  </div>
+
                   <div className="grid md:grid-cols-2 gap-5" suppressHydrationWarning>
                     <Field
                       id="contact-name"
@@ -348,6 +436,10 @@ export default function ContactSection({ asPage = false }) {
                     error={errors.message}
                     required
                   />
+
+                  {TURNSTILE_SITE_KEY && (
+                    <div id="cf-turnstile-widget" className="mt-2" />
+                  )}
 
                   <button
                     type="submit"

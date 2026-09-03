@@ -50,7 +50,53 @@ export async function POST(req) {
   }
 
   const body = await req.json().catch(() => ({}));
-  const { name, email, phone, company, message } = body;
+  const { name, email, phone, company, message, website, formRenderedAt, turnstileToken } = body;
+
+  // Honeypot: a real visitor never sees or fills this field. Any value means bot.
+  if (typeof website === "string" && website.trim() !== "") {
+    return NextResponse.json({ success: true });
+  }
+
+  // Timing check: a human takes at least a couple seconds to fill this form.
+  const MIN_FILL_MS = 2000;
+  const renderedAt = Number(formRenderedAt);
+  if (!renderedAt || Date.now() - renderedAt < MIN_FILL_MS) {
+    return NextResponse.json({ success: true });
+  }
+
+  if (process.env.TURNSTILE_SECRET_KEY) {
+    if (typeof turnstileToken !== "string" || !turnstileToken) {
+      return NextResponse.json(
+        { success: false, message: "Please complete the verification check." },
+        { status: 400 }
+      );
+    }
+
+    try {
+      const verifyRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          secret: process.env.TURNSTILE_SECRET_KEY,
+          response: turnstileToken,
+          remoteip: ip,
+        }),
+      });
+      const verifyData = await verifyRes.json();
+      if (!verifyData.success) {
+        return NextResponse.json(
+          { success: false, message: "Verification failed. Please try again." },
+          { status: 400 }
+        );
+      }
+    } catch (verifyErr) {
+      console.error("Turnstile verification error:", verifyErr);
+      return NextResponse.json(
+        { success: false, message: "Verification service unavailable. Please try again." },
+        { status: 503 }
+      );
+    }
+  }
 
   const nameStr = typeof name === "string" ? name.trim() : "";
   const emailStr = typeof email === "string" ? email.trim() : "";
