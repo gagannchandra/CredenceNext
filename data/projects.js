@@ -6,6 +6,10 @@ const mytown148 = "/images/mytown/148.webp";
 
 const gc154 = "/images/ground-control/154.webp";
 const gc155 = "/images/ground-control/155.webp";
+const gcBowling = "/images/ground-control/bowling.webp";
+const gcArcade = "/images/ground-control/arcade.webp";
+const gcPartyRoom = "/images/ground-control/party-room.webp";
+const gcBasketballArcade = "/images/ground-control/basketball-arcade.webp";
 
 const funtura134 = "/images/Funtura/134.webp";
 const funtura135 = "/images/Funtura/135.webp";
@@ -45,9 +49,9 @@ const projects = [
     location: "Galleria Mall, Bahrain",
     year: "2024",
     category: "Entertainment Lighting",
-    hero: gc154,
+    hero: gcBowling,
     description: "A premium entertainment and immersive lighting project focused on dynamic fixtures and video integration.",
-    gallery: [gc154, gc155],
+    gallery: [gcBowling, gcArcade, gcPartyRoom, gcBasketballArcade, gc154, gc155],
     engineeringMetrics: {
       luxLevel: "Dynamic 150-600 Lux",
       lpd: "5.2 W/m²",
@@ -117,126 +121,6 @@ const projects = [
     },
   },
 
-  {
-    id: 7,
-    slug: "dubai-marina-penthouse",
-    name: "Dubai Marina Luxury Penthouse",
-    metaTitle: "Dubai Marina Penthouse Lighting Design",
-    location: "Dubai Marina, Dubai, UAE",
-    year: "2025",
-    category: "Luxury Residential Lighting",
-    hero: "/images/indoor/1.webp",
-    description: "Architectural cove lighting and human-centric circadian illumination for a ultra-luxury triplex penthouse with panoramic Arabian Gulf views.",
-    gallery: ["/images/indoor/1.webp", "/images/indoor/2.webp", "/images/indoor/3.webp"],
-    engineeringMetrics: {
-      luxLevel: "150-300 Lux tunable",
-      lpd: "3.6 W/m²",
-      cri: "CRI 98+ (True Sunlight)",
-      controls: "KNX & DALI-2 Circadian Engine",
-      energySaved: "-46% Green Building Certified",
-    },
-  },
-
-  {
-    id: 8,
-    slug: "riyadh-business-tower",
-    name: "Riyadh Commercial Tower",
-    metaTitle: "Riyadh Commercial Tower Office Lighting",
-    location: "King Fahd Road, Riyadh, Saudi Arabia",
-    year: "2025",
-    category: "Commercial Office Lighting",
-    hero: "/images/facade/1.webp",
-    description: "Corporate headquarters architectural lighting combining low-glare UGR<16 recessed luminaires with an automated facade media installation.",
-    gallery: ["/images/facade/1.webp", "/images/facade/2.webp", "/images/facade/3.webp"],
-    engineeringMetrics: {
-      luxLevel: "500 Lux (Workplace EN 12464-1)",
-      lpd: "3.9 W/m²",
-      cri: "CRI 90+ (UGR < 16)",
-      controls: "DALI-2 Multi-Sensor Network",
-      energySaved: "-52% vs Conventional Fluorescent",
-    },
-  },
-
-  {
-    id: 9,
-    slug: "bahrain-bay-resort",
-    name: "Bahrain Bay Hotel & Spa",
-    metaTitle: "Bahrain Bay Hotel & Spa Lighting, Manama",
-    location: "Manama, Kingdom of Bahrain",
-    year: "2024",
-    category: "Hospitality & Hotel Lighting",
-    hero: "/images/hospitality/1.webp",
-    description: "Bespoke warm dimming (1800K-3000K) and architectural lighting design for a five-star waterfront hospitality resort and spa.",
-    gallery: ["/images/hospitality/1.webp", "/images/hospitality/2.webp", "/images/hospitality/3.webp"],
-    engineeringMetrics: {
-      luxLevel: "100-250 Lux warm dimming",
-      lpd: "4.2 W/m²",
-      cri: "CRI 96+",
-      controls: "Casambi Luxury Scene Controller",
-      energySaved: "-41% Hotel Energy Standard",
-    },
-  },
-
-  {
-    id: 10,
-    slug: "abu-dhabi-cultural-pavilion",
-    name: "Abu Dhabi Cultural Pavilion",
-    metaTitle: "Abu Dhabi Cultural Pavilion Facade Lighting",
-    location: "Saadiyat Cultural District, Abu Dhabi, UAE",
-    year: "2025",
-    category: "Architectural Facade Lighting",
-    hero: "/images/facade/4.webp",
-    description: "High-precision geometric facade grazing and Estidama Pearl-compliant exterior floodlighting for a major cultural landmark.",
-    gallery: ["/images/facade/4.webp", "/images/facade/5.webp", "/images/facade/6.webp"],
-    engineeringMetrics: {
-      luxLevel: "Grazing Beam 400 Lux",
-      lpd: "3.4 W/m²",
-      cri: "CRI 90+ (IP67 Ingress)",
-      controls: "DMX RDM Architectural Hub",
-      energySaved: "-48% Estidama Pearl 3 Rated",
-    },
-  },
-
-  {
-    id: 11,
-    slug: "kafd-flagship-retail",
-    name: "KAFD Luxury Flagship Store",
-    metaTitle: "KAFD Flagship Store Lighting, Riyadh",
-    location: "King Abdullah Financial District, Riyadh, KSA",
-    year: "2025",
-    category: "Retail & Showroom Lighting",
-    hero: "/images/Retail Lighting/1.webp",
-    description: "Precision museum-grade spot and magnetic track lighting with high color saturation (Gamut Rg 102) for high-end jewelry and luxury fashion.",
-    gallery: ["/images/Retail Lighting/1.webp", "/images/Retail Lighting/2.webp"],
-    engineeringMetrics: {
-      luxLevel: "1200 Lux focal / 400 Lux ambient",
-      lpd: "5.4 W/m²",
-      cri: "CRI 98 (Rg 102, Rf 96)",
-      controls: "Magnetic Track Micro-DALI",
-      energySaved: "-39% Efficiency vs Standard",
-    },
-  },
-
-  {
-    id: 12,
-    slug: "al-qasba-promenade",
-    name: "Al Qasba Waterfront Promenade",
-    metaTitle: "Al Qasba Waterfront Promenade Lighting",
-    location: "Sharjah, UAE",
-    year: "2024",
-    category: "Outdoor & Landscape Lighting",
-    hero: "/images/outdoor/1.webp",
-    description: "Dark-sky friendly pedestrian illumination, integrated IP68 underwater fountain luminaires, and marine-grade corrosion resistant bollards.",
-    gallery: ["/images/outdoor/1.webp", "/images/outdoor/2.webp", "/images/outdoor/3.webp"],
-    engineeringMetrics: {
-      luxLevel: "30 Lux pathway / IP68 underwater",
-      lpd: "2.1 W/m²",
-      cri: "CRI 85+ (Corrosion Proof C5-M)",
-      controls: "Astronomical Timeclock & DALI",
-      energySaved: "-55% Dark-Sky Certified",
-    },
-  },
-
   // ---------------------------------------------------------------------------
   // Client-supplied portfolio additions (see "Credence's Website Changes").
   // Names + locations are from the client; descriptions are written from the
@@ -254,9 +138,9 @@ const projects = [
     location: "Roshn Front, Riyadh, Saudi Arabia",
     year: "2025",
     category: "Hospitality & Hotel Lighting",
-    hero: "/images/hospitality/rest_pendant.webp",
+    hero: "/images/urth-cafe-roshn-front/1.webp",
     description: "Warm, layered illumination for the Riyadh outpost of the organic coffee house, tuned to its rustic timber seating, planted interior and all-day trading pattern across indoor and terrace covers.",
-    gallery: ["/images/hospitality/rest_pendant.webp", "/images/hospitality/rest_dimming.webp", "/images/hospitality/4.webp"],
+    gallery: ["/images/urth-cafe-roshn-front/1.webp", "/images/urth-cafe-roshn-front/2.webp", "/images/urth-cafe-roshn-front/3.webp", "/images/hospitality/rest_pendant.webp", "/images/hospitality/rest_dimming.webp", "/images/hospitality/4.webp"],
   },
 
   {
@@ -267,9 +151,9 @@ const projects = [
     location: "Al Akaria, Al Olaya Street, Riyadh, Saudi Arabia",
     year: "2025",
     category: "Commercial Office Lighting",
-    hero: "/images/indoor/office_linear.webp",
+    hero: "/images/al-akaria-coworking-space/1.webp",
     description: "Low-glare linear and task lighting for a flexible workspace on Al Olaya Street, balancing focused desk illumination against softer light in the lounge, meeting and breakout zones.",
-    gallery: ["/images/indoor/office_linear.webp", "/images/indoor/office_downlight.webp", "/images/indoor/office_task.webp"],
+    gallery: ["/images/al-akaria-coworking-space/1.webp", "/images/al-akaria-coworking-space/2.webp", "/images/indoor/office_linear.webp", "/images/indoor/office_downlight.webp", "/images/indoor/office_task.webp"],
   },
 
   {
@@ -280,9 +164,9 @@ const projects = [
     location: "Al Arid District, North Riyadh, Saudi Arabia",
     year: "2025",
     category: "Luxury Residential Lighting",
-    hero: "/images/indoor/res_chandelier.webp",
+    hero: "/images/villa-al-arid-riyadh/1.webp",
     description: "A complete residential lighting scheme for a private villa in North Riyadh, combining architectural cove detailing, decorative feature pieces and discreet circulation lighting throughout.",
-    gallery: ["/images/indoor/res_chandelier.webp", "/images/indoor/4.webp", "/images/stretch-ceiling/IMG_0124.webp"],
+    gallery: ["/images/villa-al-arid-riyadh/1.webp", "/images/villa-al-arid-riyadh/2.webp", "/images/indoor/res_chandelier.webp", "/images/indoor/4.webp", "/images/stretch-ceiling/IMG_0124.webp"],
   },
 
   {
@@ -293,9 +177,9 @@ const projects = [
     location: "Al Satwa, Dubai, UAE",
     year: "2025",
     category: "Luxury Residential Lighting",
-    hero: "/images/indoor/res_downlight.webp",
+    hero: "/images/elysium-residences-satwa/1.webp",
     description: "Lighting for a residential building in Al Satwa covering apartment interiors alongside the lobby, corridors and shared amenity areas, specified for consistency and low maintenance across the block.",
-    gallery: ["/images/indoor/res_downlight.webp", "/images/indoor/5.webp", "/images/facade/7.webp"],
+    gallery: ["/images/elysium-residences-satwa/1.webp", "/images/elysium-residences-satwa/2.webp", "/images/elysium-residences-satwa/3.webp", "/images/indoor/res_downlight.webp", "/images/indoor/5.webp", "/images/facade/7.webp"],
   },
 
   {
@@ -319,9 +203,9 @@ const projects = [
     location: "Roshn Front, Riyadh, Saudi Arabia",
     year: "2025",
     category: "Hospitality & Hotel Lighting",
-    hero: "/images/hospitality/hotel_pendant.webp",
+    hero: "/images/laduree-roshn-front/1.webp",
     description: "Boutique patisserie lighting for the French maison at Roshn Front, using high colour-fidelity accent light over the pastry display and softer ambient layers across the salon seating.",
-    gallery: ["/images/hospitality/hotel_pendant.webp", "/images/hospitality/5.webp", "/images/hospitality/6.webp"],
+    gallery: ["/images/laduree-roshn-front/1.webp", "/images/laduree-roshn-front/2.webp", "/images/hospitality/hotel_pendant.webp", "/images/hospitality/5.webp", "/images/hospitality/6.webp"],
   },
 
   {
@@ -371,9 +255,9 @@ const projects = [
     location: "Roshn Front, Riyadh, Saudi Arabia",
     year: "2025",
     category: "Retail & Showroom Lighting",
-    hero: "/images/Retail Lighting/5.webp",
+    hero: "/images/sephora-roshn-front/1.webp",
     description: "Beauty retail lighting for the Roshn Front store, specified for faithful colour rendering at the make-up testers and mirrors alongside bright, uniform light across the open shop floor.",
-    gallery: ["/images/Retail Lighting/5.webp", "/images/Retail Lighting/6.webp", "/images/stretch-ceiling/20C9BA80-EAC4-4F42-B725-D901580BB9B7.webp"],
+    gallery: ["/images/sephora-roshn-front/1.webp", "/images/sephora-roshn-front/2.webp", "/images/Retail Lighting/5.webp", "/images/Retail Lighting/6.webp", "/images/stretch-ceiling/20C9BA80-EAC4-4F42-B725-D901580BB9B7.webp"],
   },
 
   {
@@ -397,9 +281,9 @@ const projects = [
     location: "Roshn Front, Riyadh, Saudi Arabia",
     year: "2025",
     category: "Hospitality & Hotel Lighting",
-    hero: "/images/hospitality/hotel_downlight.webp",
+    hero: "/images/dyar-bakery-roshn-front/1.webp",
     description: "Bakery and café lighting at Roshn Front, with warm accent light over the counter and product displays and a softer ambient layer across the seating area.",
-    gallery: ["/images/hospitality/hotel_downlight.webp", "/images/hospitality/rest_spotlight.webp", "/images/hospitality/7.webp"],
+    gallery: ["/images/dyar-bakery-roshn-front/1.webp", "/images/dyar-bakery-roshn-front/2.webp", "/images/hospitality/hotel_downlight.webp", "/images/hospitality/rest_spotlight.webp", "/images/hospitality/7.webp"],
   },
 
   {
@@ -410,9 +294,9 @@ const projects = [
     location: "Tilal Al Ghaf, Dubai, UAE",
     year: "2025",
     category: "Luxury Residential Lighting",
-    hero: "/images/indoor/res_step.webp",
+    hero: "/images/villa-tilal-al-ghaf/1.webp",
     description: "Interior and landscape lighting for a private villa in Tilal Al Ghaf, layering recessed architectural light indoors with discreet garden and facade illumination outside.",
-    gallery: ["/images/indoor/res_step.webp", "/images/outdoor/6.webp", "/images/outdoor/res_landscape.webp"],
+    gallery: ["/images/villa-tilal-al-ghaf/1.webp", "/images/indoor/res_step.webp", "/images/outdoor/6.webp", "/images/outdoor/res_landscape.webp"],
   },
 
   {
@@ -436,9 +320,9 @@ const projects = [
     location: "Roshn Front, Riyadh, Saudi Arabia",
     year: "2025",
     category: "Hospitality & Hotel Lighting",
-    hero: "/images/hospitality/rest_pinhole.webp",
+    hero: "/images/clay-coffee-boutique/1.webp",
     description: "A speciality coffee boutique scheme at Roshn Front, using tightly controlled pinhole and accent fittings over the bar and retail shelving against a warm, low-level ambient base.",
-    gallery: ["/images/hospitality/rest_pinhole.webp", "/images/hospitality/8.webp", "/images/hospitality/9.webp"],
+    gallery: ["/images/clay-coffee-boutique/1.webp", "/images/clay-coffee-boutique/2.webp", "/images/clay-coffee-boutique/3.webp", "/images/hospitality/rest_pinhole.webp", "/images/hospitality/8.webp", "/images/hospitality/9.webp"],
   },
 
   {
