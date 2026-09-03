@@ -145,6 +145,9 @@ export default function ContactSection({ asPage = false }) {
       widgetId = window.turnstile.render(el, {
         sitekey: TURNSTILE_SITE_KEY,
         theme: "dark",
+        // Stays invisible and verifies in the background; Cloudflare only
+        // shows the widget UI if it needs the visitor to interact.
+        appearance: "interaction-only",
         callback: (token) => setTurnstileToken(token),
         "expired-callback": () => setTurnstileToken(""),
       });
