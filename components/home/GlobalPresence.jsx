@@ -368,23 +368,9 @@ export default function GlobalPresence() {
       });
     };
 
-    // Resize fires rapidly during a window drag; coalesce to one layout
-    // read + WebGL canvas resize per frame instead of one per event.
-    let rafId = null;
-    const scheduleUpdate = () => {
-      if (rafId !== null) return;
-      rafId = requestAnimationFrame(() => {
-        rafId = null;
-        updateSize();
-      });
-    };
-
     updateSize();
-    window.addEventListener("resize", scheduleUpdate);
-    return () => {
-      window.removeEventListener("resize", scheduleUpdate);
-      if (rafId !== null) cancelAnimationFrame(rafId);
-    };
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
   }, []);
 
   const setAutoRotateSpeed = (speed) => {
@@ -461,15 +447,7 @@ export default function GlobalPresence() {
           </div>
 
           {/* RIGHT */}
-          {/* overflow-hidden: the globe canvas is deliberately oversized
-              (up to 1800px, see globeSize below) so labels swinging to wide
-              dx offsets aren't clipped by the globe's own circular edge.
-              Without a boundary at the column itself, that oversized canvas
-              has nothing stopping it from rendering past this column and
-              overlapping the "Worldwide Reach" text on the left at some
-              rotation angles - clip it here instead, which still leaves the
-              whole 7/12-width column as room for labels to float in. */}
-          <div className="md:col-span-7 flex items-center justify-center w-full min-w-0 relative z-10 md:translate-x-[5%] overflow-hidden">
+          <div className="md:col-span-7 flex items-center justify-center w-full min-w-0 relative z-10 md:translate-x-[5%]">
             <div
               ref={containerRef}
               className="relative w-full aspect-square flex items-center justify-center cursor-pointer group"
