@@ -105,7 +105,7 @@ export default function Solutions() {
           "@type": "BreadcrumbList",
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
-            { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://www.credencelighting.com/solutions" }
+            { "@type": "ListItem", "position": 2, "name": "Sectors", "item": "https://www.credencelighting.com/solutions" }
           ]
         }, {
           "@context": "https://schema.org",
@@ -132,7 +132,7 @@ export default function Solutions() {
             </p>
             <h1 className="text-fluid-h1 font-serif text-white">
               Tailored
-              <span className="italic text-brand-gold"> Solutions</span>
+              <span className="italic text-brand-gold"> Sectors</span>
             </h1>
             <p className="mt-10 text-white/50 text-lg leading-[1.8]">
               We deliver cutting-edge lighting solutions precisely engineered for the unique demands of each industry. From crafting immersive ambiances in luxury hotels to optimizing productivity in modern offices, our expertise ensures that every environment shines with purpose, efficiency, and stunning aesthetics.

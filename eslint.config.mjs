@@ -10,6 +10,12 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Nested build output in sibling git worktrees (e.g. .claude/worktrees/*/.next)
+    // isn't caught by the bare globs above, since those only match at the repo root.
+    "**/.next/**",
+    "**/out/**",
+    "**/build/**",
+    ".claude/worktrees/**",
   ]),
 ]);
 

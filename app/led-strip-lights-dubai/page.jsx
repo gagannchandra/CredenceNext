@@ -1,13 +1,13 @@
 import LEDStripLightsDubai from "@/lib_src/pages/LEDStripLightsDubai";
 
 export const metadata = {
-  title: 'Linear LED Strip Lights Dubai',
+  title: 'LED Strip Lights Dubai',
   description: 'High-density architectural LED strip lights in Dubai. Silicone neon flex, COB seamless strips, tunable white, and custom aluminum extrusion profiles.',
   alternates: {
     canonical: "https://www.credencelighting.com/led-strip-lights-dubai",
   },
   openGraph: {
-    title: 'Linear LED Strip Lights Dubai · Credence Lighting',
+    title: 'LED Strip Lights Dubai · Credence Lighting',
     description: 'High-density architectural LED strip lights in Dubai. Silicone neon flex, COB seamless strips, tunable white, and custom aluminum extrusion profiles.',
     url: "https://www.credencelighting.com/led-strip-lights-dubai",
     siteName: "Credence Lighting",
@@ -17,7 +17,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: 'Linear LED Strip Lights Dubai · Credence Lighting',
+    title: 'LED Strip Lights Dubai · Credence Lighting',
     description: 'High-density architectural LED strip lights in Dubai. Silicone neon flex, COB seamless strips, tunable white, and custom aluminum extrusion profiles.',
     images: ["https://www.credencelighting.com/meta.png"],
   },

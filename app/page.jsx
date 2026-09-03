@@ -1,6 +1,6 @@
 import Home from "@/lib_src/pages/Home";
 
-const titleText = "Credence Lighting · Architectural & Commercial Lighting Dubai";
+const titleText = "Credence Lighting · Architectural Lighting Dubai";
 const description =
   "Premier architectural, commercial, and hospitality lighting design, supply, and installation across Dubai and the UAE. 10+ years of expertise and 1,000+ completed projects.";
 

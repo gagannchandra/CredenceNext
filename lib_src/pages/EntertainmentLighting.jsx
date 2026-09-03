@@ -33,7 +33,7 @@ const schema = {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.credencelighting.com/" },
-        { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://www.credencelighting.com/solutions" },
+        { "@type": "ListItem", "position": 2, "name": "Sectors", "item": "https://www.credencelighting.com/solutions" },
         { "@type": "ListItem", "position": 3, "name": "Entertainment Lighting" }
       ]
     }

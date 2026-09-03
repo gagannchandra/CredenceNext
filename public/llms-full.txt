@@ -733,7 +733,7 @@ The website utilizes JSON-LD structured data on all major pages:
 - /about — About
 - /products — Products
 - /projects — Projects
-- /solutions — Solutions
+- /solutions — Sectors
 - /downloads — Downloads
 - /gallery — Gallery
 - /brands — Brands

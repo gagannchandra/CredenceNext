@@ -2,7 +2,7 @@ import Guides from "@/lib_src/pages/Guides";
 
 const title = 'Lighting Guides';
 const fullTitle = 'Lighting Guides · Credence Lighting';
-const description = 'Practical lighting guides from Credence Lighting Dubai: choosing fixtures, LED installation, dimming protocols, CRI, colour temperature, IP ratings and office lux standards.';
+const description = 'Practical lighting guides from Credence Lighting Dubai: choosing fixtures, LED installation, dimming protocols, CRI, colour temperature, and IP ratings.';
 const url = "https://www.credencelighting.com/guides";
 
 export const metadata = {
