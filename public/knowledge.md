@@ -77,10 +77,10 @@ We provide fixtures across the following categories:
 
 ## Projects
 ### My Town
-- **Location:** Multiple Locations, Saudi Arabia
+- **Location:** Abha Mall & Al Rawda Mall, Saudi Arabia
 - **Year:** 2024
 - **Category:** Architectural Lighting
-- **Description:** An elegant commercial lighting environment developed for immersive retail and hospitality experiences through warm ambient illumination. Featured in Faisaliah Mall (Riyadh), Lavanda Park Mall, Dareen Mall (Dammam), and Jeddah Village Mall.
+- **Description:** An elegant commercial lighting environment developed for immersive retail and hospitality experiences through warm ambient illumination. Featured in Abha Mall and Al Rawda Mall.
 - **Engineering Metrics:** Illuminance: 350 Lux avg | Power Density: 4.8 W/m² | Fidelity: CRI 95+ (R9 > 80) | Controls: DALI-2 & Casambi Mesh | Energy Reduction: -38% vs ASHRAE 90.1
 - **URL:** /projects/my-town
 
@@ -163,6 +163,132 @@ We provide fixtures across the following categories:
 - **Description:** Dark-sky friendly pedestrian illumination, integrated IP68 underwater fountain luminaires, and marine-grade corrosion resistant bollards.
 - **Engineering Metrics:** Illuminance: 30 Lux pathway / IP68 underwater | Power Density: 2.1 W/m² | Fidelity: CRI 85+ (Corrosion Proof C5-M) | Controls: Astronomical Timeclock & DALI | Energy Reduction: -55% Dark-Sky Certified
 - **URL:** /projects/al-qasba-promenade
+
+### Urth Caffé
+- **Location:** Roshn Front, Riyadh, Saudi Arabia
+- **Year:** 2025
+- **Category:** Hospitality & Hotel Lighting
+- **Description:** Warm, layered illumination for the Riyadh outpost of the organic coffee house, tuned to its rustic timber seating, planted interior and all-day trading pattern across indoor and terrace covers.
+- **URL:** /projects/urth-cafe-roshn-front
+
+### Al Akaria Co-Working Space
+- **Location:** Al Akaria, Al Olaya Street, Riyadh, Saudi Arabia
+- **Year:** 2025
+- **Category:** Commercial Office Lighting
+- **Description:** Low-glare linear and task lighting for a flexible workspace on Al Olaya Street, balancing focused desk illumination against softer light in the lounge, meeting and breakout zones.
+- **URL:** /projects/al-akaria-coworking-space
+
+### Private Villa — Al Arid
+- **Location:** Al Arid District, North Riyadh, Saudi Arabia
+- **Year:** 2025
+- **Category:** Luxury Residential Lighting
+- **Description:** A complete residential lighting scheme for a private villa in North Riyadh, combining architectural cove detailing, decorative feature pieces and discreet circulation lighting throughout.
+- **URL:** /projects/villa-al-arid-riyadh
+
+### Elysium Residences
+- **Location:** Al Satwa, Dubai, UAE
+- **Year:** 2025
+- **Category:** Luxury Residential Lighting
+- **Description:** Lighting for a residential building in Al Satwa covering apartment interiors alongside the lobby, corridors and shared amenity areas, specified for consistency and low maintenance across the block.
+- **URL:** /projects/elysium-residences-satwa
+
+### Fitness First
+- **Location:** United Arab Emirates
+- **Year:** 2025
+- **Category:** Fitness & Wellness Lighting
+- **Description:** Training-floor lighting for the international health club brand, prioritising even vertical illumination, controlled glare for floor-facing exercises and distinct atmospheres between the weights floor and studio spaces.
+- **URL:** /projects/fitness-first
+
+### Ladurée
+- **Location:** Roshn Front, Riyadh, Saudi Arabia
+- **Year:** 2025
+- **Category:** Hospitality & Hotel Lighting
+- **Description:** Boutique patisserie lighting for the French maison at Roshn Front, using high colour-fidelity accent light over the pastry display and softer ambient layers across the salon seating.
+- **URL:** /projects/laduree-roshn-front
+
+### Fabyland
+- **Location:** Dubai Silicon Oasis, Dubai Festival City & Sharjah Central Mall, UAE
+- **Year:** 2025
+- **Category:** Entertainment Lighting
+- **Description:** Lighting and effects across three UAE branches of the Al Othaim Entertainment family entertainment brand, covering arcade and ride zones, bowling and billiards areas, and the party rooms.
+- **URL:** /projects/fabyland
+
+### Gémo
+- **Location:** Ibn Battuta Mall & Marina Mall, UAE
+- **Year:** 2025
+- **Category:** Retail & Showroom Lighting
+- **Description:** Fashion retail lighting for two mall stores of the French clothing and footwear brand, with track-mounted accent light on wall bays and merchandising tables and even ambient cover across the shop floor.
+- **URL:** /projects/gemo
+
+### Private Villa — Palm Jumeirah
+- **Location:** Palm Jumeirah, Dubai, UAE
+- **Year:** 2025
+- **Category:** Luxury Residential Lighting
+- **Description:** A waterfront villa scheme pairing architectural interior lighting with marine-grade exterior fittings for the terrace, pool surround and landscaped frontage.
+- **URL:** /projects/villa-palm-jumeirah
+
+### Sephora
+- **Location:** Roshn Front, Riyadh, Saudi Arabia
+- **Year:** 2025
+- **Category:** Retail & Showroom Lighting
+- **Description:** Beauty retail lighting for the Roshn Front store, specified for faithful colour rendering at the make-up testers and mirrors alongside bright, uniform light across the open shop floor.
+- **URL:** /projects/sephora-roshn-front
+
+### Orange Wheels
+- **Location:** Al Mamsha, Sharjah & Nad Al Sheba Mall, Dubai, UAE
+- **Year:** 2025
+- **Category:** Entertainment Lighting
+- **Description:** Lighting for two branches of the children's indoor play brand, covering the soft play, role-play and climbing zones with bright, glare-controlled light and colour accents at the themed set pieces.
+- **URL:** /projects/orange-wheels
+
+### Dyar Bakery
+- **Location:** Roshn Front, Riyadh, Saudi Arabia
+- **Year:** 2025
+- **Category:** Hospitality & Hotel Lighting
+- **Description:** Bakery and café lighting at Roshn Front, with warm accent light over the counter and product displays and a softer ambient layer across the seating area.
+- **URL:** /projects/dyar-bakery-roshn-front
+
+### Private Villa — Tilal Al Ghaf
+- **Location:** Tilal Al Ghaf, Dubai, UAE
+- **Year:** 2025
+- **Category:** Luxury Residential Lighting
+- **Description:** Interior and landscape lighting for a private villa in Tilal Al Ghaf, layering recessed architectural light indoors with discreet garden and facade illumination outside.
+- **URL:** /projects/villa-tilal-al-ghaf
+
+### Rolling Wheels
+- **Location:** Abu Dhabi Mall & Dalma Mall, Abu Dhabi, UAE
+- **Year:** 2025
+- **Category:** Entertainment Lighting
+- **Description:** Family entertainment lighting across two Abu Dhabi mall venues, combining bright general illumination for the play areas with dynamic colour effects at the ride and activity zones.
+- **URL:** /projects/rolling-wheels
+
+### Clay Coffee Boutique
+- **Location:** Roshn Front, Riyadh, Saudi Arabia
+- **Year:** 2025
+- **Category:** Hospitality & Hotel Lighting
+- **Description:** A speciality coffee boutique scheme at Roshn Front, using tightly controlled pinhole and accent fittings over the bar and retail shelving against a warm, low-level ambient base.
+- **URL:** /projects/clay-coffee-boutique
+
+### GymNation
+- **Location:** Khalidiyah Mall, Abu Dhabi, UAE
+- **Year:** 2025
+- **Category:** Fitness & Wellness Lighting
+- **Description:** Large-format gym lighting for the Khalidiyah Mall club, covering the cardio and free-weights floors and the group class studios, with separate scenes for high-energy classes and recovery zones.
+- **URL:** /projects/gym-nation-khalidiya
+
+### Private Villa — Emirates Hills
+- **Location:** Emirates Hills 3, Dubai, UAE
+- **Year:** 2025
+- **Category:** Luxury Residential Lighting
+- **Description:** A bespoke residential lighting design for an Emirates Hills villa, integrating architectural cove and recessed detailing with decorative fixtures and controlled exterior illumination.
+- **URL:** /projects/villa-emirates-hills
+
+### Octave Fashion
+- **Location:** Sharjah Central Mall & Grand Mall, Al Qusais, UAE
+- **Year:** 2025
+- **Category:** Retail & Showroom Lighting
+- **Description:** Menswear retail lighting for two stores of the business-casual fashion label, with accent light on garment walls and mannequins and neutral, high-fidelity light at the fitting rooms.
+- **URL:** /projects/octave-fashion
 
 ## FAQ Knowledge
 ### What services does Credence Lighting provide?

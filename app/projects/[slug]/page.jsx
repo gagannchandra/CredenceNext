@@ -16,8 +16,8 @@ export async function generateMetadata({ params }) {
     return { title: "Project Not Found" };
   }
 
-  const title = `${project.name} · ${project.location}`;
-  const fullTitle = `${project.name} · ${project.location} · Credence Lighting`;
+  const title = project.metaTitle || `${project.name} · ${project.location}`;
+  const fullTitle = `${title} · Credence Lighting`;
   const description = `Explore the architectural lighting design of ${project.name} in ${project.location} (${project.year}). Discover bespoke ${project.category.toLowerCase()} illumination solutions by Credence Lighting.`;
   const image = project.hero ? `${SITE_URL}${project.hero}` : FALLBACK_IMAGE;
   const url = `${SITE_URL}/projects/${project.slug}`;
