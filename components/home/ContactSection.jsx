@@ -289,6 +289,9 @@ export default function ContactSection({ asPage = false }) {
                     <a href="tel:+971564965660" className="block hover:text-brand-gold transition duration-300">
                       +971 564 965 660
                     </a>
+                    <a href="tel:+971 454 6969" className="block hover:text-brand-gold transition duration-300">
+                      +971 4 546969
+                    </a>
                   </div>
                 </div>
 
