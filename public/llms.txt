@@ -8,7 +8,7 @@ Credence Lighting is a premium lighting design and supply company based in Dubai
 - [Full Technical Knowledge Base (Full Digest)](/llms-full.txt): Single-file exhaustive markdown knowledge base containing complete technical, product, and case study documentation.
 - [Comprehensive Knowledge Base](/knowledge.md): Structured business identity, standards, and QA pairs.
 - [About Us](/about): Company heritage, lighting consultants, and capabilities in Dubai.
-- [Lighting Solutions & Services](/solutions): Complete architectural, commercial, hospitality, and residential lighting services.
+- [Lighting Sectors](/solutions): Complete architectural, commercial, hospitality, and residential lighting sectors we serve.
 - [Architectural Products](/products): Indoor, outdoor, facade, explosion-proof, and decorative lighting luminaires.
 - [Portfolio & Case Studies](/projects): Completed commercial, hospitality, and entertainment lighting projects across GCC.
 - [Contact Us](/contact): Direct consultation with lighting specialists in Dubai.

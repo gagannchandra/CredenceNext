@@ -1,13 +1,13 @@
 import Gallery from "@/lib_src/pages/Gallery";
 
 export const metadata = {
-  title: 'Lighting Design Gallery',
+  title: 'Lighting Gallery',
   description: 'Visual gallery of luxury architectural lighting projects, bespoke fixture installations, and innovative illumination concepts in Dubai and UAE.',
   alternates: {
     canonical: "https://www.credencelighting.com/gallery",
   },
   openGraph: {
-    title: 'Lighting Design Gallery · Credence Lighting',
+    title: 'Lighting Gallery · Credence Lighting',
     description: 'Visual gallery of luxury architectural lighting projects, bespoke fixture installations, and innovative illumination concepts in Dubai and UAE.',
     url: "https://www.credencelighting.com/gallery",
     siteName: "Credence Lighting",
@@ -17,7 +17,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: 'Lighting Design Gallery · Credence Lighting',
+    title: 'Lighting Gallery · Credence Lighting',
     description: 'Visual gallery of luxury architectural lighting projects, bespoke fixture installations, and innovative illumination concepts in Dubai and UAE.',
     images: ["https://www.credencelighting.com/meta.png"],
   },

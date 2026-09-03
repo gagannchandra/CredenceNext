@@ -1,13 +1,13 @@
 import ExplosionProofLights from "@/lib_src/pages/ExplosionProofLights";
 
 export const metadata = {
-  title: 'Explosion Proof Industrial Lighting',
+  title: 'Explosion Proof Lighting',
   description: 'ATEX & IECEx certified explosion-proof LED lighting in Dubai and UAE. Zone 1, 2, 21, and 22 hazardous area luminaires for industrial and energy facilities.',
   alternates: {
     canonical: "https://www.credencelighting.com/explosion-proof-lights",
   },
   openGraph: {
-    title: 'Explosion Proof Industrial Lighting · Credence Lighting',
+    title: 'Explosion Proof Lighting · Credence Lighting',
     description: 'ATEX & IECEx certified explosion-proof LED lighting in Dubai and UAE. Zone 1, 2, 21, and 22 hazardous area luminaires for industrial and energy facilities.',
     url: "https://www.credencelighting.com/explosion-proof-lights",
     siteName: "Credence Lighting",
@@ -17,7 +17,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: 'Explosion Proof Industrial Lighting · Credence Lighting',
+    title: 'Explosion Proof Lighting · Credence Lighting',
     description: 'ATEX & IECEx certified explosion-proof LED lighting in Dubai and UAE. Zone 1, 2, 21, and 22 hazardous area luminaires for industrial and energy facilities.',
     images: ["https://www.credencelighting.com/images/explosion-proof/hero.webp"],
   },

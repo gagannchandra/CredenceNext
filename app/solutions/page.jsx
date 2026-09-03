@@ -1,13 +1,13 @@
 import Solutions from "@/lib_src/pages/Solutions";
 
 export const metadata = {
-  title: 'Lighting Solutions & Services',
+  title: 'Sectors',
   description: 'Comprehensive architectural, commercial, hospitality, and residential lighting solutions engineered for superior performance and elegance across the UAE.',
   alternates: {
     canonical: "https://www.credencelighting.com/solutions",
   },
   openGraph: {
-    title: 'Lighting Solutions & Services · Credence Lighting',
+    title: 'Sectors · Credence Lighting',
     description: 'Comprehensive architectural, commercial, hospitality, and residential lighting solutions engineered for superior performance and elegance across the UAE.',
     url: "https://www.credencelighting.com/solutions",
     siteName: "Credence Lighting",
@@ -17,7 +17,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: 'Lighting Solutions & Services · Credence Lighting',
+    title: 'Sectors · Credence Lighting',
     description: 'Comprehensive architectural, commercial, hospitality, and residential lighting solutions engineered for superior performance and elegance across the UAE.',
     images: ["https://www.credencelighting.com/meta.png"],
   },

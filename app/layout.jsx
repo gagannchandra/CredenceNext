@@ -27,7 +27,7 @@ const playfair = Playfair_Display({
 export const metadata = {
   metadataBase: new URL("https://www.credencelighting.com"),
   title: {
-    default: "Credence Lighting · Architectural & Commercial Lighting Dubai",
+    default: "Credence Lighting · Architectural Lighting Dubai",
     template: "%s · Credence Lighting",
   },
   description:
@@ -54,7 +54,7 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: "Credence Lighting · Architectural & Commercial Lighting Dubai",
+    title: "Credence Lighting · Architectural Lighting Dubai",
     description:
       "Credence Lighting is a premier architectural, commercial, and hospitality lighting design and supply company in Dubai, delivering bespoke luxury lighting across the UAE and GCC.",
     url: "https://www.credencelighting.com/",
@@ -72,7 +72,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Credence Lighting · Architectural & Commercial Lighting Dubai",
+    title: "Credence Lighting · Architectural Lighting Dubai",
     description:
       "Credence Lighting is a premier architectural, commercial, and hospitality lighting design and supply company in Dubai, delivering bespoke luxury lighting across the UAE and GCC.",
     images: ["https://www.credencelighting.com/meta.png"],

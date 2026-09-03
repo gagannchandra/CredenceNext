@@ -1,13 +1,13 @@
 import RestaurantLighting from "@/lib_src/pages/RestaurantLighting";
 
 export const metadata = {
-  title: 'Restaurant & Dining Lighting Solutions',
+  title: 'Restaurant Lighting',
   description: 'Atmospheric restaurant, bar, and fine-dining lighting design in Dubai. Warm dimming LEDs, bespoke decorative fixtures, and custom architectural scene controls.',
   alternates: {
     canonical: "https://www.credencelighting.com/restaurant-lighting",
   },
   openGraph: {
-    title: 'Restaurant & Dining Lighting Solutions · Credence Lighting',
+    title: 'Restaurant Lighting · Credence Lighting',
     description: 'Atmospheric restaurant, bar, and fine-dining lighting design in Dubai. Warm dimming LEDs, bespoke decorative fixtures, and custom architectural scene controls.',
     url: "https://www.credencelighting.com/restaurant-lighting",
     siteName: "Credence Lighting",
@@ -17,7 +17,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: 'Restaurant & Dining Lighting Solutions · Credence Lighting',
+    title: 'Restaurant Lighting · Credence Lighting',
     description: 'Atmospheric restaurant, bar, and fine-dining lighting design in Dubai. Warm dimming LEDs, bespoke decorative fixtures, and custom architectural scene controls.',
     images: ["https://www.credencelighting.com/meta.png"],
   },

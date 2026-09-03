@@ -1,13 +1,13 @@
 import AudioSolutions from "@/lib_src/pages/AudioSolutions";
 
 export const metadata = {
-  title: 'Commercial Architectural Audio Systems',
+  title: 'Audio Solutions',
   description: 'Premium commercial audio, sound reinforcement, and acoustic systems for hospitality, luxury retail, and corporate venues in Dubai and GCC.',
   alternates: {
     canonical: "https://www.credencelighting.com/audio-solutions",
   },
   openGraph: {
-    title: 'Commercial Architectural Audio Systems · Credence Lighting',
+    title: 'Audio Solutions · Credence Lighting',
     description: 'Premium commercial audio, sound reinforcement, and acoustic systems for hospitality, luxury retail, and corporate venues in Dubai and GCC.',
     url: "https://www.credencelighting.com/audio-solutions",
     siteName: "Credence Lighting",
@@ -17,7 +17,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: 'Commercial Architectural Audio Systems · Credence Lighting',
+    title: 'Audio Solutions · Credence Lighting',
     description: 'Premium commercial audio, sound reinforcement, and acoustic systems for hospitality, luxury retail, and corporate venues in Dubai and GCC.',
     images: ["https://www.credencelighting.com/meta.png"],
   },

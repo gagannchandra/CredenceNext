@@ -146,17 +146,6 @@ export default function Faq() {
           "@type": "WebPage",
           "name": "Credence Lighting Help & Frequently Asked Questions",
           "description": "Comprehensive FAQ covering architectural lighting, LED supply, warranties, and smart lighting controls in Dubai and UAE."
-        }, {
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": faqData.map((f) => ({
-            "@type": "Question",
-            "name": f.question,
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": f.answer
-            }
-          }))
         }]}
       />
       
